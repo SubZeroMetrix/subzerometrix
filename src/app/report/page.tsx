@@ -21,6 +21,7 @@ import { getFinancialPathsForPhase, type FinancialPath } from '@/lib/financialSy
 import { STATE_RESOURCES } from '@/lib/stateResources'
 import { loadIntake, goalLabel, challengeLabel, stageLabel, type QuickIntake } from '@/lib/intake'
 import { buildStarterScore, explainRisk, firstAction, alternativePaths } from '@/lib/metrixReport'
+import ChoosePathSection from '@/components/ChoosePathSection'
 
 // ── Score ring ────────────────────────────────────────────────────────────────
 function ScoreRing({ score, color }: { score: number; color: string }) {
@@ -1012,6 +1013,9 @@ function ReportContent() {
                 )}
               </div>
             </section>
+
+            {/* ── Choose Your Path — roadmap options + first actions ────── */}
+            <ChoosePathSection starter={starter} intake={intake} />
 
             <section className="mt-6 mb-8">
               <div className="flex items-center gap-2 mb-4">
