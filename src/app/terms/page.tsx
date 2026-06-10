@@ -130,7 +130,7 @@ Violations may result in access termination without refund.`,
   {
     id: 'affiliates',
     title: 'Affiliate Links',
-    body: `Reports and resource pages may contain affiliate links. If you click an affiliate link and make a purchase, The Modern Trades Mentor may earn a commission at no additional cost to you. Affiliate relationships do not influence your MetrixScore, report content, or recommendations. See our Affiliate Disclosure for details.`,
+    body: `SubZeroMetrix and The Modern Trades Mentor may pursue affiliate or vendor relationships in the future. If affiliate links, sponsored placements, or paid vendor relationships are added, they will be disclosed clearly. Current tool recommendations are provided for educational purposes and should be evaluated independently based on fit, pricing, support, and business needs. Any future affiliate relationships would not influence your MetrixScore, report content, or recommendations. See our Affiliate Disclosure for details.`,
   },
   {
     id: 'liability',

@@ -114,7 +114,7 @@ export type DisclosureType =
 
 export const DISCLOSURE_TEXT: Record<DisclosureType, string> = {
   'affiliate-universal':
-    'Affiliate link — SubZeroMetrix may earn a commission if you sign up or purchase through this link, at no additional cost to you.',
+    'Tool recommendations are provided for educational purposes. SubZeroMetrix has no active affiliate relationships yet; if affiliate or paid vendor relationships are added in the future, they will be disclosed clearly. Evaluate each tool independently based on fit, pricing, support, and business needs.',
 
   'not-financial-advice':
     'SubZeroMetrix is an education and referral platform. We do not provide financial, insurance, lending, or legal advice. All financial products and services are provided by licensed third-party partners.',

@@ -48,7 +48,7 @@ SubZeroMetrix takes no responsibility for outcomes arising from scores or report
   },
   {
     title: 'Third-Party Resources & Affiliate Links',
-    body: `This Platform may contain links to third-party websites, tools, service providers, and resources. These links may include affiliate links through which we earn a commission if you make a purchase.
+    body: `This Platform may contain links to third-party websites, tools, service providers, and resources. SubZeroMetrix may pursue affiliate or vendor relationships in the future. If affiliate links, sponsored placements, or paid vendor relationships are added, they will be disclosed clearly. Current tool recommendations are provided for educational purposes and should be evaluated independently based on fit, pricing, support, and business needs.
 
 We do not control, endorse, or take responsibility for the content, accuracy, products, services, or privacy practices of any third-party website or provider. References to specific tools, services, or companies are for informational purposes and do not constitute endorsements or recommendations that they are right for your specific situation.
 

@@ -126,11 +126,13 @@ export default function ResourcesPage() {
 
         {/* Affiliate partner sections */}
         <h2 className="font-display text-2xl tracking-wider text-brand-white mb-2">
-          PARTNER TOOLS
+          TOOL RECOMMENDATIONS
         </h2>
         <p className="text-[12px] text-brand-silver/70 leading-relaxed mb-6">
-          Curated tools used by trades businesses at every stage.
-          Affiliate links marked ★ may earn us a commission.
+          Curated tools used by trades businesses at every stage. Recommendations are provided for
+          educational purposes. SubZeroMetrix may pursue affiliate or vendor relationships in the
+          future, but current recommendations should be evaluated independently based on fit, pricing,
+          support, and business needs.
         </p>
 
         <div className="space-y-8">
@@ -174,7 +176,6 @@ export default function ResourcesPage() {
                               Free option
                             </span>
                           )}
-                          <span className="text-[9px] text-brand-silver/40 ml-auto">★ affiliate</span>
                         </div>
                         <p className="text-[11px] text-brand-silver leading-relaxed">{p.desc}</p>
                       </div>

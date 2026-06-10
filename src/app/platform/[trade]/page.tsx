@@ -404,11 +404,13 @@ export default function TradePlatformPage() {
               <h2 className="font-display text-xl tracking-wider text-brand-white">TOOLS & RESOURCES</h2>
             </div>
             <p className="text-[12px] text-brand-silver leading-relaxed mb-2">
-              Tools used by {trade.tradeName} businesses. Listed by fit, not commission rate.
+              Tools used by {trade.tradeName} businesses. Listed by fit and business need.
             </p>
             <p className="text-[10px] text-brand-silver/50 mb-5">
-              Some links are affiliate links — we may earn a commission at no cost to you.{' '}
-              <Link href="/affiliate-disclosure" className="text-brand-accent hover:underline">Full disclosure →</Link>
+              Tool recommendations are provided for educational purposes. SubZeroMetrix may pursue
+              affiliate or vendor relationships in the future, but current recommendations should be
+              evaluated independently based on fit, pricing, support, and business needs.{' '}
+              <Link href="/affiliate-disclosure" className="text-brand-accent hover:underline">Learn more →</Link>
             </p>
 
             {/* Group by category */}
@@ -446,9 +448,6 @@ export default function TradePlatformPage() {
                             style={{ color: accent }}>
                             <ExternalLink className="w-3 h-3 flex-shrink-0" />
                             Visit {tool.name}
-                            {tool.affiliateId && (
-                              <span className="text-brand-silver/30 ml-auto text-[9px]">★ affiliate</span>
-                            )}
                           </a>
                         </div>
                       )

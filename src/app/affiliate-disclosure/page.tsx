@@ -22,6 +22,18 @@ export default function AffiliateDisclosurePage() {
           Last updated: June 2026
         </p>
 
+        <div className="rounded-sm px-4 py-3 mb-8"
+          style={{ background: 'rgba(74,144,217,0.08)', border: '1px solid rgba(74,144,217,0.25)' }}>
+          <p className="text-brand-silver text-xs leading-relaxed">
+            Tool recommendations on SubZeroMetrix are provided for educational purposes and as vendor
+            research starting points. We do not currently have active affiliate or paid-placement
+            agreements with the tools we list. SubZeroMetrix may pursue affiliate or vendor
+            relationships in the future, but current recommendations should be evaluated independently
+            based on fit, pricing, support, and business needs. This page describes how affiliate links
+            would work if and when such relationships are established.
+          </p>
+        </div>
+
         <div className="space-y-7">
 
           <div>
@@ -79,12 +91,12 @@ We do not collect sensitive financial information such as Social Security number
 • Your personalized roadmap — action steps may include links to relevant tools
 • Email follow-up sequences — limited emails containing relevant resource recommendations
 
-All affiliate links are identified with "★ affiliate" or equivalent disclosure adjacent to the link.`}</p>
+If and when affiliate relationships are established, affiliate links will be clearly identified with a disclosure adjacent to the link.`}</p>
           </div>
 
           <div>
             <h2 className="text-sm font-semibold text-brand-white mb-2 pb-2 border-b border-white/10">
-              Our Affiliate Partners (Categories)
+              Tool Categories We May Reference
             </h2>
             <div className="space-y-2">
               {[
@@ -118,7 +130,7 @@ All affiliate links are identified with "★ affiliate" or equivalent disclosure
 • The action steps in your personalized roadmap
 • Which vendors or categories are recommended to you
 
-Resources are recommended based on your assessment results. The gaps your score reveals determine which tools appear — not affiliate availability or commission rates. We do not include vendors solely to earn commissions; we earn commissions from vendors that are genuinely useful to trades business owners.`}</p>
+Resources are recommended based on your assessment results. The gaps your score reveals determine which tools appear — not affiliate availability or commission rates. We do not currently have active affiliate relationships, and if we pursue them in the future, we will only recommend tools that are genuinely useful to trades business owners.`}</p>
           </div>
 
           <div>

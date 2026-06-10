@@ -1,6 +1,8 @@
 // ─────────────────────────────────────────────────────────────────────────────
 // SubZeroMetrix — Vendor Categories
 // 22 categories, 3–5 vendors each. affiliateStatus is factual — never fabricated.
+// No active affiliate relationships exist yet (pre-launch): statuses are 'none'
+// or 'pending'. Tool listings are educational recommendations only.
 // ─────────────────────────────────────────────────────────────────────────────
 
 export type AffiliateStatus = 'none' | 'pending' | 'active'
@@ -72,7 +74,7 @@ export const VENDOR_CATEGORIES: VendorCategory[] = [
         name: 'Jobber',
         categoryId: 'fsm',
         websiteUrl: 'https://getjobber.com',
-        affiliateStatus: 'active',
+        affiliateStatus: 'pending',
         tagline: 'Scheduling, invoicing, and payments for field service',
         desc: 'Clean, practical FSM platform built for small-to-mid service businesses. Handles scheduling, dispatch, quoting, invoicing, payment collection, and customer communication. Faster to set up than ServiceTitan.',
         costLevel: 'medium',
@@ -89,7 +91,7 @@ export const VENDOR_CATEGORIES: VendorCategory[] = [
         name: 'Housecall Pro',
         categoryId: 'fsm',
         websiteUrl: 'https://www.housecallpro.com',
-        affiliateStatus: 'active',
+        affiliateStatus: 'pending',
         tagline: 'Run your home service business from your phone',
         desc: 'Mobile-first FSM with strong customer communication and review automation. Good for contractors who manage jobs primarily from a phone. Competitive with Jobber for ease of use.',
         costLevel: 'medium',
@@ -232,7 +234,7 @@ export const VENDOR_CATEGORIES: VendorCategory[] = [
         name: 'Jobber (quoting)',
         categoryId: 'estimating',
         websiteUrl: 'https://getjobber.com',
-        affiliateStatus: 'active',
+        affiliateStatus: 'pending',
         tagline: 'Fast, professional quotes from your phone or laptop',
         desc: 'Jobber\'s quoting module lets you build and send professional estimates, track approval, and convert to jobs in one click. Good for line-item or flat-rate quoting for smaller operations.',
         costLevel: 'medium',
@@ -329,7 +331,7 @@ export const VENDOR_CATEGORIES: VendorCategory[] = [
         name: 'Jobber Payments',
         categoryId: 'payments',
         websiteUrl: 'https://getjobber.com/features/payments',
-        affiliateStatus: 'active',
+        affiliateStatus: 'pending',
         tagline: 'Payments built into your FSM workflow',
         desc: 'Accept card and ACH directly in Jobber. Invoice auto-closes when paid. Customer card on file for recurring billing. Eliminates the friction of using a separate payment tool when you are already in Jobber.',
         costLevel: 'low',
@@ -472,7 +474,7 @@ export const VENDOR_CATEGORIES: VendorCategory[] = [
         name: 'Relay',
         categoryId: 'banking',
         websiteUrl: 'https://relayfi.com',
-        affiliateStatus: 'active',
+        affiliateStatus: 'pending',
         tagline: 'Online banking built for small business owners',
         desc: 'Online business bank with no monthly fees, multiple account support, free debit cards, and accountant access. Ideal for contractors who want free banking with clean software. Not a traditional bank but FDIC insured through partner banks.',
         costLevel: 'free',
@@ -552,7 +554,7 @@ export const VENDOR_CATEGORIES: VendorCategory[] = [
         name: 'QuickBooks Online',
         categoryId: 'accounting',
         websiteUrl: 'https://quickbooks.intuit.com',
-        affiliateStatus: 'active',
+        affiliateStatus: 'pending',
         tagline: 'The industry standard for small business accounting',
         desc: 'The most widely used accounting software for small businesses. Connects with nearly every FSM, bank, and payroll provider. Required by most CPAs and lenders when reviewing contractor financials.',
         costLevel: 'medium',
@@ -569,7 +571,7 @@ export const VENDOR_CATEGORIES: VendorCategory[] = [
         name: 'Wave Accounting',
         categoryId: 'accounting',
         websiteUrl: 'https://www.waveapps.com',
-        affiliateStatus: 'active',
+        affiliateStatus: 'pending',
         tagline: 'Free accounting, invoicing, and expense tracking',
         desc: 'Completely free accounting, invoicing, and expense tracking for small businesses. Lacks job costing depth but excellent for sole proprietors and early-stage contractors who need basic income/expense tracking without cost.',
         costLevel: 'free',
@@ -666,7 +668,7 @@ export const VENDOR_CATEGORIES: VendorCategory[] = [
         name: 'QuickBooks Payroll',
         categoryId: 'payroll',
         websiteUrl: 'https://quickbooks.intuit.com/payroll',
-        affiliateStatus: 'active',
+        affiliateStatus: 'pending',
         tagline: 'Payroll built into your QuickBooks accounting',
         desc: 'Payroll that lives inside QuickBooks. Preferred by contractors already on QuickBooks who want minimal integration work. Automatic tax payments, direct deposit, and workers\' comp pay-as-you-go.',
         costLevel: 'medium',
@@ -746,7 +748,7 @@ export const VENDOR_CATEGORIES: VendorCategory[] = [
         name: 'NEXT Insurance',
         categoryId: 'insurance',
         websiteUrl: 'https://www.nextinsurance.com',
-        affiliateStatus: 'active',
+        affiliateStatus: 'pending',
         tagline: 'Fast, affordable contractor insurance online',
         desc: 'Online-first insurance designed for small contractors and self-employed tradespeople. Fast quote and bind (often same day), instant certificates, and competitive pricing for GL and tools/equipment coverage.',
         costLevel: 'low',
@@ -763,7 +765,7 @@ export const VENDOR_CATEGORIES: VendorCategory[] = [
         name: 'Simply Business',
         categoryId: 'insurance',
         websiteUrl: 'https://www.simplybusiness.com',
-        affiliateStatus: 'active',
+        affiliateStatus: 'pending',
         tagline: 'Compare multiple insurance quotes for contractors',
         desc: 'Insurance marketplace that compares quotes from multiple carriers. Good for finding competitive rates across GL, professional liability, and commercial auto. Specializes in small business and contractor coverage.',
         costLevel: 'low',
@@ -957,7 +959,7 @@ export const VENDOR_CATEGORIES: VendorCategory[] = [
         name: 'Nav',
         categoryId: 'lending',
         websiteUrl: 'https://www.nav.com',
-        affiliateStatus: 'active',
+        affiliateStatus: 'pending',
         tagline: 'Monitor business credit and find the right financing',
         desc: 'Business credit monitoring and loan marketplace. Contractors use Nav to track their business Dun & Bradstreet, Equifax, and Experian business credit scores and find lending products matched to their profile.',
         costLevel: 'free',
@@ -1003,7 +1005,7 @@ export const VENDOR_CATEGORIES: VendorCategory[] = [
         name: 'Podium',
         categoryId: 'reviews',
         websiteUrl: 'https://www.podium.com',
-        affiliateStatus: 'active',
+        affiliateStatus: 'pending',
         tagline: 'Customer messaging, reviews, and payments in one platform',
         desc: 'All-in-one customer communication platform with automated review requests, text marketing, webchat, and payment collection. Most comprehensive review management tool for established contractors.',
         costLevel: 'high',
@@ -1163,7 +1165,7 @@ export const VENDOR_CATEGORIES: VendorCategory[] = [
         name: 'Broadly',
         categoryId: 'websites-seo',
         websiteUrl: 'https://broadly.com',
-        affiliateStatus: 'active',
+        affiliateStatus: 'pending',
         tagline: 'Reputation and web presence for local home service businesses',
         desc: 'Combines review management, customer messaging, and basic web presence management for home service contractors. Good value for smaller contractors who want review automation and simple web updates in one tool.',
         costLevel: 'medium',
@@ -1306,7 +1308,7 @@ export const VENDOR_CATEGORIES: VendorCategory[] = [
         name: 'Mailchimp',
         categoryId: 'email-sms',
         websiteUrl: 'https://mailchimp.com',
-        affiliateStatus: 'active',
+        affiliateStatus: 'pending',
         tagline: 'Email marketing for small businesses',
         desc: 'The most widely used email marketing platform. Good for contractors sending seasonal promotions, newsletter updates, or maintenance reminders to past customers. Free tier up to 500 contacts.',
         costLevel: 'free',
@@ -1706,7 +1708,7 @@ export const VENDOR_CATEGORIES: VendorCategory[] = [
         name: 'ZenBusiness',
         categoryId: 'formation-legal',
         websiteUrl: 'https://www.zenbusiness.com',
-        affiliateStatus: 'active',
+        affiliateStatus: 'pending',
         tagline: 'Fast, affordable LLC formation and registered agent',
         desc: 'LLC and corporation formation service with registered agent, operating agreement, and EIN obtainment. Good value for contractors who want guided formation without a full attorney cost.',
         costLevel: 'low',
@@ -1898,6 +1900,108 @@ export const VENDOR_CATEGORIES: VendorCategory[] = [
     ],
   },
 ]
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Pre-launch vendor expansion (June 2026)
+// Added via the existing VendorEntry schema. No active affiliate relationships
+// exist yet, so affiliateStatus is 'none'. These are educational recommendations
+// and vendor research starting points — not partnerships or paid placements.
+// Merged into the categories above so all helpers pick them up automatically.
+// ─────────────────────────────────────────────────────────────────────────────
+const ADDITIONAL_VENDORS: VendorEntry[] = [
+  // ── Field Service Management ──────────────────────────────────────────────
+  { id: 'servicetrade', name: 'ServiceTrade', categoryId: 'fsm', websiteUrl: 'https://servicetrade.com', affiliateStatus: 'none', tagline: 'FSM for commercial service contractors', desc: 'Field service platform focused on commercial mechanical, fire, and electrical service contractors with strong customer portals and service-contract management.', costLevel: 'high', costNote: 'Custom pricing — contact vendor', setupDifficulty: 'advanced', bestFor: ['growth', 'scale'], tradeRelevance: ['hvac', 'electrical', 'plumbing', 'construction'], standoutFeature: 'Commercial service agreements and customer-facing online portals', integrates: ['quickbooks'], freeOption: false },
+  { id: 'buildops', name: 'BuildOps', categoryId: 'fsm', websiteUrl: 'https://buildops.com', affiliateStatus: 'none', tagline: 'All-in-one platform for commercial trades', desc: 'End-to-end operations platform built for commercial mechanical and electrical contractors covering service, projects, and reporting.', costLevel: 'enterprise', costNote: 'Custom pricing — contact vendor', setupDifficulty: 'advanced', bestFor: ['growth', 'scale'], tradeRelevance: ['hvac', 'electrical', 'plumbing', 'construction'], standoutFeature: 'Unified service and project management for commercial contractors', integrates: ['quickbooks'], freeOption: false },
+  { id: 'sera', name: 'Sera', categoryId: 'fsm', websiteUrl: 'https://sera.tech', affiliateStatus: 'none', tagline: 'FSM built to protect per-job profit', desc: 'Field service software for HVAC, plumbing, and electrical contractors with a strong focus on pricing accuracy and job profitability.', costLevel: 'high', costNote: 'Custom pricing — contact vendor', setupDifficulty: 'moderate', bestFor: ['growth', 'scale'], tradeRelevance: ['hvac', 'plumbing', 'electrical'], standoutFeature: 'Profit-focused scheduling and dynamic pricing', integrates: ['quickbooks'], freeOption: false },
+  { id: 'fieldpulse', name: 'FieldPulse', categoryId: 'fsm', websiteUrl: 'https://www.fieldpulse.com', affiliateStatus: 'none', tagline: 'Affordable all-in-one FSM for small teams', desc: 'Budget-friendly field service platform covering scheduling, estimates, invoicing, and customer management for small and growing contractors.', costLevel: 'low', costNote: 'Subscription pricing varies by team size', setupDifficulty: 'easy', bestFor: ['early', 'growth'], tradeRelevance: ['all'], standoutFeature: 'Broad feature set at a lower price point than enterprise FSM', integrates: ['quickbooks', 'stripe'], freeOption: false },
+  { id: 'zuper', name: 'Zuper', categoryId: 'fsm', websiteUrl: 'https://www.zuper.co', affiliateStatus: 'none', tagline: 'FSM with workflow automation', desc: 'Field service management platform with strong workflow automation and integrations for mid-sized service businesses.', costLevel: 'medium', costNote: 'Custom pricing — contact vendor', setupDifficulty: 'moderate', bestFor: ['growth', 'scale'], tradeRelevance: ['all'], standoutFeature: 'Configurable automation and a wide integration library', integrates: ['quickbooks'], freeOption: false },
+  { id: 'quoteiq', name: 'QuoteIQ', categoryId: 'fsm', websiteUrl: 'https://getquoteiq.com', affiliateStatus: 'none', tagline: 'Free-to-start FSM and estimating', desc: 'Estimating and job management app aimed at new and small service contractors, with a free starting tier.', costLevel: 'free', costNote: 'Free tier available; paid upgrades for more features', setupDifficulty: 'easy', bestFor: ['startup', 'early'], tradeRelevance: ['all'], standoutFeature: 'Free starting tier for brand-new contractors', integrates: ['stripe'], freeOption: true },
+  { id: 'serviceagent', name: 'ServiceAgent', categoryId: 'fsm', websiteUrl: 'https://serviceagent.ai', affiliateStatus: 'none', tagline: 'AI call answering and booking', desc: 'AI-based receptionist that answers calls and books jobs for home service businesses around the clock.', costLevel: 'medium', costNote: 'Subscription pricing varies', setupDifficulty: 'easy', bestFor: ['early', 'growth'], tradeRelevance: ['all'], standoutFeature: 'AI answers and books missed calls 24/7', integrates: [], freeOption: false },
+  { id: 'kickserv', name: 'Kickserv', categoryId: 'fsm', websiteUrl: 'https://www.kickserv.com', affiliateStatus: 'none', tagline: 'Simple, budget-friendly FSM', desc: 'Straightforward field service software for small service businesses covering scheduling, estimates, and invoicing.', costLevel: 'low', costNote: 'Free plan for light use; paid plans for teams', setupDifficulty: 'easy', bestFor: ['startup', 'early'], tradeRelevance: ['all'], standoutFeature: 'Easy onboarding with a free plan for solo operators', integrates: ['quickbooks', 'stripe'], freeOption: true },
+  { id: 'workiz', name: 'Workiz', categoryId: 'fsm', websiteUrl: 'https://www.workiz.com', affiliateStatus: 'none', tagline: 'FSM with built-in phone and call tracking', desc: 'Field service platform with a built-in business phone, call tracking, and dispatching, popular with field service trades.', costLevel: 'medium', costNote: 'Subscription pricing varies by team size', setupDifficulty: 'easy', bestFor: ['early', 'growth'], tradeRelevance: ['all'], standoutFeature: 'Integrated phone system and call tracking inside the FSM', integrates: ['quickbooks'], freeOption: false },
+  { id: 'mhelpdesk', name: 'mHelpDesk', categoryId: 'fsm', websiteUrl: 'https://www.mhelpdesk.com', affiliateStatus: 'none', tagline: 'Work order and field service management', desc: 'Field service and work-order management software covering quoting, scheduling, and invoicing for service contractors.', costLevel: 'medium', costNote: 'Custom pricing — contact vendor', setupDifficulty: 'moderate', bestFor: ['early', 'growth'], tradeRelevance: ['all'], standoutFeature: 'Work-order workflow from request to payment', integrates: ['quickbooks'], freeOption: false },
+
+  // ── Call Tracking / Lead Attribution (Business Phone Systems) ─────────────
+  { id: 'whatconverts', name: 'WhatConverts', categoryId: 'phones', websiteUrl: 'https://www.whatconverts.com', affiliateStatus: 'none', tagline: 'Track calls, forms, and chats to lead source', desc: 'Lead tracking and attribution platform that ties calls, form fills, and chats back to the marketing source that generated them.', costLevel: 'low', costNote: 'Subscription pricing varies by lead volume', setupDifficulty: 'easy', bestFor: ['early', 'growth'], tradeRelevance: ['all'], standoutFeature: 'Full lead attribution across calls, forms, and chat', integrates: ['google-ads', 'hubspot'], freeOption: false },
+  { id: 'calltrackingmetrics', name: 'CallTrackingMetrics', categoryId: 'phones', websiteUrl: 'https://www.calltrackingmetrics.com', affiliateStatus: 'none', tagline: 'Call tracking plus contact-center features', desc: 'Call tracking and analytics platform with contact-center capabilities for businesses managing higher call volume.', costLevel: 'medium', costNote: 'Subscription pricing varies by usage', setupDifficulty: 'moderate', bestFor: ['growth', 'scale'], tradeRelevance: ['all'], standoutFeature: 'Call attribution combined with routing and contact-center tools', integrates: ['google-ads', 'hubspot'], freeOption: false },
+  { id: 'nimbata', name: 'Nimbata', categoryId: 'phones', websiteUrl: 'https://nimbata.com', affiliateStatus: 'none', tagline: 'Affordable call attribution', desc: 'Lower-cost call tracking platform for small businesses that want to know which campaigns drive phone calls.', costLevel: 'low', costNote: 'Subscription pricing varies', setupDifficulty: 'easy', bestFor: ['early', 'growth'], tradeRelevance: ['all'], standoutFeature: 'Budget-friendly call attribution for small ad spend', integrates: ['google-ads'], freeOption: false },
+  { id: 'invoca', name: 'Invoca', categoryId: 'phones', websiteUrl: 'https://www.invoca.com', affiliateStatus: 'none', tagline: 'Enterprise AI call tracking', desc: 'Enterprise conversation intelligence and call tracking platform with AI analysis of inbound calls.', costLevel: 'enterprise', costNote: 'Custom pricing — contact vendor', setupDifficulty: 'advanced', bestFor: ['scale'], tradeRelevance: ['all'], standoutFeature: 'AI conversation analytics at enterprise scale', integrates: [], freeOption: false },
+  { id: 'dialpad', name: 'Dialpad', categoryId: 'phones', websiteUrl: 'https://www.dialpad.com', affiliateStatus: 'none', tagline: 'AI-powered business phone', desc: 'Cloud business phone system with AI call transcription, voicemail summaries, and team messaging.', costLevel: 'low', costNote: 'Per-user monthly pricing', setupDifficulty: 'easy', bestFor: ['early', 'growth'], tradeRelevance: ['all'], standoutFeature: 'Live AI transcription and call summaries', integrates: ['google', 'microsoft'], freeOption: false },
+
+  // ── Review Management / Reputation ────────────────────────────────────────
+  { id: 'reviewtrackers', name: 'ReviewTrackers', categoryId: 'reviews', websiteUrl: 'https://www.reviewtrackers.com', affiliateStatus: 'none', tagline: 'Monitor reviews across many sites', desc: 'Review monitoring and analytics platform that aggregates reviews from a wide range of sites into one dashboard.', costLevel: 'medium', costNote: 'Custom pricing — contact vendor', setupDifficulty: 'easy', bestFor: ['growth', 'scale'], tradeRelevance: ['all'], standoutFeature: 'Aggregates reviews across 100+ review sites', integrates: [], freeOption: false },
+  { id: 'reputation-com', name: 'Reputation.com', categoryId: 'reviews', websiteUrl: 'https://reputation.com', affiliateStatus: 'none', tagline: 'Enterprise reputation management', desc: 'Enterprise reputation and customer experience platform for multi-location businesses managing reviews, listings, and surveys at scale.', costLevel: 'enterprise', costNote: 'Custom pricing — contact vendor', setupDifficulty: 'advanced', bestFor: ['scale'], tradeRelevance: ['all'], standoutFeature: 'Enterprise multi-location reputation and listings management', integrates: [], freeOption: false },
+  { id: 'gatherup', name: 'GatherUp', categoryId: 'reviews', websiteUrl: 'https://gatherup.com', affiliateStatus: 'none', tagline: 'Reviews plus customer feedback surveys', desc: 'Review generation platform that pairs review requests with customer feedback surveys to capture sentiment before it goes public.', costLevel: 'low', costNote: 'Subscription pricing varies by locations', setupDifficulty: 'easy', bestFor: ['early', 'growth'], tradeRelevance: ['all'], standoutFeature: 'Combines review requests with private feedback surveys', integrates: [], freeOption: false },
+  { id: 'soci', name: 'SOCi', categoryId: 'reviews', websiteUrl: 'https://www.meetsoci.com', affiliateStatus: 'none', tagline: 'Localized marketing for multi-location brands', desc: 'Marketing platform for multi-location businesses covering localized social, listings, and reputation management.', costLevel: 'enterprise', costNote: 'Custom pricing — contact vendor', setupDifficulty: 'advanced', bestFor: ['scale'], tradeRelevance: ['all'], standoutFeature: 'Localized social, listings, and reviews for many locations', integrates: [], freeOption: false },
+  { id: 'reviewroket', name: 'ReviewRoket', categoryId: 'reviews', websiteUrl: 'https://reviewroket.com', affiliateStatus: 'none', tagline: 'Simple review request automation', desc: 'Affordable review generation tool that automates review requests by text and email for small businesses.', costLevel: 'low', costNote: 'Low monthly pricing', setupDifficulty: 'easy', bestFor: ['startup', 'early'], tradeRelevance: ['all'], standoutFeature: 'Simple, low-cost automated review requests', integrates: [], freeOption: false },
+  { id: 'reviewflowz', name: 'Reviewflowz', categoryId: 'reviews', websiteUrl: 'https://reviewflowz.com', affiliateStatus: 'none', tagline: 'Review monitoring with team alerts', desc: 'Review monitoring tool that sends alerts to the team when new reviews are posted across major platforms.', costLevel: 'low', costNote: 'Subscription pricing varies', setupDifficulty: 'easy', bestFor: ['early', 'growth'], tradeRelevance: ['all'], standoutFeature: 'Real-time review alerts to Slack and email', integrates: [], freeOption: false },
+
+  // ── Websites & Local SEO / Listings ───────────────────────────────────────
+  { id: 'brightlocal', name: 'BrightLocal', categoryId: 'websites-seo', websiteUrl: 'https://www.brightlocal.com', affiliateStatus: 'none', tagline: 'Local SEO tools for small businesses', desc: 'Affordable local SEO toolset covering local rank tracking, citation building, and audit reports for local businesses.', costLevel: 'low', costNote: 'Subscription pricing varies by locations', setupDifficulty: 'easy', bestFor: ['early', 'growth'], tradeRelevance: ['all'], standoutFeature: 'Local rank tracking, citations, and audits in one tool', integrates: [], freeOption: false },
+  { id: 'yext', name: 'Yext', categoryId: 'websites-seo', websiteUrl: 'https://www.yext.com', affiliateStatus: 'none', tagline: 'Sync business listings everywhere', desc: 'Listings management platform that syncs business name, address, and hours across a large network of directories and maps.', costLevel: 'high', costNote: 'Custom pricing — contact vendor', setupDifficulty: 'moderate', bestFor: ['growth', 'scale'], tradeRelevance: ['all'], standoutFeature: 'Pushes accurate business info to 200+ directories', integrates: [], freeOption: false },
+  { id: 'whitespark', name: 'Whitespark', categoryId: 'websites-seo', websiteUrl: 'https://whitespark.ca', affiliateStatus: 'none', tagline: 'Local citations and rank tracking', desc: 'Local SEO tools specializing in citation building and local search rank tracking for service-area businesses.', costLevel: 'low', costNote: 'Subscription pricing varies', setupDifficulty: 'easy', bestFor: ['early', 'growth'], tradeRelevance: ['all'], standoutFeature: 'Citation building plus local rank tracking', integrates: [], freeOption: false },
+  { id: 'local-falcon', name: 'Local Falcon', categoryId: 'websites-seo', websiteUrl: 'https://www.localfalcon.com', affiliateStatus: 'none', tagline: 'Geo-grid local rank visualization', desc: 'Local rank tracking tool that visualizes Google Business Profile rankings on a geographic grid around your service area.', costLevel: 'low', costNote: 'Pay-as-you-go or subscription', setupDifficulty: 'easy', bestFor: ['early', 'growth'], tradeRelevance: ['all'], standoutFeature: 'Map-grid view of local rankings by neighborhood', integrates: [], freeOption: false },
+  { id: 'semrush-local', name: 'Semrush Local', categoryId: 'websites-seo', websiteUrl: 'https://www.semrush.com/local/', affiliateStatus: 'none', tagline: 'Local SEO toolkit within Semrush', desc: 'Local SEO add-on within the Semrush suite for listings management, review monitoring, and local rank tracking.', costLevel: 'medium', costNote: 'Add-on pricing on top of Semrush', setupDifficulty: 'moderate', bestFor: ['growth', 'scale'], tradeRelevance: ['all'], standoutFeature: 'Local toolkit inside a full SEO platform', integrates: [], freeOption: false },
+  { id: 'ahrefs', name: 'Ahrefs', categoryId: 'websites-seo', websiteUrl: 'https://ahrefs.com', affiliateStatus: 'none', tagline: 'SEO research and backlink analysis', desc: 'Comprehensive SEO toolset for keyword research, backlink analysis, and competitor research. More than most small contractors need but powerful for serious SEO.', costLevel: 'medium', costNote: 'Subscription pricing by plan', setupDifficulty: 'advanced', bestFor: ['growth', 'scale'], tradeRelevance: ['all'], standoutFeature: 'Deep backlink and keyword research data', integrates: [], freeOption: false },
+  { id: 'moz-local', name: 'Moz Local', categoryId: 'websites-seo', websiteUrl: 'https://moz.com/products/local', affiliateStatus: 'none', tagline: 'Affordable listings management', desc: 'Listings distribution and monitoring tool that keeps business information consistent across major directories and data aggregators.', costLevel: 'low', costNote: 'Subscription pricing by plan', setupDifficulty: 'easy', bestFor: ['early', 'growth'], tradeRelevance: ['all'], standoutFeature: 'Low-cost listings distribution and monitoring', integrates: [], freeOption: false },
+  { id: 'blue-corona', name: 'Blue Corona', categoryId: 'websites-seo', websiteUrl: 'https://www.bluecorona.com', affiliateStatus: 'none', tagline: 'Digital marketing agency for home services', desc: 'Done-for-you digital marketing agency specializing in home service contractors, covering websites, SEO, and paid ads.', costLevel: 'high', costNote: 'Custom pricing; typically managed-service retainers', setupDifficulty: 'easy', bestFor: ['growth', 'scale'], tradeRelevance: ['hvac', 'plumbing', 'electrical', 'roofing'], standoutFeature: 'Full-service marketing built for home service trades', integrates: [], freeOption: false },
+
+  // ── CRM ───────────────────────────────────────────────────────────────────
+  { id: 'gohighlevel', name: 'GoHighLevel', categoryId: 'crm', websiteUrl: 'https://www.gohighlevel.com', affiliateStatus: 'none', tagline: 'All-in-one CRM and marketing automation', desc: 'CRM and marketing automation platform combining pipelines, funnels, email and SMS automation, and booking in one system. Popular with marketing-heavy contractors and agencies.', costLevel: 'medium', costNote: 'Subscription pricing by plan', setupDifficulty: 'moderate', bestFor: ['growth', 'scale'], tradeRelevance: ['all'], standoutFeature: 'CRM, funnels, and marketing automation in one platform', integrates: ['zapier'], freeOption: false },
+
+  // ── Accounting / Job Costing / Construction Finance ───────────────────────
+  { id: 'sage-100-contractor', name: 'Sage 100 Contractor', categoryId: 'accounting', websiteUrl: 'https://www.sage.com/en-us/products/sage-100-contractor/', affiliateStatus: 'none', tagline: 'Construction accounting with job costing', desc: 'Construction-specific accounting, job costing, and project management software for small-to-mid contractors.', costLevel: 'high', costNote: 'Custom pricing — contact vendor', setupDifficulty: 'advanced', bestFor: ['growth', 'scale'], tradeRelevance: ['construction'], standoutFeature: 'Integrated construction accounting, estimating, and job costing', integrates: [], freeOption: false },
+  { id: 'sage-300-cre', name: 'Sage 300 Construction and Real Estate', categoryId: 'accounting', websiteUrl: 'https://www.sage.com/en-us/products/sage-300-construction-and-real-estate/', affiliateStatus: 'none', tagline: 'Construction and real-estate financials', desc: 'Construction and property management financial software for larger contractors and developers managing complex job costing.', costLevel: 'enterprise', costNote: 'Custom pricing — contact vendor', setupDifficulty: 'advanced', bestFor: ['scale'], tradeRelevance: ['construction'], standoutFeature: 'Construction and real-estate financial management at scale', integrates: [], freeOption: false },
+  { id: 'foundation-software', name: 'Foundation Software', categoryId: 'accounting', websiteUrl: 'https://www.foundationsoft.com', affiliateStatus: 'none', tagline: 'Job-cost accounting built for contractors', desc: 'Construction accounting and payroll software with strong job costing and certified payroll for contractors.', costLevel: 'high', costNote: 'Custom pricing — contact vendor', setupDifficulty: 'advanced', bestFor: ['growth', 'scale'], tradeRelevance: ['construction'], standoutFeature: 'Construction job-cost accounting with certified payroll', integrates: [], freeOption: false },
+  { id: 'viewpoint-vista', name: 'Viewpoint Vista', categoryId: 'accounting', websiteUrl: 'https://www.viewpoint.com/products/vista', affiliateStatus: 'none', tagline: 'Construction ERP for larger contractors', desc: 'Trimble construction ERP covering accounting, project management, and operations for larger construction firms.', costLevel: 'enterprise', costNote: 'Custom pricing — contact vendor', setupDifficulty: 'advanced', bestFor: ['scale'], tradeRelevance: ['construction'], standoutFeature: 'Full construction ERP across finance and operations', integrates: [], freeOption: false },
+  { id: 'jonas-construction', name: 'Jonas Construction Software', categoryId: 'accounting', websiteUrl: 'https://www.jonasconstruction.com', affiliateStatus: 'none', tagline: 'Integrated construction accounting and operations', desc: 'Construction ERP combining accounting, service management, and project operations for mechanical and specialty contractors.', costLevel: 'enterprise', costNote: 'Custom pricing — contact vendor', setupDifficulty: 'advanced', bestFor: ['scale'], tradeRelevance: ['construction', 'hvac', 'electrical', 'plumbing'], standoutFeature: 'Combined service and construction financial management', integrates: [], freeOption: false },
+  { id: 'cmic', name: 'CMiC', categoryId: 'accounting', websiteUrl: 'https://cmicglobal.com', affiliateStatus: 'none', tagline: 'Enterprise construction project and financial ERP', desc: 'Enterprise construction management ERP unifying financials, project controls, and field operations for large contractors.', costLevel: 'enterprise', costNote: 'Custom pricing — contact vendor', setupDifficulty: 'advanced', bestFor: ['scale'], tradeRelevance: ['construction'], standoutFeature: 'Single database across finance, projects, and field', integrates: [], freeOption: false },
+  { id: 'netsuite', name: 'NetSuite', categoryId: 'accounting', websiteUrl: 'https://www.netsuite.com', affiliateStatus: 'none', tagline: 'Cloud ERP for growing companies', desc: 'Cloud ERP covering accounting, inventory, and operations for multi-entity businesses that have outgrown small-business accounting tools.', costLevel: 'enterprise', costNote: 'Custom pricing — contact vendor', setupDifficulty: 'advanced', bestFor: ['scale'], tradeRelevance: ['all'], standoutFeature: 'Full cloud ERP for complex multi-entity operations', integrates: [], freeOption: false },
+  { id: 'acumatica', name: 'Acumatica', categoryId: 'accounting', websiteUrl: 'https://www.acumatica.com', affiliateStatus: 'none', tagline: 'Cloud ERP with a construction edition', desc: 'Flexible cloud ERP with a dedicated construction edition for contractors needing project accounting and operations in one system.', costLevel: 'enterprise', costNote: 'Custom pricing — contact vendor', setupDifficulty: 'advanced', bestFor: ['scale'], tradeRelevance: ['construction', 'all'], standoutFeature: 'Construction-specific ERP edition with project accounting', integrates: [], freeOption: false },
+  { id: 'procore', name: 'Procore', categoryId: 'accounting', websiteUrl: 'https://www.procore.com', affiliateStatus: 'none', tagline: 'Industry-standard construction project management', desc: 'Widely used construction project management platform covering project controls, documents, and financials. Pairs with an accounting system for full job costing.', costLevel: 'enterprise', costNote: 'Custom pricing — contact vendor', setupDifficulty: 'advanced', bestFor: ['growth', 'scale'], tradeRelevance: ['construction'], standoutFeature: 'Construction project controls used widely on commercial work', integrates: ['quickbooks', 'sage'], freeOption: false },
+  { id: 'buildertrend', name: 'Buildertrend', categoryId: 'accounting', websiteUrl: 'https://buildertrend.com', affiliateStatus: 'none', tagline: 'Project management for builders and remodelers', desc: 'Construction project management software for home builders and remodelers covering scheduling, client communication, budgets, and change orders.', costLevel: 'medium', costNote: 'Subscription pricing by plan', setupDifficulty: 'moderate', bestFor: ['growth', 'scale'], tradeRelevance: ['construction'], standoutFeature: 'Client portal, scheduling, and budgets for residential construction', integrates: ['quickbooks', 'xero'], freeOption: false },
+  { id: 'projul', name: 'Projul', categoryId: 'accounting', websiteUrl: 'https://projul.com', affiliateStatus: 'none', tagline: 'Simpler construction project management', desc: 'Construction project management software aimed at growing contractors who want estimating, scheduling, and job tracking without enterprise complexity.', costLevel: 'medium', costNote: 'Subscription pricing by plan', setupDifficulty: 'easy', bestFor: ['early', 'growth'], tradeRelevance: ['construction'], standoutFeature: 'Approachable construction PM for small and growing firms', integrates: ['quickbooks'], freeOption: false },
+
+  // ── Payroll / HR ──────────────────────────────────────────────────────────
+  { id: 'payroll4construction', name: 'Payroll4Construction', categoryId: 'payroll', websiteUrl: 'https://www.payroll4construction.com', affiliateStatus: 'none', tagline: 'Construction-specific payroll', desc: 'Payroll service built for construction with certified payroll, union, and prevailing-wage reporting for contractors on public and commercial work.', costLevel: 'medium', costNote: 'Custom pricing — contact vendor', setupDifficulty: 'moderate', bestFor: ['growth', 'scale'], tradeRelevance: ['construction', 'electrical', 'hvac', 'plumbing'], standoutFeature: 'Certified payroll and prevailing-wage reporting', integrates: ['foundation-software'], freeOption: false },
+  { id: 'rippling', name: 'Rippling', categoryId: 'payroll', websiteUrl: 'https://www.rippling.com', affiliateStatus: 'none', tagline: 'Unified HR, payroll, and IT', desc: 'Combined HR, payroll, benefits, and device management platform for businesses that want HR and IT administration in one system.', costLevel: 'medium', costNote: 'Per-employee monthly pricing plus base fee', setupDifficulty: 'moderate', bestFor: ['growth', 'scale'], tradeRelevance: ['all'], standoutFeature: 'HR, payroll, and device management unified', integrates: ['quickbooks'], freeOption: false },
+  { id: 'bamboohr', name: 'BambooHR', categoryId: 'payroll', websiteUrl: 'https://www.bamboohr.com', affiliateStatus: 'none', tagline: 'HR platform with onboarding and PTO', desc: 'HR information system covering onboarding, employee records, and time-off management, with payroll add-ons available.', costLevel: 'medium', costNote: 'Custom pricing — contact vendor', setupDifficulty: 'easy', bestFor: ['growth', 'scale'], tradeRelevance: ['all'], standoutFeature: 'Clean HRIS with onboarding and PTO tracking', integrates: ['quickbooks'], freeOption: false },
+  { id: 'onpay', name: 'OnPay', categoryId: 'payroll', websiteUrl: 'https://onpay.com', affiliateStatus: 'none', tagline: 'Simple full-service payroll', desc: 'Full-service payroll with flat, transparent pricing and tax filing, suited to small and growing contractor crews.', costLevel: 'low', costNote: 'Flat base fee plus per-employee pricing', setupDifficulty: 'easy', bestFor: ['early', 'growth'], tradeRelevance: ['all'], standoutFeature: 'Flat, predictable pricing with full tax filing', integrates: ['quickbooks', 'xero'], freeOption: false },
+  { id: 'patriot-payroll', name: 'Patriot Payroll', categoryId: 'payroll', websiteUrl: 'https://www.patriotsoftware.com/payroll/', affiliateStatus: 'none', tagline: 'Budget payroll for small crews', desc: 'Low-cost payroll software for small businesses, with full-service tax filing available, aimed at solo operators and small crews.', costLevel: 'low', costNote: 'Low base fee plus per-employee pricing', setupDifficulty: 'easy', bestFor: ['startup', 'early'], tradeRelevance: ['all'], standoutFeature: 'Among the lowest-cost full-service payroll options', integrates: ['quickbooks'], freeOption: false },
+  { id: 'paycor', name: 'Paycor', categoryId: 'payroll', websiteUrl: 'https://www.paycor.com', affiliateStatus: 'none', tagline: 'HR and payroll with workforce management', desc: 'HR, payroll, and workforce management platform for growing businesses that need scheduling and talent tools alongside payroll.', costLevel: 'high', costNote: 'Custom pricing — contact vendor', setupDifficulty: 'moderate', bestFor: ['growth', 'scale'], tradeRelevance: ['all'], standoutFeature: 'Payroll plus scheduling and workforce management', integrates: [], freeOption: false },
+  { id: 'hourly', name: 'Hourly', categoryId: 'payroll', websiteUrl: 'https://www.hourly.io', affiliateStatus: 'none', tagline: 'Payroll with pay-as-you-go workers comp', desc: 'Payroll and time-tracking platform integrated with pay-as-you-go workers compensation, designed for hourly and field teams.', costLevel: 'low', costNote: 'Base fee plus per-employee pricing', setupDifficulty: 'easy', bestFor: ['early', 'growth'], tradeRelevance: ['all'], standoutFeature: 'Payroll tied directly to pay-as-you-go workers comp', integrates: ['quickbooks'], freeOption: false },
+
+  // ── Homeowner Financing ───────────────────────────────────────────────────
+  { id: 'ftl-finance', name: 'FTL Finance', categoryId: 'financing', websiteUrl: 'https://www.ftlfinance.com', affiliateStatus: 'none', tagline: 'Home improvement financing across credit tiers', desc: 'Consumer financing for HVAC and home improvement contractors with approval options across a range of customer credit profiles.', costLevel: 'low', costNote: 'Merchant fee varies by program', setupDifficulty: 'moderate', bestFor: ['growth', 'scale'], tradeRelevance: ['hvac', 'plumbing', 'construction'], standoutFeature: 'Approvals across multiple customer credit tiers', integrates: [], freeOption: false },
+  { id: 'enhancify', name: 'Enhancify', categoryId: 'financing', websiteUrl: 'https://www.enhancify.com', affiliateStatus: 'none', tagline: 'Multi-lender contractor financing', desc: 'Consumer financing platform that matches homeowners to multiple lenders to improve approval odds on contractor projects.', costLevel: 'low', costNote: 'Contractor pricing varies by program', setupDifficulty: 'easy', bestFor: ['early', 'growth'], tradeRelevance: ['all'], standoutFeature: 'Multiple lenders checked to maximize approvals', integrates: [], freeOption: false },
+  { id: 'buildfolio', name: 'BuildFolio', categoryId: 'financing', websiteUrl: 'https://buildfolio.com', affiliateStatus: 'none', tagline: 'Project and homeowner financing tools', desc: 'Platform combining construction project tools with homeowner financing options for remodeling and construction projects.', costLevel: 'low', costNote: 'Pricing varies by program', setupDifficulty: 'moderate', bestFor: ['growth', 'scale'], tradeRelevance: ['construction'], standoutFeature: 'Project management paired with homeowner financing', integrates: [], freeOption: false },
+
+  // ── Trade Training & Coaching ─────────────────────────────────────────────
+  { id: 'power-selling-pros', name: 'Power Selling Pros', categoryId: 'training', websiteUrl: 'https://www.powersellingpros.com', affiliateStatus: 'none', tagline: 'CSR and call-handling coaching', desc: 'Coaching and training focused on customer service representatives and call handling for home service businesses.', costLevel: 'medium', costNote: 'Program pricing varies', setupDifficulty: 'easy', bestFor: ['growth', 'scale'], tradeRelevance: ['hvac', 'plumbing', 'electrical'], standoutFeature: 'Phone and CSR coaching to convert more booked calls', integrates: [], freeOption: false },
+  { id: 'contractor-university', name: 'Contractor University', categoryId: 'training', websiteUrl: 'https://www.contractoru.com', affiliateStatus: 'none', tagline: 'Business-building courses for contractors', desc: 'Education and membership resource with courses on running and growing a contracting business.', costLevel: 'medium', costNote: 'Membership and course pricing varies', setupDifficulty: 'easy', bestFor: ['early', 'growth'], tradeRelevance: ['all'], standoutFeature: 'Structured business courses for contractor owners', integrates: [], freeOption: false },
+  { id: 'service-excellence-training', name: 'Service Excellence Training', categoryId: 'training', websiteUrl: 'https://serviceexcellencetraining.com', affiliateStatus: 'none', tagline: 'Technician sales and service training', desc: 'Training programs focused on technician communication, service, and sales for home service trades.', costLevel: 'high', costNote: 'Program pricing varies', setupDifficulty: 'easy', bestFor: ['growth', 'scale'], tradeRelevance: ['hvac', 'plumbing', 'electrical'], standoutFeature: 'Technician service and sales training curriculum', integrates: [], freeOption: false },
+
+  // ── Estimating (flat-rate pricing) ────────────────────────────────────────
+  { id: 'profit-rhino', name: 'Profit Rhino', categoryId: 'estimating', websiteUrl: 'https://profitrhino.com', affiliateStatus: 'none', tagline: 'Mobile flat-rate price book', desc: 'Flat-rate pricing and digital price-book app for the trades, with maintained pricing data and presentation tools for in-home selling.', costLevel: 'low', costNote: 'Subscription pricing by plan', setupDifficulty: 'easy', bestFor: ['early', 'growth'], tradeRelevance: ['hvac', 'plumbing', 'electrical'], standoutFeature: 'Maintained flat-rate price book with good-better-best options', integrates: ['servicetitan', 'housecall-pro'], freeOption: false },
+
+  // ── Fleet & GPS ───────────────────────────────────────────────────────────
+  { id: 'geotab', name: 'Geotab', categoryId: 'fleet-gps', websiteUrl: 'https://www.geotab.com', affiliateStatus: 'none', tagline: 'Open telematics platform', desc: 'Telematics and fleet management platform with deep vehicle data and a large marketplace of add-ons, sold through resellers.', costLevel: 'medium', costNote: 'Hardware plus subscription; pricing varies', setupDifficulty: 'moderate', bestFor: ['growth', 'scale'], tradeRelevance: ['all'], standoutFeature: 'Open data platform with extensive add-on marketplace', integrates: [], freeOption: false },
+  { id: 'fleetio', name: 'Fleetio', categoryId: 'fleet-gps', websiteUrl: 'https://www.fleetio.com', affiliateStatus: 'none', tagline: 'Fleet maintenance management', desc: 'Fleet maintenance and operations software for tracking service, fuel, and vehicle records; pairs with GPS hardware from other providers.', costLevel: 'low', costNote: 'Per-vehicle monthly pricing', setupDifficulty: 'easy', bestFor: ['early', 'growth'], tradeRelevance: ['all'], standoutFeature: 'Maintenance scheduling and vehicle record keeping', integrates: ['samsara', 'geotab'], freeOption: false },
+  { id: 'lytx', name: 'Lytx', categoryId: 'fleet-gps', websiteUrl: 'https://www.lytx.com', affiliateStatus: 'none', tagline: 'AI dash cams and driver safety', desc: 'Video telematics and driver safety platform using AI dash cams to reduce risky driving and protect against false claims.', costLevel: 'high', costNote: 'Custom pricing — contact vendor', setupDifficulty: 'moderate', bestFor: ['growth', 'scale'], tradeRelevance: ['all'], standoutFeature: 'AI video coaching and incident protection', integrates: [], freeOption: false },
+  { id: 'us-fleet-tracking', name: 'US Fleet Tracking', categoryId: 'fleet-gps', websiteUrl: 'https://www.usfleettracking.com', affiliateStatus: 'none', tagline: 'Live GPS tracking, no long contracts', desc: 'GPS tracking provider offering live vehicle tracking with month-to-month options and no long-term contract requirements.', costLevel: 'low', costNote: 'Hardware plus monthly tracking fee', setupDifficulty: 'easy', bestFor: ['early', 'growth'], tradeRelevance: ['all'], standoutFeature: 'Real-time tracking without long-term contracts', integrates: [], freeOption: false },
+  { id: 'azuga', name: 'Azuga', categoryId: 'fleet-gps', websiteUrl: 'https://www.azuga.com', affiliateStatus: 'none', tagline: 'GPS fleet tracking with driver rewards', desc: 'Fleet GPS tracking platform with dash cams and a driver-rewards program to encourage safer driving.', costLevel: 'medium', costNote: 'Per-vehicle monthly pricing', setupDifficulty: 'easy', bestFor: ['growth', 'scale'], tradeRelevance: ['all'], standoutFeature: 'Driver gamification and rewards alongside tracking', integrates: [], freeOption: false },
+  { id: 'gps-insight', name: 'GPS Insight', categoryId: 'fleet-gps', websiteUrl: 'https://www.gpsinsight.com', affiliateStatus: 'none', tagline: 'Fleet tracking with field service add-ons', desc: 'Fleet and field service management platform combining GPS tracking with dispatch and field workflow add-ons.', costLevel: 'medium', costNote: 'Custom pricing — contact vendor', setupDifficulty: 'moderate', bestFor: ['growth', 'scale'], tradeRelevance: ['all'], standoutFeature: 'GPS tracking paired with field service tools', integrates: [], freeOption: false },
+
+  // ── Local Advertising & Lead Sources ──────────────────────────────────────
+  { id: 'yelp-business', name: 'Yelp for Business', categoryId: 'local-ads', websiteUrl: 'https://business.yelp.com', affiliateStatus: 'none', tagline: 'Local listing and advertising on Yelp', desc: 'Business listing and advertising platform on Yelp, where many homeowners research and review local contractors.', costLevel: 'medium', costNote: 'Free listing; advertising is pay-per-click', setupDifficulty: 'easy', bestFor: ['early', 'growth'], tradeRelevance: ['all'], standoutFeature: 'Reach homeowners researching contractors on Yelp', integrates: [], freeOption: true },
+  { id: 'thumbtack', name: 'Thumbtack', categoryId: 'local-ads', websiteUrl: 'https://www.thumbtack.com/pro', affiliateStatus: 'none', tagline: 'Homeowner lead marketplace for local pros', desc: 'Lead marketplace where homeowners request services and local pros pay for leads or contacts. High volume but requires fast response.', costLevel: 'medium', costNote: 'Pay per lead; cost varies by trade and market', setupDifficulty: 'easy', bestFor: ['startup', 'early', 'growth'], tradeRelevance: ['all'], standoutFeature: 'On-demand homeowner leads across many service categories', integrates: [], freeOption: false },
+  { id: 'nextdoor', name: 'Nextdoor Business', categoryId: 'local-ads', websiteUrl: 'https://business.nextdoor.com', affiliateStatus: 'none', tagline: 'Neighborhood-level visibility and ads', desc: 'Neighborhood social platform where a free business page and paid local ads put contractors in front of nearby homeowners and their recommendations.', costLevel: 'low', costNote: 'Free business page; paid local ads available', setupDifficulty: 'easy', bestFor: ['early', 'growth'], tradeRelevance: ['all'], standoutFeature: 'Word-of-mouth visibility within local neighborhoods', integrates: [], freeOption: true },
+]
+
+for (const v of ADDITIONAL_VENDORS) {
+  const cat = VENDOR_CATEGORIES.find(c => c.id === v.categoryId)
+  if (cat) cat.vendors.push(v)
+}
 
 // ── Helpers ────────────────────────────────────────────────────────────────────
 

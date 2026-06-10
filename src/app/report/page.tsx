@@ -189,10 +189,11 @@ function RoadmapItemCard({
                   {/* Disclosure — before vendors, every time */}
                   <p className="text-[9px] text-brand-silver/50 leading-relaxed px-1 pb-1"
                     style={{ borderBottom: '1px solid rgba(168,184,204,0.1)' }}>
-                    Some partner links may earn us a commission. Recommendations are based on your
-                    business needs, stage, and budget — not commission rates.{' '}
+                    Tool recommendations are provided for educational purposes. SubZeroMetrix may
+                    pursue affiliate or vendor relationships in the future, but current recommendations
+                    should be evaluated independently based on fit, pricing, support, and business needs.{' '}
                     <Link href="/affiliate-disclosure" className="text-brand-accent hover:underline">
-                      Full disclosure →
+                      Learn more →
                     </Link>
                   </p>
 
@@ -226,9 +227,6 @@ function RoadmapItemCard({
                           className="flex items-center gap-1.5 text-[11px] text-brand-accent hover:underline underline-offset-2">
                           <ExternalLink className="w-3 h-3 flex-shrink-0" />
                           Visit {vendor.name}
-                          {vendor.affiliateId && (
-                            <span className="text-brand-silver/30 ml-auto text-[9px]">★ affiliate</span>
-                          )}
                         </a>
                       </div>
                     )
@@ -1374,8 +1372,8 @@ function ReportContent() {
                             <>
                               <p className="text-[9px] text-brand-silver/50 leading-relaxed px-1 pb-2"
                                 style={{ borderBottom: '1px solid rgba(168,184,204,0.1)' }}>
-                                Some links may earn a commission. Recommendations are based on business needs.{' '}
-                                <Link href="/affiliate-disclosure" className="text-brand-accent hover:underline">Disclosure →</Link>
+                                Tool recommendations are educational. Evaluate each tool independently for fit, pricing, and support.{' '}
+                                <Link href="/affiliate-disclosure" className="text-brand-accent hover:underline">Learn more →</Link>
                               </p>
                               {phaseVendors.map(v => (
                                 <div key={v.id} className="rounded-sm p-3"
@@ -1385,9 +1383,6 @@ function ReportContent() {
                                     {v.freeOption && (
                                       <span className="text-[9px] px-1.5 py-0.5 rounded-sm font-medium"
                                         style={{ background: 'rgba(29,158,117,0.15)', color: '#1D9E75' }}>Free option</span>
-                                    )}
-                                    {v.affiliateStatus === 'active' && (
-                                      <span className="text-brand-silver/30 ml-auto text-[9px]">★ affiliate</span>
                                     )}
                                   </div>
                                   <p className="text-[10px] text-brand-silver/50 mb-1">{v.tagline}</p>
@@ -1653,7 +1648,7 @@ function ReportContent() {
               ]
               return (
                 <div className="mb-6">
-                  <p className="font-mono text-[10px] tracking-widest uppercase text-brand-silver mb-4">Recommended tools &amp; partners</p>
+                  <p className="font-mono text-[10px] tracking-widest uppercase text-brand-silver mb-4">Tool Recommendations</p>
                   {resourceGroups.map(group => {
                     const partners = AFFILIATE_PARTNERS.filter(p => group.categories.includes(p.category))
                     if (partners.length === 0) return null
@@ -1695,7 +1690,6 @@ function ReportContent() {
                                   className="flex items-center gap-1.5 text-[11px] text-brand-accent hover:underline underline-offset-2">
                                   <ExternalLink className="w-3 h-3 flex-shrink-0" />
                                   Visit {partner.name}
-                                  <span className="text-brand-silver/30 ml-auto text-[9px]">★ affiliate</span>
                                 </a>
                               </div>
                             )
