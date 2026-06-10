@@ -16,7 +16,7 @@ import { SCORE_IMPACT_PER_TAB } from '@/lib/growthRoadmap'
 import { getGrowthPhases } from '@/lib/growthPhases'
 import { getVendorsForPhase } from '@/lib/vendorCategories'
 import { getPlaybooksForPhase } from '@/lib/salesPlaybooks'
-import { getFlyersByIds, getRoadPathsForPhase } from '@/lib/marketingAssets'
+import { getFlyersByIds, getRoadPathsForPhase, SOCIAL_STARTER_PLAN } from '@/lib/marketingAssets'
 import { STATE_RESOURCES } from '@/lib/stateResources'
 
 // ── Score ring ────────────────────────────────────────────────────────────────
@@ -290,6 +290,179 @@ function PhaseGroup({
           onToggleComplete={() => onToggleComplete(item.id)}
         />
       ))}
+    </div>
+  )
+}
+
+// ── Social Starter Plan section (Phase 10 only) ───────────────────────────────
+function SocialStarterPlanSection({ bandColor }: { bandColor: string }) {
+  const [openWeek, setOpenWeek] = useState<number | null>(1)
+
+  const HOW_TO_START = [
+    { step: 1, action: 'Claim and complete Google Business Profile', detail: 'Add your trade, service area, phone, hours, and at least 5 job photos. This is your most important free marketing asset.' },
+    { step: 2, action: 'Post proof of real work', detail: 'Upload a clean photo of a completed job to Google and Facebook today. The work speaks for itself.' },
+    { step: 3, action: 'Capture before/after photos with permission', detail: 'Ask verbally at every job: "Mind if I grab a before/after for our social?" Most customers say yes immediately.' },
+    { step: 4, action: 'Post one helpful maintenance tip per week', detail: 'Trade tips get saved and shared by homeowners. One post per week builds authority without selling.' },
+    { step: 5, action: 'Turn good reviews into social proof', detail: 'Screenshot 5-star reviews and post them to Facebook and Instagram. Add a short thank-you line. Reviews as content build trust without effort.' },
+    { step: 6, action: 'Film simple jobsite clips', detail: '30 seconds: what the problem was, what you did, what it looks like now. No editing. Post to Reels, TikTok, and YouTube Shorts.' },
+    { step: 7, action: 'Use seasonal reminders', detail: 'Pre-summer AC, pre-winter heat, spring plumbing, fall electrical. Seasonal content generates real calls from homeowners already thinking about it.' },
+    { step: 8, action: 'Track calls and messages from social', detail: 'Ask every new caller "how did you find us?" After 90 days you\'ll know which platforms are actually driving business.' },
+  ]
+
+  const PLATFORMS = [
+    { name: 'Google Business Profile', icon: '🔍', why: 'Highest-converting for trades. Shows in local search. Post job photos and updates weekly.' },
+    { name: 'Facebook', icon: '👥', why: 'Best for local community reach. Homeowners aged 35–65 use it daily. Before/after posts travel.' },
+    { name: 'Instagram', icon: '📸', why: 'Finished jobs, team introductions, before/after photos. Strong visual trust-builder.' },
+    { name: 'TikTok / Reels', icon: '🎬', why: 'Short jobsite videos get massive organic reach. Trades content performs extremely well here.' },
+    { name: 'YouTube Shorts', icon: '▶️', why: 'Searchable and stays discoverable for years. One 60-second how-to clip keeps working.' },
+    { name: 'LinkedIn', icon: '💼', why: 'Commercial credibility for property managers and builders. Post project highlights and certifications.' },
+  ]
+
+  const FILM_TIPS = [
+    'Always ask for verbal permission before filming a customer\'s property',
+    'Clean up the work area before filming — the photo is part of your presentation',
+    'Landscape for longer installs; portrait/vertical for Reels and TikTok',
+    'Film in natural daylight whenever possible — no ring light needed',
+    'Show your logo or truck in the background when you can',
+    'Film the problem first, then the solution — two-part clips tell a story',
+  ]
+
+  const NOT_TO_POST = [
+    'Code violations or dangerous conditions before they are fixed',
+    'Customer names or addresses without clear permission',
+    'Negative comments about competitors or other contractors',
+    'Unsafe work practices — even framed as humor',
+    'Unfinished work or messy job sites',
+    'Pricing that will conflict with your actual quotes',
+  ]
+
+  return (
+    <div className="space-y-5">
+      <div>
+        <p className="font-mono text-[9px] tracking-widest uppercase mb-1" style={{ color: bandColor }}>
+          30-Day Social Media Starter Plan
+        </p>
+        <p className="text-[11px] text-brand-silver/70 leading-relaxed">
+          Four weeks, three posts per week. No paid ads, no agency, no elaborate setup — just a repeatable habit using real job content.
+        </p>
+      </div>
+
+      {/* Week accordions */}
+      <div className="space-y-2">
+        {SOCIAL_STARTER_PLAN.map(week => {
+          const isOpen = openWeek === week.weekNumber
+          return (
+            <div key={week.weekNumber} className="rounded-sm overflow-hidden"
+              style={{
+                border: `1px solid ${isOpen ? bandColor + '50' : 'rgba(168,184,204,0.13)'}`,
+                background: 'rgba(10,22,40,0.5)',
+              }}>
+              <button
+                className="w-full flex items-center justify-between px-3 py-2.5 text-left"
+                onClick={() => setOpenWeek(isOpen ? null : week.weekNumber)}>
+                <div className="flex items-center gap-2">
+                  <span className="font-mono text-[9px] text-brand-silver/40 tracking-widest">WEEK {week.weekNumber}</span>
+                  <span className="text-[12px] font-semibold text-brand-white">{week.theme}</span>
+                </div>
+                {isOpen
+                  ? <ChevronUp className="w-3.5 h-3.5 flex-shrink-0" style={{ color: bandColor }} />
+                  : <ChevronDown className="w-3.5 h-3.5 flex-shrink-0 text-brand-silver/40" />}
+              </button>
+              {isOpen && (
+                <div className="px-3 pb-3 space-y-2.5" style={{ borderTop: '1px solid rgba(255,255,255,0.06)' }}>
+                  <p className="text-[10px] text-brand-silver/50 pt-2 leading-relaxed italic">{week.goal}</p>
+                  {week.posts.map(post => (
+                    <div key={post.dayNumber} className="rounded-sm p-2.5"
+                      style={{ background: 'rgba(13,43,92,0.4)', border: '1px solid rgba(168,184,204,0.1)' }}>
+                      <div className="flex items-center gap-2 mb-1 flex-wrap">
+                        <span className="font-mono text-[8px] text-brand-silver/40 tracking-widest">DAY {post.dayNumber}</span>
+                        <span className="text-[11px] font-semibold text-brand-white">{post.theme}</span>
+                        <span className="text-[9px] px-1.5 py-0.5 rounded-sm"
+                          style={{ background: 'rgba(74,144,217,0.12)', color: '#7BB3D9' }}>
+                          {post.contentType}
+                        </span>
+                      </div>
+                      <p className="text-[9px] text-brand-silver/40 mb-1.5">{post.platform.join(' · ')}</p>
+                      <p className="text-[10px] text-brand-silver leading-relaxed mb-1.5 italic">
+                        &ldquo;{post.caption.length > 180 ? post.caption.slice(0, 177) + '…' : post.caption}&rdquo;
+                      </p>
+                      <p className="text-[9px] font-medium" style={{ color: bandColor }}>CTA: {post.callToAction}</p>
+                      {post.notes && (
+                        <p className="text-[9px] text-brand-silver/40 mt-1 leading-relaxed">{post.notes}</p>
+                      )}
+                    </div>
+                  ))}
+                </div>
+              )}
+            </div>
+          )
+        })}
+      </div>
+
+      {/* How to start path */}
+      <div>
+        <p className="font-mono text-[9px] tracking-widest uppercase text-brand-silver/50 mb-2">How to Start</p>
+        <div className="space-y-1.5">
+          {HOW_TO_START.map(item => (
+            <div key={item.step} className="flex items-start gap-2.5 rounded-sm px-3 py-2"
+              style={{ background: 'rgba(13,43,92,0.3)', border: '1px solid rgba(168,184,204,0.08)' }}>
+              <span className="flex-shrink-0 w-5 h-5 rounded-full flex items-center justify-center text-[10px] font-bold mt-0.5"
+                style={{ background: `${bandColor}20`, color: bandColor }}>
+                {item.step}
+              </span>
+              <div>
+                <p className="text-[11px] font-medium text-brand-white leading-snug">{item.action}</p>
+                <p className="text-[10px] text-brand-silver/60 leading-relaxed mt-0.5">{item.detail}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Platform guide */}
+      <div>
+        <p className="font-mono text-[9px] tracking-widest uppercase text-brand-silver/50 mb-2">Where to Post</p>
+        <div className="grid grid-cols-2 gap-2">
+          {PLATFORMS.map(p => (
+            <div key={p.name} className="rounded-sm p-2.5"
+              style={{ background: 'rgba(13,43,92,0.3)', border: '1px solid rgba(168,184,204,0.1)' }}>
+              <div className="flex items-center gap-1.5 mb-1">
+                <span className="text-base leading-none">{p.icon}</span>
+                <span className="text-[10px] font-medium text-brand-white leading-tight">{p.name}</span>
+              </div>
+              <p className="text-[9px] text-brand-silver/50 leading-relaxed">{p.why}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Filming tips + what not to post */}
+      <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
+        <div className="rounded-sm p-3"
+          style={{ background: 'rgba(29,158,117,0.07)', border: '1px solid rgba(29,158,117,0.25)' }}>
+          <p className="font-mono text-[9px] tracking-widest uppercase mb-2" style={{ color: '#1D9E75' }}>Filming Tips</p>
+          <div className="space-y-1">
+            {FILM_TIPS.map((tip, i) => (
+              <div key={i} className="flex items-start gap-1.5">
+                <span className="text-[10px] flex-shrink-0 mt-0.5" style={{ color: '#1D9E75' }}>·</span>
+                <p className="text-[10px] text-brand-silver/70 leading-relaxed">{tip}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+        <div className="rounded-sm p-3"
+          style={{ background: 'rgba(239,159,39,0.07)', border: '1px solid rgba(239,159,39,0.25)' }}>
+          <p className="font-mono text-[9px] tracking-widest uppercase mb-2" style={{ color: '#EF9F27' }}>What Not to Post</p>
+          <div className="space-y-1">
+            {NOT_TO_POST.map((item, i) => (
+              <div key={i} className="flex items-start gap-1.5">
+                <span className="text-[10px] flex-shrink-0 mt-0.5" style={{ color: '#EF9F27' }}>—</span>
+                <p className="text-[10px] text-brand-silver/70 leading-relaxed">{item}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
     </div>
   )
 }
@@ -871,6 +1044,11 @@ function ReportContent() {
                       {/* MARKETING ASSET IDEAS */}
                       {activePhaseSubTab === 'sales' && (
                         <div className="space-y-5">
+
+                          {/* Social Starter Plan — Phase 10 only */}
+                          {phase.id === 'brand-social-media' && (
+                            <SocialStarterPlanSection bandColor={bandColor} />
+                          )}
 
                           {/* Sales Playbooks */}
                           {phasePlaybooks.length > 0 && (
