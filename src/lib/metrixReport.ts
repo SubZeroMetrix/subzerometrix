@@ -22,6 +22,7 @@ import {
   type MetrixCategory,
   type RecommendedPath,
 } from './metrixEngine'
+import { challengeCategory, goalCategory } from './pathActions'
 
 // ── Mapping helpers (existing answer → Likert choice) ─────────────────────────
 function cashFromFinancial(fin: string): AnswerChoice | undefined {
@@ -118,9 +119,17 @@ export function buildStarterResponse(
   if (blocker === 'software') set('scheduling_workflow', 'not_started')
 
   // ── People & Leadership (from intake team size) ─────────────────────────────
-  set('hiring_process', fromTeamSize(team))
-  set('training_standards', fromTeamSize(team))
-  set('delegation_roles', fromTeamSize(team))
+  // Solo operators with no team-growth goal should NOT be scored on People &
+  // Leadership. "just_me" otherwise maps every criterion to "not_started" (0),
+  // which wrongly makes this category dominate the risk focus and first actions
+  // before the owner even has a team. Leave it unanswered/excluded for them.
+  const teamGrowthGoal = (intake?.mainGoal ?? '') === 'hire_scale'
+
+  if (team !== 'just_me' || teamGrowthGoal) {
+    set('hiring_process', fromTeamSize(team))
+    set('training_standards', fromTeamSize(team))
+    set('delegation_roles', fromTeamSize(team))
+  }
 
   // ── Growth & Risk ───────────────────────────────────────────────────────────
   set('financial_runway', runwayFromFinancial(fin))
@@ -134,7 +143,36 @@ export function buildStarterResponse(
 }
 
 export function buildStarterScore(answers: RawAnswers, intake: QuickIntake | null): MetrixScore {
-  return scoreAssessment(buildStarterResponse(answers, intake))
+  const score = scoreAssessment(buildStarterResponse(answers, intake))
+  return applyChallengeTiebreak(score, intake)
+}
+
+// When the lowest-scoring categories tie, prefer the one matching the user's
+// stated biggest challenge or main goal as the focus. Keeps the recommended
+// path and first action pointed at what the owner told us actually matters.
+function applyChallengeTiebreak(score: MetrixScore, intake: QuickIntake | null): MetrixScore {
+  if (score.risks.length < 2) return score
+  const lowest = score.risks[0].score
+  const tied = score.risks.filter(r => r.score === lowest)
+  if (tied.length < 2) return score
+
+  const preferred = [challengeCategory(intake), goalCategory(intake)]
+    .filter((c): c is MetrixCategory => Boolean(c))
+  const promote = tied.find(r => preferred.includes(r.category))
+  if (!promote || promote.category === score.risks[0].category) return score
+
+  const risks = [promote, ...score.risks.filter(r => r !== promote)]
+  const focus = risks[0]
+  return {
+    ...score,
+    risks,
+    recommendedPath: {
+      ...score.recommendedPath,
+      focusCategory: focus.category,
+      focusLabel: focus.label,
+      rationale: `At your stage, start with ${focus.label} — your lowest-scoring area and biggest near-term risk.`,
+    },
+  }
 }
 
 // Estimate the score headroom from strengthening the current weak areas.

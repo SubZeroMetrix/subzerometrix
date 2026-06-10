@@ -123,10 +123,10 @@ const GOAL_TO_CATEGORY: Record<string, MetrixCategory> = {
   reset:        'financial_control',
 }
 
-function challengeCategory(intake: QuickIntake | null): MetrixCategory | undefined {
+export function challengeCategory(intake: QuickIntake | null): MetrixCategory | undefined {
   return intake?.biggestChallenge ? CHALLENGE_TO_CATEGORY[intake.biggestChallenge] : undefined
 }
-function goalCategory(intake: QuickIntake | null): MetrixCategory | undefined {
+export function goalCategory(intake: QuickIntake | null): MetrixCategory | undefined {
   return intake?.mainGoal ? GOAL_TO_CATEGORY[intake.mainGoal] : undefined
 }
 
