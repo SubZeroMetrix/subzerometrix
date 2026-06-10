@@ -814,6 +814,12 @@ function ReportContent() {
         <span className="font-display text-xl tracking-widest text-brand-white">
           SUBZERO<span className="text-brand-accent">METRIX</span>
         </span>
+        <div className="mt-3">
+          <Link href="/dashboard"
+            className="inline-flex items-center text-[11px] font-medium tracking-widest uppercase px-4 py-2 rounded-sm border border-brand-accent/60 text-brand-accent hover:bg-brand-accent hover:text-white transition-all touch-target">
+            Dashboard
+          </Link>
+        </div>
         <div className="mt-5">
           <p className="font-mono text-[10px] tracking-[0.25em] uppercase text-brand-silver mb-2">Full MetrixScore™ Report</p>
           <h1 className="font-display text-4xl tracking-wider text-brand-white leading-none mb-1">

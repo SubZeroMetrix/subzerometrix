@@ -152,10 +152,16 @@ export default function HomePage() {
             <span className="text-[8px] tracking-[0.22em] text-brand-silver uppercase">by The Modern Trades Mentor</span>
           </div>
         </div>
-        <Link href="/start"
-          className="text-[11px] font-medium tracking-widest uppercase px-4 py-2 rounded-sm border border-brand-accent/60 text-brand-accent hover:bg-brand-accent hover:text-white transition-all touch-target">
-          Start Free
-        </Link>
+        <div className="flex items-center gap-2">
+          <Link href="/dashboard"
+            className="text-[11px] font-medium tracking-widest uppercase px-3 py-2 rounded-sm text-brand-silver hover:text-brand-white transition-all touch-target">
+            Dashboard
+          </Link>
+          <Link href="/start"
+            className="text-[11px] font-medium tracking-widest uppercase px-4 py-2 rounded-sm border border-brand-accent/60 text-brand-accent hover:bg-brand-accent hover:text-white transition-all touch-target">
+            Start Free
+          </Link>
+        </div>
       </nav>
 
       {/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
