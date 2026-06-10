@@ -875,7 +875,7 @@ export const GROWTH_PHASES: GrowthPhase[] = [
     operationalImpact: 'Documented systems and defined roles enable delegation, consistent execution, and the ability to hire, train, and retain talent at every level.',
     brandImpact: 'A professional, leadership-driven company with clear standards and consistent execution builds a brand that attracts both customers and talent — and commands premium rates.',
     financialImpact: 'A business with documented systems, strong recurring revenue, and trained leadership sells for 3–6x EBITDA vs. 1–2x for owner-dependent operations. Systems build real enterprise value.',
-    recommendedVendorIds: ['servicetitan', 'gusto', 'adp', 'quickbooks', 'nexstar', 'bdr-training'],
+    recommendedVendorIds: ['servicetitan', 'gusto', 'adp', 'quickbooks', 'nexstar-network', 'bdr-training'],
     basicVisibleGuidance:
       'Define roles before hiring. Write your first SOP. Review your P&L weekly. Pay yourself a salary and manage profit separately. These foundations are what separate businesses that scale from businesses that plateau at the owner\'s personal capacity.',
     lockedUpgradePreview:
