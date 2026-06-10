@@ -7,7 +7,7 @@ const SECTIONS = [
   {
     id: 'acceptance',
     title: 'Acceptance of Terms',
-    body: `By accessing or using SubZeroMetrix ("the Platform"), operated by The Modern Trades Mentor, you agree to be bound by these Terms of Service ("Terms"). If you do not agree, do not use the Platform.
+    body: `By accessing or using SubZeroMetrix™ ("the Platform"), owned and operated by The Modern Trades Mentor LLC, you agree to be bound by these Terms of Service ("Terms"). If you do not agree, do not use the Platform.
 
 These Terms apply to all users in the United States, including users in our initial operating states: Colorado (CO), Florida (FL), Arizona (AZ), Texas (TX), North Carolina (NC), and Ohio (OH). State-specific provisions are noted where applicable.`,
   },

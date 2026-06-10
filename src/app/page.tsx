@@ -597,9 +597,9 @@ export default function HomePage() {
           <div className="mb-6 p-4 rounded-sm steel-border" style={{ background: 'rgba(13,43,92,0.2)' }}>
             <p className="font-mono text-[9px] tracking-widest uppercase text-brand-silver mb-2">Affiliate & Resource Disclosure</p>
             <p className="text-[12px] text-brand-silver/70 leading-relaxed">
-              Some links in reports and resources may be affiliate links. We may receive a commission
-              if you sign up or purchase through them, at no extra cost to you. Affiliate relationships
-              do not influence MetrixScoreâ„¢ results or roadmap recommendations.
+              Tool recommendations are provided for educational purposes. SubZeroMetrix™ may pursue
+              affiliate or vendor relationships in the future; if added, they will be disclosed clearly.
+              Any future relationships would not influence MetrixScore™ results or roadmap recommendations.
             </p>
             <Link href="/affiliate-disclosure"
               className="inline-flex items-center gap-1 text-[11px] text-brand-accent mt-2 hover:underline">
@@ -610,7 +610,7 @@ export default function HomePage() {
           <div className="mb-8 p-4 rounded-sm steel-border" style={{ background: 'rgba(13,43,92,0.2)' }}>
             <p className="font-mono text-[9px] tracking-widest uppercase text-brand-silver mb-2">Disclaimer</p>
             <p className="text-[12px] text-brand-silver/70 leading-relaxed">
-              SubZeroMetrix provides educational scoring and informational content only. Nothing here
+              SubZeroMetrix™ provides educational scoring and informational content only. Nothing here
               constitutes legal, financial, tax, insurance, licensing, or lending advice.
               No business outcomes are guaranteed. Always consult qualified professionals.
             </p>
@@ -639,7 +639,8 @@ export default function HomePage() {
           </nav>
 
           <p className="text-[11px] text-brand-silver/40 leading-relaxed">
-            Â© {new Date().getFullYear()} SubZeroMetrix Â· The Modern Trades Mentor<br />
+            © {new Date().getFullYear()} SubZeroMetrix™ · The Modern Trades Mentor LLC<br />
+            SubZeroMetrix™ and MetrixScore™ are owned by The Modern Trades Mentor LLC.<br />
             Educational purposes only. Not legal, financial, or licensing advice.
           </p>
         </div>

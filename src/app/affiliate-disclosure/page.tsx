@@ -50,7 +50,7 @@ export default function AffiliateDisclosurePage() {
               Our Role — Publisher, Not Advisor
             </h2>
             <p className="text-brand-silver text-xs leading-relaxed">
-              SubZeroMetrix is an education and referral platform for trades and service business owners. We help you understand your business readiness and connect you with tools and services that may be relevant to your situation. We are not a financial institution, insurance agency, licensed broker, lender, or advisor of any kind.
+              SubZeroMetrix™ is a contractor business readiness platform owned and operated by The Modern Trades Mentor LLC, for trades and service business owners. We help you understand your business readiness and connect you with tools and services that may be relevant to your situation. We are not a financial institution, insurance agency, licensed broker, lender, or advisor of any kind.
 
               When you click an affiliate link and leave our platform, you are visiting a third-party website operated by a separate company. Any application, quote, purchase, account opening, policy, or agreement you complete happens directly on that company&apos;s licensed platform — not ours.
             </p>

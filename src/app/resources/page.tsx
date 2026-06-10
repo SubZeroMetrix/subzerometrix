@@ -84,7 +84,7 @@ export default function ResourcesPage() {
             <div>
               <p className="text-[11px] text-brand-silver/80 leading-relaxed mb-1">
                 <strong className="text-brand-white">How this works:</strong>{' '}
-                SubZeroMetrix is an education and referral platform. We connect you with
+                SubZeroMetrix™ is an education and referral platform owned by The Modern Trades Mentor LLC. We connect you with
                 licensed providers — we do not quote, sell, approve, underwrite, bind, or
                 process any financial or insurance products ourselves.
               </p>

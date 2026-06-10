@@ -112,7 +112,7 @@ export default function DashboardPage() {
 
         {/* ── Top stats ─────────────────────────────────────────────── */}
         <div className="grid grid-cols-3 gap-3">
-          <Stat label="MetrixScore" value={`${starter.overall}`} sub="/ 100" />
+          <Stat label="MetrixScore™" value={`${starter.overall}`} sub="/ 100" />
           <Stat label="Profile" value={`${starter.progress.completion}%`} sub="complete" />
           <Stat label="Risk" value={starter.riskLabel.split(' ')[0]} color={rColor} />
         </div>
@@ -237,6 +237,10 @@ export default function DashboardPage() {
             Full report <ArrowRight className="w-3.5 h-3.5" />
           </Link>
         </div>
+
+        <p className="text-center text-[9px] text-brand-silver/40 mt-6 leading-relaxed">
+          SubZeroMetrix™ and MetrixScore™ are owned by The Modern Trades Mentor LLC.
+        </p>
       </div>
     </main>
   )

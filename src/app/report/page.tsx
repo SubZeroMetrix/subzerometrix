@@ -905,7 +905,7 @@ function ReportContent() {
             <section className="mt-6 mb-8">
               <div className="flex items-center gap-2 mb-1">
                 <Thermometer className="w-5 h-5 text-brand-accent" />
-                <h2 className="font-display text-2xl tracking-wider text-brand-white">STARTER METRIXSCORE</h2>
+                <h2 className="font-display text-2xl tracking-wider text-brand-white">STARTER METRIXSCORE™</h2>
               </div>
               <p className="text-[11px] text-brand-silver/60 mb-4">
                 A stage-adjusted preview based on what you&apos;ve shared so far.
@@ -1734,7 +1734,8 @@ function ReportContent() {
       </div>
 
       <footer className="border-t border-brand-blue px-5 py-6 text-center">
-        <p className="text-[10px] text-brand-silver">© {new Date().getFullYear()} SubZeroMetrix · The Modern Trades Mentor</p>
+        <p className="text-[10px] text-brand-silver">© {new Date().getFullYear()} SubZeroMetrix™ · The Modern Trades Mentor LLC</p>
+        <p className="text-[9px] text-brand-silver/60 mt-1">SubZeroMetrix™ and MetrixScore™ are owned by The Modern Trades Mentor LLC.</p>
         <nav className="flex flex-wrap justify-center gap-x-3 gap-y-1 mt-2">
           {[['Privacy', '/privacy'], ['Terms', '/terms'], ['Cancellation', '/cancellation'],
             ['Disclaimer', '/disclaimer'], ['Affiliates', '/affiliate-disclosure']].map(([l, h]) => (

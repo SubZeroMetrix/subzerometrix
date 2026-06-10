@@ -459,7 +459,7 @@ export default function TradePlatformPage() {
 
             <div className="mt-2 px-4 py-3 rounded-sm text-[10px] text-brand-silver/60 leading-relaxed"
               style={{ background: 'rgba(74,144,217,0.06)', border: '1px solid rgba(74,144,217,0.15)' }}>
-              SubZeroMetrix is an education and referral platform. We do not endorse, guarantee, or sell any of these tools. Evaluate each based on your specific needs and budget.
+              SubZeroMetrix™ is an education and referral platform owned by The Modern Trades Mentor LLC. We do not endorse, guarantee, or sell any of these tools. Evaluate each based on your specific needs and budget.
             </div>
           </div>
         )}

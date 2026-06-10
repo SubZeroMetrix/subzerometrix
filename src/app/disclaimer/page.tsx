@@ -95,7 +95,7 @@ export default function DisclaimerPage() {
         {/* Summary callout */}
         <div className="mb-8 p-4 rounded-sm border border-brand-accent/30" style={{ background: 'rgba(74,144,217,0.08)' }}>
           <p className="text-brand-silver text-xs leading-relaxed">
-            <strong className="text-brand-white">Plain English summary:</strong> SubZeroMetrix is an educational tool. Your MetrixScore™ and roadmap are based on your own answers and are meant to help you think, not to replace qualified legal, financial, tax, insurance, or business advice. No outcomes are guaranteed. Always consult licensed professionals for decisions that matter.
+            <strong className="text-brand-white">Plain English summary:</strong> SubZeroMetrix™ is an educational tool owned and operated by The Modern Trades Mentor LLC. Your MetrixScore™ and roadmap are based on your own answers and are meant to help you think, not to replace qualified legal, financial, tax, insurance, or business advice. No outcomes are guaranteed. Always consult licensed professionals for decisions that matter.
           </p>
         </div>
 
