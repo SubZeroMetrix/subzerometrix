@@ -19,7 +19,8 @@ import { getPlaybooksForPhase, type SalesPlaybook } from '@/lib/salesPlaybooks'
 import { getFlyersByIds, getRoadPathsForPhase, SOCIAL_STARTER_PLAN } from '@/lib/marketingAssets'
 import { getFinancialPathsForPhase, type FinancialPath } from '@/lib/financialSystemsRoadmap'
 import { STATE_RESOURCES } from '@/lib/stateResources'
-import { loadIntake, goalLabel, challengeLabel, type QuickIntake } from '@/lib/intake'
+import { loadIntake, goalLabel, challengeLabel, stageLabel, type QuickIntake } from '@/lib/intake'
+import { buildStarterScore, explainRisk, firstAction, alternativePaths } from '@/lib/metrixReport'
 
 // ── Score ring ────────────────────────────────────────────────────────────────
 function ScoreRing({ score, color }: { score: number; color: string }) {
@@ -747,6 +748,11 @@ function ReportContent() {
   const userState  = answers?.location?.state ?? ''
   const stateData  = STATE_RESOURCES[userState] ?? null
 
+  // Starter MetrixScore — stage-adjusted preview from existing answers + intake
+  const starter        = buildStarterScore(answers, intake)
+  const starterStrengths = starter.strengths.filter(s => s.score > 0)
+  const altPaths       = alternativePaths(starter)
+
   // Build the personalized roadmap
   const roadmapPhases  = buildPersonalizedRoadmap(result)
   const allItems       = roadmapPhases.flatMap(p => p.items)
@@ -885,6 +891,128 @@ function ReportContent() {
         {/* ── SCORE TAB ────────────────────────────────────────────── */}
         {activeTab === 'score' && (
           <>
+            {/* ── Starter MetrixScore — stage-adjusted preview ─────────── */}
+            <section className="mt-6 mb-8">
+              <div className="flex items-center gap-2 mb-1">
+                <Thermometer className="w-5 h-5 text-brand-accent" />
+                <h2 className="font-display text-2xl tracking-wider text-brand-white">STARTER METRIXSCORE</h2>
+              </div>
+              <p className="text-[11px] text-brand-silver/60 mb-4">
+                A stage-adjusted preview based on what you&apos;ve shared so far.
+              </p>
+
+              <div className="glass rounded-2xl p-5 space-y-5">
+
+                {/* Score · MetrixStage · Profile completion */}
+                <div className="grid grid-cols-3 gap-2 text-center">
+                  <div className="px-1">
+                    <div className="font-display text-3xl leading-none text-brand-white">{starter.overall}</div>
+                    <div className="font-mono text-[8px] tracking-[0.15em] uppercase text-brand-silver mt-1">Starter / 100</div>
+                  </div>
+                  <div className="px-1 border-x border-brand-blue/30">
+                    <div className="text-[13px] font-semibold leading-tight text-brand-white">{stageLabel(starter.stage) || '—'}</div>
+                    <div className="font-mono text-[8px] tracking-[0.15em] uppercase text-brand-silver mt-1">MetrixStage</div>
+                  </div>
+                  <div className="px-1">
+                    <div className="font-display text-3xl leading-none text-brand-white">{starter.progress.completion}%</div>
+                    <div className="font-mono text-[8px] tracking-[0.15em] uppercase text-brand-silver mt-1">Profile</div>
+                  </div>
+                </div>
+
+                {/* Risk language — helpful, not a verdict */}
+                <div className="rounded-xl px-4 py-3"
+                  style={{ background: 'rgba(239,159,39,0.08)', border: '1px solid rgba(239,159,39,0.22)' }}>
+                  <div className="flex items-center gap-1.5 mb-1.5">
+                    <Shield className="w-3.5 h-3.5 flex-shrink-0" style={{ color: '#EFB967' }} />
+                    <span className="font-mono text-[9px] tracking-[0.18em] uppercase" style={{ color: '#EFB967' }}>
+                      Risk: {starter.riskLabel}
+                    </span>
+                  </div>
+                  <p className="text-[12px] text-brand-silver leading-relaxed">{explainRisk(starter)}</p>
+                </div>
+
+                {/* Top 3 strengths */}
+                {starterStrengths.length > 0 && (
+                  <div>
+                    <div className="flex items-center gap-1.5 mb-2.5">
+                      <CheckCircle2 className="w-3.5 h-3.5 flex-shrink-0" style={{ color: '#1D9E75' }} />
+                      <span className="font-mono text-[9px] tracking-[0.18em] uppercase" style={{ color: '#3FBE93' }}>Top Strengths</span>
+                    </div>
+                    <div className="space-y-2">
+                      {starterStrengths.map(s => (
+                        <div key={s.category} className="flex items-center gap-3">
+                          <span className="flex-1 text-[12px] text-brand-silver leading-snug">{s.label}</span>
+                          <div className="w-16 progress-track h-1.5 flex-shrink-0">
+                            <div className="h-full rounded-full" style={{ width: `${s.score}%`, background: '#1D9E75' }} />
+                          </div>
+                          <span className="font-mono text-[11px] text-brand-white w-7 text-right flex-shrink-0">{s.score}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
+
+                {/* Top 3 risk areas */}
+                {starter.risks.length > 0 && (
+                  <div>
+                    <div className="flex items-center gap-1.5 mb-2.5">
+                      <AlertTriangle className="w-3.5 h-3.5 flex-shrink-0" style={{ color: '#EF9F27' }} />
+                      <span className="font-mono text-[9px] tracking-[0.18em] uppercase" style={{ color: '#EFB967' }}>Top Risk Areas</span>
+                    </div>
+                    <div className="space-y-2">
+                      {starter.risks.map(r => {
+                        const c = r.severity === 'high' ? '#E05A4E' : r.severity === 'moderate' ? '#EF9F27' : '#4A90D9'
+                        return (
+                          <div key={r.category} className="flex items-center gap-3">
+                            <span className="flex-1 text-[12px] text-brand-silver leading-snug">{r.label}</span>
+                            <div className="w-16 progress-track h-1.5 flex-shrink-0">
+                              <div className="h-full rounded-full" style={{ width: `${r.score}%`, background: c }} />
+                            </div>
+                            <span className="font-mono text-[11px] text-brand-white w-7 text-right flex-shrink-0">{r.score}</span>
+                          </div>
+                        )
+                      })}
+                    </div>
+                  </div>
+                )}
+
+                {/* Recommended path + first action */}
+                <div className="rounded-xl p-4"
+                  style={{ background: 'rgba(74,144,217,0.1)', border: '1px solid rgba(74,144,217,0.3)' }}>
+                  <div className="flex items-center gap-1.5 mb-1.5">
+                    <Map className="w-3.5 h-3.5 flex-shrink-0 text-brand-accent" />
+                    <span className="font-mono text-[9px] tracking-[0.18em] uppercase text-brand-accent">Recommended Path</span>
+                  </div>
+                  <h3 className="text-[15px] font-semibold text-brand-white mb-1">{starter.recommendedPath.label}</h3>
+                  <p className="text-[12px] text-brand-silver leading-relaxed mb-3">{starter.recommendedPath.rationale}</p>
+                  <div className="flex items-start gap-2 rounded-lg px-3 py-2.5"
+                    style={{ background: 'rgba(10,22,40,0.5)', border: '1px solid rgba(255,255,255,0.06)' }}>
+                    <Lightbulb className="w-3.5 h-3.5 flex-shrink-0 mt-0.5 text-brand-accent" />
+                    <div>
+                      <span className="font-mono text-[8px] tracking-[0.18em] uppercase text-brand-accent block mb-0.5">First action</span>
+                      <span className="text-[12px] text-brand-white leading-snug">{firstAction(starter)}</span>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Alternative paths */}
+                {altPaths.length > 0 && (
+                  <div>
+                    <span className="font-mono text-[9px] tracking-[0.18em] uppercase text-brand-silver/70 block mb-2">Alternative Paths</span>
+                    <div className="space-y-2">
+                      {altPaths.map(p => (
+                        <div key={p.id} className="rounded-lg px-3 py-2.5"
+                          style={{ background: 'rgba(168,184,204,0.06)', border: '1px solid rgba(168,184,204,0.14)' }}>
+                          <span className="text-[12px] font-medium text-brand-white block leading-snug">{p.label}</span>
+                          <span className="text-[11px] text-brand-silver/70 leading-relaxed">{p.blurb}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
+              </div>
+            </section>
+
             <section className="mt-6 mb-8">
               <div className="flex items-center gap-2 mb-4">
                 <TrendingUp className="w-5 h-5 text-brand-accent" />
