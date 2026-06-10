@@ -156,9 +156,12 @@ function applyChallengeTiebreak(score: MetrixScore, intake: QuickIntake | null):
   const tied = score.risks.filter(r => r.score === lowest)
   if (tied.length < 2) return score
 
-  const preferred = [challengeCategory(intake), goalCategory(intake)]
-    .filter((c): c is MetrixCategory => Boolean(c))
-  const promote = tied.find(r => preferred.includes(r.category))
+  // Tie-break priority: biggest challenge first, then main goal, then default order.
+  const chal = challengeCategory(intake)
+  const goal = goalCategory(intake)
+  const promote =
+    (chal ? tied.find(r => r.category === chal) : undefined) ??
+    (goal ? tied.find(r => r.category === goal) : undefined)
   if (!promote || promote.category === score.risks[0].category) return score
 
   const risks = [promote, ...score.risks.filter(r => r !== promote)]
