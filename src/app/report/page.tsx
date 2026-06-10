@@ -17,6 +17,7 @@ import { getGrowthPhases } from '@/lib/growthPhases'
 import { getVendorsForPhase } from '@/lib/vendorCategories'
 import { getPlaybooksForPhase, type SalesPlaybook } from '@/lib/salesPlaybooks'
 import { getFlyersByIds, getRoadPathsForPhase, SOCIAL_STARTER_PLAN } from '@/lib/marketingAssets'
+import { getFinancialPathsForPhase, type FinancialPath } from '@/lib/financialSystemsRoadmap'
 import { STATE_RESOURCES } from '@/lib/stateResources'
 
 // ── Score ring ────────────────────────────────────────────────────────────────
@@ -580,6 +581,88 @@ function SocialStarterPlanSection({ bandColor }: { bandColor: string }) {
   )
 }
 
+// ── Financial Path Card ───────────────────────────────────────────────────────
+function FinancialPathCard({ path, bandColor }: { path: FinancialPath; bandColor: string }) {
+  const [open, setOpen] = useState(false)
+  const stageColor: Record<string, string> = { startup: '#4A90D9', growing: '#EF9F27', scaling: '#1D9E75' }
+  return (
+    <div className="rounded-sm overflow-hidden"
+      style={{ background: 'rgba(13,43,92,0.4)', border: '1px solid rgba(168,184,204,0.12)' }}>
+      <button className="w-full flex items-start justify-between gap-2 p-3 text-left"
+        onClick={() => setOpen(!open)}>
+        <div className="min-w-0">
+          <div className="flex items-center gap-2 mb-0.5">
+            <span className="text-sm leading-none">{path.icon}</span>
+            <span className="text-[12px] font-semibold text-brand-white">{path.title}</span>
+          </div>
+          <p className="text-[10px] text-brand-silver/60 leading-relaxed">{path.whyItMatters}</p>
+        </div>
+        <span className="flex-shrink-0 mt-0.5">
+          {open
+            ? <ChevronUp className="w-3.5 h-3.5" style={{ color: bandColor }} />
+            : <ChevronDown className="w-3.5 h-3.5 text-brand-silver/40" />}
+        </span>
+      </button>
+      {open && (
+        <div className="px-3 pb-3 space-y-3" style={{ borderTop: '1px solid rgba(255,255,255,0.06)' }}>
+          <div className="pt-2.5 rounded-sm px-3 py-2"
+            style={{ background: 'rgba(29,158,117,0.08)', border: '1px solid rgba(29,158,117,0.2)' }}>
+            <p className="font-mono text-[8px] tracking-widest uppercase mb-1" style={{ color: '#1D9E75' }}>First Action</p>
+            <p className="text-[10px] text-brand-white leading-relaxed">{path.firstAction}</p>
+          </div>
+          <div>
+            <p className="font-mono text-[8px] tracking-widest uppercase text-brand-silver/40 mb-1.5">By Stage</p>
+            <div className="space-y-1.5">
+              {path.stages.map(s => (
+                <div key={s.stage} className="rounded-sm px-2.5 py-2"
+                  style={{ background: `${stageColor[s.stage]}0d`, border: `1px solid ${stageColor[s.stage]}30` }}>
+                  <p className="text-[10px] font-medium mb-1" style={{ color: stageColor[s.stage] }}>{s.stageLabel}</p>
+                  <div className="space-y-0.5">
+                    {s.steps.map((step, i) => (
+                      <div key={i} className="flex items-start gap-1.5">
+                        <span className="text-[9px] flex-shrink-0 mt-0.5" style={{ color: stageColor[s.stage] }}>·</span>
+                        <p className="text-[10px] text-brand-silver/70 leading-relaxed">{step}</p>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+          <div>
+            <p className="font-mono text-[8px] tracking-widest uppercase text-brand-silver/40 mb-1">What to Measure</p>
+            <div className="space-y-0.5">
+              {path.whatToMeasure.map((m, i) => (
+                <div key={i} className="flex items-start gap-1.5">
+                  <span className="flex-shrink-0 mt-0.5 text-[9px]" style={{ color: bandColor }}>·</span>
+                  <p className="text-[10px] text-brand-silver/70 leading-relaxed">{m}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+          <div>
+            <p className="font-mono text-[8px] tracking-widest uppercase text-brand-silver/40 mb-1">What to Avoid</p>
+            <div className="space-y-0.5">
+              {path.whatToAvoid.map((a, i) => (
+                <div key={i} className="flex items-start gap-1.5">
+                  <span className="flex-shrink-0 mt-0.5 text-[10px]" style={{ color: '#EF9F27' }}>—</span>
+                  <p className="text-[10px] text-brand-silver/70 leading-relaxed">{a}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+          <div className="rounded-sm px-3 py-2"
+            style={{ background: 'rgba(239,159,39,0.06)', border: '1px solid rgba(239,159,39,0.18)' }}>
+            <p className="font-mono text-[8px] tracking-widest uppercase mb-1" style={{ color: '#EF9F27' }}>🔒 Full Module Preview</p>
+            <p className="text-[10px] text-brand-silver/50 leading-relaxed">{path.upgradePreview}</p>
+            <p className="text-[9px] text-brand-silver/30 mt-1">Coming soon — templates, checklists &amp; calculators</p>
+          </div>
+        </div>
+      )}
+    </div>
+  )
+}
+
 // ─────────────────────────────────────────────────────────────────────────────
 function ReportContent() {
   const searchParams = useSearchParams()
@@ -980,6 +1063,7 @@ function ReportContent() {
                 const phasePlaybooks = getPlaybooksForPhase(phase.id)
                 const phaseFlyerConcepts = getFlyersByIds(phase.relatedFlyerIds)
                 const phaseRoadPaths = getRoadPathsForPhase(phase.id)
+                const phaseFinancialPaths = getFinancialPathsForPhase(phase.id)
 
                 const subTabStyle = (tab: typeof activePhaseSubTab) => ({
                   flex: 1,
@@ -1239,7 +1323,19 @@ function ReportContent() {
                             </div>
                           )}
 
-                          {phasePlaybooks.length === 0 && phaseFlyerConcepts.length === 0 && phaseRoadPaths.length === 0 && (
+                          {/* Financial Systems Roadmap */}
+                          {phaseFinancialPaths.length > 0 && (
+                            <div>
+                              <p className="font-mono text-[9px] tracking-widest uppercase text-brand-silver/50 mb-2">Financial Systems Roadmap</p>
+                              <div className="space-y-3">
+                                {phaseFinancialPaths.map(fp => (
+                                  <FinancialPathCard key={fp.id} path={fp} bandColor={bandColor} />
+                                ))}
+                              </div>
+                            </div>
+                          )}
+
+                          {phasePlaybooks.length === 0 && phaseFlyerConcepts.length === 0 && phaseRoadPaths.length === 0 && phaseFinancialPaths.length === 0 && (
                             <p className="text-[11px] text-brand-silver/60">No marketing assets assigned to this phase.</p>
                           )}
 
