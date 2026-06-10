@@ -22,6 +22,8 @@ import { STATE_RESOURCES } from '@/lib/stateResources'
 import { loadIntake, goalLabel, challengeLabel, stageLabel, type QuickIntake } from '@/lib/intake'
 import { buildStarterScore, explainRisk, firstAction, alternativePaths } from '@/lib/metrixReport'
 import ChoosePathSection from '@/components/ChoosePathSection'
+import FeedbackBox from '@/components/FeedbackBox'
+import { trackEvent } from '@/lib/analytics'
 
 // ── Score ring ────────────────────────────────────────────────────────────────
 function ScoreRing({ score, color }: { score: number; color: string }) {
@@ -708,6 +710,9 @@ function ReportContent() {
     // Read the pre-assessment Quick Intake (supplementary context, optional)
     setIntake(loadIntake())
   }, [searchParams])
+
+  // Analytics placeholder — fires once when the report mounts
+  useEffect(() => { trackEvent('report_view') }, [])
 
   if (verifying) return (
     <div className="min-h-dvh bg-brand-navy flex flex-col items-center justify-center gap-3">
@@ -1713,6 +1718,14 @@ function ReportContent() {
             </Link>
           </div>
         )}
+
+        {/* Feedback — all tabs */}
+        <FeedbackBox context={{
+          score: result.overall,
+          band: result.band,
+          email: result.leadEmail,
+          stage: stageLabel(starter.stage),
+        }} />
 
         {/* Disclaimer — all tabs */}
         <div className="glass-light rounded-2xl p-4 mb-6 mt-4">
