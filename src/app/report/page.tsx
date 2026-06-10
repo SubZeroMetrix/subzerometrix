@@ -15,7 +15,7 @@ import { buildPersonalizedRoadmap, URGENCY_CONFIG, type RoadmapPhase, type Roadm
 import { SCORE_IMPACT_PER_TAB } from '@/lib/growthRoadmap'
 import { getGrowthPhases } from '@/lib/growthPhases'
 import { getVendorsForPhase } from '@/lib/vendorCategories'
-import { getPlaybooksForPhase } from '@/lib/salesPlaybooks'
+import { getPlaybooksForPhase, type SalesPlaybook } from '@/lib/salesPlaybooks'
 import { getFlyersByIds, getRoadPathsForPhase, SOCIAL_STARTER_PLAN } from '@/lib/marketingAssets'
 import { STATE_RESOURCES } from '@/lib/stateResources'
 
@@ -290,6 +290,119 @@ function PhaseGroup({
           onToggleComplete={() => onToggleComplete(item.id)}
         />
       ))}
+    </div>
+  )
+}
+
+// ── Playbook accordion card ───────────────────────────────────────────────────
+function PlaybookCard({ pb, bandColor }: { pb: SalesPlaybook; bandColor: string }) {
+  const [open, setOpen] = useState(false)
+
+  return (
+    <div className="rounded-sm overflow-hidden"
+      style={{ background: 'rgba(13,43,92,0.4)', border: '1px solid rgba(168,184,204,0.12)' }}>
+
+      {/* Header — always visible */}
+      <button className="w-full flex items-start justify-between gap-2 p-3 text-left"
+        onClick={() => setOpen(!open)}>
+        <div className="min-w-0">
+          <div className="flex items-center gap-2 mb-1 flex-wrap">
+            <span className="text-[12px] font-semibold text-brand-white">{pb.title}</span>
+            <span className="text-[9px] px-1.5 py-0.5 rounded-sm font-mono uppercase tracking-wide"
+              style={{ background: 'rgba(74,144,217,0.12)', color: '#7BB3D9' }}>
+              {pb.scenario.replace(/-/g, ' ')}
+            </span>
+          </div>
+          <p className="text-[10px] text-brand-silver/70 leading-relaxed">{pb.summary}</p>
+        </div>
+        <span className="flex-shrink-0 mt-0.5">
+          {open
+            ? <ChevronUp className="w-3.5 h-3.5" style={{ color: bandColor }} />
+            : <ChevronDown className="w-3.5 h-3.5 text-brand-silver/40" />}
+        </span>
+      </button>
+
+      {open && (
+        <div className="px-3 pb-3 space-y-3" style={{ borderTop: '1px solid rgba(255,255,255,0.06)' }}>
+
+          {/* Why it works */}
+          <div className="pt-2.5">
+            <p className="font-mono text-[8px] tracking-widest uppercase text-brand-silver/40 mb-1">Why It Works</p>
+            <p className="text-[10px] text-brand-silver/80 leading-relaxed">{pb.whyItWorks}</p>
+          </div>
+
+          {/* Step-by-step */}
+          <div>
+            <p className="font-mono text-[8px] tracking-widest uppercase text-brand-silver/40 mb-1.5">Step-by-Step Path</p>
+            <div className="space-y-2">
+              {pb.steps.map(step => (
+                <div key={step.stepNumber} className="rounded-sm px-2.5 py-2"
+                  style={{ background: 'rgba(168,184,204,0.04)', border: '1px solid rgba(168,184,204,0.08)' }}>
+                  <div className="flex items-center gap-1.5 mb-1">
+                    <span className="font-mono text-[9px] flex-shrink-0" style={{ color: bandColor }}>
+                      {step.stepNumber}.
+                    </span>
+                    <span className="text-[10px] font-semibold text-brand-white leading-snug">{step.title}</span>
+                  </div>
+                  {step.script && (
+                    <p className="text-[9px] text-brand-silver/70 leading-relaxed italic mb-1">
+                      &ldquo;{step.script}&rdquo;
+                    </p>
+                  )}
+                  <p className="text-[9px] text-brand-silver/50 leading-relaxed">{step.notes}</p>
+                  {step.avoidThis && (
+                    <p className="text-[9px] mt-1 leading-relaxed" style={{ color: '#EF9F27' }}>
+                      Avoid: {step.avoidThis}
+                    </p>
+                  )}
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Common mistakes */}
+          <div>
+            <p className="font-mono text-[8px] tracking-widest uppercase text-brand-silver/40 mb-1.5">Common Mistakes</p>
+            <div className="space-y-1">
+              {pb.commonMistakes.map((m, i) => (
+                <div key={i} className="flex items-start gap-1.5">
+                  <span className="text-[10px] flex-shrink-0 mt-0.5" style={{ color: '#EF9F27' }}>—</span>
+                  <p className="text-[10px] text-brand-silver/70 leading-relaxed">{m}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* What to measure */}
+          <div className="rounded-sm px-3 py-2"
+            style={{ background: 'rgba(29,158,117,0.07)', border: '1px solid rgba(29,158,117,0.2)' }}>
+            <p className="font-mono text-[8px] tracking-widest uppercase mb-1" style={{ color: '#1D9E75' }}>
+              What to Measure
+            </p>
+            <p className="text-[10px] text-brand-silver leading-relaxed">{pb.successMetric}</p>
+          </div>
+
+          {/* Upgrade preview */}
+          <div className="rounded-sm px-3 py-2"
+            style={{ background: 'rgba(239,159,39,0.07)', border: '1px solid rgba(239,159,39,0.2)' }}>
+            <p className="font-mono text-[8px] tracking-widest uppercase mb-1.5" style={{ color: '#EF9F27' }}>
+              🔒 Full Module Preview
+            </p>
+            <div className="space-y-0.5">
+              {pb.lockedContent.split('·').filter(s => s.trim()).map((item, i) => (
+                <div key={i} className="flex items-start gap-1.5">
+                  <span className="text-brand-silver/30 text-[9px] flex-shrink-0 mt-0.5">·</span>
+                  <p className="text-[9px] text-brand-silver/50 leading-relaxed">{item.trim()}</p>
+                </div>
+              ))}
+            </div>
+            <p className="text-[9px] text-brand-silver/30 mt-2">
+              Coming soon — full scripts, templates &amp; training guides
+            </p>
+          </div>
+
+        </div>
+      )}
     </div>
   )
 }
@@ -1056,18 +1169,7 @@ function ReportContent() {
                               <p className="font-mono text-[9px] tracking-widest uppercase text-brand-silver/50 mb-2">Sales Playbooks</p>
                               <div className="space-y-3">
                                 {phasePlaybooks.map(pb => (
-                                  <div key={pb.id} className="rounded-sm p-3"
-                                    style={{ background: 'rgba(13,43,92,0.4)', border: '1px solid rgba(168,184,204,0.12)' }}>
-                                    <p className="text-[12px] font-semibold text-brand-white mb-1">{pb.title}</p>
-                                    <p className="font-mono text-[9px] text-brand-silver/40 tracking-widest mb-2 uppercase">{pb.scenario}</p>
-                                    <p className="text-[11px] text-brand-silver leading-relaxed mb-2">{pb.summary}</p>
-                                    <p className="text-[10px] text-brand-silver/50 leading-relaxed mb-2">{pb.whyItWorks}</p>
-                                    <div className="rounded-sm px-3 py-2"
-                                      style={{ background: 'rgba(74,144,217,0.07)', border: '1px solid rgba(74,144,217,0.2)' }}>
-                                      <p className="font-mono text-[9px] text-brand-accent tracking-widest mb-1">SUCCESS METRIC</p>
-                                      <p className="text-[11px] text-brand-silver">{pb.successMetric}</p>
-                                    </div>
-                                  </div>
+                                  <PlaybookCard key={pb.id} pb={pb} bandColor={bandColor} />
                                 ))}
                               </div>
                             </div>
