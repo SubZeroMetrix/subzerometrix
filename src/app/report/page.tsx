@@ -19,6 +19,7 @@ import { getPlaybooksForPhase, type SalesPlaybook } from '@/lib/salesPlaybooks'
 import { getFlyersByIds, getRoadPathsForPhase, SOCIAL_STARTER_PLAN } from '@/lib/marketingAssets'
 import { getFinancialPathsForPhase, type FinancialPath } from '@/lib/financialSystemsRoadmap'
 import { STATE_RESOURCES } from '@/lib/stateResources'
+import { loadIntake, goalLabel, challengeLabel, type QuickIntake } from '@/lib/intake'
 
 // ── Score ring ────────────────────────────────────────────────────────────────
 function ScoreRing({ score, color }: { score: number; color: string }) {
@@ -675,6 +676,7 @@ function ReportContent() {
   const [activeGrowthTabId, setActiveGrowthTabId] = useState('')
   const [activePhaseSubTab, setActivePhaseSubTab] = useState<'overview' | '90day' | 'tools' | 'sales' | 'upgrade'>('overview')
   const [activeTab, setActiveTab] = useState<'score' | 'roadmap' | 'resources'>('score')
+  const [intake, setIntake] = useState<QuickIntake | null>(null)
 
   useEffect(() => {
     const sessionId = searchParams.get('session_id')
@@ -700,6 +702,9 @@ function ReportContent() {
       const gc = localStorage.getItem('szm_growth_complete')
       if (gc) setCompletedGrowthTabs(new Set(JSON.parse(gc) as string[]))
     } catch {}
+
+    // Read the pre-assessment Quick Intake (supplementary context, optional)
+    setIntake(loadIntake())
   }, [searchParams])
 
   if (verifying) return (
@@ -845,6 +850,24 @@ function ReportContent() {
               </span>
             ))}
         </div>
+
+        {/* Quick Intake context (from /start) — goal & focus, when provided */}
+        {intake && (intake.mainGoal || intake.biggestChallenge) && (
+          <div className="flex flex-wrap justify-center gap-2 mt-2">
+            {intake.mainGoal && (
+              <span className="text-[11px] px-3 py-1 rounded-sm font-mono"
+                style={{ background: 'rgba(74,144,217,0.12)', color: '#7FB0E8' }}>
+                Goal: {goalLabel(intake.mainGoal)}
+              </span>
+            )}
+            {intake.biggestChallenge && (
+              <span className="text-[11px] px-3 py-1 rounded-sm font-mono"
+                style={{ background: 'rgba(239,159,39,0.12)', color: '#EFB967' }}>
+                Focus: {challengeLabel(intake.biggestChallenge)}
+              </span>
+            )}
+          </div>
+        )}
       </div>
 
       {/* Tab nav */}
