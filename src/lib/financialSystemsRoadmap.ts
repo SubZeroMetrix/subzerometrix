@@ -91,7 +91,7 @@ export const FINANCIAL_PATHS: FinancialPath[] = [
     ],
     whatToMeasure: ["Monthly card spend by category.", "Card balance paid in full.", "Missing receipt count.", "Employee card exceptions."],
     whatToAvoid: ["Using credit cards to cover bad pricing.", "Carrying high-interest balances.", "Mixing personal and business purchases.", "Giving employee cards without limits."],
-    vendorCategoryIds: ["banking"],
+    vendorCategoryIds: ["banking", "credit-cards"],
     upgradePreview: "Business credit card comparison, employee card policy, receipt workflow, spend review checklist, and business credit readiness guide.",
   },
   {

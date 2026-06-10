@@ -245,7 +245,7 @@ export const GROWTH_PHASES: GrowthPhase[] = [
     operationalImpact: 'Predictable inbound lead flow enables planned scheduling, capacity planning, and technician utilization — instead of scrambling when the phone goes quiet.',
     brandImpact: 'A strong Google presence with photos and reviews is your brand for most residential customers. It is what they check before they call, and what they send to friends.',
     financialImpact: 'Every review-driven or organic inbound lead costs zero. Contractors with strong GBP and SEO presence reduce paid lead dependency, which directly increases net margin.',
-    recommendedVendorIds: ['callrail', 'scorpion', 'ryno', 'podium', 'nicejob', 'canva'],
+    recommendedVendorIds: ['google-lsa', 'google-ads', 'callrail', 'scorpion', 'ryno', 'podium', 'nicejob', 'canva'],
     basicVisibleGuidance:
       'Fully complete your Google Business Profile. Ask every happy customer for a review with a direct link. Know where every new lead comes from. These three habits give you more control over your pipeline than any ad spend.',
     lockedUpgradePreview:
@@ -875,7 +875,7 @@ export const GROWTH_PHASES: GrowthPhase[] = [
     operationalImpact: 'Documented systems and defined roles enable delegation, consistent execution, and the ability to hire, train, and retain talent at every level.',
     brandImpact: 'A professional, leadership-driven company with clear standards and consistent execution builds a brand that attracts both customers and talent — and commands premium rates.',
     financialImpact: 'A business with documented systems, strong recurring revenue, and trained leadership sells for 3–6x EBITDA vs. 1–2x for owner-dependent operations. Systems build real enterprise value.',
-    recommendedVendorIds: ['servicetitan', 'gusto', 'adp', 'quickbooks', 'nexstar-network', 'bdr-training'],
+    recommendedVendorIds: ['servicetitan', 'gusto', 'adp', 'quickbooks', 'nexstar-network', 'bdr-training', 'indeed', 'ziprecruiter', 'linkedin-jobs'],
     basicVisibleGuidance:
       'Define roles before hiring. Write your first SOP. Review your P&L weekly. Pay yourself a salary and manage profit separately. These foundations are what separate businesses that scale from businesses that plateau at the owner\'s personal capacity.',
     lockedUpgradePreview:
