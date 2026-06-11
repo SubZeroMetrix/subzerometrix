@@ -746,7 +746,7 @@ function ReportContent() {
 
   const bandColor  = getBandColor(result.band)
   const firstName  = result.leadName || ''
-  const { categoryScores, report, answers } = result
+  const { report, answers } = result
   const bizType    = answers?.business_type ?? 'other'
   const platform   = PLATFORM_ROUTES[bizType] ?? PLATFORM_ROUTES['other']
   const userState  = answers?.location?.state ?? ''
@@ -783,18 +783,16 @@ function ReportContent() {
 
   const growthPhases = getGrowthPhases()
   const projectedScore: number | null = completedGrowthTabs.size > 0
-    ? parseFloat(Math.min(100, result.overall + completedGrowthTabs.size * SCORE_IMPACT_PER_TAB).toFixed(1))
+    ? parseFloat(Math.min(100, starter.overall + completedGrowthTabs.size * SCORE_IMPACT_PER_TAB).toFixed(1))
     : null
 
-  const categories: { label: string; score: number; max: number }[] = [
-    { label: 'Business Clarity',     score: categoryScores.businessClarity,    max: 10 },
-    { label: 'Location / Market',    score: categoryScores.locationClarity,    max: 10 },
-    { label: 'Stage Readiness',      score: categoryScores.stageReadiness,     max: 15 },
-    { label: 'Setup Readiness',      score: categoryScores.setupReadiness,     max: 20 },
-    { label: 'Financial Readiness',  score: categoryScores.financialReadiness, max: 20 },
-    { label: 'Customer Acquisition', score: categoryScores.customerReadiness,  max: 15 },
-    { label: 'Blocker Severity',     score: categoryScores.blockerSeverity,    max: 10 },
-  ]
+  // SCORE BREAKDOWN reflects the unified Starter MetrixScore™ categories (display-only).
+  // Legacy result.categoryScores + paid roadmap logic are untouched — buildPersonalizedRoadmap
+  // reads `result` internally. A future phase can fully migrate the roadmap to the new engine.
+  const categories: { label: string; score: number; max: number }[] =
+    starter.categories
+      .filter(c => c.answered > 0)
+      .map(c => ({ label: c.label, score: c.score, max: 100 }))
 
   const tabStyle = (tab: typeof activeTab) => ({
     flex: 1, paddingTop: '12px', paddingBottom: '12px', fontSize: '12px', fontWeight: 500,
@@ -1042,10 +1040,13 @@ function ReportContent() {
             <ChoosePathSection starter={starter} intake={intake} />
 
             <section className="mt-6 mb-8">
-              <div className="flex items-center gap-2 mb-4">
+              <div className="flex items-center gap-2 mb-1">
                 <TrendingUp className="w-5 h-5 text-brand-accent" />
                 <h2 className="font-display text-2xl tracking-wider text-brand-white">SCORE BREAKDOWN</h2>
               </div>
+              <p className="text-[11px] text-brand-silver/60 mb-4">
+                How your Starter MetrixScore™ breaks down by category focus area.
+              </p>
               <div className="glass rounded-2xl p-5">
                 {categories.map(c => (
                   <CategoryBar key={c.label} label={c.label} score={c.score} max={c.max} color={bandColor} />
@@ -1199,9 +1200,9 @@ function ReportContent() {
                 </div>
                 {projectedScore !== null && (
                   <p className="text-[10px] text-brand-silver/60 mt-2">
-                    Original: {result.overall} → Projected:{' '}
+                    Original: {starter.overall} → Projected:{' '}
                     <span style={{ color: bandColor }}>{projectedScore}</span>
-                    {' '}(+{(projectedScore - result.overall).toFixed(1)} pts)
+                    {' '}(+{(projectedScore - starter.overall).toFixed(1)} pts)
                   </p>
                 )}
               </div>
