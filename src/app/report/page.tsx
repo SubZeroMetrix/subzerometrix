@@ -757,6 +757,21 @@ function ReportContent() {
   const starterStrengths = starter.strengths.filter(s => s.score > 0)
   const altPaths       = alternativePaths(starter)
 
+  // ── MetrixScore™ reconciliation (display-only) ──────────────────────────────
+  // The user-facing headline score is the unified Starter MetrixScore™ — the same
+  // value shown on /results and /dashboard. The old `result` (scoring.ts) object is
+  // kept ONLY for the legacy paid roadmap (buildPersonalizedRoadmap) and the old
+  // category breakdown below. No scoring logic is changed here; a future phase should
+  // migrate the roadmap/breakdown to the unified engine.
+  const headerScoreColor =
+    starter.riskLevel === 'high'     ? '#E05A4E'
+    : starter.riskLevel === 'elevated' ? '#EF9F27'
+    : starter.riskLevel === 'moderate' ? '#4A90D9'
+    : '#1D9E75'
+  const headerProjected: number | null = completedGrowthTabs.size > 0
+    ? parseFloat(Math.min(100, starter.overall + completedGrowthTabs.size * SCORE_IMPACT_PER_TAB).toFixed(1))
+    : null
+
   // Build the personalized roadmap
   const roadmapPhases  = buildPersonalizedRoadmap(result)
   const allItems       = roadmapPhases.flatMap(p => p.items)
@@ -834,20 +849,20 @@ function ReportContent() {
         </div>
 
         <div className="mt-6 inline-flex flex-col items-center glass rounded-3xl px-10 py-6">
-          <ScoreRing score={result.overall} color={bandColor} />
+          <ScoreRing score={starter.overall} color={headerScoreColor} />
           <span className="mt-4 inline-block px-3 py-1 rounded-full text-xs font-semibold tracking-wide"
-            style={{ background: `${bandColor}22`, color: bandColor, border: `1px solid ${bandColor}55` }}>
-            {result.bandLabel}
+            style={{ background: `${headerScoreColor}22`, color: headerScoreColor, border: `1px solid ${headerScoreColor}55` }}>
+            {starter.riskLabel}
           </span>
           <p className="text-brand-silver text-xs mt-3 max-w-[220px] leading-relaxed text-center">
-            {result.bandMessage}
+            {explainRisk(starter)}
           </p>
-          {projectedScore !== null && (
+          {headerProjected !== null && (
             <div className="mt-3 flex items-center gap-2 px-3 py-1.5 rounded-sm"
-              style={{ background: `${bandColor}15`, border: `1px solid ${bandColor}30` }}>
-              <TrendingUp className="w-3 h-3 flex-shrink-0" style={{ color: bandColor }} />
+              style={{ background: `${headerScoreColor}15`, border: `1px solid ${headerScoreColor}30` }}>
+              <TrendingUp className="w-3 h-3 flex-shrink-0" style={{ color: headerScoreColor }} />
               <span className="font-mono text-[10px] text-brand-silver/70">Projected:</span>
-              <span className="font-display text-base" style={{ color: bandColor }}>{projectedScore}</span>
+              <span className="font-display text-base" style={{ color: headerScoreColor }}>{headerProjected}</span>
               <span className="font-mono text-[9px] text-brand-silver/50">after {completedGrowthTabs.size} action{completedGrowthTabs.size !== 1 ? 's' : ''}</span>
             </div>
           )}
