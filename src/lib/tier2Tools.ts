@@ -10,6 +10,7 @@
 
 import type { TierId } from './membershipTiers'
 import type { OperatingSystemPillarId, LaunchTiming } from './educationContentMap'
+import { deriveOwnership, type OwnershipMetadata } from './contentBranding'
 
 // ── Types ─────────────────────────────────────────────────────────────────────
 export type Tier2ToolType = 'checklist' | 'template' | 'worksheet' | 'script'
@@ -41,7 +42,7 @@ export interface Tier2WorksheetField {
   fieldType: 'text' | 'number' | 'currency' | 'percent' | 'select' | 'note'
 }
 
-export interface Tier2Tool {
+export interface Tier2ToolBase {
   id: string
   title: string
   shortDescription: string
@@ -63,10 +64,35 @@ export interface Tier2Tool {
   copyrightRisk: 'low'
 }
 
+// Export/print readiness (FUTURE use — no downloads/PDFs/generation built here).
+export type IntendedUse = 'contractor_self_guided_tool' | 'owner_operating_tool'
+export interface ExportReadiness {
+  printableEligible: boolean
+  downloadEligible: boolean
+  exportFormatReady: boolean
+  intendedUse: IntendedUse
+  revisionVersion: string
+  lastReviewed: string
+}
+
+// Every Tier 2 tool carries SubZeroMetrix™ ownership/copyright + export-readiness metadata.
+export interface Tier2Tool extends Tier2ToolBase, OwnershipMetadata, ExportReadiness {}
+
+function deriveExportReadiness(toolType: Tier2ToolType): ExportReadiness {
+  return {
+    printableEligible: true,
+    downloadEligible: true,
+    exportFormatReady: false,   // no real export format exists yet
+    intendedUse: toolType === 'template' ? 'owner_operating_tool' : 'contractor_self_guided_tool',
+    revisionVersion: '1.0',
+    lastReviewed: '2026-06',
+  }
+}
+
 // ─────────────────────────────────────────────────────────────────────────────
 // TOOLS
 // ─────────────────────────────────────────────────────────────────────────────
-export const TIER2_TOOLS: Tier2Tool[] = [
+const TIER2_TOOLS_BASE: Tier2ToolBase[] = [
 
   // ── 1. Business Setup Checklist ─────────────────────────────────────────────
   {
@@ -326,6 +352,11 @@ export const TIER2_TOOLS: Tier2Tool[] = [
     originalContentRequired: true, doNotCopy: true, sourceUse: 'original_content', copyrightRisk: 'low',
   },
 ]
+
+// Enriched export — every tool carries ownership/copyright + export-readiness metadata.
+export const TIER2_TOOLS: Tier2Tool[] = TIER2_TOOLS_BASE.map(t => ({
+  ...t, ...deriveOwnership(true), ...deriveExportReadiness(t.toolType),
+}))
 
 // ─────────────────────────────────────────────────────────────────────────────
 // Helpers (Step 4)

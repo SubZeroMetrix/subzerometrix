@@ -12,6 +12,7 @@
 
 import type { TierId, FeatureKey } from './membershipTiers'
 import type { MetrixCategory } from './metrixEngine'
+import { deriveOwnership, type OwnershipMetadata } from './contentBranding'
 
 // ── Operating-system pillars ──────────────────────────────────────────────────
 export type OperatingSystemPillarId =
@@ -118,7 +119,7 @@ export interface CopyrightSafety {
   evidenceNotes?: string
 }
 
-export interface EducationAsset extends EducationAssetCore, CopyrightSafety {}
+export interface EducationAsset extends EducationAssetCore, CopyrightSafety, OwnershipMetadata {}
 
 // Global content policy — original-first, link-for-reference, no third-party copying.
 export const CONTENT_COPYRIGHT_POLICY = {
@@ -214,9 +215,14 @@ function applyCopyrightSafety(a: EducationAssetCore): EducationAsset {
     : undefined
   )
 
+  // Original SubZeroMetrix™ content (internal/future original or a tool) carries our
+  // ownership/copyright; external/reference resources do not.
+  const isOriginalContent = sourceType === 'internal_original' || sourceType === 'future_original' || isTool
+
   return {
     ...a, sourceUrls, sourceType, attributionNeeded, attributionText,
     copyrightRisk, sourceUse, originalContentRequired, doNotCopy, legalNote, evidenceNotes,
+    ...deriveOwnership(isOriginalContent),
   }
 }
 
@@ -832,6 +838,20 @@ export function getAssetsUsingThirdPartyReferences(): EducationAsset[] {
 export function getPublicResourceAssets(): EducationAsset[] {
   return EDUCATION_ASSETS.filter(a =>
     a.sourceType === 'government' || a.sourceType === 'official_resource')
+}
+
+// ── Ownership / branding helpers ───────────────────────────────────────────────
+export function getOriginalContentAssets(): EducationAsset[] {
+  return EDUCATION_ASSETS.filter(a => a.ownershipClaimAllowed === true)
+}
+export function getLogoEligibleAssets(): EducationAsset[] {
+  return EDUCATION_ASSETS.filter(a => a.logoEligible === true)
+}
+export function getCopyrightEligibleAssets(): EducationAsset[] {
+  return EDUCATION_ASSETS.filter(a => a.copyrightEligible === true)
+}
+export function getReferenceOnlyAssets(): EducationAsset[] {
+  return EDUCATION_ASSETS.filter(a => a.ownershipClaimAllowed === false)
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
