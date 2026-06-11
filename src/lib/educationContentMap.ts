@@ -115,6 +115,7 @@ export interface CopyrightSafety {
   originalContentRequired: boolean
   doNotCopy: boolean
   legalNote?: string
+  evidenceNotes?: string
 }
 
 export interface EducationAsset extends EducationAssetCore, CopyrightSafety {}
@@ -131,11 +132,44 @@ export const CONTENT_COPYRIGHT_POLICY = {
   ],
 } as const
 
-// Per-asset source-type overrides (only the external / public-resource exceptions).
+// Per-asset overrides. Source URLs are added ONLY where the URL is canonical and
+// already used in existing app code (roadmap.ts / resources) — never fabricated.
+// State resources and the vendor library are collections of many URLs, so they
+// keep sourceUrls empty (no single canonical link). All URLs are user-reference
+// links only — they do not authorize copying any external content.
 const SAFETY_OVERRIDES: Record<string, Partial<CopyrightSafety>> = {
-  gov_free_resources: { sourceType: 'government' },
-  state_resources:    { sourceType: 'official_resource' },
-  vendor_library:     { sourceType: 'vendor_resource' },
+  gov_free_resources: {
+    sourceType: 'government',
+    sourceUrls: [
+      'https://www.irs.gov/businesses/small-businesses-self-employed/apply-for-an-employer-identification-number-ein-online',
+      'https://www.sba.gov/business-guide',
+      'https://www.score.org',
+    ],
+  },
+  state_resources: { sourceType: 'official_resource' },
+  vendor_library:  { sourceType: 'vendor_resource' },
+  business_setup_checklist: {
+    sourceUrls: [
+      'https://www.irs.gov/businesses/small-businesses-self-employed/apply-for-an-employer-identification-number-ein-online',
+      'https://www.sba.gov/business-guide',
+    ],
+  },
+  gbp_checklist: { sourceUrls: ['https://business.google.com'] },
+  pricing_readiness_checklist: {
+    sourceUrls: [
+      'https://www.score.org/resource/article/how-price-your-services',
+      'https://www.sba.gov/business-guide/manage-your-business/manage-your-finances',
+    ],
+    evidenceNotes: 'Use as original SubZeroMetrix™ guidance informed by common small-business pricing and financial planning practices.',
+  },
+  break_even_calculator: {
+    sourceUrls: ['https://www.sba.gov/business-guide/manage-your-business/manage-your-finances'],
+    evidenceNotes: 'Use as original SubZeroMetrix™ guidance informed by common small-business financial planning practices.',
+  },
+  cyber_security_checklist: {
+    sourceUrls: ['https://www.nist.gov/cybersecurity'],
+    evidenceNotes: 'Direct-link reference only; build as an original checklist informed by general small-business cybersecurity practices.',
+  },
 }
 
 const TOOL_CONTENT_TYPES: ContentType[] = ['checklist', 'script', 'template', 'worksheet', 'calculator', 'tracker']
@@ -174,10 +208,15 @@ function applyCopyrightSafety(a: EducationAssetCore): EducationAsset {
     : isExternal ? 'Link only — do not reproduce source content, wording, tables, or screenshots.'
     : undefined
   )
+  const evidenceNotes = o.evidenceNotes ?? (
+    originalContentRequired ? 'Build as original SubZeroMetrix™ content; any source links are for user reference only.'
+    : isExternal ? 'Direct-link reference only; do not copy external content, wording, tables, or images.'
+    : undefined
+  )
 
   return {
     ...a, sourceUrls, sourceType, attributionNeeded, attributionText,
-    copyrightRisk, sourceUse, originalContentRequired, doNotCopy, legalNote,
+    copyrightRisk, sourceUse, originalContentRequired, doNotCopy, legalNote, evidenceNotes,
   }
 }
 
