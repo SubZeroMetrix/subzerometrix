@@ -279,7 +279,7 @@ export default function AssessmentPage() {
         }
       }
 
-      router.push('/unlock')
+      router.push('/results')
     } catch (err) {
       console.error('Submit error:', err)
       setSubmitting(false)
