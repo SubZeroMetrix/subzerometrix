@@ -5,10 +5,13 @@ import { useRouter } from 'next/navigation'
 import Link from 'next/link'
 import {
   Loader2, Thermometer, Shield, CheckCircle2, AlertTriangle,
-  Map, Lightbulb, Clock, Gauge, TrendingUp, ArrowRight, ArrowLeft,
+  Map, Lightbulb, Clock, Gauge, TrendingUp, ArrowRight, ArrowLeft, Layers,
 } from 'lucide-react'
 import type { ScoreResult } from '@/lib/scoring'
-import { loadIntake, stageLabel, type QuickIntake } from '@/lib/intake'
+import {
+  loadIntake, stageLabel, tradeLabel, goalLabel, challengeLabel,
+  yearsLabel, revenueLabel, teamLabel, type QuickIntake,
+} from '@/lib/intake'
 import { buildStarterScore, explainRisk } from '@/lib/metrixReport'
 import { generateActions, type PathAction } from '@/lib/pathActions'
 
@@ -63,6 +66,25 @@ export default function ResultsPage() {
   const firstName   = result.leadName || ''
   const rColor      = riskColor(starter.riskLevel)
 
+  // MetrixProfile™ context (display-only — does not change the score)
+  const tradeName  = intake?.trade ? tradeLabel(intake.trade) : ''
+  const regionName = intake?.region || ''
+  const profileLine =
+    tradeName && regionName ? `Built around your ${tradeName} business profile in ${regionName}.`
+    : tradeName             ? `Built around your ${tradeName} business profile.`
+    : regionName            ? `Built around your contracting business in ${regionName}.`
+    : ''
+  const contextPills: { label: string; value: string }[] = intake ? [
+    { label: 'Trade',             value: tradeName },
+    { label: 'Region',            value: regionName },
+    { label: 'Stage',             value: intake.stage ? stageLabel(intake.stage) : '' },
+    { label: 'Years',             value: intake.yearsInBusiness ? yearsLabel(intake.yearsInBusiness) : '' },
+    { label: 'Revenue',           value: intake.revenueRange ? revenueLabel(intake.revenueRange) : '' },
+    { label: 'Team',              value: intake.teamSize ? teamLabel(intake.teamSize) : '' },
+    { label: 'Main goal',         value: intake.mainGoal ? goalLabel(intake.mainGoal) : '' },
+    { label: 'Biggest challenge', value: intake.biggestChallenge ? challengeLabel(intake.biggestChallenge) : '' },
+  ].filter(p => p.value) : []
+
   return (
     <main className="min-h-dvh bg-brand-navy flex flex-col">
 
@@ -77,6 +99,9 @@ export default function ResultsPage() {
         <h1 className="font-display text-3xl tracking-wider text-brand-white leading-none">
           {firstName ? `${firstName.toUpperCase()},` : ''} HERE&apos;S WHERE YOU STAND
         </h1>
+        {profileLine && (
+          <p className="text-[12px] text-brand-silver mt-2 leading-relaxed">{profileLine}</p>
+        )}
       </div>
 
       <div className="flex-1 px-5 max-w-md mx-auto w-full pb-10 pt-6 space-y-6">
@@ -158,6 +183,42 @@ export default function ResultsPage() {
               </div>
             </div>
           )}
+        </div>
+
+        {/* MetrixProfile™ context */}
+        {contextPills.length > 0 && (
+          <section>
+            <div className="flex items-center gap-2 mb-3">
+              <Layers className="w-5 h-5 text-brand-accent" />
+              <h2 className="font-display text-xl tracking-wider text-brand-white">YOUR METRIXPROFILE™</h2>
+            </div>
+            <div className="glass rounded-2xl p-5">
+              <p className="text-[12px] text-brand-silver leading-relaxed mb-3">
+                Your Starter Snapshot is based on your current MetrixProfile™ context.
+              </p>
+              <div className="flex flex-wrap gap-2">
+                {contextPills.map(p => (
+                  <span key={p.label} className="text-[11px] px-3 py-1.5 rounded-sm leading-snug"
+                    style={{ background: 'rgba(168,184,204,0.1)', color: '#C8D4E0' }}>
+                    <span className="text-brand-silver/60">{p.label}:</span> {p.value}
+                  </span>
+                ))}
+              </div>
+            </div>
+          </section>
+        )}
+
+        {/* Progressive MetrixScore™ explanation */}
+        <div className="glass-light rounded-xl px-4 py-3">
+          <p className="text-[12px] text-brand-silver leading-relaxed">
+            Your Starter MetrixScore™ gives you a fast snapshot. As you complete your MetrixProfile™,
+            unlock deeper roadmap sections, and track actions over time, your score becomes more accurate
+            and more useful.
+          </p>
+          <p className="text-[11px] text-brand-silver/60 leading-relaxed mt-2">
+            Some MetrixProfile™ categories — like Customer Experience — become more accurate as you
+            complete deeper profile sections in Pro.
+          </p>
         </div>
 
         {/* Recommended path preview */}

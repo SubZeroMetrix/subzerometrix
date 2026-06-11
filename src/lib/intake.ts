@@ -147,6 +147,15 @@ export function goalLabel(value: string): string {
 export function challengeLabel(value: string): string {
   return labelFrom(CHALLENGE_OPTIONS, value)
 }
+export function yearsLabel(value: string): string {
+  return labelFrom(YEARS_OPTIONS, value)
+}
+export function revenueLabel(value: string): string {
+  return labelFrom(REVENUE_OPTIONS, value)
+}
+export function teamLabel(value: string): string {
+  return labelFrom(TEAM_OPTIONS, value)
+}
 
 // ─── Persistence (session + local, mirroring the szm_score pattern) ───────────
 export const INTAKE_STORAGE_KEY = 'szm_intake'
