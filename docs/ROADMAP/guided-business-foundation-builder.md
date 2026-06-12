@@ -109,7 +109,9 @@ model **cloud-ready from day one**. Device-local is an acceptable fallback/first
 - **Product-5F** — Trade-Specific Foundation Steps
 - **Product-5G** — State-Specific Official-Resource Routing
 - **Product-5H** — Spanish Foundation Builder
-- **Product-5I** — Account-Synced Foundation Progress
+- **Product-5I** — Account-Synced Foundation Progress *(sync plumbing ready: Account-2I
+  `src/lib/foundationBuilderSync.ts` + the three `cloud_sync_*` tables; populate
+  `FOUNDATION_BUILDER_KEYS` from the Product-5 data model to activate, no further wiring)*
 
 ## Suggested future feature names
 

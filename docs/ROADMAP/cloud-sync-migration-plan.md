@@ -61,8 +61,13 @@ later wiring phase (2D onward). **Next: Account-2C — Sync Status UI.**
    synced"). No third-party analytics/cookies/pixels/retargeting. Local-first;
    confirmed-write-only "synced" status; missing migration/table → `sync_unavailable`.
    Wired into `/dashboard`.
-8. **Account-2I — Foundation Builder Sync Readiness.** Build the Foundation Builder data
-   model cloud-ready from day one (Product-5 dependency).
+8. **Account-2I — Foundation Builder Sync Readiness.** *(Built, readiness only —
+   `src/lib/foundationBuilderSync.ts`, see `foundation-builder-sync.md`.)* Cloud-ready,
+   local-first plumbing for `cloud_sync_foundation_builder_progress` +
+   `cloud_sync_vendor_tool_tracker` + `cloud_sync_launch_readiness_progress`. No UI/feature
+   built (Product-5 owns that); no live local data yet, so nothing is written/claimed. Notes
+   screened for secrets; vendor references store URLs only, never credentials. Syncs with no
+   further wiring once Product-5 populates the local model.
 9. **Account-2J — Local-to-Cloud Migration + Conflict Handling.** One-time adoption per
    flow + `updated_at` newest-wins conflict resolution.
 10. **Account-2K — Data Export / Delete / Privacy Controls.** Export-my-data and

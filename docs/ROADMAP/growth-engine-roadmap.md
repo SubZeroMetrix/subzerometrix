@@ -387,9 +387,15 @@ local-key → cloud-table audit).
   (never "all activity synced"). No third-party analytics/cookies/pixels/retargeting.
   Wired into `/dashboard` by the activity summary. Local-first preserved; migration `002`
   must be applied for live sync.
-- **Account-2I — Foundation Builder Sync Readiness: next.** Wire
-  `cloud_sync_foundation_builder_progress` (+ vendor/launch tables) once the Product-5
-  Foundation Builder data model exists — designed cloud-ready from day one.
+- **Account-2I — Foundation Builder Sync Readiness: built (readiness only).** Cloud-ready,
+  local-first plumbing for `cloud_sync_foundation_builder_progress` + `cloud_sync_vendor_tool_tracker`
+  + `cloud_sync_launch_readiness_progress` (`src/lib/foundationBuilderSync.ts`;
+  `foundation-builder-sync.md`). No Foundation Builder UI/feature built (that is Product-5);
+  no live local data source yet, so it backs up nothing and claims nothing today. Free-text
+  notes screened for secrets; vendor references store URLs only, never credentials. Syncs
+  with no further wiring once Product-5 populates the local model.
+- **Account-2J — Local-to-Cloud Migration + Conflict Handling: next.** One-time first-sign-in
+  adoption per flow + `updated_at` newest-wins conflict resolution. Then 2K (export/delete/privacy).
 
 **Placement:** after Growth-6, before **Product-5 — Guided Business Foundation Builder**.
 Required infrastructure before Product-5B/5C checklist tracking becomes a core feature.
