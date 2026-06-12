@@ -486,8 +486,12 @@ export default function DashboardPage() {
                 <div className="h-full rounded-full transition-all duration-500"
                   style={{ width: `${foundationStats.percent}%`, background: '#1D9E75' }} />
               </div>
-              {foundationNext && (
+              {foundationNext ? (
                 <p className="text-[11px] text-brand-silver/80 mt-2">Next: {foundationNext}</p>
+              ) : foundationStats.completed === foundationStats.total ? (
+                <p className="text-[11px] mt-2" style={{ color: '#1D9E75' }}>🎯 All foundation steps complete.</p>
+              ) : (
+                <p className="text-[11px] text-brand-silver/80 mt-2">No next step — review any blocked steps.</p>
               )}
             </div>
           )}
