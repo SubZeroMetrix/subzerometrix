@@ -891,20 +891,25 @@ function ReportContent() {
 
         {/* Quick Intake context (from /start) — goal & focus, when provided */}
         {intake && (intake.mainGoal || intake.biggestChallenge) && (
-          <div className="flex flex-wrap justify-center gap-2 mt-2">
-            {intake.mainGoal && (
-              <span className="text-[11px] px-3 py-1 rounded-sm font-mono"
-                style={{ background: 'rgba(74,144,217,0.12)', color: '#7FB0E8' }}>
-                Goal: {goalLabel(intake.mainGoal)}
-              </span>
-            )}
-            {intake.biggestChallenge && (
-              <span className="text-[11px] px-3 py-1 rounded-sm font-mono"
-                style={{ background: 'rgba(239,159,39,0.12)', color: '#EFB967' }}>
-                Focus: {challengeLabel(intake.biggestChallenge)}
-              </span>
-            )}
-          </div>
+          <>
+            <div className="flex flex-wrap justify-center gap-2 mt-2">
+              {intake.mainGoal && (
+                <span className="text-[11px] px-3 py-1 rounded-sm font-mono"
+                  style={{ background: 'rgba(74,144,217,0.12)', color: '#7FB0E8' }}>
+                  Goal: {goalLabel(intake.mainGoal)}
+                </span>
+              )}
+              {intake.biggestChallenge && (
+                <span className="text-[11px] px-3 py-1 rounded-sm font-mono"
+                  style={{ background: 'rgba(239,159,39,0.12)', color: '#EFB967' }}>
+                  Focus: {challengeLabel(intake.biggestChallenge)}
+                </span>
+              )}
+            </div>
+            <p className="text-[10px] text-brand-silver/60 mt-2 max-w-[280px] mx-auto leading-relaxed">
+              Your goal &amp; focus personalize your roadmap order — they don&apos;t change your score.
+            </p>
+          </>
         )}
       </div>
 

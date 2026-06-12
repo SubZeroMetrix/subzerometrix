@@ -74,16 +74,39 @@ export default function ResultsPage() {
     : tradeName             ? `Built around your ${tradeName} business profile.`
     : regionName            ? `Built around your contracting business in ${regionName}.`
     : ''
-  const contextPills: { label: string; value: string }[] = intake ? [
-    { label: 'Trade',             value: tradeName },
-    { label: 'Region',            value: regionName },
-    { label: 'Stage',             value: intake.stage ? stageLabel(intake.stage) : '' },
-    { label: 'Years',             value: intake.yearsInBusiness ? yearsLabel(intake.yearsInBusiness) : '' },
-    { label: 'Revenue',           value: intake.revenueRange ? revenueLabel(intake.revenueRange) : '' },
-    { label: 'Team',              value: intake.teamSize ? teamLabel(intake.teamSize) : '' },
-    { label: 'Main goal',         value: intake.mainGoal ? goalLabel(intake.mainGoal) : '' },
-    { label: 'Biggest challenge', value: intake.biggestChallenge ? challengeLabel(intake.biggestChallenge) : '' },
-  ].filter(p => p.value) : []
+  // Grouped by the field's honest role today: what shapes the Starter score,
+  // what personalizes the roadmap, and what is saved as context for later.
+  type Pill = { label: string; value: string }
+  const pillGroups: { heading: string; note: string; pills: Pill[] }[] = (intake ? [
+    {
+      heading: 'Score inputs',
+      note: 'Shape your Starter MetrixScore™ today',
+      pills: [
+        { label: 'Stage', value: intake.stage ? stageLabel(intake.stage) : '' },
+        { label: 'Team',  value: intake.teamSize ? teamLabel(intake.teamSize) : '' },
+      ],
+    },
+    {
+      heading: 'Roadmap priority',
+      note: 'Personalize your roadmap order and focus — not your score',
+      pills: [
+        { label: 'Trade',             value: tradeName },
+        { label: 'Region',            value: regionName },
+        { label: 'Main goal',         value: intake.mainGoal ? goalLabel(intake.mainGoal) : '' },
+        { label: 'Biggest challenge', value: intake.biggestChallenge ? challengeLabel(intake.biggestChallenge) : '' },
+      ],
+    },
+    {
+      heading: 'Profile context',
+      note: 'Saved now; helps your score get more accurate as your MetrixProfile™ grows',
+      pills: [
+        { label: 'Years',   value: intake.yearsInBusiness ? yearsLabel(intake.yearsInBusiness) : '' },
+        { label: 'Revenue', value: intake.revenueRange ? revenueLabel(intake.revenueRange) : '' },
+      ],
+    },
+  ] : [])
+    .map(g => ({ ...g, pills: g.pills.filter(p => p.value) }))
+    .filter(g => g.pills.length > 0)
 
   return (
     <main className="min-h-dvh bg-brand-navy flex flex-col">
@@ -186,24 +209,33 @@ export default function ResultsPage() {
         </div>
 
         {/* MetrixProfile™ context */}
-        {contextPills.length > 0 && (
+        {pillGroups.length > 0 && (
           <section>
             <div className="flex items-center gap-2 mb-3">
               <Layers className="w-5 h-5 text-brand-accent" />
               <h2 className="font-display text-xl tracking-wider text-brand-white">YOUR METRIXPROFILE™</h2>
             </div>
-            <div className="glass rounded-2xl p-5">
-              <p className="text-[12px] text-brand-silver leading-relaxed mb-3">
-                Your Starter Snapshot is based on your current MetrixProfile™ context.
+            <div className="glass rounded-2xl p-5 space-y-4">
+              <p className="text-[12px] text-brand-silver leading-relaxed">
+                Here&apos;s how each detail you shared is being used right now. Some shape your Starter
+                MetrixScore™, some personalize your roadmap, and the rest are saved as context for later.
               </p>
-              <div className="flex flex-wrap gap-2">
-                {contextPills.map(p => (
-                  <span key={p.label} className="text-[11px] px-3 py-1.5 rounded-sm leading-snug"
-                    style={{ background: 'rgba(168,184,204,0.1)', color: '#C8D4E0' }}>
-                    <span className="text-brand-silver/60">{p.label}:</span> {p.value}
-                  </span>
-                ))}
-              </div>
+              {pillGroups.map(g => (
+                <div key={g.heading}>
+                  <div className="flex items-baseline gap-2 mb-1.5">
+                    <span className="font-mono text-[9px] tracking-[0.18em] uppercase text-brand-accent">{g.heading}</span>
+                    <span className="text-[10px] text-brand-silver/60 leading-snug">{g.note}</span>
+                  </div>
+                  <div className="flex flex-wrap gap-2">
+                    {g.pills.map(p => (
+                      <span key={p.label} className="text-[11px] px-3 py-1.5 rounded-sm leading-snug"
+                        style={{ background: 'rgba(168,184,204,0.1)', color: '#C8D4E0' }}>
+                        <span className="text-brand-silver/60">{p.label}:</span> {p.value}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              ))}
             </div>
           </section>
         )}
@@ -211,13 +243,14 @@ export default function ResultsPage() {
         {/* Progressive MetrixScore™ explanation */}
         <div className="glass-light rounded-xl px-4 py-3">
           <p className="text-[12px] text-brand-silver leading-relaxed">
-            Your Starter MetrixScore™ gives you a fast snapshot. As you complete your MetrixProfile™,
-            unlock deeper roadmap sections, and track actions over time, your score becomes more accurate
-            and more useful.
+            Your Starter MetrixScore™ gives you a fast snapshot based on your current profile depth.
+            As your MetrixProfile™ grows — more answers, deeper roadmap sections, and tracked actions
+            over time — your score becomes more accurate and more useful.
           </p>
           <p className="text-[11px] text-brand-silver/60 leading-relaxed mt-2">
-            Some MetrixProfile™ categories — like Customer Experience — become more accurate as you
-            complete deeper profile sections in Pro.
+            Some fields help us personalize your roadmap today; deeper scoring uses more of your profile
+            in Pro. Nothing here is a final, benchmarked, or predictive score — it&apos;s a starting point
+            that improves as you do.
           </p>
         </div>
 
