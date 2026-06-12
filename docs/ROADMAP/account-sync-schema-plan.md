@@ -136,6 +136,60 @@ Do not combine this with any checkout / pricing / report-gating / scoring / road
 
 **Exact next phase:** *Cloud-saved MetrixProfile™ + MetrixScore™ history* — wire the sign-in UI + first-sign-in adoption + RLS-protected upserts, surfacing "Synced to your account" only after a confirmed write. Keep checkout / report gating / pricing / scoring / roadmap unchanged.
 
+## 12. Mega-Phase 3C — implemented (cloud-save foundation)
+
+**Shipped:**
+- `supabase/migrations/001_metrix_account_sync.sql` — the six per-user tables
+  (`metrix_profiles`, `metrix_score_snapshots`, `metrix_action_progress`,
+  `metrix_reassessment_events`, `metrix_kpi_snapshots`, `metrix_reminder_preferences`),
+  each with `account_user_id uuid → auth.users(id) on delete cascade`, `client_id`,
+  `created_at`/`updated_at`, a `UNIQUE (account_user_id, client_id)` constraint for
+  idempotent upserts, and **RLS enabled with owner-only** select/insert/update/delete
+  policies (`auth.uid() = account_user_id`). Idempotent migration (re-runnable).
+- `src/lib/metrixCloudSync.ts` — a **real** sync writer: `syncMetrixProfileToAccount`,
+  `syncScoreSnapshotsToAccount`, `syncActionProgressToAccount`,
+  `syncReassessmentEventsToAccount`, `syncManualKpisToAccount`,
+  `syncReminderPreferencesToAccount`, `adoptLocalMetrixHistoryToAccount`,
+  `getCloudSyncReadiness`, `getLastCloudSyncStatus`. It performs **actual upserts**
+  through the browser anon client + the user's session JWT (RLS-enforced) **when a
+  user is signed in**. Honest statuses: `unavailable | signed_out | no_local_history
+  | migration_required | synced | partial_error | error`.
+
+**Migration/table status:** the SQL exists but is **NOT yet applied** to the Supabase
+project. Until a reviewer applies it, the writer returns `migration_required` at runtime.
+
+**Are real writes active?** The writer code is real and will upsert successfully once
+(a) the migration is applied and (b) a user is signed in. **Today neither is true** (no
+sign-in UI is wired and the tables are not applied), so no rows are written yet — and
+nothing claims they are. **No fake sync.**
+
+**RLS / security assumptions:** browser writes use the **anon key + session JWT only**
+(never the service-role key); RLS restricts every row to its owner; no public read/write;
+no payment/entitlement coupling. The migration assumes a standard Supabase `auth.users`
+table.
+
+**Local→cloud adoption behavior:** `adoptLocalMetrixHistoryToAccount()` reads
+`szm_metrix_history`, upserts each part keyed on `client_id` (idempotent — re-running
+replaces, never duplicates), and **never deletes or mutates local data**. Row presence
+in a table is the synced state; the **local model has no per-row sync flag yet**, so
+v1 does not write a `storage_status`/`synced_at` column (documented deviation from §2).
+
+**UI:** **skipped this phase.** No sign-in UI exists, so a "Save to my account" button
+would always read signed-out and confuse. Helpers + migration only.
+
+**Remaining work for cross-device dashboard loading:**
+1. A small honest **sign-in UI** (email → magic link), calling the async `accountAuth`
+   checks on mount.
+2. **Apply the migration** to the Supabase project.
+3. A **cloud → local hydrate** reader (the inverse of the writer) to rebuild a
+   `MetrixHistoryState` from the user's rows on a new device.
+4. An **account-sync dashboard section** that shows "Synced to your account" **only**
+   after a confirmed `synced` result, with a one-time adoption button when signed in.
+
+**Exact next phase:** *Sign-in UI + apply migration + cloud→local hydrate + honest
+account-sync dashboard section*, surfacing "Synced to your account" only on a confirmed
+write. Keep checkout / report gating / pricing / scoring / roadmap unchanged.
+
 ---
 
 ### Out of scope for Mega-Phase 3 (explicitly NOT done)
