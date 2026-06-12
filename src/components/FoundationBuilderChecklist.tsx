@@ -11,13 +11,14 @@
 // ─────────────────────────────────────────────────────────────────────────────
 
 import { useState, useEffect, useMemo } from 'react'
-import { ClipboardList, ArrowRight, ShieldAlert, ExternalLink } from 'lucide-react'
+import { ClipboardList, ArrowRight, ShieldAlert, ExternalLink, Download, Printer } from 'lucide-react'
 import {
   FOUNDATION_SECTIONS, FOUNDATION_CATEGORIES, FOUNDATION_STEP_DEFINITIONS,
   getFoundationItemsOrDefaults, saveFoundationItems,
   updateFoundationItem, completeFoundationItem, blockFoundationItem, setFoundationItemStage,
   getFoundationProgressSummary, getNextFoundationItem,
   getFoundationStageLabel, getFoundationPriorityLabel,
+  foundationItemsToCsv, foundationItemsToPrintableHtml,
   type FoundationChecklistItem, type FoundationStage, type FoundationCategoryId,
 } from '@/lib/foundationBuilder'
 import SyncStatusBadge from '@/components/SyncStatusBadge'
@@ -92,6 +93,37 @@ export default function FoundationBuilderChecklist() {
     persist(updateFoundationItem(items, id, { blockedReason: reason.trim() === '' ? null : reason }))
   }
 
+  // Client-side CSV download of the user's own local progress (no network, no deps).
+  function downloadCsv() {
+    try {
+      const blob = new Blob([foundationItemsToCsv(items)], { type: 'text/csv;charset=utf-8' })
+      const url = URL.createObjectURL(blob)
+      const a = document.createElement('a')
+      a.href = url
+      a.download = 'foundation-builder.csv'
+      document.body.appendChild(a)
+      a.click()
+      a.remove()
+      URL.revokeObjectURL(url)
+    } catch {
+      // non-fatal — export simply does nothing if the browser blocks it
+    }
+  }
+
+  // Open a print window with a simple printable table (browser Print / Save as PDF).
+  function printPdf() {
+    try {
+      const w = window.open('', '_blank')
+      if (!w) return
+      w.document.write(foundationItemsToPrintableHtml(items))
+      w.document.close()
+      w.focus()
+      w.print()
+    } catch {
+      // non-fatal
+    }
+  }
+
   if (!loaded) {
     return <p className="text-brand-silver text-sm">Loading your Foundation Builder…</p>
   }
@@ -136,6 +168,25 @@ export default function FoundationBuilderChecklist() {
         or private customer information. This is educational only — confirm legal, tax, and
         licensing requirements with official sources.
       </p>
+
+      {/* Export tools (client-side; user's own local progress only) */}
+      <section className="glass rounded-2xl p-4">
+        <p className="text-[12px] font-semibold text-brand-white mb-1">Export your progress</p>
+        <p className="text-[10px] text-brand-silver/60 leading-relaxed mb-3">
+          Review your notes before exporting. Do not store passwords, API keys, bank info,
+          SSNs, or private customer info. Export includes only your own device-local progress.
+        </p>
+        <div className="flex gap-2">
+          <button type="button" onClick={downloadCsv}
+            className="flex-1 inline-flex items-center justify-center gap-1.5 py-2.5 rounded-xl text-[12px] font-semibold glass text-brand-white active:scale-[0.98] transition-all touch-target">
+            <Download className="w-4 h-4" /> Download CSV
+          </button>
+          <button type="button" onClick={printPdf}
+            className="flex-1 inline-flex items-center justify-center gap-1.5 py-2.5 rounded-xl text-[12px] font-semibold glass text-brand-white active:scale-[0.98] transition-all touch-target">
+            <Printer className="w-4 h-4" /> Print / Save PDF
+          </button>
+        </div>
+      </section>
 
       {/* Sections → categories → steps */}
       {FOUNDATION_SECTIONS.map(section => {

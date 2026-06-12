@@ -412,8 +412,12 @@ local-key → cloud-table audit).
   completed/total/percent + blocked count + next recommended step (`getFoundationCompletionStats`
   + `getNextFoundationItem`), linking to `/foundation-builder`. Device-local read; no cloud
   expansion.
-- **Next build — Product-5E — PDF/Excel Export.** (Account-2J/2K remain later Account-2
-  hardening phases.)
+- **Product-5E — PDF/Excel Export: built.** Pure, dependency-free `foundationItemsToCsv` /
+  `foundationItemsToPrintableHtml`; checklist UI adds Download CSV + Print/Save PDF
+  (client-side, no deps). CSV anti-formula-injection + HTML escaping; user's own local
+  progress only; pre-export no-secrets reminder.
+- **Next build — Product-5F — Trade-Specific Foundation Steps.** (Account-2J/2K remain later
+  Account-2 hardening phases.)
 
 **Placement:** after Growth-6, before **Product-5 — Guided Business Foundation Builder**.
 Required infrastructure before Product-5B/5C checklist tracking becomes a core feature.

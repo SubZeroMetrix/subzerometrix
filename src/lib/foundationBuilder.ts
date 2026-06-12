@@ -443,3 +443,72 @@ export function getNextFoundationItem(items: FoundationChecklistItem[]): Foundat
     return a.createdAt < b.createdAt ? -1 : a.createdAt > b.createdAt ? 1 : 0
   })[0]
 }
+
+// ── Product-5E: dependency-free export helpers (pure) ───────────────────────────
+// Export the user's OWN local Foundation Builder progress only. CSV cells are
+// neutralized against spreadsheet formula injection; HTML output escapes user text.
+
+const SECTION_LABEL: Record<FoundationSectionId, string> =
+  FOUNDATION_SECTIONS.reduce((acc, s) => { acc[s.id] = s.label; return acc }, {} as Record<FoundationSectionId, string>)
+const CATEGORY_LABEL: Record<FoundationCategoryId, string> =
+  FOUNDATION_CATEGORIES.reduce((acc, c) => { acc[c.id] = c.label; return acc }, {} as Record<FoundationCategoryId, string>)
+
+export const FOUNDATION_EXPORT_HEADERS = [
+  'Section', 'Category', 'Step', 'Stage', 'Status', 'Priority',
+  'Completed', 'Completed At', 'Blocked Reason', 'Note', 'Updated At',
+] as const
+
+/** One string row per item, in export-header order. Pure. */
+export function foundationItemsToRows(items: FoundationChecklistItem[]): string[][] {
+  return items.map(it => [
+    SECTION_LABEL[it.sectionId] ?? it.sectionId,
+    CATEGORY_LABEL[it.category] ?? it.category,
+    it.stepName,
+    getFoundationStageLabel(it.stage),
+    getFoundationStatusLabel(it.status),
+    getFoundationPriorityLabel(it.priority),
+    it.completed ? 'Yes' : 'No',
+    it.completedAt ?? '',
+    it.blockedReason ?? '',
+    it.note ?? '',
+    it.updatedAt ?? it.createdAt ?? '',
+  ])
+}
+
+// Quote + escape a CSV cell; neutralize leading formula chars (anti CSV injection).
+function csvCell(value: string): string {
+  let v = value
+  if (/^[=+\-@\t\r]/.test(v)) v = `'${v}`
+  return `"${v.replace(/"/g, '""')}"`
+}
+
+/** RFC-4180-style CSV text for the user's checklist. Pure; no dependencies. */
+export function foundationItemsToCsv(items: FoundationChecklistItem[]): string {
+  const rows = [Array.from(FOUNDATION_EXPORT_HEADERS), ...foundationItemsToRows(items)]
+  return rows.map(r => r.map(csvCell).join(',')).join('\r\n')
+}
+
+function escapeHtml(s: string): string {
+  return s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;')
+}
+
+/** A simple, dependency-free printable HTML document (for browser Print / Save as PDF). */
+export function foundationItemsToPrintableHtml(items: FoundationChecklistItem[]): string {
+  const stats = getFoundationCompletionStats(items)
+  const head = FOUNDATION_EXPORT_HEADERS.map(h => `<th>${escapeHtml(h)}</th>`).join('')
+  const body = foundationItemsToRows(items)
+    .map(r => `<tr>${r.map(c => `<td>${escapeHtml(c)}</td>`).join('')}</tr>`)
+    .join('')
+  return `<!doctype html><html><head><meta charset="utf-8"><title>Foundation Builder progress</title>` +
+    `<style>body{font-family:system-ui,Segoe UI,sans-serif;padding:24px;color:#111}` +
+    `h1{font-size:18px;margin:0 0 4px}p.sub{color:#555;font-size:12px;margin:0 0 16px}` +
+    `table{border-collapse:collapse;width:100%;font-size:11px}` +
+    `th,td{border:1px solid #ccc;padding:6px;text-align:left;vertical-align:top}th{background:#f3f4f6}` +
+    `p.note{font-size:10px;color:#666;margin-top:14px}</style></head><body>` +
+    `<h1>SubZeroMetrix&trade; Foundation Builder</h1>` +
+    `<p class="sub">${stats.completed} of ${stats.total} steps complete (${stats.percent}%)` +
+    `${stats.blocked > 0 ? ` &middot; ${stats.blocked} blocked` : ''}</p>` +
+    `<table><thead><tr>${head}</tr></thead><tbody>${body}</tbody></table>` +
+    `<p class="note">Educational only. Verify legal, tax, and licensing requirements with official sources.</p>` +
+    `</body></html>`
+}

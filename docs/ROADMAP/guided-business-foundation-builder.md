@@ -118,8 +118,12 @@ model **cloud-ready from day one**. Device-local is an acceptable fallback/first
   completed/total/percent, blocked count, and next recommended step via
   `getFoundationCompletionStats` + `getNextFoundationItem`; links to `/foundation-builder`.
   Device-local read.)*
-- **Product-5E** — PDF/Excel Export *(next)*
-- **Product-5F** — Trade-Specific Foundation Steps
+- **Product-5E** — PDF/Excel Export *(built — pure dependency-free helpers
+  `foundationItemsToCsv` / `foundationItemsToPrintableHtml` (+ `foundationItemsToRows`,
+  `FOUNDATION_EXPORT_HEADERS`); checklist UI has Download CSV + Print/Save PDF buttons. CSV
+  cells neutralized against formula injection; HTML escaped. Exports user's own local
+  progress only, with a pre-export no-secrets reminder.)*
+- **Product-5F** — Trade-Specific Foundation Steps *(next)*
 - **Product-5G** — State-Specific Official-Resource Routing
 - **Product-5H** — Spanish Foundation Builder
 - **Product-5I** — Account-Synced Foundation Progress *(sync plumbing ready: Account-2I
