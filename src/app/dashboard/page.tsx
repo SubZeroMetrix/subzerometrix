@@ -23,6 +23,7 @@ import GrowthAnalyticsSummary from '@/components/GrowthAnalyticsSummary'
 import SyncStatusBadge from '@/components/SyncStatusBadge'
 import { getAssessmentSyncReadiness, syncAssessmentHistoryToAccount } from '@/lib/assessmentHistorySync'
 import { getRoadmapKpiSyncReadiness, syncRoadmapKpiProgressToAccount } from '@/lib/roadmapKpiSync'
+import { getCustomerFeedbackSyncReadiness, syncCustomerFeedbackToAccount } from '@/lib/customerFeedbackSync'
 import type { SyncStatus } from '@/lib/syncContracts'
 
 const PATH_COMPLETE_KEY = 'szm_path_complete'
@@ -59,6 +60,9 @@ export default function DashboardPage() {
   // Account-2E: roadmap action + KPI backup status. Device-local until a confirmed write.
   const [rkSyncStatus, setRkSyncStatus] = useState<SyncStatus>('saved_on_device')
   const [rkSyncedAt, setRkSyncedAt] = useState<string | null>(null)
+  // Account-2F: customer feedback backup status (privacy-gated). Device-local until a confirmed write.
+  const [fbSyncStatus, setFbSyncStatus] = useState<SyncStatus>('saved_on_device')
+  const [fbSyncedAt, setFbSyncedAt] = useState<string | null>(null)
 
   useEffect(() => {
     let parsed: ScoreResult | null = null
@@ -114,6 +118,25 @@ export default function DashboardPage() {
           if (!cancelled) { setRkSyncStatus(result.status); setRkSyncedAt(result.lastSyncedAt) }
         } else if (!cancelled) {
           setRkSyncStatus(readiness.status)
+        }
+      } catch {
+        // Expected-failure safe: keep the device-local default.
+      }
+    })()
+    return () => { cancelled = true }
+  }, [])
+
+  // Resolve customer feedback backup status (privacy-gated; additive; never blocks the page).
+  useEffect(() => {
+    let cancelled = false
+    ;(async () => {
+      try {
+        const readiness = await getCustomerFeedbackSyncReadiness()
+        if (readiness.canSync) {
+          const result = await syncCustomerFeedbackToAccount()
+          if (!cancelled) { setFbSyncStatus(result.status); setFbSyncedAt(result.lastSyncedAt) }
+        } else if (!cancelled) {
+          setFbSyncStatus(readiness.status)
         }
       } catch {
         // Expected-failure safe: keep the device-local default.
@@ -388,6 +411,8 @@ export default function DashboardPage() {
 
         {/* Low-pressure, consent-first feedback (no public posting) */}
         <CustomerProofPrompt trigger="dashboard_returned" />
+        {/* Account-2F: feedback backup status (privacy-gated) — device-local unless eligible and confirmed backed up */}
+        <SyncStatusBadge status={fbSyncStatus} lastSyncedAt={fbSyncedAt} entityType="customer_feedback" compact />
 
         {/* Device-local activity summary (no cloud, no business-result claims) */}
         <GrowthAnalyticsSummary />

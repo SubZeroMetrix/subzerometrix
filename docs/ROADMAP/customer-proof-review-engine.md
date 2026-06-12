@@ -71,8 +71,18 @@ public review page**. `publicReviewAllowed` is `false` for every band.
 
 - Public review invitation for clearly-satisfied, consenting users (no incentives,
   per platform policy).
-- Account-synced feedback once auth/cloud sync exist (currently device-only).
 - Spanish customer-proof copy (Spanish stays discovery-layer only today).
+
+## Private account backup (Account-2F — built, privacy-gated)
+
+Feedback records can now be backed up to the **user's own account** via
+`src/lib/customerFeedbackSync.ts` → `cloud_sync_customer_feedback`
+(see `customer-feedback-sync.md`). This is a **private backup of the user's own words
+only** — it does **not** publish testimonials, post reviews, route feedback publicly, or
+create incentives. A privacy gate preserves consent flags and **skips** records whose
+free-text comment looks like a secret/credential or that lack consent metadata (kept
+local-only, counted). Local-first is preserved; "Synced to your account" appears only
+after a confirmed write; migration `002` must be applied for live sync.
 
 ## Analytics
 

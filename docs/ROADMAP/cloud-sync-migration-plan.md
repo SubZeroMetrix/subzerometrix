@@ -41,8 +41,12 @@ later wiring phase (2D onward). **Next: Account-2C — Sync Status UI.**
    `cloud_sync_kpi_entries` (structured, no PII; KPI note is a low-risk private note).
    Local-first; confirmed-write-only "synced" status; missing migration/table →
    `sync_unavailable` with local intact. Wired into `/dashboard` + `/report`.
-5. **Account-2F — Feedback / Customer Proof Sync.** New table + writer. **Privacy review
-   first** (free-text `comment`).
+5. **Account-2F — Feedback / Customer Proof Sync.** *(Built, privacy-gated —
+   `src/lib/customerFeedbackSync.ts`, see `customer-feedback-sync.md`.)* Syncs only
+   `cloud_sync_customer_feedback`. A privacy gate preserves consent flags and skips records
+   with secret-like comments or missing consent metadata (kept local-only, counted — never
+   "all feedback synced"). No publishing/reviews/incentives. Local-first; confirmed-write-only
+   "synced" status; missing migration/table → `sync_unavailable`. Wired into `/dashboard` + `/report`.
 6. **Account-2G — Partner Interest Sync.** New table + writer. **Privacy review first**
    (PII: name/company/email/website). Explicit consent gate.
 7. **Account-2H — Growth Analytics Privacy-Safe Sync.** Aggregate, non-PII only. Privacy /

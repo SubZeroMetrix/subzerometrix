@@ -366,9 +366,16 @@ local-key → cloud-table audit).
   `note` is the user's own low-risk private note). Wired into `/dashboard` (roadmap + KPI)
   and `/report` (roadmap). Local-first preserved; "Synced to your account" only after a
   confirmed write; migration `002` must be applied for live sync.
-- **Account-2F — Feedback / Customer Proof Sync: next (requires privacy review).**
-  `cloud_sync_customer_feedback` holds a free-text comment — needs a privacy review +
-  explicit consent handling before any write is wired. Partner/growth/Foundation deferred.
+- **Account-2F — Feedback / Customer Proof Sync: built (privacy-gated).** First flow to
+  touch a free-text field. `cloud_sync_customer_feedback` only (`src/lib/customerFeedbackSync.ts`;
+  `customer-feedback-sync.md`). A privacy gate preserves consent flags and skips records
+  whose comment looks like a secret/credential; skipped records stay local-only and are
+  counted (never claims "all feedback synced"). No publishing, no reviews, no incentives.
+  Wired into `/dashboard` + `/report` by the consent-first prompt. Local-first preserved;
+  migration `002` must be applied for live sync.
+- **Account-2G — Partner Interest Sync: next (highest privacy care).**
+  `cloud_sync_partner_interest` holds PII (name/company/email/website) — needs the
+  strictest privacy review + explicit consent gate. Growth/Foundation deferred.
 
 **Placement:** after Growth-6, before **Product-5 — Guided Business Foundation Builder**.
 Required infrastructure before Product-5B/5C checklist tracking becomes a core feature.

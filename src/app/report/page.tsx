@@ -31,6 +31,7 @@ import GrowthEventTracker from '@/components/GrowthEventTracker'
 import FeedbackBox from '@/components/FeedbackBox'
 import SyncStatusBadge from '@/components/SyncStatusBadge'
 import { getRoadmapKpiSyncReadiness, syncRoadmapKpiProgressToAccount } from '@/lib/roadmapKpiSync'
+import { getCustomerFeedbackSyncReadiness, syncCustomerFeedbackToAccount } from '@/lib/customerFeedbackSync'
 import type { SyncStatus } from '@/lib/syncContracts'
 import { trackEvent } from '@/lib/analytics'
 
@@ -697,6 +698,9 @@ function ReportContent() {
   // Account-2E: roadmap action progress backup status. Device-local until a confirmed write.
   const [rkSyncStatus, setRkSyncStatus] = useState<SyncStatus>('saved_on_device')
   const [rkSyncedAt, setRkSyncedAt] = useState<string | null>(null)
+  // Account-2F: customer feedback backup status (privacy-gated). Device-local until a confirmed write.
+  const [fbSyncStatus, setFbSyncStatus] = useState<SyncStatus>('saved_on_device')
+  const [fbSyncedAt, setFbSyncedAt] = useState<string | null>(null)
 
   useEffect(() => {
     const sessionId = searchParams.get('session_id')
@@ -741,6 +745,25 @@ function ReportContent() {
           if (!cancelled) { setRkSyncStatus(result.status); setRkSyncedAt(result.lastSyncedAt) }
         } else if (!cancelled) {
           setRkSyncStatus(readiness.status)
+        }
+      } catch {
+        // Expected-failure safe: keep the device-local default.
+      }
+    })()
+    return () => { cancelled = true }
+  }, [])
+
+  // Resolve customer feedback backup status (privacy-gated; additive; never blocks the report).
+  useEffect(() => {
+    let cancelled = false
+    ;(async () => {
+      try {
+        const readiness = await getCustomerFeedbackSyncReadiness()
+        if (readiness.canSync) {
+          const result = await syncCustomerFeedbackToAccount()
+          if (!cancelled) { setFbSyncStatus(result.status); setFbSyncedAt(result.lastSyncedAt) }
+        } else if (!cancelled) {
+          setFbSyncStatus(readiness.status)
         }
       } catch {
         // Expected-failure safe: keep the device-local default.
@@ -1100,6 +1123,8 @@ function ReportContent() {
             {/* Low-pressure, consent-first feedback (no public posting) */}
             <div className="mb-8">
               <CustomerProofPrompt trigger="report_viewed" />
+              {/* Account-2F: feedback backup status (privacy-gated) — device-local unless eligible and confirmed backed up */}
+              <SyncStatusBadge status={fbSyncStatus} lastSyncedAt={fbSyncedAt} entityType="customer_feedback" compact className="mt-3" />
             </div>
 
             <section className="mt-6 mb-8">

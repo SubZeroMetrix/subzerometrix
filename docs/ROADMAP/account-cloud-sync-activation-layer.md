@@ -54,7 +54,8 @@ change, no wired sync.**
 - **Account-2C** — sync-status UI component *(built — `SyncStatusBadge.tsx`; see `sync-status-ui-component.md`)*.
 - **Account-2D** — assessment / MetrixScore™ history sync *(built — `assessmentHistorySync.ts`; see `assessment-score-history-sync.md`)*. First active flow; structured non-PII data only; local-first preserved; migration `002` must be applied for live sync.
 - **Account-2E** — roadmap action + KPI sync *(built — `roadmapKpiSync.ts`; see `roadmap-kpi-sync.md`)*. Structured no-PII data only (KPI note is the user's own low-risk private note); wired into `/dashboard` + `/report`; local-first preserved.
-- **Account-2F onward** — feedback / customer proof sync next *(requires privacy review)*; partner/growth/Foundation deferred.
+- **Account-2F** — feedback / customer proof sync *(built, privacy-gated — `customerFeedbackSync.ts`; see `customer-feedback-sync.md`)*. First free-text flow; consent metadata preserved; records with secret-like comments or missing consent metadata are skipped (kept local-only, counted); no publishing/reviews/incentives; wired into `/dashboard` + `/report`.
+- **Account-2G onward** — partner interest sync next *(highest privacy care; PII)*; growth/Foundation deferred.
 
 ## Account-2B artifacts (built — schema + RLS only)
 
