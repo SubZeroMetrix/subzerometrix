@@ -394,8 +394,11 @@ local-key → cloud-table audit).
   no live local data source yet, so it backs up nothing and claims nothing today. Free-text
   notes screened for secrets; vendor references store URLs only, never credentials. Syncs
   with no further wiring once Product-5 populates the local model.
-- **Account-2J — Local-to-Cloud Migration + Conflict Handling: next.** One-time first-sign-in
-  adoption per flow + `updated_at` newest-wins conflict resolution. Then 2K (export/delete/privacy).
+- **Next build — Product-5A — Foundation Builder Data Model.** Create the local Foundation
+  Builder data model that populates `FOUNDATION_BUILDER_KEYS`, activating the Account-2I
+  sync plumbing with no further wiring. (Account-2J — Local-to-Cloud Migration + Conflict
+  Handling — and Account-2K — Export / Delete / Privacy Controls — remain later Account-2
+  hardening phases.)
 
 **Placement:** after Growth-6, before **Product-5 — Guided Business Foundation Builder**.
 Required infrastructure before Product-5B/5C checklist tracking becomes a core feature.

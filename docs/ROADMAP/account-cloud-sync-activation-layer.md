@@ -58,7 +58,7 @@ change, no wired sync.**
 - **Account-2G** — partner interest sync *(built, consent-gated — `partnerInterestSync.ts`; see `partner-interest-sync.md`)*. Highest-PII surface; syncs only records with `consentToContact === true`; non-consented or secret-like-note records skipped (kept local-only, counted); private backup only — no outreach/CRM/public listing; wired into `PartnerInterestForm` (`/partners`).
 - **Account-2H** — growth analytics privacy-safe sync *(built — `growthAnalyticsSync.ts`; see `growth-analytics-sync.md`)*. Whitelist payload of structured non-PII fields only (free-form `metadata` never synced) + skip gate for free-text/PII-looking events; no third-party analytics/cookies/pixels; wired into `/dashboard`.
 - **Account-2I** — Foundation Builder sync readiness *(built, readiness only — `foundationBuilderSync.ts`; see `foundation-builder-sync.md`)*. Cloud-ready plumbing for the three Foundation Builder tables; no UI/feature built (that is Product-5); no live local data yet, so nothing is written/claimed; notes screened for secrets; vendor references store URLs only.
-- **Account-2J onward** — local-to-cloud migration + conflict handling next; then 2K (export/delete/privacy controls).
+- **Next build — Product-5A** — Foundation Builder Data Model (populates `FOUNDATION_BUILDER_KEYS` to activate the 2I plumbing). Account-2J (local-to-cloud migration + conflict handling) and 2K (export/delete/privacy controls) remain later Account-2 hardening phases.
 
 ## Account-2B artifacts (built — schema + RLS only)
 
