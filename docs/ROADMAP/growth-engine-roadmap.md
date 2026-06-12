@@ -399,9 +399,12 @@ local-key → cloud-table audit).
   catalog, stages (start_here/do_this_next/later/done/blocked) + status + priority +
   completion model, pure helpers, SSR-safe storage (`szm_foundation_builder`). Data model
   only, no UI; activates the Account-2I sync plumbing once items are saved.
-- **Next build — Product-5B — In-App Foundation Checklist.** UI on top of the 5A model.
-  (Account-2J — Local-to-Cloud Migration + Conflict Handling — and Account-2K — Export /
-  Delete / Privacy Controls — remain later Account-2 hardening phases.)
+- **Product-5B — In-App Foundation Checklist: built.** `src/components/FoundationBuilderChecklist.tsx`
+  at `/foundation-builder` (+ dashboard entry card) — renders the 5A model, stage controls
+  (start_here/do_this_next/later/done/blocked), local notes, progress summary, next step, and
+  an honest `SyncStatusBadge`. UI only; local-first (`szm_foundation_builder`).
+- **Next build — Product-5C — Device-Local Completion Tracking.** (Account-2J/2K remain later
+  Account-2 hardening phases.)
 
 **Placement:** after Growth-6, before **Product-5 — Guided Business Foundation Builder**.
 Required infrastructure before Product-5B/5C checklist tracking becomes a core feature.

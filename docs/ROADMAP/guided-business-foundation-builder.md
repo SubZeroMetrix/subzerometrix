@@ -105,8 +105,11 @@ model **cloud-ready from day one**. Device-local is an acceptable fallback/first
   see `product-5a-foundation-builder-data-model.md`. 5 sections, 14 categories, starter
   step catalog, stages/status/priority/completion model, pure helpers, SSR-safe storage at
   `szm_foundation_builder`. Data model only — no UI.)*
-- **Product-5B** — In-App Foundation Checklist *(next — UI on top of the 5A model)*
-- **Product-5C** — Device-Local Completion Tracking
+- **Product-5B** — In-App Foundation Checklist *(built — `src/components/FoundationBuilderChecklist.tsx`
+  at `/foundation-builder`; renders sections → categories → steps, stage controls, local
+  notes, progress summary, next recommended step, and an honest `SyncStatusBadge`. Dashboard
+  entry card added. Local-first via `szm_foundation_builder`.)*
+- **Product-5C** — Device-Local Completion Tracking *(next)*
 - **Product-5D** — Dashboard Foundation Progress Summary
 - **Product-5E** — PDF/Excel Export
 - **Product-5F** — Trade-Specific Foundation Steps
