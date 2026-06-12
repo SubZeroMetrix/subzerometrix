@@ -99,6 +99,26 @@ Names mirror `METRIX_CLOUD_TABLES` in `metrixCloudSchema.ts`.
 - **Honest copy:** never show "synced" or "saved to your account" until a write is confirmed; default to "saved on this device."
 - **Dependency:** a real auth flow likely needs an auth library/provider. Adding dependencies is **out of scope for this phase** and must be proposed separately.
 
+## 9. Paid-access / entitlement considerations
+
+- Report access today is **payment-gated** (Stripe checkout → `/report?session_id=...` → verify-session), **not** account-gated. Account sync must **not** change who can view the paid report.
+- **Identity (account) and entitlement (paid) are separate concerns.** An account can exist with no purchase; a purchase exists today with no account. Keep them decoupled.
+- Future enhancement (not now): link a `purchase` to an `account_user_id` so a returning signed-in buyer can regain paid access on a new device. This layers **on top of** the existing payment gate — it must never lock out a paying user or silently unlock the report for a non-buyer.
+- Membership tier (`membershipTiers.ts`) should govern **how much** profile depth/history is retained and shown (e.g., lifetime score history), **never** the scoring engine. Tier gating of retention depth is a future read-time entitlement check with honest "upgrade for full history" framing — and **no silent data loss** of what the user already recorded locally.
+- Entitlement checks must be **server-validated** (as checkout/verify-session already are). Never reconcile paid access from `localStorage` or client state.
+
+## 10. Exact next build recommendation
+
+A dedicated phase (not bundled with retention-model work), in order:
+
+1. **`src/lib/supabaseClient.ts`** — one lazy, env-guarded client (mirroring the existing lazy pattern in `checkout`/`webhook`), returning `null` when env vars are absent. No change to today's anonymous logging.
+2. **Email magic-link auth** — request-link + verify endpoints, establish a session, and expose a real `getCurrentAccountUser()` to replace the `null` stub in `metrixAccountSync.ts`. **This likely requires an auth dependency — stop and get explicit approval before adding it.**
+3. **Create the six `metrix_*` tables with RLS** (per §2/§3) via a reviewed migration; add the `(account_user_id, client_id)` unique indexes for idempotent upserts.
+4. **One-time local adoption on first sign-in** — read local history, run `prepareHistoryForSync()`, upsert, then mark rows `synced`. Keep local data as a cache; never destroy on failure.
+5. **Honest status UI** — surface "Synced to your account" only after a confirmed write; until then keep "Saved on this device."
+
+Do not combine this with any checkout / pricing / report-gating / scoring / roadmap change.
+
 ---
 
 ### Out of scope for Mega-Phase 3 (explicitly NOT done)
