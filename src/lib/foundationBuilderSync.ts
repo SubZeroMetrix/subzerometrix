@@ -32,51 +32,24 @@
 import { getBrowserSupabase, isSupabaseConfigured } from './supabaseClient'
 import { getCurrentAccountUser } from './accountAuth'
 import { safeJsonParse } from './metrixStorage'
+import {
+  FOUNDATION_BUILDER_KEYS,
+  type FoundationChecklistItem,
+  type VendorToolItem,
+  type LaunchReadinessItem,
+} from './foundationBuilder'
 import type { SyncStatus } from './syncContracts'
+
+// Re-export the canonical model keys/types so existing sync consumers are unaffected.
+export { FOUNDATION_BUILDER_KEYS }
+export type { FoundationChecklistItem, VendorToolItem, LaunchReadinessItem }
 
 // The three Foundation Builder tables (created in migration 002).
 const FOUNDATION_TABLE = 'cloud_sync_foundation_builder_progress'
 const VENDOR_TABLE = 'cloud_sync_vendor_tool_tracker'
 const LAUNCH_TABLE = 'cloud_sync_launch_readiness_progress'
 
-// Future local-storage keys (Product-5 will populate these; today they do not exist).
-export const FOUNDATION_BUILDER_KEYS = {
-  foundation: 'szm_foundation_builder',
-  vendorTracker: 'szm_vendor_tracker',
-  launchReadiness: 'szm_launch_readiness',
-} as const
-
 const MAX_SAFE_VALUE_LEN = 2000 // notes can be longer; we only screen for secrets
-
-// ── Forward-looking item shapes (cloud-ready; Product-5 will produce these) ────
-export interface FoundationChecklistItem {
-  id: string
-  createdAt: string
-  category: string
-  stepName: string
-  status: string            // e.g. not_started | in_progress | done | blocked
-  completed: boolean
-  note: string | null       // free text — low-risk, no PII; secret-like notes are skipped
-  updatedAt?: string
-}
-
-export interface VendorToolItem {
-  id: string
-  createdAt: string
-  label: string
-  category: string | null
-  referenceUrl: string | null  // reference only — NEVER credentials/passwords/keys
-  note: string | null
-}
-
-export interface LaunchReadinessItem {
-  id: string
-  createdAt: string
-  label: string
-  status: string
-  completed: boolean
-  note: string | null
-}
 
 export type FoundationBuilderSyncStatus = SyncStatus
 

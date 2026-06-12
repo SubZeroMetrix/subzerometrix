@@ -101,8 +101,11 @@ model **cloud-ready from day one**. Device-local is an acceptable fallback/first
 
 ## Future build phases
 
-- **Product-5A** — Foundation Builder Data Model
-- **Product-5B** — In-App Foundation Checklist
+- **Product-5A** — Foundation Builder Data Model *(built — `src/lib/foundationBuilder.ts`;
+  see `product-5a-foundation-builder-data-model.md`. 5 sections, 14 categories, starter
+  step catalog, stages/status/priority/completion model, pure helpers, SSR-safe storage at
+  `szm_foundation_builder`. Data model only — no UI.)*
+- **Product-5B** — In-App Foundation Checklist *(next — UI on top of the 5A model)*
 - **Product-5C** — Device-Local Completion Tracking
 - **Product-5D** — Dashboard Foundation Progress Summary
 - **Product-5E** — PDF/Excel Export
