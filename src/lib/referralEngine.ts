@@ -18,6 +18,7 @@ export type ReferralSource =
   | 'spanish_discovery'
   | 'resources'
   | 'referral_invite'
+  | 'partners'
 
 export type ReferralChannel =
   | 'copy_link'

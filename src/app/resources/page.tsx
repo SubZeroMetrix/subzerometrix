@@ -196,6 +196,7 @@ export default function ResourcesPage() {
           <div className="flex flex-wrap gap-3">
             {[
               ['Affiliate Disclosure', '/affiliate-disclosure'],
+              ['Partners', '/partners'],
               ['Disclaimer', '/disclaimer'],
               ['Privacy Policy', '/privacy'],
             ].map(([label, href]) => (

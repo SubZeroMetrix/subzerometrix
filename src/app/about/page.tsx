@@ -106,7 +106,7 @@ export default function AboutPage() {
         </Link>
 
         <div className="flex flex-wrap gap-x-4 gap-y-2 pt-2">
-          {[['Resources', '/resources'], ['Disclaimer', '/disclaimer'], ['Terms', '/terms']].map(([label, href]) => (
+          {[['Resources', '/resources'], ['Partners', '/partners'], ['Disclaimer', '/disclaimer'], ['Terms', '/terms']].map(([label, href]) => (
             <Link key={href} href={href} className="text-[12px] text-brand-accent hover:underline underline-offset-2">
               {label}
             </Link>

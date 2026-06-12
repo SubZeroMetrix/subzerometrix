@@ -19,6 +19,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { path: '/es/como-empezar-un-negocio', priority: 0.6 },
     { path: '/es/preparacion-empresarial', priority: 0.6 },
     { path: '/resources', priority: 0.8 },
+    { path: '/partners', priority: 0.6 },
     { path: '/platform-ecosystem', priority: 0.7 },
     { path: '/terms', priority: 0.3 },
     { path: '/privacy', priority: 0.3 },

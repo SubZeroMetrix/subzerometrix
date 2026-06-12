@@ -17,6 +17,7 @@ export type ShareContext =
   | 'resources'
   | 'spanish_discovery'
   | 'spanish_business_starter'
+  | 'partners'
 
 export type ShareLang = 'en' | 'es'
 
@@ -43,6 +44,7 @@ const RESOURCES: Record<ShareContext, ShareableResource> = {
   resources: { id: 'resources', path: '/resources', source: 'resources', lang: 'en', title: 'Contractor resources' },
   spanish_discovery: { id: 'spanish_discovery', path: '/es', source: 'spanish_discovery', lang: 'es', title: 'SubZeroMetrix™ en Español' },
   spanish_business_starter: { id: 'spanish_business_starter', path: '/es/como-empezar-un-negocio', source: 'spanish_discovery', lang: 'es', title: 'Cómo empezar un negocio' },
+  partners: { id: 'partners', path: '/partners', source: 'partners', lang: 'en', title: 'Partner distribution' },
 }
 
 const COPY: Record<ShareContext, { en?: ShareCopyVariant; es?: ShareCopyVariant }> = {
@@ -63,6 +65,9 @@ const COPY: Record<ShareContext, { en?: ShareCopyVariant; es?: ShareCopyVariant 
   },
   spanish_business_starter: {
     es: { lang: 'es', shareText: 'Una guía educativa y gratuita para empezar un negocio:', ctaLabel: 'Compartir' },
+  },
+  partners: {
+    en: { lang: 'en', shareText: 'Share SubZeroMetrix™ as a free, educational business-readiness resource with your network:', ctaLabel: 'Share with your network' },
   },
 }
 

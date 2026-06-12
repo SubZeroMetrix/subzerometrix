@@ -280,6 +280,12 @@ service-business positioning while serving broad startup visitors.
 
 ## Growth-5 — Partner / Vendor / Association Distribution System
 
+**Status: active foundation built** — public `/partners` page with an active local-device
+partner-interest form; channel types, fit, outreach templates, and shareable assets
+(`src/lib/partnerDistribution.ts`). See `partner-vendor-association-distribution-system.md`.
+Confirmed-partner directory, CRM/email, and co-marketing remain future.
+
+
 - Partner / co-marketing readiness page plan
 - Vendor outreach tracker
 - Association / trade-school outreach assets

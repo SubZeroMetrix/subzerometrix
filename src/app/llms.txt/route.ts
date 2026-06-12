@@ -57,6 +57,12 @@ SubZeroMetrix™ has public Spanish discovery pages (for example ${SITE_URL}/es)
 are educational. The full platform translation is not complete yet, and the platform
 remains strongest for contractors, tradespeople, and service-business owners.
 
+## Partners
+SubZeroMetrix™ has a public partner/distribution page at ${SITE_URL}/partners for
+educational / community / trade-ecosystem distribution. Sharing or listing implies no
+official partnership, endorsement, approval, or affiliate relationship unless confirmed
+in writing.
+
 ## Important limitations
 SubZeroMetrix™ provides educational guidance only. It is not legal, tax, financial,
 licensing, or compliance advice. Use official state and local sources to confirm

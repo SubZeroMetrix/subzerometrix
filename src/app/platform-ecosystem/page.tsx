@@ -272,6 +272,12 @@ export default function PlatformEcosystemPage() {
           </Link>
         </div>
 
+        {/* Partner / distribution link */}
+        <p className="text-center text-[11px] text-brand-silver mb-6">
+          Associations, vendors, and communities:{' '}
+          <Link href="/partners" className="text-brand-accent hover:underline underline-offset-2">share SubZeroMetrix™ →</Link>
+        </p>
+
         {/* Disclaimer */}
         <div className="glass-light rounded-sm p-4">
           <p className="text-[10px] text-brand-silver/70 leading-relaxed">
