@@ -21,6 +21,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { path: '/es/preparacion-empresarial', priority: 0.6 },
     { path: '/resources', priority: 0.8 },
     { path: '/learn', priority: 0.8 },
+    { path: '/trades', priority: 0.7 },
     { path: '/foundation-builder', priority: 0.7 },
     { path: '/partners', priority: 0.6 },
     { path: '/platform-ecosystem', priority: 0.7 },

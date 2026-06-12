@@ -9,6 +9,7 @@
 import Link from 'next/link'
 import { ArrowLeft, ArrowRight, CheckCircle2, ExternalLink } from 'lucide-react'
 import type { PublicResource } from '@/lib/publicResources'
+import SupportedTrades from '@/components/SupportedTrades'
 
 export default function ResourcePageView({ resource }: { resource: PublicResource }) {
   return (
@@ -57,6 +58,9 @@ export default function ResourcePageView({ resource }: { resource: PublicResourc
             ))}
           </ul>
         </section>
+
+        {/* Reusable supported-trades callout (where relevant) */}
+        {resource.showSupportedTrades && <SupportedTrades />}
 
         {/* Conversion paths */}
         <section className="space-y-2.5">

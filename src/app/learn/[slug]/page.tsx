@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 import { buildOpenGraph, buildTwitter, breadcrumbJsonLd, faqPageJsonLd } from '@/lib/seo'
-import { getPublicResource, getPublicResourceSlugs } from '@/lib/publicResources'
+import { getPublicResource, getPublicResourceSlugs, isResourceIndexable } from '@/lib/publicResources'
 import ResourcePageView from '@/components/ResourcePageView'
 
 interface Params { params: { slug: string } }
@@ -20,6 +20,7 @@ export function generateMetadata({ params }: Params): Metadata {
     description: resource.description,
     keywords: resource.keywords,
     alternates: { canonical: path },
+    robots: isResourceIndexable(resource) ? undefined : { index: false, follow: true },
     openGraph: buildOpenGraph({ title: `${resource.metaTitle} | SubZeroMetrix™`, description: resource.description, path }),
     twitter: buildTwitter({ title: `${resource.metaTitle} | SubZeroMetrix™`, description: resource.description }),
   }

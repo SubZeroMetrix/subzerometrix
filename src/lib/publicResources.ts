@@ -15,6 +15,8 @@
 // ─────────────────────────────────────────────────────────────────────────────
 
 export type ResourceAudience = 'contractors_trades' | 'service_business' | 'general'
+export type ResourceContentType = 'guide' | 'checklist' | 'overview' | 'tool_explainer'
+export type StructuredDataType = 'Article' | 'FAQPage' | 'HowTo' | 'CollectionPage'
 
 export interface ResourceSection {
   heading: string
@@ -25,25 +27,62 @@ export interface ResourceSection {
 export interface ResourceFaq { q: string; a: string }
 export interface ResourceLink { label: string; href: string }
 
+// Normalized supported trade (mirrors intake TRADE_OPTIONS slugs).
+export type SupportedTrade =
+  | 'hvac' | 'electrical' | 'plumbing' | 'roofing' | 'construction'
+  | 'handyman' | 'landscaping' | 'cleaning' | 'painting' | 'solar'
+
 export interface PublicResource {
   slug: string                          // stable
   title: string                         // on-page H1
   metaTitle: string                     // <title>
   description: string                   // meta description + OG
   audience: ResourceAudience
-  intent: string                        // the distinct user intent this page answers
-  tradeApplicability: 'all_trades' | string[]  // future trade-specific expansion
-  stateApplicability: 'all_states' | string[]   // future state-specific expansion
-  updatedAt: string
+  intent: string                        // primary user intent this page owns
+  secondaryIntents?: string[]           // closely-related variants handled here
+  contentType?: ResourceContentType
+  tradeApplicability: 'all_trades' | string[]
+  stateApplicability: 'all_states' | string[]
+  supportedTrades?: SupportedTrade[] | 'all'   // future trade-specific expansion
+  supportedStates?: string[] | 'all'           // future state-specific expansion
+  updatedAt: string                     // lastReviewed
+  indexable?: boolean                   // default true; false = noindex until complete
+  published?: boolean                   // default true
+  structuredDataType?: StructuredDataType
   intro: string[]
   sections: ResourceSection[]
   whatWeSupport: string[]               // honest current-capability bullets
+  showSupportedTrades?: boolean         // render the reusable SupportedTrades callout
   disclaimer: string
   primaryCta: ResourceLink
   secondaryCtas: ResourceLink[]
   related: ResourceLink[]
   faq?: ResourceFaq[]
   keywords: string[]
+}
+
+// ── Supported trades (normalized) + one honest startup consideration each ───────
+export interface TradeStartupNote {
+  slug: SupportedTrade
+  label: string
+  consideration: string
+}
+
+export const SUPPORTED_TRADES: TradeStartupNote[] = [
+  { slug: 'hvac', label: 'HVAC', consideration: 'Plan for refrigerant (EPA Section 608) certification, service agreements, dispatch, and stocked trucks.' },
+  { slug: 'electrical', label: 'Electrical', consideration: 'Licensing and permits drive most work; plan estimating, service calls, and hiring licensed electricians.' },
+  { slug: 'plumbing', label: 'Plumbing', consideration: 'Licensing, backflow work, emergency dispatch, and truck inventory shape day-one operations.' },
+  { slug: 'roofing', label: 'Roofing', consideration: 'Insurance, bonding, estimating, and crew/subcontractor management matter before storm and project work.' },
+  { slug: 'construction', label: 'General Contractor / Construction', consideration: 'License thresholds, bonding, contracts, subcontractor management, and cash-flow planning are core.' },
+  { slug: 'handyman', label: 'Handyman / Home Repair', consideration: 'Know your scope-of-work limits, insurance, pricing, scheduling, and local review building.' },
+  { slug: 'landscaping', label: 'Landscaping / Lawn Care', consideration: 'Equipment, routes, recurring service, seasonal cash flow, and any pesticide/applicator requirements.' },
+  { slug: 'cleaning', label: 'Cleaning', consideration: 'Bonding/insurance, recurring clients, scheduling, hiring, and quality control for home or commercial work.' },
+  { slug: 'painting', label: 'Painting', consideration: 'Estimating, crews, equipment, and lead-safe (EPA RRP) requirements for older homes.' },
+  { slug: 'solar', label: 'Solar', consideration: 'Licensing, utility interconnection, permitting, sales, and installation-crew planning.' },
+]
+
+export function getSupportedTrades(): TradeStartupNote[] {
+  return SUPPORTED_TRADES
 }
 
 const SHARED_DISCLAIMER =
@@ -226,16 +265,159 @@ const PUBLIC_RESOURCES: PublicResource[] = [
     ],
     keywords: ['business foundation builder', 'contractor setup checklist', 'business setup tracker'],
   },
+  {
+    slug: 'start-a-trade-business',
+    title: 'From Technician to Owner: Starting a Trade Business',
+    metaTitle: 'How to Start a Trade Business — Technician to Owner',
+    description: 'For skilled tradespeople going out on their own: the difference between trade skill and business readiness, and the foundation a trade business needs to launch.',
+    audience: 'contractors_trades',
+    intent: 'How do I start a trade business / go from technician to owner?',
+    secondaryIntents: ['how to become self-employed in the trades', 'how to go from technician to business owner', 'starting a business with trade experience'],
+    contentType: 'guide',
+    tradeApplicability: 'all_trades',
+    stateApplicability: 'all_states',
+    supportedTrades: 'all',
+    supportedStates: 'all',
+    updatedAt: '2026-06-12',
+    indexable: true,
+    published: true,
+    structuredDataType: 'Article',
+    intro: [
+      'Being great in the field is not the same as being ready to run the business. This guide is for skilled tradespeople making the jump from technician to owner — what changes, and what foundation you need first.',
+    ],
+    sections: [
+      { heading: 'Trade skill vs. business readiness', body: ['Your trade gets you the work; your business systems keep you paid, legal, and growing. The gap between the two is where most new owners struggle — and where readiness work pays off.'] },
+      { heading: 'Pick your lane', body: ['SubZeroMetrix™ is built for the trades. Supported trades include HVAC, electrical, plumbing, roofing, construction, handyman, landscaping, cleaning, painting, and solar — each with its own licensing and operating realities.'] },
+      { heading: 'The foundation sequence', body: ['Set up identity, then legal/entity and EIN, then licensing and insurance (verified with official sources), then banking and bookkeeping, then pricing and operations, then launch.'] },
+      { heading: 'Know when to leave your job', body: ['Readiness — not just confidence — tells you when to go full-time. A clear picture of your gaps and a funded runway beats a gut call.'] },
+    ],
+    whatWeSupport: [
+      'A free Starter assessment + Starter MetrixScore™ tuned for the trades',
+      'A roadmap of recommended next actions for your situation',
+      'A Foundation Builder with trade-specific steps and official-resource routing',
+    ],
+    disclaimer: SHARED_DISCLAIMER,
+    showSupportedTrades: true,
+    primaryCta: { label: 'Check your business readiness (free)', href: '/start' },
+    secondaryCtas: [
+      { label: 'See supported trades', href: '/trades' },
+      { label: 'Open the Foundation Builder', href: '/foundation-builder' },
+    ],
+    related: [
+      { label: 'Starting a contractor business', href: '/learn/starting-a-contractor-business' },
+      { label: 'Am I ready? Contractor readiness', href: '/learn/contractor-business-readiness' },
+    ],
+    keywords: ['how to start a trade business', 'technician to owner', 'self-employed in the trades'],
+  },
+  {
+    slug: 'start-a-home-service-business',
+    title: 'Starting a Home-Service Business',
+    metaTitle: 'How to Start a Home-Service Business',
+    description: 'A practical guide to starting a home-service or local-service business: service area, demand, scheduling and dispatch, customer communication, reviews, and recurring work.',
+    audience: 'service_business',
+    intent: 'How do I start a home-service / local-service business?',
+    secondaryIntents: ['how to start a local business', 'how to start a field-service business', 'how to start a service business'],
+    contentType: 'guide',
+    tradeApplicability: 'all_trades',
+    stateApplicability: 'all_states',
+    supportedTrades: 'all',
+    supportedStates: 'all',
+    updatedAt: '2026-06-12',
+    indexable: true,
+    published: true,
+    structuredDataType: 'Article',
+    intro: [
+      'Home-service and local-service businesses live or die on service area, responsiveness, and reputation. This guide covers the operating foundation a field-service business needs to launch and grow.',
+    ],
+    sections: [
+      { heading: 'Service area and demand', body: ['Define where you will work and confirm there is steady local demand before you scale spend. A tight, well-served area beats a wide, thin one.'] },
+      { heading: 'Scheduling, dispatch, and communication', body: ['Decide how jobs get booked, scheduled, and confirmed. Reliable, fast communication is what earns repeat work and referrals.'] },
+      { heading: 'Reviews and recurring work', body: ['Build a simple, consent-first review process and look for recurring or maintenance-style services that smooth out cash flow.'] },
+      { heading: 'Field operations', body: ['Standardize estimates, invoices, and follow-up so quality stays consistent as you add jobs and people.'] },
+    ],
+    whatWeSupport: [
+      'Readiness scoring and a roadmap tuned for contractors, trades, and home-service businesses',
+      'A Foundation Builder covering operations, sales, and launch setup',
+      'Honest scope: SubZeroMetrix™ is strongest for trade and field-service work, not every industry',
+    ],
+    disclaimer: SHARED_DISCLAIMER,
+    showSupportedTrades: true,
+    primaryCta: { label: 'Check your business readiness (free)', href: '/start' },
+    secondaryCtas: [
+      { label: 'See supported trades', href: '/trades' },
+      { label: 'Contractor resources', href: '/resources' },
+    ],
+    related: [
+      { label: 'Starting a contractor business', href: '/learn/starting-a-contractor-business' },
+      { label: 'Contractor startup checklist', href: '/learn/contractor-startup-checklist' },
+    ],
+    keywords: ['how to start a home-service business', 'local service business', 'field service startup'],
+  },
+  {
+    slug: 'contractor-business-readiness',
+    title: 'Am I Ready to Start a Contractor Business?',
+    metaTitle: 'Contractor Business Readiness — Am I Ready?',
+    description: 'Understand contractor business readiness: the categories that matter, common gaps and risks, what the MetrixScore™ measures, and how to find what your business may be missing.',
+    audience: 'contractors_trades',
+    intent: 'Am I ready to start a contractor business?',
+    secondaryIntents: ['contractor business readiness assessment', 'what am I missing before launching', 'business owner readiness'],
+    contentType: 'overview',
+    tradeApplicability: 'all_trades',
+    stateApplicability: 'all_states',
+    supportedTrades: 'all',
+    supportedStates: 'all',
+    updatedAt: '2026-06-12',
+    indexable: true,
+    published: true,
+    structuredDataType: 'FAQPage',
+    intro: [
+      'Readiness is more than confidence. It is a clear-eyed look at the parts of your business that need to be in place before — and shortly after — you launch. This page explains how to think about it.',
+    ],
+    sections: [
+      { heading: 'Readiness categories', body: ['Foundation, operations, sales/pricing, and financial basics are the areas that most determine whether a new trades business stays stable and gets paid.'] },
+      { heading: 'Common gaps and risks', body: ['Unclear pricing, no follow-up process, missing licensing/insurance verification, and thin cash reserves are the gaps that sink otherwise-skilled operators.'] },
+      { heading: 'What the MetrixScore™ measures', body: ['The Starter MetrixScore™ turns a short assessment into a readiness picture across those categories — strengths to build on and risks to address — and powers a roadmap of next actions.'] },
+    ],
+    whatWeSupport: [
+      'A free Starter assessment that produces your Starter MetrixScore™',
+      'A category breakdown of strengths and risks',
+      'A roadmap and Foundation Builder to close the gaps over time',
+    ],
+    disclaimer: SHARED_DISCLAIMER + ' The MetrixScore™ is an educational business-readiness measure — not a credit score, lending, underwriting, or any guarantee of approval or success.',
+    primaryCta: { label: 'See what your business may be missing', href: '/start' },
+    secondaryCtas: [
+      { label: 'What is the MetrixScore™?', href: '/learn/metrixscore-overview' },
+      { label: 'Business readiness', href: '/business-readiness' },
+    ],
+    related: [
+      { label: 'Contractor startup checklist', href: '/learn/contractor-startup-checklist' },
+      { label: 'Foundation Builder guide', href: '/learn/foundation-builder-guide' },
+    ],
+    faq: [
+      { q: 'How do I know if I am ready to start a contractor business?', a: 'Look at readiness across foundation, operations, sales/pricing, and finances — not just trade skill. A free Starter assessment gives you a MetrixScore™ and highlights your specific gaps.' },
+      { q: 'Is the readiness score a guarantee of success?', a: 'No. It is educational business-readiness guidance. It is not a credit score, lending, underwriting, or any guarantee of approval, revenue, or success.' },
+    ],
+    keywords: ['contractor business readiness', 'am I ready to start a contractor business', 'business readiness assessment'],
+  },
 ]
 
+/** Published resources only (published !== false). */
 export function getPublicResources(): PublicResource[] {
-  return PUBLIC_RESOURCES
+  return PUBLIC_RESOURCES.filter(r => r.published !== false)
 }
 
+/** Slugs of published resources only — drives generateStaticParams + sitemap. */
 export function getPublicResourceSlugs(): string[] {
-  return PUBLIC_RESOURCES.map(r => r.slug)
+  return getPublicResources().map(r => r.slug)
 }
 
+/** A single published resource by slug, or null. */
 export function getPublicResource(slug: string): PublicResource | null {
-  return PUBLIC_RESOURCES.find(r => r.slug === slug) ?? null
+  const found = PUBLIC_RESOURCES.find(r => r.slug === slug)
+  return found && found.published !== false ? found : null
+}
+
+/** True when the resource should be indexed (complete + indexable !== false). */
+export function isResourceIndexable(resource: PublicResource): boolean {
+  return resource.indexable !== false && resource.published !== false
 }

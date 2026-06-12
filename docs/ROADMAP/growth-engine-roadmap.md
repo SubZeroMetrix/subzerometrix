@@ -557,6 +557,16 @@ contractors/trades, not equal for every industry), official-source routing, and 
 paths to `/start` + `/foundation-builder` + `/resources`. Added to `sitemap.ts`. No thin/doorway
 pages, no private data.
 
+**Expanded (search-intent engine):** model enriched (`secondaryIntents`, `contentType`,
+`supportedTrades`/`supportedStates`, `indexable`/`published`, `structuredDataType`); added
+`src/components/SupportedTrades.tsx` (reusable 10-trade callout), `/trades` overview, and three
+new distinct-intent pages — `start-a-trade-business`, `start-a-home-service-business`,
+`contractor-business-readiness`. One page owns one primary intent (close variants via
+`secondaryIntents`); incomplete pages stay out of the sitemap/index via the flags. Full intent
+map (groups A–H), supported trades, and prepared trade/state expansion in
+`growth-7-search-intent-content-map.md`. No name-swap pages, no city/county pages, no guarantees,
+no fake reviews/stats, regulated questions routed to official sources.
+
 Future preview pages (candidates; build only with real content):
 - Business setup checklist page
 - Pricing readiness checklist page

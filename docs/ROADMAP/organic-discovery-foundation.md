@@ -68,8 +68,11 @@ The `/learn` engine (`src/lib/publicResources.ts` + `src/components/ResourcePage
 `/learn` index and `/learn/[slug]`) ships a small curated set of standalone educational
 pages with canonical + OG/Twitter metadata and Breadcrumb + FAQPage JSON-LD, added to
 `sitemap.ts`. Curated (not mass-generated); no thin/doorway pages; honest scope note
-(strongest for contractors/trades). See `growth-engine-roadmap.md` § Public Tool / Resource
-Page Engine.
+(strongest for contractors/trades). Expanded with a reusable supported-trades callout
+(`SupportedTrades.tsx`), a `/trades` overview, and additional distinct-intent pages; the
+model carries `indexable`/`published`/`supportedTrades`/`supportedStates` for safe
+trade/state expansion. Full intent map in `growth-7-search-intent-content-map.md`. See
+`growth-engine-roadmap.md` § Public Tool / Resource Page Engine.
 
 ## Future plans (NOT built here)
 
