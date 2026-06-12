@@ -22,6 +22,7 @@ import GrowthEventTracker from '@/components/GrowthEventTracker'
 import GrowthAnalyticsSummary from '@/components/GrowthAnalyticsSummary'
 import SyncStatusBadge from '@/components/SyncStatusBadge'
 import { getAssessmentSyncReadiness, syncAssessmentHistoryToAccount } from '@/lib/assessmentHistorySync'
+import { getRoadmapKpiSyncReadiness, syncRoadmapKpiProgressToAccount } from '@/lib/roadmapKpiSync'
 import type { SyncStatus } from '@/lib/syncContracts'
 
 const PATH_COMPLETE_KEY = 'szm_path_complete'
@@ -55,6 +56,9 @@ export default function DashboardPage() {
   // Account-2D: assessment/score history backup status. Device-local until a confirmed write.
   const [syncStatus, setSyncStatus] = useState<SyncStatus>('saved_on_device')
   const [syncedAt, setSyncedAt] = useState<string | null>(null)
+  // Account-2E: roadmap action + KPI backup status. Device-local until a confirmed write.
+  const [rkSyncStatus, setRkSyncStatus] = useState<SyncStatus>('saved_on_device')
+  const [rkSyncedAt, setRkSyncedAt] = useState<string | null>(null)
 
   useEffect(() => {
     let parsed: ScoreResult | null = null
@@ -91,6 +95,25 @@ export default function DashboardPage() {
           if (!cancelled) { setSyncStatus(result.status); setSyncedAt(result.lastSyncedAt) }
         } else if (!cancelled) {
           setSyncStatus(readiness.status)
+        }
+      } catch {
+        // Expected-failure safe: keep the device-local default.
+      }
+    })()
+    return () => { cancelled = true }
+  }, [])
+
+  // Resolve roadmap action + KPI backup status (additive; never blocks the page).
+  useEffect(() => {
+    let cancelled = false
+    ;(async () => {
+      try {
+        const readiness = await getRoadmapKpiSyncReadiness()
+        if (readiness.canSync) {
+          const result = await syncRoadmapKpiProgressToAccount()
+          if (!cancelled) { setRkSyncStatus(result.status); setRkSyncedAt(result.lastSyncedAt) }
+        } else if (!cancelled) {
+          setRkSyncStatus(readiness.status)
         }
       } catch {
         // Expected-failure safe: keep the device-local default.
@@ -236,6 +259,8 @@ export default function DashboardPage() {
 
         {/* ── Roadmap progress (execution engine) ───────────────────── */}
         <RoadmapProgressCard score={starter} intake={intake} variant="dashboard" />
+        {/* Account-2E: roadmap action progress backup status — device-local until a confirmed write */}
+        <SyncStatusBadge status={rkSyncStatus} lastSyncedAt={rkSyncedAt} entityType="roadmap_action_progress" compact />
 
         {/* ── What to work on (next best action + 7-day plan) ───────── */}
         <OutcomeBriefing score={starter} intake={intake} variant="dashboard" />
@@ -355,6 +380,8 @@ export default function DashboardPage() {
 
         {/* ── Business Outcome Tracker (real manual KPI input) ──────── */}
         <BusinessOutcomeTracker />
+        {/* Account-2E: KPI entries backup status — device-local until a confirmed write */}
+        <SyncStatusBadge status={rkSyncStatus} lastSyncedAt={rkSyncedAt} entityType="kpi_entry" compact />
 
         {/* ── Progress Review (digest) ──────────────────────────────── */}
         <ProgressReviewCard score={starter} intake={intake} />

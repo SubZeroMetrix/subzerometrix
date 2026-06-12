@@ -30,6 +30,8 @@ import CustomerProofPrompt from '@/components/CustomerProofPrompt'
 import GrowthEventTracker from '@/components/GrowthEventTracker'
 import FeedbackBox from '@/components/FeedbackBox'
 import SyncStatusBadge from '@/components/SyncStatusBadge'
+import { getRoadmapKpiSyncReadiness, syncRoadmapKpiProgressToAccount } from '@/lib/roadmapKpiSync'
+import type { SyncStatus } from '@/lib/syncContracts'
 import { trackEvent } from '@/lib/analytics'
 
 // ── Score ring ────────────────────────────────────────────────────────────────
@@ -692,6 +694,9 @@ function ReportContent() {
   const [activePhaseSubTab, setActivePhaseSubTab] = useState<'overview' | '90day' | 'tools' | 'sales' | 'upgrade'>('overview')
   const [activeTab, setActiveTab] = useState<'score' | 'roadmap' | 'resources'>('score')
   const [intake, setIntake] = useState<QuickIntake | null>(null)
+  // Account-2E: roadmap action progress backup status. Device-local until a confirmed write.
+  const [rkSyncStatus, setRkSyncStatus] = useState<SyncStatus>('saved_on_device')
+  const [rkSyncedAt, setRkSyncedAt] = useState<string | null>(null)
 
   useEffect(() => {
     const sessionId = searchParams.get('session_id')
@@ -724,6 +729,25 @@ function ReportContent() {
 
   // Analytics placeholder — fires once when the report mounts
   useEffect(() => { trackEvent('report_view') }, [])
+
+  // Resolve roadmap action progress backup status (additive; never blocks the report).
+  useEffect(() => {
+    let cancelled = false
+    ;(async () => {
+      try {
+        const readiness = await getRoadmapKpiSyncReadiness()
+        if (readiness.canSync) {
+          const result = await syncRoadmapKpiProgressToAccount()
+          if (!cancelled) { setRkSyncStatus(result.status); setRkSyncedAt(result.lastSyncedAt) }
+        } else if (!cancelled) {
+          setRkSyncStatus(readiness.status)
+        }
+      } catch {
+        // Expected-failure safe: keep the device-local default.
+      }
+    })()
+    return () => { cancelled = true }
+  }, [])
 
   if (verifying) return (
     <div className="min-h-dvh bg-brand-navy flex flex-col items-center justify-center gap-3">
@@ -1171,8 +1195,8 @@ function ReportContent() {
                   🎯 Roadmap complete — time to reassess!
                 </p>
               )}
-              {/* Honest storage status — this checklist progress is device-local (Account-2C) */}
-              <SyncStatusBadge status="saved_on_device" entityType="roadmap_action_progress" compact className="mt-3" />
+              {/* Account-2E: roadmap action progress backup status — device-local until a confirmed write */}
+              <SyncStatusBadge status={rkSyncStatus} lastSyncedAt={rkSyncedAt} entityType="roadmap_action_progress" compact className="mt-3" />
             </div>
 
             {/* State notice */}

@@ -36,7 +36,11 @@ later wiring phase (2D onward). **Next: Account-2C — Sync Status UI.**
    `cloud_sync_score_history` (structured, non-PII). Local-first; confirmed-write-only
    "synced" status; missing migration/table → `sync_unavailable` with local intact. Wired
    into `/results` + `/dashboard`. Migration `002` must be applied for live sync.
-4. **Account-2E — Roadmap Action + KPI Sync.** Activate the existing action/KPI writers.
+4. **Account-2E — Roadmap Action + KPI Sync.** *(Built — `src/lib/roadmapKpiSync.ts`,
+   see `roadmap-kpi-sync.md`.)* Syncs only `cloud_sync_roadmap_action_progress` +
+   `cloud_sync_kpi_entries` (structured, no PII; KPI note is a low-risk private note).
+   Local-first; confirmed-write-only "synced" status; missing migration/table →
+   `sync_unavailable` with local intact. Wired into `/dashboard` + `/report`.
 5. **Account-2F — Feedback / Customer Proof Sync.** New table + writer. **Privacy review
    first** (free-text `comment`).
 6. **Account-2G — Partner Interest Sync.** New table + writer. **Privacy review first**

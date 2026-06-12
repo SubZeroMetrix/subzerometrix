@@ -360,9 +360,15 @@ local-key → cloud-table audit).
   only after a confirmed write; missing migration/table → "Sync unavailable" with local
   intact. Wired into `/results` and `/dashboard` badges. Migration `002` must be applied
   before live sync works.
-- **Account-2E — Roadmap Action + KPI Sync: next.** Same local-first, confirmed-write-only
-  pattern for `cloud_sync_roadmap_action_progress` + `cloud_sync_kpi_entries`. No PII/
-  free-text sync; feedback/partner/growth remain deferred.
+- **Account-2E — Roadmap Action + KPI Sync: built.** Same local-first, confirmed-write-only
+  pattern for `cloud_sync_roadmap_action_progress` + `cloud_sync_kpi_entries`
+  (`src/lib/roadmapKpiSync.ts`; `roadmap-kpi-sync.md`). Structured, no-PII data only (KPI
+  `note` is the user's own low-risk private note). Wired into `/dashboard` (roadmap + KPI)
+  and `/report` (roadmap). Local-first preserved; "Synced to your account" only after a
+  confirmed write; migration `002` must be applied for live sync.
+- **Account-2F — Feedback / Customer Proof Sync: next (requires privacy review).**
+  `cloud_sync_customer_feedback` holds a free-text comment — needs a privacy review +
+  explicit consent handling before any write is wired. Partner/growth/Foundation deferred.
 
 **Placement:** after Growth-6, before **Product-5 — Guided Business Foundation Builder**.
 Required infrastructure before Product-5B/5C checklist tracking becomes a core feature.
