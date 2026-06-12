@@ -408,8 +408,12 @@ local-key → cloud-table audit).
   `blockFoundationItem` / `getFoundationCompletionStats` / `getFoundationItemsByStage`; the
   checklist UI routes all changes through them (completed dates + blocked-reason input).
   Local-first only; no cloud expansion beyond Account-2I.
-- **Next build — Product-5D — Dashboard Foundation Progress Summary.** (Account-2J/2K remain
-  later Account-2 hardening phases.)
+- **Product-5D — Dashboard Foundation Progress Summary: built.** Dashboard card surfaces
+  completed/total/percent + blocked count + next recommended step (`getFoundationCompletionStats`
+  + `getNextFoundationItem`), linking to `/foundation-builder`. Device-local read; no cloud
+  expansion.
+- **Next build — Product-5E — PDF/Excel Export.** (Account-2J/2K remain later Account-2
+  hardening phases.)
 
 **Placement:** after Growth-6, before **Product-5 — Guided Business Foundation Builder**.
 Required infrastructure before Product-5B/5C checklist tracking becomes a core feature.

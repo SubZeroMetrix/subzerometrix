@@ -25,6 +25,7 @@ import { getAssessmentSyncReadiness, syncAssessmentHistoryToAccount } from '@/li
 import { getRoadmapKpiSyncReadiness, syncRoadmapKpiProgressToAccount } from '@/lib/roadmapKpiSync'
 import { getCustomerFeedbackSyncReadiness, syncCustomerFeedbackToAccount } from '@/lib/customerFeedbackSync'
 import { getGrowthAnalyticsSyncReadiness, syncGrowthAnalyticsToAccount } from '@/lib/growthAnalyticsSync'
+import { getFoundationItemsOrDefaults, getFoundationCompletionStats, getNextFoundationItem, type FoundationCompletionStats } from '@/lib/foundationBuilder'
 import type { SyncStatus } from '@/lib/syncContracts'
 
 const PATH_COMPLETE_KEY = 'szm_path_complete'
@@ -67,6 +68,9 @@ export default function DashboardPage() {
   // Account-2H: privacy-safe growth activity backup status. Device-local until a confirmed write.
   const [gaSyncStatus, setGaSyncStatus] = useState<SyncStatus>('saved_on_device')
   const [gaSyncedAt, setGaSyncedAt] = useState<string | null>(null)
+  // Product-5D: Foundation Builder progress summary (device-local).
+  const [foundationStats, setFoundationStats] = useState<FoundationCompletionStats | null>(null)
+  const [foundationNext, setFoundationNext] = useState<string | null>(null)
 
   useEffect(() => {
     let parsed: ScoreResult | null = null
@@ -166,6 +170,17 @@ export default function DashboardPage() {
       }
     })()
     return () => { cancelled = true }
+  }, [])
+
+  // Product-5D: compute Foundation Builder progress from device-local items.
+  useEffect(() => {
+    try {
+      const items = getFoundationItemsOrDefaults()
+      setFoundationStats(getFoundationCompletionStats(items))
+      setFoundationNext(getNextFoundationItem(items)?.stepName ?? null)
+    } catch {
+      // non-fatal — the card simply falls back to the basic entry link
+    }
   }, [])
 
   if (!loaded) return (
@@ -445,17 +460,37 @@ export default function DashboardPage() {
         {/* Account-2D: MetrixScore™ + assessment history backup status — device-local until a confirmed write */}
         <SyncStatusBadge status={syncStatus} lastSyncedAt={syncedAt} entityType="metrix_score_history" />
 
-        {/* Product-5B: Foundation Builder entry card */}
+        {/* Product-5D: Foundation Builder progress summary card */}
         <Link href="/foundation-builder"
-          className="glass rounded-2xl p-4 flex items-center justify-between gap-3 active:scale-[0.99] transition-all touch-target">
-          <span className="flex items-center gap-2.5">
-            <ClipboardList className="w-5 h-5 text-brand-accent flex-shrink-0" />
-            <span>
-              <span className="block text-[13px] font-semibold text-brand-white">Foundation Builder</span>
-              <span className="block text-[11px] text-brand-silver/70">Track your business setup, step by step</span>
+          className="glass rounded-2xl p-4 block active:scale-[0.99] transition-all touch-target">
+          <div className="flex items-center justify-between gap-3">
+            <span className="flex items-center gap-2.5">
+              <ClipboardList className="w-5 h-5 text-brand-accent flex-shrink-0" />
+              <span>
+                <span className="block text-[13px] font-semibold text-brand-white">Foundation Builder</span>
+                <span className="block text-[11px] text-brand-silver/70">Track your business setup, step by step</span>
+              </span>
             </span>
-          </span>
-          <ArrowRight className="w-4 h-4 text-brand-silver flex-shrink-0" />
+            <ArrowRight className="w-4 h-4 text-brand-silver flex-shrink-0" />
+          </div>
+          {foundationStats && foundationStats.total > 0 && (
+            <div className="mt-3">
+              <div className="flex justify-between text-[11px] text-brand-silver mb-1.5">
+                <span>{foundationStats.completed} of {foundationStats.total} steps done</span>
+                <span>
+                  {foundationStats.percent}%
+                  {foundationStats.blocked > 0 && <span className="text-brand-silver/60"> · {foundationStats.blocked} blocked</span>}
+                </span>
+              </div>
+              <div className="progress-track h-1.5">
+                <div className="h-full rounded-full transition-all duration-500"
+                  style={{ width: `${foundationStats.percent}%`, background: '#1D9E75' }} />
+              </div>
+              {foundationNext && (
+                <p className="text-[11px] text-brand-silver/80 mt-2">Next: {foundationNext}</p>
+              )}
+            </div>
+          )}
         </Link>
 
         {/* ── Footer links ──────────────────────────────────────────── */}

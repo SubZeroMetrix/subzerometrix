@@ -114,8 +114,11 @@ model **cloud-ready from day one**. Device-local is an acceptable fallback/first
   `blockFoundationItem` / `getFoundationCompletionStats` / `getFoundationItemsByStage`; UI
   routes all changes through the helpers, shows completed dates + a blocked-reason input.
   Local-first via `szm_foundation_builder`.)*
-- **Product-5D** — Dashboard Foundation Progress Summary *(next — use `getFoundationCompletionStats`)*
-- **Product-5E** — PDF/Excel Export
+- **Product-5D** — Dashboard Foundation Progress Summary *(built — dashboard card shows
+  completed/total/percent, blocked count, and next recommended step via
+  `getFoundationCompletionStats` + `getNextFoundationItem`; links to `/foundation-builder`.
+  Device-local read.)*
+- **Product-5E** — PDF/Excel Export *(next)*
 - **Product-5F** — Trade-Specific Foundation Steps
 - **Product-5G** — State-Specific Official-Resource Routing
 - **Product-5H** — Spanish Foundation Builder
