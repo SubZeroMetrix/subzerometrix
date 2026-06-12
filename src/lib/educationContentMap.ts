@@ -418,7 +418,6 @@ const EDUCATION_ASSETS_BASE: EducationAssetCore[] = [
     relatedFeatureKey: 'core_templates', recommendedStage: 'any', scoreRelated: true, supportsProgressiveScore: true,
     potentialScoreVariables: ['close_rate_tracked'], launchTiming: 'pre_launch',
     displayBullets: ['Book more calls', 'Word-for-word script'],
-    implementationNotes: 'Substantially exists in salesPlaybooks.ts — repackage as a standalone printable artifact.',
   },
   {
     id: 'review_request_script', title: 'Review Request Script',
