@@ -79,10 +79,18 @@ mapped to **`sync_unavailable`** — local data stays intact.
 | Signed in, table/migration missing or write failed | `sync_unavailable` |
 | Signed in, confirmed write of ≥1 eligible item | `synced_to_account` (+ last-synced time) |
 
-## Next — Product-5A: Foundation Builder Data Model
+## Activated (Product-5I)
 
-With the sync plumbing ready, the next build is **Product-5A — Foundation Builder Data
-Model** (`guided-business-foundation-builder.md`): create the local Foundation Builder data
-model that populates `FOUNDATION_BUILDER_KEYS`. Once it exists, this helper syncs it with no
-further wiring. (Account-2J — Local-to-Cloud Migration + Conflict Handling — and Account-2K
-— Data Export / Delete / Privacy Controls — remain as later Account-2 hardening phases.)
+The Product-5 Foundation Builder track (5A–5I) is built and **this helper is now live**: the
+checklist component (`FoundationBuilderChecklist`) calls `syncFoundationBuilderToAccount()`
+after every local save, and `SyncStatusBadge` reflects the confirmed result. Local-first
+stays primary; "Synced to your account" appears only after a confirmed write; signed-out or
+an unapplied migration falls back to device-local. The foundation checklist key
+(`szm_foundation_builder`) is the live source; vendor tracker + launch readiness remain
+future dedicated surfaces (their readers stay empty until built).
+
+## Next — Account-2J: Local-to-Cloud Migration + Conflict Handling
+
+One-time first-sign-in adoption per flow + `updated_at` newest-wins conflict resolution
+across the activated sync flows (2D–2I). Then Account-2K (Data Export / Delete / Privacy
+Controls).

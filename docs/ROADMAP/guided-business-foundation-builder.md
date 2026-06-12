@@ -143,9 +143,11 @@ model **cloud-ready from day one**. Device-local is an acceptable fallback/first
   takes a `lang` prop (English default; Spanish via `lang="es"`). Step IDs, storage keys, and
   saved data/user notes are NOT translated; an explicit note says the platform is not fully
   Spanish. No new route.)*
-- **Product-5I** — Account-Synced Foundation Progress *(next; sync plumbing ready: Account-2I
-  `src/lib/foundationBuilderSync.ts` + the three `cloud_sync_*` tables; populate
-  `FOUNDATION_BUILDER_KEYS` from the Product-5 data model to activate, no further wiring)*
+- **Product-5I** — Account-Synced Foundation Progress *(built — the checklist now calls the
+  Account-2I sync helper after every local save; `SyncStatusBadge` reflects the confirmed
+  result. Local-first stays primary; "Synced to your account" only after a confirmed write;
+  signed-out / unapplied-migration falls back to device-local. Syncs only Foundation Builder
+  progress (+ vendor/launch tables) via `foundationBuilderSync.ts`.)*
 
 ## Suggested future feature names
 

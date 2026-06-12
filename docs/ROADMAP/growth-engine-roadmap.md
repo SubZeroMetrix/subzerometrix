@@ -432,8 +432,13 @@ local-key → cloud-table audit).
   (sections/stages/statuses/priorities/buttons/reminders/disclaimers); `FoundationBuilderChecklist`
   takes a `lang` prop (English default, Spanish via `lang="es"`). Step IDs/storage/saved
   notes not translated; explicit "not fully available in Spanish" note. No new route.
-- **Next build — Product-5I — Account-Synced Foundation Progress.** (Sync plumbing already
-  ready via Account-2I; Account-2J/2K remain later hardening phases.)
+- **Product-5I — Account-Synced Foundation Progress: built.** The checklist calls the
+  Account-2I sync helper after every local save; `SyncStatusBadge` shows the confirmed
+  result. Local-first stays primary; "synced" only after a confirmed write; signed-out /
+  unapplied-migration falls back to device-local. Foundation Builder progress (+ vendor/launch)
+  only — no unrelated sync expansion. **Product-5 Foundation Builder track complete (5A–5I).**
+- **Next build — Account-2J — Local-to-Cloud Migration + Conflict Handling.** Then Account-2K
+  (Export / Delete / Privacy Controls).
 
 **Placement:** after Growth-6, before **Product-5 — Guided Business Foundation Builder**.
 Required infrastructure before Product-5B/5C checklist tracking becomes a core feature.

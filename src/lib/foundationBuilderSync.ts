@@ -2,13 +2,13 @@
 // foundationBuilderSync — Account-2I: Foundation Builder sync READINESS
 // ─────────────────────────────────────────────────────────────────────────────
 // Cloud-ready, local-first sync plumbing for the FUTURE Product-5 Guided Business
-// Foundation Builder. The Foundation Builder feature/UI is NOT built yet, so there is
-// no live local data source today — these readers return [] and the sync backs up
-// nothing and claims nothing. When Product-5 adds the local data model, this helper
-// will sync it with no further wiring. It targets exactly three tables:
-//   • cloud_sync_foundation_builder_progress ← future FoundationChecklistItem[]
-//   • cloud_sync_vendor_tool_tracker         ← future VendorToolItem[]
-//   • cloud_sync_launch_readiness_progress   ← future LaunchReadinessItem[]
+// Foundation Builder. The Foundation Builder UI now exists (Product-5A–5I): the checklist
+// writes szm_foundation_builder, and the checklist component calls this helper after each
+// local save (Product-5I). Vendor tracker + launch readiness remain future dedicated
+// surfaces (their readers stay empty until built). It targets exactly three tables:
+//   • cloud_sync_foundation_builder_progress ← FoundationChecklistItem[] (live)
+//   • cloud_sync_vendor_tool_tracker         ← VendorToolItem[] (future surface)
+//   • cloud_sync_launch_readiness_progress   ← LaunchReadinessItem[] (future surface)
 //
 // PRIVACY MODEL
 //   • These are the user's OWN setup notes — low-risk, no PII expected. Notes are free

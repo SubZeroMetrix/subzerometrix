@@ -10,7 +10,7 @@
 // no payment/scoring changes. Educational only; no legal/tax/financial/licensing advice.
 // ─────────────────────────────────────────────────────────────────────────────
 
-import { useState, useEffect, useMemo } from 'react'
+import { useState, useEffect, useMemo, useCallback } from 'react'
 import { ClipboardList, ArrowRight, ShieldAlert, ExternalLink, Download, Printer } from 'lucide-react'
 import {
   FOUNDATION_SECTIONS, FOUNDATION_CATEGORIES, FOUNDATION_STEP_DEFINITIONS,
@@ -64,32 +64,38 @@ export default function FoundationBuilderChecklist({ lang = 'en' }: { lang?: Fou
     setLoaded(true)
   }, [])
 
-  // Resolve foundation backup status (additive; never blocks the page).
+  // Account-2I sync: resolve readiness and, when signed in, back up the (local-first)
+  // Foundation Builder progress. Additive — never blocks the page, never throws into UI,
+  // and only shows "Synced to your account" on a confirmed write. Reusable after each save.
+  const runFoundationSync = useCallback(async () => {
+    try {
+      const readiness = await getFoundationBuilderSyncReadiness()
+      if (readiness.canSync) {
+        const result = await syncFoundationBuilderToAccount()
+        setFbStatus(result.status)
+        setFbSyncedAt(result.lastSyncedAt)
+      } else {
+        setFbStatus(readiness.status)
+      }
+    } catch {
+      // Expected-failure safe: keep the current/device-local status.
+    }
+  }, [])
+
   useEffect(() => {
     if (!loaded) return
-    let cancelled = false
-    ;(async () => {
-      try {
-        const readiness = await getFoundationBuilderSyncReadiness()
-        if (readiness.canSync) {
-          const result = await syncFoundationBuilderToAccount()
-          if (!cancelled) { setFbStatus(result.status); setFbSyncedAt(result.lastSyncedAt) }
-        } else if (!cancelled) {
-          setFbStatus(readiness.status)
-        }
-      } catch {
-        // Expected-failure safe: keep the device-local default.
-      }
-    })()
-    return () => { cancelled = true }
-  }, [loaded])
+    void runFoundationSync()
+  }, [loaded, runFoundationSync])
 
   const summary = useMemo(() => getFoundationProgressSummary(items), [items])
   const nextItem = useMemo(() => getNextFoundationItem(items), [items])
 
   function persist(updated: FoundationChecklistItem[]) {
+    // Local-first: write to the device immediately, then attempt an additive cloud backup
+    // (no-op when signed out / migration not applied — local stays the source of truth).
     setItems(updated)
     saveFoundationItems(updated)
+    void runFoundationSync()
   }
 
   function updateStage(id: string, stage: FoundationStage) {
