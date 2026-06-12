@@ -320,6 +320,32 @@ Event roadmap (first-party; no claims of third-party tracking beyond what exists
 
 ---
 
+## Account-2 — Cloud Sync Activation Layer
+
+**Status: roadmap / architecture only (not built; cloud sync is NOT live).** The
+account-backed sync layer so user progress — checklist completion, roadmap actions, KPI
+entries, feedback, partner interest, privacy-safe analytics, and the future Foundation
+Builder — can move from device-local fallback to account-backed persistence. Builds on
+the existing Mega-Phase 3 work (`account-sync-schema-plan.md`, `metrixCloudSync.ts`,
+migration `001`, which are real but **not yet applied/wired**) and extends sync to the
+still-local-only flows. Every synced flow must eventually show one honest status:
+**Saved on this device** / **Synced to your account** / **Sync unavailable** /
+**Sign in to back up progress** — never "synced" until a write is confirmed.
+
+See `account-cloud-sync-activation-layer.md` (current-state audit, sync destinations,
+RLS/ownership/migration/conflict architecture, UX standard, phases Account-2A–2K, and a
+local-key → cloud-table audit).
+
+**Placement:** after Growth-6, before **Product-5 — Guided Business Foundation Builder**.
+Required infrastructure before Product-5B/5C checklist tracking becomes a core feature.
+
+**Guardrails:** do not claim sync is live unless built/tested/labeled; do not expose
+Supabase secrets; do not weaken RLS; no PII/free-text sync without privacy review; no
+invasive analytics; do not break local fallback; no change to payment/scoring/report
+gating/dependencies/`.env.local`; no banned credit-score terminology.
+
+---
+
 ## Product-5 — Guided Business Foundation Builder
 
 **Status: roadmap only (not built).** A guided, trackable business-foundation checklist
@@ -473,7 +499,8 @@ testimonials, partner leads, and reassessments.
 7. Growth-4 — Customer Proof / Review Engine
 8. Growth-5 — Partner / Vendor / Association Distribution System
 9. Growth-6 — Acquisition + Activation Analytics
-10. Product-5 — Guided Business Foundation Builder (`guided-business-foundation-builder.md`)
-11. Growth-7 — Public Tool / Resource Page Engine (future)
-12. Pre-Launch Audit-1A / 1B / 1C (`pre-launch-audit-system.md`)
-13. Pre-Launch Fix-1 — Resolve blockers and launch-trust issues
+10. Account-2 — Cloud Sync Activation Layer (`account-cloud-sync-activation-layer.md`)
+11. Product-5 — Guided Business Foundation Builder (`guided-business-foundation-builder.md`)
+12. Growth-7 — Public Tool / Resource Page Engine (future)
+13. Pre-Launch Audit-1A / 1B / 1C (`pre-launch-audit-system.md`)
+14. Pre-Launch Fix-1 — Resolve blockers and launch-trust issues

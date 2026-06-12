@@ -78,6 +78,17 @@ Each item should eventually support:
 - `lastUpdated`
 - `nextAction`
 
+## Dependency — Account-2 Cloud Sync Activation Layer
+
+The full Foundation Builder **should not be built as local-only.** The **Account-2 Cloud
+Sync Activation Layer** (`account-cloud-sync-activation-layer.md`) should be **completed or
+actively wired** before **Product-5B (In-App Foundation Checklist)** and **Product-5C
+(Completion Tracking)** become a core customer feature — otherwise a contractor's
+foundation progress lives in one browser and is lost if cache is cleared. Account-2I
+(Foundation Builder Sync Readiness) is the bridge: design the Foundation Builder data
+model **cloud-ready from day one**. Device-local is an acceptable fallback/first step,
+**not** the final destination for this progress.
+
 ## Future build phases
 
 - **Product-5A** — Foundation Builder Data Model
