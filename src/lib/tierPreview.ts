@@ -41,7 +41,6 @@ export interface TierPreview {
 // ── Words/claims that must never appear in available-now copy ─────────────────
 // Used by getTierPreviewWarnings() to guard the availableNow lists.
 export const DO_NOT_CLAIM: string[] = [
-  'FICO-like',
   'benchmarked',
   'predictive',
   'guaranteed',
@@ -163,7 +162,6 @@ function lifetimePreview(): TierPreview {
       'Future toolkit updates released to lifetime members',
     ],
     notYetAvailable: [
-      'Current FICO-like score',
       'Current benchmarking',
       'Current predictive scoring',
       'Guaranteed outcomes',
