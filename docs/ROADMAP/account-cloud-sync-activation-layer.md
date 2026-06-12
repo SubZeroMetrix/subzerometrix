@@ -27,6 +27,33 @@ and **extends** it to the flows that are still local-only.
 > sync-status labels in this doc are a **future product standard**, not a claim that
 > sync runs today.
 
+## Account-2A artifacts (built — architecture / contracts only)
+
+Account-2A audited the account/Supabase/local-storage foundation and produced the concrete
+architecture, migration plan, and developer-facing contract. **No migration, no schema
+change, no wired sync.**
+
+- [`cloud-sync-architecture-map.md`](cloud-sync-architecture-map.md) — every local key →
+  owning feature, record type, free-text/PII flags, future Supabase table, sync priority,
+  privacy risk, local-fallback rule, and status label.
+- [`cloud-sync-migration-plan.md`](cloud-sync-migration-plan.md) — Account-2B→2K order,
+  table-creation order, RLS, migration/conflict/offline strategy, sync-status UX,
+  privacy/export/delete, testing checklist, rollback plan, and the "do not claim sync live"
+  warning.
+- `src/lib/syncContracts.ts` — TypeScript contract: `SyncStatus`, `SyncStorageMode`,
+  `SyncEntityType`, `SyncPriority`, `SyncPrivacyRisk`, `SyncEntityContract`,
+  `SyncEntityMap`, and `getSyncEntityContracts()` / `getSyncStatusLabel()` /
+  `getSyncStorageModeLabel()` / `getSyncEntityByType()` / `getSyncReadinessSummary()`.
+  **Contract/status labels only — no network writes; `cloudWriteWired` is false for every
+  entity.**
+
+**Phase boundaries:**
+
+- **Account-2A** — architecture / migration plan / contracts only *(this step — built)*.
+- **Account-2B** — create Supabase tables + RLS *(next)*.
+- **Account-2C** — add the sync-status UI component.
+- **Account-2D onward** — wire actual flows (assessment/score first, lowest privacy risk).
+
 ---
 
 ## 1. Current state audit

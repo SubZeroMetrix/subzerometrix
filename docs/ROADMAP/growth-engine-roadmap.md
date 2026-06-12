@@ -336,6 +336,15 @@ See `account-cloud-sync-activation-layer.md` (current-state audit, sync destinat
 RLS/ownership/migration/conflict architecture, UX standard, phases Account-2A–2K, and a
 local-key → cloud-table audit).
 
+**Sub-phase status:**
+- **Account-2A — Cloud Sync Architecture + Migration Plan: built.** Architecture/contracts
+  only — `cloud-sync-architecture-map.md`, `cloud-sync-migration-plan.md`, and
+  `src/lib/syncContracts.ts`. No migration created, no schema change, no wired sync, no
+  active "synced" claim.
+- **Account-2B — Supabase Tables + RLS for Progress Records: next.** Apply migration `001`
+  and add tables for the not-yet-covered flows, RLS owner-only. Then 2C (sync-status UI),
+  2D onward (wire flows, lowest privacy risk first).
+
 **Placement:** after Growth-6, before **Product-5 — Guided Business Foundation Builder**.
 Required infrastructure before Product-5B/5C checklist tracking becomes a core feature.
 
