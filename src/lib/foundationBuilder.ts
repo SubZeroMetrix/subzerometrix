@@ -104,6 +104,8 @@ export interface FoundationChecklistItem {
   status: FoundationItemStatus     // execution state
   priority: FoundationPriority
   completed: boolean               // single source of truth for completion
+  completedAt?: string | null      // ISO time the item was marked done (null otherwise)
+  blockedReason?: string | null    // user's own note on why it is blocked (free text)
   note: string | null              // user's own free text (low-risk; sync screens it)
 }
 
@@ -254,6 +256,8 @@ export function createFoundationItemFromDefinition(def: FoundationStepDefinition
     status: 'not_started',
     priority: def.priority,
     completed: false,
+    completedAt: null,
+    blockedReason: null,
     note: null,
   }
 }
@@ -263,8 +267,9 @@ export function createDefaultFoundationItems(): FoundationChecklistItem[] {
   return FOUNDATION_STEP_DEFINITIONS.map(createFoundationItemFromDefinition)
 }
 
-/** Move an item to a stage and keep status/completed in sync. Returns a new item. */
+/** Move an item to a stage and keep status/completed/completedAt/blockedReason in sync. */
 export function setFoundationItemStage(item: FoundationChecklistItem, stage: FoundationStage): FoundationChecklistItem {
+  const now = new Date().toISOString()
   const completed = stage === 'done'
   const status: FoundationItemStatus =
     stage === 'done' ? 'done'
@@ -272,7 +277,90 @@ export function setFoundationItemStage(item: FoundationChecklistItem, stage: Fou
       : stage === 'start_here' ? 'in_progress'
       : item.status === 'done' || item.status === 'blocked' ? 'not_started'
       : item.status
-  return { ...item, stage, status, completed, updatedAt: new Date().toISOString() }
+  return {
+    ...item,
+    stage,
+    status,
+    completed,
+    // Preserve the original completion time if it was already done; set it on transition.
+    completedAt: completed ? (item.completedAt ?? now) : null,
+    // Clear the blocked reason when leaving the blocked stage.
+    blockedReason: stage === 'blocked' ? (item.blockedReason ?? null) : null,
+    updatedAt: now,
+  }
+}
+
+// ── Product-5C: durable, measurable completion tracking helpers (pure) ──────────
+
+/** Apply a partial patch to one item by id; always refreshes updatedAt. Returns a new list. */
+export function updateFoundationItem(
+  items: FoundationChecklistItem[],
+  id: string,
+  patch: Partial<FoundationChecklistItem>,
+): FoundationChecklistItem[] {
+  return items.map(it => (it.id === id ? { ...it, ...patch, updatedAt: new Date().toISOString() } : it))
+}
+
+/** Mark an item done (stage=done, completed=true, completedAt set). Returns a new list. */
+export function completeFoundationItem(items: FoundationChecklistItem[], id: string): FoundationChecklistItem[] {
+  return items.map(it => (it.id === id ? setFoundationItemStage(it, 'done') : it))
+}
+
+/** Mark an item blocked with an optional reason. Returns a new list. */
+export function blockFoundationItem(items: FoundationChecklistItem[], id: string, reason?: string | null): FoundationChecklistItem[] {
+  const cleaned = reason && reason.trim() !== '' ? reason.trim() : null
+  return items.map(it => {
+    if (it.id !== id) return it
+    const moved = setFoundationItemStage(it, 'blocked')
+    return { ...moved, blockedReason: cleaned }
+  })
+}
+
+export interface FoundationCompletionStats {
+  total: number
+  completed: number
+  inProgress: number
+  notStarted: number
+  blocked: number
+  percent: number
+  lastCompletedAt: string | null
+  lastUpdatedAt: string | null
+}
+
+/** Durable completion stats for Product-5D dashboard summary. Pure. */
+export function getFoundationCompletionStats(items: FoundationChecklistItem[]): FoundationCompletionStats {
+  let completed = 0, inProgress = 0, notStarted = 0, blocked = 0
+  let lastCompletedAt: string | null = null
+  let lastUpdatedAt: string | null = null
+  for (const it of items) {
+    if (it.stage === 'blocked' || it.status === 'blocked') blocked += 1
+    else if (it.completed) completed += 1
+    else if (it.status === 'in_progress') inProgress += 1
+    else notStarted += 1
+    if (it.completed && it.completedAt && (!lastCompletedAt || it.completedAt > lastCompletedAt)) lastCompletedAt = it.completedAt
+    const u = it.updatedAt ?? it.createdAt
+    if (u && (!lastUpdatedAt || u > lastUpdatedAt)) lastUpdatedAt = u
+  }
+  const total = items.length
+  return {
+    total,
+    completed,
+    inProgress,
+    notStarted,
+    blocked,
+    percent: total > 0 ? Math.round((completed / total) * 100) : 0,
+    lastCompletedAt,
+    lastUpdatedAt,
+  }
+}
+
+/** Group items by their workflow stage. Pure. */
+export function getFoundationItemsByStage(items: FoundationChecklistItem[]): Record<FoundationStage, FoundationChecklistItem[]> {
+  const out: Record<FoundationStage, FoundationChecklistItem[]> = {
+    start_here: [], do_this_next: [], later: [], done: [], blocked: [],
+  }
+  for (const it of items) out[it.stage].push(it)
+  return out
 }
 
 // ── Safe local-storage contract (SSR-safe) ──────────────────────────────────────

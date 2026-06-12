@@ -109,8 +109,12 @@ model **cloud-ready from day one**. Device-local is an acceptable fallback/first
   at `/foundation-builder`; renders sections → categories → steps, stage controls, local
   notes, progress summary, next recommended step, and an honest `SyncStatusBadge`. Dashboard
   entry card added. Local-first via `szm_foundation_builder`.)*
-- **Product-5C** — Device-Local Completion Tracking *(next)*
-- **Product-5D** — Dashboard Foundation Progress Summary
+- **Product-5C** — Device-Local Completion Tracking *(built — items now track `completedAt`
+  + `blockedReason`; pure helpers `updateFoundationItem` / `completeFoundationItem` /
+  `blockFoundationItem` / `getFoundationCompletionStats` / `getFoundationItemsByStage`; UI
+  routes all changes through the helpers, shows completed dates + a blocked-reason input.
+  Local-first via `szm_foundation_builder`.)*
+- **Product-5D** — Dashboard Foundation Progress Summary *(next — use `getFoundationCompletionStats`)*
 - **Product-5E** — PDF/Excel Export
 - **Product-5F** — Trade-Specific Foundation Steps
 - **Product-5G** — State-Specific Official-Resource Routing

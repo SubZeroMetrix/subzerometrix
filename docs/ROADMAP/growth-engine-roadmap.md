@@ -403,8 +403,13 @@ local-key → cloud-table audit).
   at `/foundation-builder` (+ dashboard entry card) — renders the 5A model, stage controls
   (start_here/do_this_next/later/done/blocked), local notes, progress summary, next step, and
   an honest `SyncStatusBadge`. UI only; local-first (`szm_foundation_builder`).
-- **Next build — Product-5C — Device-Local Completion Tracking.** (Account-2J/2K remain later
-  Account-2 hardening phases.)
+- **Product-5C — Device-Local Completion Tracking: built.** Items track `completedAt` +
+  `blockedReason`; pure helpers `updateFoundationItem` / `completeFoundationItem` /
+  `blockFoundationItem` / `getFoundationCompletionStats` / `getFoundationItemsByStage`; the
+  checklist UI routes all changes through them (completed dates + blocked-reason input).
+  Local-first only; no cloud expansion beyond Account-2I.
+- **Next build — Product-5D — Dashboard Foundation Progress Summary.** (Account-2J/2K remain
+  later Account-2 hardening phases.)
 
 **Placement:** after Growth-6, before **Product-5 — Guided Business Foundation Builder**.
 Required infrastructure before Product-5B/5C checklist tracking becomes a core feature.

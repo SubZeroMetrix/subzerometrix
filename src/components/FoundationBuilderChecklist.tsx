@@ -14,7 +14,8 @@ import { useState, useEffect, useMemo } from 'react'
 import { ClipboardList, ArrowRight, ShieldAlert, ExternalLink } from 'lucide-react'
 import {
   FOUNDATION_SECTIONS, FOUNDATION_CATEGORIES, FOUNDATION_STEP_DEFINITIONS,
-  getFoundationItemsOrDefaults, saveFoundationItems, setFoundationItemStage,
+  getFoundationItemsOrDefaults, saveFoundationItems,
+  updateFoundationItem, completeFoundationItem, blockFoundationItem, setFoundationItemStage,
   getFoundationProgressSummary, getNextFoundationItem,
   getFoundationStageLabel, getFoundationPriorityLabel,
   type FoundationChecklistItem, type FoundationStage, type FoundationCategoryId,
@@ -77,12 +78,18 @@ export default function FoundationBuilderChecklist() {
   }
 
   function updateStage(id: string, stage: FoundationStage) {
+    // Route through the model helpers so completedAt/blockedReason stay durable.
+    if (stage === 'done') return persist(completeFoundationItem(items, id))
+    if (stage === 'blocked') return persist(blockFoundationItem(items, id, items.find(i => i.id === id)?.blockedReason ?? null))
     persist(items.map(it => (it.id === id ? setFoundationItemStage(it, stage) : it)))
   }
 
   function updateNote(id: string, note: string) {
-    const value = note.trim() === '' ? null : note
-    persist(items.map(it => (it.id === id ? { ...it, note: value, updatedAt: new Date().toISOString() } : it)))
+    persist(updateFoundationItem(items, id, { note: note.trim() === '' ? null : note }))
+  }
+
+  function updateBlockedReason(id: string, reason: string) {
+    persist(updateFoundationItem(items, id, { blockedReason: reason.trim() === '' ? null : reason }))
   }
 
   if (!loaded) {
@@ -177,6 +184,20 @@ export default function FoundationBuilderChecklist() {
                             </button>
                           ))}
                         </div>
+
+                        {/* Blocked reason (only when blocked) */}
+                        {item.stage === 'blocked' && (
+                          <input type="text" value={item.blockedReason ?? ''} onChange={e => updateBlockedReason(item.id, e.target.value)}
+                            placeholder="What's blocking this step? (optional)"
+                            className="w-full mt-2 px-3 py-2 rounded-lg text-[12px] glass text-brand-white placeholder:text-brand-silver/40 focus:outline-none focus:ring-1 focus:ring-brand-accent" />
+                        )}
+
+                        {/* Completed timestamp */}
+                        {item.completed && item.completedAt && (
+                          <p className="text-[10px] mt-2" style={{ color: '#1D9E75' }}>
+                            Completed {new Date(item.completedAt).toLocaleDateString(undefined, { month: 'short', day: 'numeric', year: 'numeric' })}
+                          </p>
+                        )}
 
                         {/* Note toggle + editor */}
                         <button type="button" onClick={() => setOpenNote(openNote === item.id ? null : item.id)}
