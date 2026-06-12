@@ -25,6 +25,7 @@ import { buildStarterScore, explainRisk, firstAction, alternativePaths } from '@
 import ChoosePathSection from '@/components/ChoosePathSection'
 import OutcomeBriefing from '@/components/OutcomeBriefing'
 import RoadmapProgressCard from '@/components/RoadmapProgressCard'
+import ProgressReviewCard from '@/components/ProgressReviewCard'
 import FeedbackBox from '@/components/FeedbackBox'
 import { trackEvent } from '@/lib/analytics'
 
@@ -1061,6 +1062,11 @@ function ReportContent() {
             {/* Roadmap progress + tool recommendations tied to the roadmap */}
             <div className="mt-6 mb-8">
               <RoadmapProgressCard score={starter} intake={intake} variant="report" />
+            </div>
+
+            {/* Progress review digest (device-local reads only) */}
+            <div className="mb-8">
+              <ProgressReviewCard score={starter} intake={intake} />
             </div>
 
             <section className="mt-6 mb-8">
