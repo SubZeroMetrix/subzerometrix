@@ -62,11 +62,19 @@ instructions.**
 brand-safe default description (educational, not advice); OG + Twitter defaults;
 index/follow default; Organization JSON-LD. No keyword stuffing.
 
+## Public resource / tool pages — BUILT (Growth-7)
+
+The `/learn` engine (`src/lib/publicResources.ts` + `src/components/ResourcePageView.tsx` +
+`/learn` index and `/learn/[slug]`) ships a small curated set of standalone educational
+pages with canonical + OG/Twitter metadata and Breadcrumb + FAQPage JSON-LD, added to
+`sitemap.ts`. Curated (not mass-generated); no thin/doorway pages; honest scope note
+(strongest for contractors/trades). See `growth-engine-roadmap.md` § Public Tool / Resource
+Page Engine.
+
 ## Future plans (NOT built here)
 
-- **Structured data:** expand JSON-LD (WebSite, FAQPage, HowTo) on future resource/
-  state pages.
-- **Public resource/tool pages:** preview pages per Tier 2 tool (Growth-1 / opportunity 3).
+- **Structured data:** expand JSON-LD (WebSite, HowTo) on future resource/state pages.
+- **More Learn pages / state pages:** add only with real, distinct content.
 - **Broad "how to start a business" layer:** general/state/service/readiness pages that
   route into the assessment, with an honest scope note for non-trade visitors
   (see `growth-engine-roadmap.md`).

@@ -1,6 +1,7 @@
 import type { MetadataRoute } from 'next'
 import { SITE_URL } from '@/lib/seo'
 import { TRADE_CONFIGS } from '@/lib/tradeData'
+import { getPublicResourceSlugs } from '@/lib/publicResources'
 
 // Growth-1 sitemap — REAL public, indexable routes only.
 // Excludes private/paid/stateful pages (/report, /dashboard, /unlock, /results,
@@ -19,6 +20,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { path: '/es/como-empezar-un-negocio', priority: 0.6 },
     { path: '/es/preparacion-empresarial', priority: 0.6 },
     { path: '/resources', priority: 0.8 },
+    { path: '/learn', priority: 0.8 },
+    { path: '/foundation-builder', priority: 0.7 },
     { path: '/partners', priority: 0.6 },
     { path: '/platform-ecosystem', priority: 0.7 },
     { path: '/terms', priority: 0.3 },
@@ -44,5 +47,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority,
   }))
 
-  return [...staticEntries, ...platformEntries]
+  // Curated public Learn pages (Growth-7) — each resolves to a real, hand-written page.
+  const learnEntries: MetadataRoute.Sitemap = getPublicResourceSlugs().map(slug => ({
+    url: `${SITE_URL}/learn/${slug}`,
+    lastModified,
+    changeFrequency: 'monthly',
+    priority: 0.7,
+  }))
+
+  return [...staticEntries, ...platformEntries, ...learnEntries]
 }

@@ -545,9 +545,19 @@ marketing burden. Prioritized.
 - 10-trade query mapping
 - **No keyword stuffing; no thin duplicate pages.**
 
-### 3. Public Tool / Resource Page Engine
-Public preview pages (useful explanation + preview + CTA + metadata + structured
-data + internal links on every page):
+### 3. Public Tool / Resource Page Engine — **BUILT (Growth-7)**
+Reusable engine shipped: `src/lib/publicResources.ts` (curated typed dataset, stable slugs,
+audience + trade/state applicability, educational disclaimer, CTAs, metadata, structured-data
+readiness), `src/components/ResourcePageView.tsx`, and routes `/learn` (index) + `/learn/[slug]`
+(`generateStaticParams` over the curated set — no mass generation; `generateMetadata` with
+canonical/OG/Twitter; Breadcrumb + FAQPage JSON-LD). Launch set: `starting-a-contractor-business`,
+`contractor-startup-checklist`, `metrixscore-overview`, `foundation-builder-guide`. Each page
+carries standalone educational value, an honest "what we support" section (strongest for
+contractors/trades, not equal for every industry), official-source routing, and conversion
+paths to `/start` + `/foundation-builder` + `/resources`. Added to `sitemap.ts`. No thin/doorway
+pages, no private data.
+
+Future preview pages (candidates; build only with real content):
 - Business setup checklist page
 - Pricing readiness checklist page
 - Google Business Profile checklist page
@@ -638,8 +648,8 @@ testimonials, partner leads, and reassessments.
 10. Account-2 — Cloud Sync Activation Layer (`account-cloud-sync-activation-layer.md`)
 11. Quality-1 — Platform Quality, Trust, UX, and Customer Success Standard (`platform-quality-trust-ux-standard.md`)
 12. Product-5 — Guided Business Foundation Builder (`guided-business-foundation-builder.md`)
-13. Growth-7 — Public Tool / Resource Page Engine (future)
-14. Growth-8 — Email Capture / Nurture Foundation (future)
+13. Growth-7 — Public Tool / Resource Page Engine (**built** — `/learn` engine; `publicResources.ts`)
+14. Growth-8 — Email Capture / Nurture Foundation (**next**)
 15. Pre-Launch Audit-1A / 1B / 1C (`pre-launch-audit-system.md`)
 16. Pre-Launch Fix-1 — Resolve blockers and launch-trust issues
 17. Launch Readiness Final Pass (future)
