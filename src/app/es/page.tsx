@@ -3,7 +3,7 @@ import Link from 'next/link'
 import { ArrowLeft, ArrowRight, Info } from 'lucide-react'
 import { buildOpenGraph, buildTwitter } from '@/lib/seo'
 import {
-  getSpanishScopeNote, getSpanishNotFullyTranslatedNote, getSpanishDiscoveryPages,
+  getSpanishScopeNote, getSpanishNotFullyTranslatedNote, getSpanishDiscoveryPages, SPANISH_OG_LOCALE,
 } from '@/lib/spanishDiscovery'
 
 const PAGE = getSpanishDiscoveryPages()[0]
@@ -12,7 +12,7 @@ export const metadata: Metadata = {
   title: PAGE.title,
   description: PAGE.metaDescription,
   alternates: { canonical: '/es' },
-  openGraph: buildOpenGraph({ title: PAGE.title, description: PAGE.metaDescription, path: '/es' }),
+  openGraph: { ...buildOpenGraph({ title: PAGE.title, description: PAGE.metaDescription, path: '/es' }), locale: SPANISH_OG_LOCALE },
   twitter: buildTwitter({ title: PAGE.title, description: PAGE.metaDescription }),
 }
 

@@ -42,6 +42,37 @@ Spanish-speaking contractors, tradespeople, service-business owners, and broad
 - No claim of official state guidance — routes users to official sources.
 - Neutral U.S. Spanish; brand names untranslated.
 
+## Growth Engine coverage (public discovery layer only)
+
+Spanish-1 supports the Growth Engine strategy at the discovery layer. Mapping (see
+`getSpanishGrowthCoverage()` in `spanishDiscovery.ts`):
+
+| Growth area | Spanish support |
+|---|---|
+| Organic Discovery Foundation | built — Spanish pages in sitemap, metadata, canonical |
+| AI Answer Engine Discovery | built — Spanish FAQ structured data + llms.txt mention |
+| Broad "how to start a business" intent | built — Spanish general starter page |
+| Contractor/trade/service startup intent | built — honest routing into the assessment |
+| Product-led sharing / referral | future — Spanish share/referral copy planned |
+| Customer proof / review | future — Spanish review/testimonial prompts planned |
+| Partner / community outreach | future — Spanish partner/community pages planned |
+| Analytics segmentation | foundation_ready — `locale = es-US`, future Spanish fields defined |
+
+Each Spanish page already carries Spanish metadata, canonical URL, Open Graph with
+`locale = es_US`, and (on the readiness page) Spanish FAQ structured data.
+
+## Suggested future Spanish routes (planned, NOT built)
+
+`/es/lista-para-iniciar-un-negocio` · `/es/contratistas` · `/es/negocios-de-servicios`
+(defined in `FUTURE_SPANISH_ROUTES`). Add to the sitemap only when the real pages exist.
+
+## Future Spanish analytics fields (defined, not wired)
+
+`language` · `locale` · `spanish_page_viewed` · `spanish_starter_viewed` ·
+`spanish_readiness_viewed` · `routed_to_assessment_from_spanish` ·
+`spanish_share_created` · `spanish_review_prompt_answered` · `spanish_partner_lead`
+(in `FUTURE_SPANISH_ANALYTICS_FIELDS`).
+
 ## Future Spanish expansion phases (planned, not built)
 
 - **Spanish-2** — Starter Assessment + Results in Spanish.

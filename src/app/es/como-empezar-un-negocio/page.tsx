@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import { ArrowLeft, ArrowRight, Info } from 'lucide-react'
 import { buildOpenGraph, buildTwitter } from '@/lib/seo'
-import { getSpanishBusinessStarterCopy, getSpanishDiscoveryPages } from '@/lib/spanishDiscovery'
+import { getSpanishBusinessStarterCopy, getSpanishDiscoveryPages, SPANISH_OG_LOCALE } from '@/lib/spanishDiscovery'
 
 const PAGE = getSpanishDiscoveryPages()[1]
 
@@ -10,7 +10,7 @@ export const metadata: Metadata = {
   title: PAGE.title,
   description: PAGE.metaDescription,
   alternates: { canonical: '/es/como-empezar-un-negocio' },
-  openGraph: buildOpenGraph({ title: PAGE.title, description: PAGE.metaDescription, path: '/es/como-empezar-un-negocio' }),
+  openGraph: { ...buildOpenGraph({ title: PAGE.title, description: PAGE.metaDescription, path: '/es/como-empezar-un-negocio' }), locale: SPANISH_OG_LOCALE },
   twitter: buildTwitter({ title: PAGE.title, description: PAGE.metaDescription }),
 }
 

@@ -71,6 +71,54 @@ const DISCLAIMER_ES =
 const NOT_FULLY_TRANSLATED_ES =
   'Por ahora, el resto de la plataforma (la evaluación completa, el reporte y el panel) está principalmente en inglés.'
 
+// ── Locale + growth-strategy readiness (discovery layer only) ─────────────────
+// Constants/fields that let later phases segment Spanish-language traffic and add
+// Spanish sharing/review/partner assets without reworking this layer.
+export const SPANISH_LOCALE = 'es-US'
+export const SPANISH_OG_LOCALE = 'es_US'
+
+// Suggested future Spanish routes — planned, NOT built in Spanish-1.
+export const FUTURE_SPANISH_ROUTES: string[] = [
+  '/es/lista-para-iniciar-un-negocio',
+  '/es/contratistas',
+  '/es/negocios-de-servicios',
+]
+
+// Future analytics field names for Spanish-language segmentation (not wired yet).
+export const FUTURE_SPANISH_ANALYTICS_FIELDS: string[] = [
+  'language',            // 'es'
+  'locale',              // 'es-US'
+  'spanish_page_viewed',
+  'spanish_starter_viewed',
+  'spanish_readiness_viewed',
+  'routed_to_assessment_from_spanish',
+  'spanish_share_created',          // future product-led sharing
+  'spanish_review_prompt_answered', // future customer proof
+  'spanish_partner_lead',           // future partner / community outreach
+]
+
+export type SpanishGrowthSupport = 'built' | 'foundation_ready' | 'future'
+
+export interface SpanishGrowthCoverageItem {
+  growthArea: string
+  spanishSupport: SpanishGrowthSupport
+  note: string
+}
+
+// Honest map of how the public Spanish discovery layer supports the Growth Engine.
+export function getSpanishGrowthCoverage(): SpanishGrowthCoverageItem[] {
+  return [
+    { growthArea: 'Organic Discovery Foundation', spanishSupport: 'built', note: 'Spanish pages in the sitemap with metadata + canonical URLs.' },
+    { growthArea: 'AI Answer Engine Discovery', spanishSupport: 'built', note: 'Spanish FAQ structured data and a factual Spanish-pages mention in llms.txt.' },
+    { growthArea: 'Broad how-to-start-a-business intent', spanishSupport: 'built', note: 'Spanish general business starter page that routes into the assessment.' },
+    { growthArea: 'Contractor/trade/service startup intent', spanishSupport: 'built', note: 'Honest routing toward the assessment for supported audiences.' },
+    { growthArea: 'Product-led sharing / referral', spanishSupport: 'future', note: 'Spanish share/referral copy planned in a later phase.' },
+    { growthArea: 'Customer proof / review', spanishSupport: 'future', note: 'Spanish review/testimonial prompts planned in a later phase.' },
+    { growthArea: 'Partner / community outreach', spanishSupport: 'future', note: 'Spanish partner/community pages planned in a later phase.' },
+    { growthArea: 'Analytics segmentation', spanishSupport: 'foundation_ready', note: `locale ${SPANISH_LOCALE} and future Spanish analytics fields are defined.` },
+  ]
+}
+
 export function getSpanishScopeNote(): string {
   return SCOPE_NOTE_ES
 }
