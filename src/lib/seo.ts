@@ -57,3 +57,69 @@ export function organizationJsonLd(): Record<string, unknown> {
     description: DEFAULT_DESCRIPTION,
   }
 }
+
+/** WebSite structured data. */
+export function websiteJsonLd(): Record<string, unknown> {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'WebSite',
+    name: SITE_NAME,
+    url: SITE_URL,
+    description: DEFAULT_DESCRIPTION,
+    publisher: { '@type': 'Organization', name: SITE_NAME, legalName: ORG_LEGAL_NAME },
+  }
+}
+
+/**
+ * SoftwareApplication structured data. Intentionally carries NO aggregateRating,
+ * review, or offers markup — no fake ratings, reviews, or pricing claims.
+ */
+export function softwareApplicationJsonLd(): Record<string, unknown> {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'SoftwareApplication',
+    name: SITE_NAME,
+    applicationCategory: 'BusinessApplication',
+    operatingSystem: 'Web',
+    url: SITE_URL,
+    description: DEFAULT_DESCRIPTION,
+    publisher: { '@type': 'Organization', name: SITE_NAME, legalName: ORG_LEGAL_NAME },
+  }
+}
+
+export interface FaqEntry {
+  question: string
+  answer: string
+}
+
+/** FAQPage structured data from accurate Q&A only. */
+export function faqPageJsonLd(entries: FaqEntry[]): Record<string, unknown> {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: entries.map(e => ({
+      '@type': 'Question',
+      name: e.question,
+      acceptedAnswer: { '@type': 'Answer', text: e.answer },
+    })),
+  }
+}
+
+export interface BreadcrumbItem {
+  name: string
+  path: string
+}
+
+/** BreadcrumbList structured data. */
+export function breadcrumbJsonLd(items: BreadcrumbItem[]): Record<string, unknown> {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: items.map((item, index) => ({
+      '@type': 'ListItem',
+      position: index + 1,
+      name: item.name,
+      item: canonicalUrl(item.path),
+    })),
+  }
+}
