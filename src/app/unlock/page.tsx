@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation'
 import Link from 'next/link'
 import { Lock, CheckCircle2, ArrowRight } from 'lucide-react'
 import type { ScoreResult } from '@/lib/scoring'
+import { getProPreview } from '@/lib/tierPreview'
 
 type PriceTier = 'basic' | 'pro' | 'platform'
 
@@ -24,13 +25,13 @@ const TIERS: TierConfig[] = [
     id: 'basic',
     name: 'MetrixScore™',
     price: 9.99,
-    hook: 'Your score + top 3 priorities',
+    hook: 'Your full report + top priorities',
     items: [
-      'Full MetrixScore™ (0–100) revealed',
-      '6-area category breakdown',
-      'Top 3 risk areas identified',
-      '5 priority action steps',
-      'Curated resource links per gap',
+      'Your full MetrixScore™ report',
+      'Full category breakdown',
+      'Top risk areas explained',
+      'Your prioritized first actions',
+      'Curated official resource links per gap',
     ],
     accentColor: '#4A90D9',
     amount: 999,
@@ -40,16 +41,8 @@ const TIERS: TierConfig[] = [
     name: 'MetrixScore™ Pro',
     price: 19.99,
     badge: 'Most chosen',
-    hook: 'Full roadmap + AI action steps + affiliate tools',
-    items: [
-      'Everything in MetrixScore™',
-      'Personalized 90-day roadmap',
-      'AI-generated trade-specific actions',
-      'Resource map — tools matched to your gaps',
-      '90-day reassessment reminder sequence',
-      'Trade benchmark comparison',
-      'PDF export of full report',
-    ],
+    hook: 'Unlock the full roadmap + practical contractor tools',
+    items: ['Everything in MetrixScore™', ...getProPreview().availableNow],
     accentColor: '#EF9F27',
     amount: 1999,
   },
@@ -57,14 +50,12 @@ const TIERS: TierConfig[] = [
     id: 'platform',
     name: 'Trade Platform',
     price: 29,
-    hook: 'Monthly coaching for your specific trade',
+    hook: 'Trade-specific tools built for your trade',
     items: [
       'Everything in MetrixScore™ Pro',
-      'Trade-specific platform (HeatMetrix, VoltMetrix, etc.)',
-      'Live KPI dashboard — monthly updates',
-      'AI coach — weekly priorities + Q&A',
-      'Peer benchmarking vs similar businesses',
-      'Proactive metric alerts to your phone',
+      'Trade-specific platform built for your trade (HeatMetrix, VoltMetrix, etc.)',
+      'Trade-specific KPIs and guidance',
+      'Future-facing: deeper trade-specific modules as they are released',
     ],
     accentColor: '#1D9E75',
     amount: 2900,
@@ -165,7 +156,7 @@ export default function UnlockPage() {
           </p>
           <h1 className="font-display text-4xl tracking-wider text-brand-white leading-none mb-3">
             {firstName ? `${firstName.toUpperCase()},` : 'YOUR'}
-            <br />SCORE IS READY
+            <br />REPORT IS READY
           </h1>
           {urgencyMsg && (
             <p className="text-sm text-brand-silver leading-relaxed max-w-xs mx-auto">
@@ -177,7 +168,7 @@ export default function UnlockPage() {
         {/* Locked gauge */}
         <div className="glass rounded-2xl p-5 mb-4 text-center">
           <p className="font-mono text-[9px] tracking-[0.25em] uppercase text-brand-silver mb-3">
-            Your MetrixScore™
+            Your Full Report
           </p>
           <div className="relative w-32 h-32 mx-auto mb-3">
             <svg className="w-full h-full" viewBox="0 0 128 128">
@@ -205,7 +196,7 @@ export default function UnlockPage() {
             </div>
           )}
           <p className="text-[11px] text-brand-silver/60 mt-2">
-            Your exact score unlocks with your report
+            Your Starter MetrixScore™ is ready — unlock your full report and roadmap.
           </p>
         </div>
 
