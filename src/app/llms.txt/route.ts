@@ -52,6 +52,11 @@ industry-specific, the platform remains strongest for contractors, tradespeople,
 service-business owners, and it routes users toward supported contractor and
 service-business paths when relevant.
 
+## Spanish pages
+SubZeroMetrix™ has public Spanish discovery pages (for example ${SITE_URL}/es). They
+are educational. The full platform translation is not complete yet, and the platform
+remains strongest for contractors, tradespeople, and service-business owners.
+
 ## Important limitations
 SubZeroMetrix™ provides educational guidance only. It is not legal, tax, financial,
 licensing, or compliance advice. Use official state and local sources to confirm

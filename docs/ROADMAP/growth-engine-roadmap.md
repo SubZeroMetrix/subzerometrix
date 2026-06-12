@@ -436,9 +436,10 @@ testimonials, partner leads, and reassessments.
 2. Growth-1B — Keyword + Search Intent Foundation
 3. Growth-2 — AI Answer Engine Discovery Foundation
 4. Growth-2B — General Business Starter Information Package
-5. Growth-3 — Product-Led Sharing + Referral Engine
-6. Growth-4 — Customer Proof / Review Engine
-7. Growth-5 — Partner / Vendor / Association Distribution System
-8. Growth-6 — Acquisition + Activation Analytics
-9. Pre-Launch Audit-1A / 1B / 1C (`pre-launch-audit-system.md`)
-10. Pre-Launch Fix-1 — Resolve blockers and launch-trust issues
+5. Spanish-1 — Spanish Public Discovery Layer (foundation built; `spanish-public-discovery-layer.md`)
+6. Growth-3 — Product-Led Sharing + Referral Engine
+7. Growth-4 — Customer Proof / Review Engine
+8. Growth-5 — Partner / Vendor / Association Distribution System
+9. Growth-6 — Acquisition + Activation Analytics
+10. Pre-Launch Audit-1A / 1B / 1C (`pre-launch-audit-system.md`)
+11. Pre-Launch Fix-1 — Resolve blockers and launch-trust issues
