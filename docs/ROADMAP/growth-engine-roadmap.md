@@ -380,9 +380,16 @@ local-key → cloud-table audit).
   (kept local-only, counted; never "all partner interest synced"). Private backup only —
   no outreach/CRM/public listing. Wired into `PartnerInterestForm` (`/partners`).
   Local-first preserved; migration `002` must be applied for live sync.
-- **Account-2H — Growth Analytics Privacy-Safe Sync: next.** `cloud_sync_growth_events`
-  is non-PII by design and must stay aggregate-only — privacy/non-invasive review before
-  any write; never third-party-style tracking. Foundation/vendor/launch deferred.
+- **Account-2H — Growth Analytics Privacy-Safe Sync: built.** `cloud_sync_growth_events`
+  only (`src/lib/growthAnalyticsSync.ts`; `growth-analytics-sync.md`). Strict whitelist
+  payload (structured non-PII fields only; free-form `metadata` never synced) plus a skip
+  gate for free-text/PII-looking events; skipped events stay local-only and are counted
+  (never "all activity synced"). No third-party analytics/cookies/pixels/retargeting.
+  Wired into `/dashboard` by the activity summary. Local-first preserved; migration `002`
+  must be applied for live sync.
+- **Account-2I — Foundation Builder Sync Readiness: next.** Wire
+  `cloud_sync_foundation_builder_progress` (+ vendor/launch tables) once the Product-5
+  Foundation Builder data model exists — designed cloud-ready from day one.
 
 **Placement:** after Growth-6, before **Product-5 — Guided Business Foundation Builder**.
 Required infrastructure before Product-5B/5C checklist tracking becomes a core feature.

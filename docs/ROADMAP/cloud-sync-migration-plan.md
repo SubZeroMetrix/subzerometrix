@@ -54,8 +54,13 @@ later wiring phase (2D onward). **Next: Account-2C — Sync Status UI.**
    (kept local-only, counted — never "all partner interest synced"). Private backup only —
    no outreach/CRM/public listing. Local-first; confirmed-write-only "synced" status;
    missing migration/table → `sync_unavailable`. Wired into `PartnerInterestForm` (`/partners`).
-7. **Account-2H — Growth Analytics Privacy-Safe Sync.** Aggregate, non-PII only. Privacy /
-   non-invasive review first.
+7. **Account-2H — Growth Analytics Privacy-Safe Sync.** *(Built — `src/lib/growthAnalyticsSync.ts`,
+   see `growth-analytics-sync.md`.)* Syncs only `cloud_sync_growth_events`. Whitelist
+   payload of structured non-PII fields only (free-form `metadata` never synced) + skip
+   gate for free-text/PII-looking events (kept local-only, counted — never "all activity
+   synced"). No third-party analytics/cookies/pixels/retargeting. Local-first;
+   confirmed-write-only "synced" status; missing migration/table → `sync_unavailable`.
+   Wired into `/dashboard`.
 8. **Account-2I — Foundation Builder Sync Readiness.** Build the Foundation Builder data
    model cloud-ready from day one (Product-5 dependency).
 9. **Account-2J — Local-to-Cloud Migration + Conflict Handling.** One-time adoption per

@@ -56,7 +56,8 @@ change, no wired sync.**
 - **Account-2E** — roadmap action + KPI sync *(built — `roadmapKpiSync.ts`; see `roadmap-kpi-sync.md`)*. Structured no-PII data only (KPI note is the user's own low-risk private note); wired into `/dashboard` + `/report`; local-first preserved.
 - **Account-2F** — feedback / customer proof sync *(built, privacy-gated — `customerFeedbackSync.ts`; see `customer-feedback-sync.md`)*. First free-text flow; consent metadata preserved; records with secret-like comments or missing consent metadata are skipped (kept local-only, counted); no publishing/reviews/incentives; wired into `/dashboard` + `/report`.
 - **Account-2G** — partner interest sync *(built, consent-gated — `partnerInterestSync.ts`; see `partner-interest-sync.md`)*. Highest-PII surface; syncs only records with `consentToContact === true`; non-consented or secret-like-note records skipped (kept local-only, counted); private backup only — no outreach/CRM/public listing; wired into `PartnerInterestForm` (`/partners`).
-- **Account-2H onward** — growth analytics privacy-safe sync next *(non-PII, aggregate)*; Foundation/vendor/launch deferred.
+- **Account-2H** — growth analytics privacy-safe sync *(built — `growthAnalyticsSync.ts`; see `growth-analytics-sync.md`)*. Whitelist payload of structured non-PII fields only (free-form `metadata` never synced) + skip gate for free-text/PII-looking events; no third-party analytics/cookies/pixels; wired into `/dashboard`.
+- **Account-2I onward** — Foundation Builder sync readiness next *(with Product-5; vendor/launch part of that set)*.
 
 ## Account-2B artifacts (built — schema + RLS only)
 
