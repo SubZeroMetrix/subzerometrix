@@ -123,8 +123,14 @@ model **cloud-ready from day one**. Device-local is an acceptable fallback/first
   `FOUNDATION_EXPORT_HEADERS`); checklist UI has Download CSV + Print/Save PDF buttons. CSV
   cells neutralized against formula injection; HTML escaped. Exports user's own local
   progress only, with a pre-export no-secrets reminder.)*
-- **Product-5F** — Trade-Specific Foundation Steps *(next)*
-- **Product-5G** — State-Specific Official-Resource Routing
+- **Product-5F** — Trade-Specific Foundation Steps *(built — `FoundationTrade` type (reuses
+  intake slugs), trade-specific licensing/insurance steps for HVAC, electrical, plumbing,
+  roofing, solar, construction, handyman, landscaping, cleaning, painting; helpers
+  `getFoundationStepDefinitionsForTrade` / `getFoundationItemsByTrade` / `withTradeSteps` /
+  `normalizeFoundationTrade`; checklist seeds from intake trade and falls back to general
+  core steps. Each trade step says verify with official state/local sources — educational,
+  not advice.)*
+- **Product-5G** — State-Specific Official-Resource Routing *(next)*
 - **Product-5H** — Spanish Foundation Builder
 - **Product-5I** — Account-Synced Foundation Progress *(sync plumbing ready: Account-2I
   `src/lib/foundationBuilderSync.ts` + the three `cloud_sync_*` tables; populate

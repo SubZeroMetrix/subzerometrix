@@ -416,8 +416,14 @@ local-key → cloud-table audit).
   `foundationItemsToPrintableHtml`; checklist UI adds Download CSV + Print/Save PDF
   (client-side, no deps). CSV anti-formula-injection + HTML escaping; user's own local
   progress only; pre-export no-secrets reminder.
-- **Next build — Product-5F — Trade-Specific Foundation Steps.** (Account-2J/2K remain later
-  Account-2 hardening phases.)
+- **Product-5F — Trade-Specific Foundation Steps: built.** `FoundationTrade` (reuses intake
+  slugs) + trade-specific licensing/insurance steps for HVAC, electrical, plumbing, roofing,
+  solar, construction, handyman, landscaping, cleaning, painting; helpers
+  `getFoundationItemsByTrade` / `withTradeSteps` / `normalizeFoundationTrade`; checklist seeds
+  from the user's intake trade, falls back to general core steps. Trade steps route to official
+  state/local sources (educational, not advice).
+- **Next build — Product-5G — State-Specific Official-Resource Routing.** (Account-2J/2K remain
+  later Account-2 hardening phases.)
 
 **Placement:** after Growth-6, before **Product-5 — Guided Business Foundation Builder**.
 Required infrastructure before Product-5B/5C checklist tracking becomes a core feature.

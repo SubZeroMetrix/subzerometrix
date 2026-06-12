@@ -19,8 +19,10 @@ import {
   getFoundationProgressSummary, getNextFoundationItem,
   getFoundationStageLabel, getFoundationPriorityLabel,
   foundationItemsToCsv, foundationItemsToPrintableHtml,
+  normalizeFoundationTrade, withTradeSteps,
   type FoundationChecklistItem, type FoundationStage, type FoundationCategoryId,
 } from '@/lib/foundationBuilder'
+import { loadIntake } from '@/lib/intake'
 import SyncStatusBadge from '@/components/SyncStatusBadge'
 import { getFoundationBuilderSyncReadiness, syncFoundationBuilderToAccount } from '@/lib/foundationBuilderSync'
 import type { SyncStatus } from '@/lib/syncContracts'
@@ -46,7 +48,13 @@ export default function FoundationBuilderChecklist() {
   const [fbSyncedAt, setFbSyncedAt] = useState<string | null>(null)
 
   useEffect(() => {
-    setItems(getFoundationItemsOrDefaults())
+    // Seed with the user's trade (from intake) and upgrade an existing checklist with any
+    // missing trade-specific steps. No trade → general core steps only.
+    const trade = normalizeFoundationTrade(loadIntake()?.trade)
+    const seeded = getFoundationItemsOrDefaults(trade)
+    const upgraded = withTradeSteps(seeded, trade)
+    if (upgraded.length !== seeded.length) saveFoundationItems(upgraded)
+    setItems(upgraded)
     setLoaded(true)
   }, [])
 

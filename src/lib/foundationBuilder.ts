@@ -43,6 +43,31 @@ export type FoundationItemStatus =
 
 export type FoundationPriority = 'critical' | 'high' | 'medium' | 'low'
 
+// Trade slugs mirror TRADE_OPTIONS in intake.ts. A step with no `trade` is core (applies
+// to every business); a step with a `trade` only appears for that trade.
+export type FoundationTrade =
+  | 'hvac'
+  | 'electrical'
+  | 'plumbing'
+  | 'roofing'
+  | 'solar'
+  | 'construction'
+  | 'handyman'
+  | 'landscaping'
+  | 'cleaning'
+  | 'painting'
+
+const FOUNDATION_TRADES: FoundationTrade[] = [
+  'hvac', 'electrical', 'plumbing', 'roofing', 'solar',
+  'construction', 'handyman', 'landscaping', 'cleaning', 'painting',
+]
+
+/** Map an intake trade string to a FoundationTrade, or null for general/'other'/unknown. */
+export function normalizeFoundationTrade(value: string | null | undefined): FoundationTrade | null {
+  if (!value) return null
+  return (FOUNDATION_TRADES as string[]).includes(value) ? (value as FoundationTrade) : null
+}
+
 export type FoundationSectionId =
   | 'identity_digital'
   | 'legal_financial'
@@ -89,6 +114,8 @@ export interface FoundationStepDefinition {
   defaultStage: FoundationStage
   /** True when the step touches legal/tax/licensing — route to official sources, not advice. */
   officialSourceReminder?: boolean
+  /** Set for trade-specific steps; undefined = core step (applies to every business). */
+  trade?: FoundationTrade
 }
 
 // ── Per-user checklist item (canonical; Account-2I syncs this shape) ────────────
@@ -106,6 +133,7 @@ export interface FoundationChecklistItem {
   completed: boolean               // single source of truth for completion
   completedAt?: string | null      // ISO time the item was marked done (null otherwise)
   blockedReason?: string | null    // user's own note on why it is blocked (free text)
+  trade?: FoundationTrade          // set for trade-specific items; undefined = core
   note: string | null              // user's own free text (low-risk; sync screens it)
 }
 
@@ -212,6 +240,19 @@ export const FOUNDATION_STEP_DEFINITIONS: FoundationStepDefinition[] = [
 
   // Post-Launch Weekly Review
   { id: 'weekly-review', category: 'weekly_review', stepName: 'Set a weekly review rhythm', description: 'Block a weekly time to review numbers, leads, and next actions.', whyItMatters: 'A steady review rhythm is how readiness turns into growth.', priority: 'medium', estimatedTime: '30 min/wk', defaultStage: 'later' },
+
+  // ── Trade-specific steps (licensing/insurance). Educational only — verify the exact
+  // licenses, certifications, and permits with official state/local sources. ──────────
+  { id: 'trade-hvac-license', category: 'licensing_insurance', trade: 'hvac', stepName: 'Confirm HVAC licensing + refrigerant certification', description: 'Check the HVAC license, EPA refrigerant (Section 608) certification, and permits your state and locality require, via official sources.', whyItMatters: 'HVAC work is regulated; the right credentials keep your jobs legal and bankable.', priority: 'critical', estimatedTime: 'Varies', defaultStage: 'start_here', officialSourceReminder: true },
+  { id: 'trade-electrical-license', category: 'licensing_insurance', trade: 'electrical', stepName: 'Confirm electrical license + permit requirements', description: 'Check the electrician license level and permit rules your state and locality require, via official sources.', whyItMatters: 'Electrical work almost always requires a license and pulled permits.', priority: 'critical', estimatedTime: 'Varies', defaultStage: 'start_here', officialSourceReminder: true },
+  { id: 'trade-plumbing-license', category: 'licensing_insurance', trade: 'plumbing', stepName: 'Confirm plumbing license + backflow certification', description: 'Check the plumbing license and any backflow/cross-connection certifications your state and locality require, via official sources.', whyItMatters: 'Plumbing is licensed work tied to health and safety codes.', priority: 'critical', estimatedTime: 'Varies', defaultStage: 'start_here', officialSourceReminder: true },
+  { id: 'trade-roofing-license', category: 'licensing_insurance', trade: 'roofing', stepName: 'Confirm roofing license, bonding + insurance', description: 'Check the roofing license, bonding, and insurance your state and locality require, via official sources.', whyItMatters: 'Many states regulate roofing and require proof of coverage to bid.', priority: 'high', estimatedTime: 'Varies', defaultStage: 'start_here', officialSourceReminder: true },
+  { id: 'trade-solar-license', category: 'licensing_insurance', trade: 'solar', stepName: 'Confirm solar/electrical licensing + interconnection rules', description: 'Check the solar/electrical license and utility interconnection + permit requirements your state and locality require, via official sources.', whyItMatters: 'Solar installs touch electrical code and utility approval.', priority: 'critical', estimatedTime: 'Varies', defaultStage: 'start_here', officialSourceReminder: true },
+  { id: 'trade-construction-license', category: 'licensing_insurance', trade: 'construction', stepName: 'Confirm general contractor license + bonding', description: 'Check the general contractor license thresholds and bonding your state and locality require, via official sources.', whyItMatters: 'GC licensing and bonding gate which projects you can legally take.', priority: 'critical', estimatedTime: 'Varies', defaultStage: 'start_here', officialSourceReminder: true },
+  { id: 'trade-handyman-scope', category: 'licensing_insurance', trade: 'handyman', stepName: 'Confirm handyman scope limits + license thresholds', description: 'Check the dollar/scope limits and any license thresholds for handyman work your state and locality set, via official sources.', whyItMatters: 'Staying within scope limits keeps unlicensed work legal.', priority: 'high', estimatedTime: 'Varies', defaultStage: 'start_here', officialSourceReminder: true },
+  { id: 'trade-landscaping-requirements', category: 'licensing_insurance', trade: 'landscaping', stepName: 'Confirm landscaping + pesticide applicator requirements', description: 'Check any pesticide/chemical applicator licensing and permits your state and locality require, via official sources.', whyItMatters: 'Chemical application is often separately regulated.', priority: 'medium', estimatedTime: 'Varies', defaultStage: 'do_this_next', officialSourceReminder: true },
+  { id: 'trade-cleaning-bonding', category: 'licensing_insurance', trade: 'cleaning', stepName: 'Confirm cleaning business bonding + insurance', description: 'Check the bonding and liability insurance customers and your locality expect, via official sources.', whyItMatters: 'Bonding and insurance build trust for in-home/in-business access.', priority: 'high', estimatedTime: 'Varies', defaultStage: 'do_this_next', officialSourceReminder: true },
+  { id: 'trade-painting-rrp', category: 'licensing_insurance', trade: 'painting', stepName: 'Confirm painting license + lead-safe (RRP) certification', description: 'Check painting license rules and EPA Lead Renovation, Repair and Painting (RRP) certification needs for older homes, via official sources.', whyItMatters: 'Lead-safe rules apply to pre-1978 properties and carry penalties.', priority: 'high', estimatedTime: 'Varies', defaultStage: 'start_here', officialSourceReminder: true },
 ]
 
 // ── Label maps ──────────────────────────────────────────────────────────────────
@@ -258,13 +299,39 @@ export function createFoundationItemFromDefinition(def: FoundationStepDefinition
     completed: false,
     completedAt: null,
     blockedReason: null,
+    trade: def.trade,
     note: null,
   }
 }
 
-/** A fresh default checklist (one item per step definition). Pure; writes nothing. */
-export function createDefaultFoundationItems(): FoundationChecklistItem[] {
-  return FOUNDATION_STEP_DEFINITIONS.map(createFoundationItemFromDefinition)
+/** Step definitions for a trade: all core steps + that trade's steps (or just core). */
+export function getFoundationStepDefinitionsForTrade(trade: FoundationTrade | null): FoundationStepDefinition[] {
+  return FOUNDATION_STEP_DEFINITIONS.filter(d => d.trade === undefined || d.trade === trade)
+}
+
+/**
+ * A fresh default checklist. With a trade, includes core + that trade's steps; without a
+ * trade (or 'other'/unknown), falls back to the general core steps only. Pure; writes nothing.
+ */
+export function createDefaultFoundationItems(trade: FoundationTrade | null = null): FoundationChecklistItem[] {
+  return getFoundationStepDefinitionsForTrade(trade).map(createFoundationItemFromDefinition)
+}
+
+/** Items relevant to a trade: core items + items matching the trade (or just core). */
+export function getFoundationItemsByTrade(items: FoundationChecklistItem[], trade: FoundationTrade | null): FoundationChecklistItem[] {
+  return items.filter(it => it.trade === undefined || it.trade === trade)
+}
+
+/**
+ * Upgrade an existing checklist by appending any missing core/trade step items (idempotent).
+ * Lets users who started before a trade was set pick up the trade-specific steps. Pure.
+ */
+export function withTradeSteps(items: FoundationChecklistItem[], trade: FoundationTrade | null): FoundationChecklistItem[] {
+  const present = new Set(items.map(i => i.id))
+  const missing = getFoundationStepDefinitionsForTrade(trade)
+    .filter(d => !present.has(d.id))
+    .map(createFoundationItemFromDefinition)
+  return missing.length > 0 ? [...items, ...missing] : items
 }
 
 /** Move an item to a stage and keep status/completed/completedAt/blockedReason in sync. */
@@ -379,10 +446,13 @@ export function saveFoundationItems(items: FoundationChecklistItem[]): void {
   }
 }
 
-/** Saved items if present, otherwise the default checklist (does NOT write). */
-export function getFoundationItemsOrDefaults(): FoundationChecklistItem[] {
+/**
+ * Saved items if present, otherwise the default checklist for the trade (does NOT write).
+ * No trade → general core steps only.
+ */
+export function getFoundationItemsOrDefaults(trade: FoundationTrade | null = null): FoundationChecklistItem[] {
   const saved = loadFoundationItems()
-  return saved.length > 0 ? saved : createDefaultFoundationItems()
+  return saved.length > 0 ? saved : createDefaultFoundationItems(trade)
 }
 
 // ── Progress summary + next recommended item ────────────────────────────────────
