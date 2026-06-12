@@ -136,8 +136,14 @@ model **cloud-ready from day one**. Device-local is an acceptable fallback/first
   EIN/GBP; helpers `getFoundationStateResources` / `normalizeFoundationState` /
   `FOUNDATION_LAUNCH_STATES`; reads intake `region`, generic verify-your-state fallback
   otherwise. Starting points only — not advice, no completeness/currency claim.)*
-- **Product-5H** — Spanish Foundation Builder *(next)*
-- **Product-5I** — Account-Synced Foundation Progress *(sync plumbing ready: Account-2I
+- **Product-5H** — Spanish Foundation Builder *(built — Spanish UI-copy layer
+  (`FoundationLang`, `getFoundationUiCopy`, language-aware stage/status/priority/section
+  labels) for the Foundation Builder interface: sections, stages, statuses, priorities,
+  buttons, export + notes reminders, and official-source disclaimers. `FoundationBuilderChecklist`
+  takes a `lang` prop (English default; Spanish via `lang="es"`). Step IDs, storage keys, and
+  saved data/user notes are NOT translated; an explicit note says the platform is not fully
+  Spanish. No new route.)*
+- **Product-5I** — Account-Synced Foundation Progress *(next; sync plumbing ready: Account-2I
   `src/lib/foundationBuilderSync.ts` + the three `cloud_sync_*` tables; populate
   `FOUNDATION_BUILDER_KEYS` from the Product-5 data model to activate, no further wiring)*
 

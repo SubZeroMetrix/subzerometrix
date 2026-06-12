@@ -427,8 +427,13 @@ local-key → cloud-table audit).
   (legal/entity, tax/EIN, licensing) + federal EIN/GBP; `getFoundationStateResources` /
   `normalizeFoundationState`; reads intake `region`, generic verify-your-state fallback.
   Educational starting points only — not advice, no completeness/currency claim.
-- **Next build — Product-5H — Spanish Foundation Builder.** (Account-2J/2K remain later
-  Account-2 hardening phases.)
+- **Product-5H — Spanish Foundation Builder: built.** Spanish UI-copy layer (`FoundationLang`,
+  `getFoundationUiCopy`, language-aware labels) for the Foundation Builder interface
+  (sections/stages/statuses/priorities/buttons/reminders/disclaimers); `FoundationBuilderChecklist`
+  takes a `lang` prop (English default, Spanish via `lang="es"`). Step IDs/storage/saved
+  notes not translated; explicit "not fully available in Spanish" note. No new route.
+- **Next build — Product-5I — Account-Synced Foundation Progress.** (Sync plumbing already
+  ready via Account-2I; Account-2J/2K remain later hardening phases.)
 
 **Placement:** after Growth-6, before **Product-5 — Guided Business Foundation Builder**.
 Required infrastructure before Product-5B/5C checklist tracking becomes a core feature.

@@ -275,12 +275,138 @@ const PRIORITY_LABELS: Record<FoundationPriority, string> = {
 const STAGE_ORDER: FoundationStage[] = ['start_here', 'do_this_next', 'later', 'blocked', 'done']
 const PRIORITY_ORDER: Record<FoundationPriority, number> = { critical: 0, high: 1, medium: 2, low: 3 }
 
-export function getFoundationStageLabel(stage: FoundationStage): string { return STAGE_LABELS[stage] }
-export function getFoundationStatusLabel(status: FoundationItemStatus): string { return STATUS_LABELS[status] }
-export function getFoundationPriorityLabel(priority: FoundationPriority): string { return PRIORITY_LABELS[priority] }
+// ── Product-5H: Spanish UI-copy layer (chrome only; step content stays English) ─
+// Spanish translates the Foundation Builder INTERFACE (sections/stages/statuses/
+// priorities/buttons/reminders/disclaimers). Step names/descriptions, IDs, and saved
+// data are NOT translated. This does NOT make the full platform available in Spanish.
+export type FoundationLang = 'en' | 'es'
+
+const STAGE_LABELS_ES: Record<FoundationStage, string> = {
+  start_here: 'Empieza aquí',
+  do_this_next: 'Hazlo a continuación',
+  later: 'Más tarde',
+  done: 'Hecho',
+  blocked: 'Bloqueado',
+}
+const STATUS_LABELS_ES: Record<FoundationItemStatus, string> = {
+  not_started: 'Sin empezar',
+  in_progress: 'En progreso',
+  done: 'Hecho',
+  blocked: 'Bloqueado',
+}
+const PRIORITY_LABELS_ES: Record<FoundationPriority, string> = {
+  critical: 'Crítica', high: 'Alta', medium: 'Media', low: 'Baja',
+}
+const SECTION_LABELS_ES: Record<FoundationSectionId, string> = {
+  identity_digital: 'Identidad y digital',
+  legal_financial: 'Legal y financiero',
+  brand_presence: 'Marca y presencia',
+  operations_sales: 'Operaciones y ventas',
+  launch_review: 'Lanzamiento y revisión',
+}
+
+/** Normalize a language input to 'en' (default) or 'es'. */
+export function resolveFoundationLang(input?: string | null): FoundationLang {
+  return input === 'es' ? 'es' : 'en'
+}
+
+export function getFoundationStageLabel(stage: FoundationStage, lang: FoundationLang = 'en'): string {
+  return lang === 'es' ? STAGE_LABELS_ES[stage] : STAGE_LABELS[stage]
+}
+export function getFoundationStatusLabel(status: FoundationItemStatus, lang: FoundationLang = 'en'): string {
+  return lang === 'es' ? STATUS_LABELS_ES[status] : STATUS_LABELS[status]
+}
+export function getFoundationPriorityLabel(priority: FoundationPriority, lang: FoundationLang = 'en'): string {
+  return lang === 'es' ? PRIORITY_LABELS_ES[priority] : PRIORITY_LABELS[priority]
+}
+export function getFoundationSectionLabel(sectionId: FoundationSectionId, lang: FoundationLang = 'en'): string {
+  if (lang === 'es') return SECTION_LABELS_ES[sectionId]
+  return FOUNDATION_SECTIONS.find(s => s.id === sectionId)?.label ?? sectionId
+}
 export function getFoundationSections(): FoundationSection[] { return FOUNDATION_SECTIONS }
 export function getFoundationCategories(): FoundationCategory[] { return FOUNDATION_CATEGORIES }
 export function getFoundationStepDefinitions(): FoundationStepDefinition[] { return FOUNDATION_STEP_DEFINITIONS }
+
+// ── Foundation Builder UI copy bundle (en/es) ───────────────────────────────────
+export interface FoundationUiCopy {
+  progressTitle: string
+  stepsDone: (completed: number, total: number) => string
+  blockedNote: (n: number) => string
+  nextRecommended: string
+  allComplete: string
+  noNextStep: string
+  nextPrefix: string
+  notesReminder: string
+  exportTitle: string
+  exportReminder: string
+  downloadCsv: string
+  printPdf: string
+  addNote: string
+  editNote: string
+  notePlaceholder: string
+  blockedPlaceholder: string
+  completedOn: (date: string) => string
+  priorityAndTime: (priorityLabel: string, time: string | null) => string
+  verifyBadge: string
+  officialIntro: (state: string | null) => string
+  officialFallback: string
+  /** Honesty note: the UI is Spanish but the platform is not fully translated. */
+  languageNote: string
+}
+
+const EN_COPY: FoundationUiCopy = {
+  progressTitle: 'Your foundation progress',
+  stepsDone: (c, t) => `${c} of ${t} steps done`,
+  blockedNote: n => `${n} step${n > 1 ? 's' : ''} marked blocked.`,
+  nextRecommended: 'Next recommended step',
+  allComplete: '🎯 All foundation steps complete.',
+  noNextStep: 'No next step — review any blocked steps.',
+  nextPrefix: 'Next:',
+  notesReminder: 'Notes are saved on this device. Do not enter passwords, API keys, bank details, SSNs, or private customer information. This is educational only — confirm legal, tax, and licensing requirements with official sources.',
+  exportTitle: 'Export your progress',
+  exportReminder: 'Review your notes before exporting. Do not store passwords, API keys, bank info, SSNs, or private customer info. Export includes only your own device-local progress.',
+  downloadCsv: 'Download CSV',
+  printPdf: 'Print / Save PDF',
+  addNote: 'Add note',
+  editNote: 'Edit note',
+  notePlaceholder: 'Your own notes for this step (no passwords or private info)',
+  blockedPlaceholder: "What's blocking this step? (optional)",
+  completedOn: d => `Completed ${d}`,
+  priorityAndTime: (p, t) => `${p} priority${t ? ` · ${t}` : ''}`,
+  verifyBadge: 'verify with official sources',
+  officialIntro: s => `Official starting points${s ? ` for ${s}` : ''} — verify current requirements with official state/local sources. Not legal, tax, or licensing advice.`,
+  officialFallback: 'Set your state in the assessment to see official starting points, then verify requirements with your state/local government sources.',
+  languageNote: '',
+}
+
+const ES_COPY: FoundationUiCopy = {
+  progressTitle: 'Tu progreso de base',
+  stepsDone: (c, t) => `${c} de ${t} pasos completados`,
+  blockedNote: n => `${n} paso${n > 1 ? 's' : ''} marcado${n > 1 ? 's' : ''} como bloqueado.`,
+  nextRecommended: 'Próximo paso recomendado',
+  allComplete: '🎯 Todos los pasos de la base están completos.',
+  noNextStep: 'No hay próximo paso — revisa los pasos bloqueados.',
+  nextPrefix: 'Siguiente:',
+  notesReminder: 'Las notas se guardan en este dispositivo. No ingreses contraseñas, claves API, datos bancarios, números de seguro social ni información privada de clientes. Esto es solo educativo — confirma los requisitos legales, fiscales y de licencias con fuentes oficiales.',
+  exportTitle: 'Exporta tu progreso',
+  exportReminder: 'Revisa tus notas antes de exportar. No guardes contraseñas, claves API, datos bancarios, números de seguro social ni información privada de clientes. La exportación incluye solo tu progreso local en este dispositivo.',
+  downloadCsv: 'Descargar CSV',
+  printPdf: 'Imprimir / Guardar PDF',
+  addNote: 'Agregar nota',
+  editNote: 'Editar nota',
+  notePlaceholder: 'Tus notas para este paso (sin contraseñas ni información privada)',
+  blockedPlaceholder: '¿Qué está bloqueando este paso? (opcional)',
+  completedOn: d => `Completado el ${d}`,
+  priorityAndTime: (p, t) => `Prioridad ${p.toLowerCase()}${t ? ` · ${t}` : ''}`,
+  verifyBadge: 'verifica con fuentes oficiales',
+  officialIntro: s => `Puntos de partida oficiales${s ? ` para ${s}` : ''} — verifica los requisitos actuales con fuentes oficiales estatales/locales. No es asesoría legal, fiscal ni de licencias.`,
+  officialFallback: 'Selecciona tu estado en la evaluación para ver los puntos de partida oficiales, luego verifica los requisitos con las fuentes oficiales de tu gobierno estatal/local.',
+  languageNote: 'La interfaz del Foundation Builder está en español; el detalle de cada paso permanece en inglés. SubZeroMetrix™ aún no está totalmente disponible en español.',
+}
+
+export function getFoundationUiCopy(lang: FoundationLang = 'en'): FoundationUiCopy {
+  return lang === 'es' ? ES_COPY : EN_COPY
+}
 
 // ── Item factory + transitions (pure) ───────────────────────────────────────────
 export function createFoundationItemFromDefinition(def: FoundationStepDefinition): FoundationChecklistItem {
