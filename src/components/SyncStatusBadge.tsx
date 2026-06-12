@@ -16,6 +16,7 @@ import {
   getSyncStatusDescription,
   getSyncStatusActionLabel,
   getSyncStatusTone,
+  getSyncEntityByType,
   type SyncStatus,
   type SyncStatusTone,
   type SyncEntityType,
@@ -78,6 +79,8 @@ export default function SyncStatusBadge({
   const savedOn = fmtDate(lastSavedAt)
   // Only show a synced timestamp when the status is actually synced — never imply it.
   const syncedOn = status === 'synced_to_account' ? fmtDate(lastSyncedAt) : null
+  // Human label for the flow this badge describes, when provided.
+  const entityLabel = entityType ? getSyncEntityByType(entityType).label : null
 
   if (compact) {
     return (
@@ -86,7 +89,7 @@ export default function SyncStatusBadge({
         style={{ color, background: `${color}14`, border: `1px solid ${color}33` }}
         data-sync-status={status}
         data-sync-entity={entityType ?? undefined}
-        title={description}
+        title={entityLabel ? `${entityLabel} — ${description}` : description}
       >
         <Icon className="w-3 h-3" aria-hidden="true" />
         {label}
@@ -103,6 +106,9 @@ export default function SyncStatusBadge({
       <div className="flex items-center gap-2">
         <Icon className="w-4 h-4 flex-shrink-0" style={{ color }} aria-hidden="true" />
         <span className="text-[12px] font-semibold" style={{ color }}>{label}</span>
+        {entityLabel && (
+          <span className="ml-auto text-[10px] text-brand-silver/50">{entityLabel}</span>
+        )}
       </div>
       <p className="text-[11px] text-brand-silver/80 leading-relaxed mt-1.5">{description}</p>
       {(savedOn || syncedOn) && (
