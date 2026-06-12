@@ -201,6 +201,11 @@ contractor business — without manipulation.
 
 ## Growth-2B — General Business Starter Information Package
 
+**Status: foundation built** — public page at `/general-business-starter`
+(`src/lib/generalBusinessStarter.ts`, `src/app/general-business-starter/page.tsx`); see
+`general-business-starter-package.md`. Future improvements (per-state pages,
+interactive checklist tracking, expanded analytics) remain planned below.
+
 **Goal:** give value to visitors arriving through broad "how to start a business" /
 "business startup checklist" intent, even when they are not in a supported
 contractor/trade category — capture general startup demand, educate, route relevant

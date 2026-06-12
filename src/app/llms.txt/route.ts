@@ -46,6 +46,12 @@ General business-startup content is educational and routing only. SubZeroMetrix�
 currently strongest for contractors, trades, and service businesses; broader
 industries may receive less industry-specific guidance.
 
+SubZeroMetrix™ includes a General Business Starter Information Package for broad
+startup visitors at ${SITE_URL}/general-business-starter. It is educational and less
+industry-specific, the platform remains strongest for contractors, tradespeople, and
+service-business owners, and it routes users toward supported contractor and
+service-business paths when relevant.
+
 ## Important limitations
 SubZeroMetrix™ provides educational guidance only. It is not legal, tax, financial,
 licensing, or compliance advice. Use official state and local sources to confirm
