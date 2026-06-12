@@ -1,78 +1,80 @@
-# Customer Proof / Review Engine — Growth-4 (Foundation Built)
+# Customer Proof / Review Engine — Growth-4 (Active In-App)
 
-**Status:** Foundation built. Ethical, consent-first feedback + proof model with a
-low-pressure in-app prompt. **No fake reviews, no incentivized reviews, no positive-
-only gating, no automatic public posting, and no public use of a user's words without
-explicit permission.** No third-party review-platform integration yet.
+**Status:** Active in-app. A real, consent-first feedback prompt is live with
+**local/device-side capture**. Public review routing is **intentionally not active yet**
+(trust + review-platform compliance). No third-party review integration.
 
 Owner/operator: **The Modern Trades Mentor LLC**. Branding: **SubZeroMetrix™**,
 **MetrixScore™** (™, not ®).
 
-## What Growth-4 built
+## Active now
 
-- **`src/lib/customerProof.ts`** — model: `CustomerProofTrigger`,
-  `CustomerFeedbackScore`, `CustomerProofRoute`, `TestimonialConsentStatus`,
-  `CaseStudyCandidate`, `ReviewRoutingRecommendation`, `CustomerProofPrompt`;
-  helpers `getCustomerProofPrompt`, `getReviewRoutingRecommendation`,
-  `getTestimonialConsentCopy`, `getCaseStudyCandidateSignal`,
-  `shouldShowCustomerProofPrompt`.
-- **`src/components/CustomerProofPrompt.tsx`** — a low-pressure, dismissible
-  "Was this useful?" prompt (shows once per device).
-- **`src/lib/analytics.ts`** — added `feedback_prompt_viewed`,
-  `feedback_score_selected`, `testimonial_interest_selected`,
-  `case_study_interest_selected`, `product_feedback_submitted` to the no-op event union.
-- UI added to `/dashboard` (trigger `dashboard_returned`) and `/report`
-  (trigger `report_viewed`).
+- **`src/lib/customerProof.ts`** — model + active local capture:
+  `CustomerProofTrigger`, `CustomerFeedbackScore`, `CustomerProofRoute`,
+  `TestimonialConsentStatus`, `CaseStudyCandidate`, `ReviewRoutingRecommendation`,
+  `CustomerProofPrompt`, `CustomerFeedbackRecord`; helpers `getCustomerProofPrompt`,
+  `getReviewRoutingRecommendation`, `getTestimonialConsentCopy`,
+  `getCaseStudyCandidateSignal`, `shouldShowCustomerProofPrompt`,
+  `getFeedbackStorageKey`, `createCustomerFeedbackRecord`, `saveCustomerFeedbackLocal`,
+  `getCustomerFeedbackLocal`.
+- **`src/components/CustomerProofPrompt.tsx`** — active client form: usefulness rating →
+  optional private written feedback + optional consent-first testimonial/case-study
+  interest → **saved on this device** → "Thanks — feedback saved on this device."
+- **`src/lib/analytics.ts`** — `feedback_prompt_viewed`, `feedback_score_selected`,
+  `testimonial_interest_selected`, `case_study_interest_selected`,
+  `product_feedback_submitted` (existing no-op stub).
+- **Placement:** live on `/dashboard` (`dashboard_returned`) and `/report`
+  (`report_viewed`). Low pressure, dismissible, shows once per device.
 
-## Feedback score bands
+## Local storage behavior
 
-`positive` · `neutral` · `negative`.
+Feedback records are saved on the user's device under the `szm_customer_feedback`
+key (an array of `CustomerFeedbackRecord`, `storageMode: 'local_device'`), matching the
+existing `szm_*` localStorage pattern. **Nothing is sent externally or posted publicly.**
+Testimonial/case-study interest is stored as intent only.
 
-## Testimonial consent model
+## Consent model
 
-Explicit, optional, withdrawable. The prompt offers a positive user an OPTIONAL
-testimonial/case-study interest with clear copy: "We never publish your name, quote,
-or business without your explicit permission, and you can withdraw it at any time."
-`getTestimonialConsentCopy()` provides permission, case-study, contact-later, no-
-public-without-permission, and decline strings. `TestimonialConsentStatus` =
-`not_asked | granted | declined | interested_contact_later`.
+Explicit, optional, withdrawable. `getTestimonialConsentCopy()` provides permission,
+case-study, contact-later, "never publish without explicit permission / withdraw
+anytime," and decline copy. The prompt only records testimonial/case-study **interest**;
+**no public use happens without explicit consent.**
 
-## Case-study candidate model
+## Feedback bands & routing
 
-`getCaseStudyCandidateSignal(trigger, score)` flags a candidate only when feedback is
-**positive after real progress** (action completed, KPI saved, reassessment completed,
-roadmap progress) — and even then, **consent is required before any use**.
+`positive` · `neutral` · `negative`. Positive → optional, consent-first testimonial/
+case-study interest. Neutral → "what would make this more useful?" Negative →
+**private** product/support; accepted and used for improvement, **never routed to a
+public review page**. `publicReviewAllowed` is `false` for every band.
 
-## Negative feedback routing
+## Intentionally NOT active yet (and why)
 
-Negative feedback routes to `private_support_feedback` — privately to product/support,
-**never to a public review page**. Negative feedback is **not suppressed**; it is used
-for improvement. `publicReviewAllowed` is `false` for every band in this phase.
+- **Automatic public review posting** — review-platform compliance + trust risk.
+- **Public review routing that only sends positive users to review sites** — positive-only
+  gating risk (FTC / G2 / Capterra / Google policies).
+- **Incentives for positive reviews** — manipulation risk.
+- **Publishing testimonials without explicit consent** — consent-first requirement.
+- **Third-party review platform integrations** — out of scope for this phase.
+- **Automatic emails / SMS / messages** — manual/consent-first only.
 
-## Future public review routing (planned, NOT built)
-
-A future phase may invite clearly-satisfied, consenting users to leave a public review
-— with no incentives and following each platform's policy. Not wired here.
-
-## Future Spanish customer-proof support (planned, NOT built)
-
-Spanish proof/feedback copy is a future addition. No Spanish customer-proof flow is
-wired today; Spanish remains discovery-layer only.
-
-## Ethical guardrails (FTC / G2 / Capterra / Google-style, high level)
+## Ethical guardrails (high level)
 
 - **No fake reviews or testimonials.**
-- **No incentivized review manipulation** (no money/discount/gift for a review).
-- **No positive-only review gating** — never filter so only happy users are asked in a
-  policy-violating way; ask honestly and let people say what they think.
-- **No public use without explicit, withdrawable consent.**
-- **No automatic public posting; no auto-invites.**
+- **No positive-only public review gating.**
+- **No incentives tied to review sentiment.**
+- **No public use of a user's words without explicit, withdrawable consent.**
 - **No claim that customer feedback guarantees outcomes.**
 - **No legal/tax/financial/licensing advice.**
-- Negative feedback goes to private support/product improvement, not public reviews.
+- Negative feedback goes to private product/support improvement, not public reviews.
 
-## Analytics / future tracking
+## Future (planned, not built)
 
-The five proof events are emitted to the existing **no-op** `trackEvent` stub
-(dataLayer if present, else a dev log). No third-party analytics, no network calls,
-no new dependencies.
+- Public review invitation for clearly-satisfied, consenting users (no incentives,
+  per platform policy).
+- Account-synced feedback once auth/cloud sync exist (currently device-only).
+- Spanish customer-proof copy (Spanish stays discovery-layer only today).
+
+## Analytics
+
+The five proof events go to the existing **no-op** `trackEvent` stub (dataLayer if
+present, else a dev log). No third-party analytics, no network calls, no dependencies.

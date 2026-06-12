@@ -149,3 +149,77 @@ export function shouldShowCustomerProofPrompt(
   if (opts.alreadyDismissed) return false
   return SUPPORTED_TRIGGERS.includes(trigger)
 }
+
+// ── Active local-device feedback capture ──────────────────────────────────────
+// Device-only (matches the szm_* localStorage pattern). NEVER sent externally, never
+// posted publicly, never used as a public review. Testimonial/case-study interest is
+// recorded only as INTENT — explicit consent is still required before any public use.
+export interface CustomerFeedbackRecord {
+  id: string
+  createdAt: string
+  trigger: CustomerProofTrigger
+  score: CustomerFeedbackScore
+  comment: string | null
+  testimonialInterest: boolean
+  caseStudyInterest: boolean
+  contactLaterOk: boolean
+  storageMode: 'local_device'
+}
+
+export interface CustomerFeedbackInput {
+  trigger: CustomerProofTrigger
+  score: CustomerFeedbackScore
+  comment?: string | null
+  testimonialInterest?: boolean
+  caseStudyInterest?: boolean
+  contactLaterOk?: boolean
+}
+
+const FEEDBACK_STORAGE_KEY = 'szm_customer_feedback'
+
+export function getFeedbackStorageKey(): string {
+  return FEEDBACK_STORAGE_KEY
+}
+
+function genFeedbackId(): string {
+  return `fb_${Date.now().toString(36)}_${Math.random().toString(36).slice(2, 8)}`
+}
+
+export function createCustomerFeedbackRecord(input: CustomerFeedbackInput): CustomerFeedbackRecord {
+  const comment = input.comment && input.comment.trim() ? input.comment.trim() : null
+  return {
+    id: genFeedbackId(),
+    createdAt: new Date().toISOString(),
+    trigger: input.trigger,
+    score: input.score,
+    comment,
+    testimonialInterest: input.testimonialInterest ?? false,
+    caseStudyInterest: input.caseStudyInterest ?? false,
+    contactLaterOk: input.contactLaterOk ?? false,
+    storageMode: 'local_device',
+  }
+}
+
+/** All locally-saved feedback records on this device. */
+export function getCustomerFeedbackLocal(): CustomerFeedbackRecord[] {
+  if (typeof window === 'undefined') return []
+  try {
+    const raw = window.localStorage.getItem(FEEDBACK_STORAGE_KEY)
+    if (!raw) return []
+    const parsed = JSON.parse(raw)
+    return Array.isArray(parsed) ? (parsed as CustomerFeedbackRecord[]) : []
+  } catch {
+    return []
+  }
+}
+
+/** Append a feedback record to LOCAL device storage. Never sends or posts anything. */
+export function saveCustomerFeedbackLocal(record: CustomerFeedbackRecord): void {
+  if (typeof window === 'undefined') return
+  try {
+    const existing = getCustomerFeedbackLocal()
+    window.localStorage.setItem(FEEDBACK_STORAGE_KEY, JSON.stringify([...existing, record]))
+  } catch {
+    // storage unavailable — non-fatal, device-only data
+  }
+}
