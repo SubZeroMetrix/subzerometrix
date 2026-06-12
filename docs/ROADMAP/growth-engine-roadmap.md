@@ -320,6 +320,25 @@ Event roadmap (first-party; no claims of third-party tracking beyond what exists
 
 ---
 
+## Product-5 — Guided Business Foundation Builder
+
+**Status: roadmap only (not built).** A guided, trackable business-foundation checklist
+inside the platform — step-by-step instructions, why each step matters, what "done"
+looks like, official-source reminders, status/notes/priority/owner, and (future) export,
+account sync, and trade/state-specific guidance. Turns SubZeroMetrix™ into a guided
+execution system that improves **measurable readiness**, closing the
+Assessment → Score → Roadmap → Action → Tracking → Outcome → Re-scoring loop.
+
+See `guided-business-foundation-builder.md` (23 categories, item shape, Product-5A–5I
+sub-phases) and `business-guidance-opportunity-map.md` (A–J guidance deep-dive + gaps).
+
+**Placement:** after Growth-6, before the future **Growth-7 — Public Tool / Resource
+Page Engine** (currently opportunity #3 in the Highest-Upside section below).
+
+**Guardrails:** educational only; no legal/tax/financial/licensing advice; route to
+official sources; no guarantee of approval/licensing/leads/revenue/rankings/success; no
+cloud-sync claim unless built; no fake partner/affiliate claims.
+
 ## Growth guardrails (apply to every Growth phase)
 
 - No fake backlinks.
@@ -454,5 +473,7 @@ testimonials, partner leads, and reassessments.
 7. Growth-4 — Customer Proof / Review Engine
 8. Growth-5 — Partner / Vendor / Association Distribution System
 9. Growth-6 — Acquisition + Activation Analytics
-10. Pre-Launch Audit-1A / 1B / 1C (`pre-launch-audit-system.md`)
-11. Pre-Launch Fix-1 — Resolve blockers and launch-trust issues
+10. Product-5 — Guided Business Foundation Builder (`guided-business-foundation-builder.md`)
+11. Growth-7 — Public Tool / Resource Page Engine (future)
+12. Pre-Launch Audit-1A / 1B / 1C (`pre-launch-audit-system.md`)
+13. Pre-Launch Fix-1 — Resolve blockers and launch-trust issues
