@@ -3,6 +3,7 @@ import Link from 'next/link'
 import { ArrowLeft, ArrowRight } from 'lucide-react'
 import { buildOpenGraph, buildTwitter, faqPageJsonLd, type FaqEntry } from '@/lib/seo'
 import ShareReferralCard from '@/components/ShareReferralCard'
+import GrowthEventTracker from '@/components/GrowthEventTracker'
 
 const TITLE = 'Business Readiness for Contractors & Trades'
 const DESCRIPTION =
@@ -62,6 +63,7 @@ function QA({ entry }: { entry: FaqEntry }) {
 export default function BusinessReadinessPage() {
   return (
     <main className="min-h-dvh bg-brand-navy">
+      <GrowthEventTracker milestone="public_page_viewed" />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqPageJsonLd(FAQ)) }}

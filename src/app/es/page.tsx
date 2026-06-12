@@ -6,6 +6,7 @@ import {
   getSpanishScopeNote, getSpanishNotFullyTranslatedNote, getSpanishDiscoveryPages, SPANISH_OG_LOCALE,
 } from '@/lib/spanishDiscovery'
 import ShareReferralCard from '@/components/ShareReferralCard'
+import GrowthEventTracker from '@/components/GrowthEventTracker'
 
 const PAGE = getSpanishDiscoveryPages()[0]
 
@@ -29,6 +30,7 @@ function Section({ title, children }: { title: string; children: React.ReactNode
 export default function SpanishHomePage() {
   return (
     <main lang="es" className="min-h-dvh bg-brand-navy">
+      <GrowthEventTracker milestone="public_page_viewed" language="es" />
       <div className="px-5 pt-5 pb-4 border-b border-brand-blue/40"
         style={{ background: 'linear-gradient(180deg, #0D2B5C 0%, #0A1628 100%)' }}>
         <Link href="/" className="inline-flex items-center gap-1.5 text-brand-silver hover:text-brand-white transition-colors mb-3">

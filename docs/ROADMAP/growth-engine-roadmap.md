@@ -296,6 +296,13 @@ Confirmed-partner directory, CRM/email, and co-marketing remain future.
 
 ## Growth-6 — Acquisition + Activation Analytics
 
+**Status: active foundation built** — device-local, privacy-respecting acquisition +
+activation analytics (`src/lib/growthAnalytics.ts`, `GrowthEventTracker`,
+`GrowthAnalyticsSummary`); no PII, no pixels, no third-party trackers. See
+`acquisition-activation-analytics-foundation.md`. Account/cloud analytics and ad/CRM
+integrations remain future (after auth + privacy/consent review).
+
+
 Event roadmap (first-party; no claims of third-party tracking beyond what exists):
 - `assessment_started`
 - `assessment_completed`

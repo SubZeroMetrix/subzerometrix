@@ -27,6 +27,7 @@ import OutcomeBriefing from '@/components/OutcomeBriefing'
 import RoadmapProgressCard from '@/components/RoadmapProgressCard'
 import ProgressReviewCard from '@/components/ProgressReviewCard'
 import CustomerProofPrompt from '@/components/CustomerProofPrompt'
+import GrowthEventTracker from '@/components/GrowthEventTracker'
 import FeedbackBox from '@/components/FeedbackBox'
 import { trackEvent } from '@/lib/analytics'
 
@@ -836,6 +837,7 @@ function ReportContent() {
 
   return (
     <main className="min-h-dvh bg-brand-navy">
+      <GrowthEventTracker milestone="report_viewed" />
 
       {/* Header */}
       <div className="px-5 pt-6 pb-8 text-center border-b border-brand-blue/40"

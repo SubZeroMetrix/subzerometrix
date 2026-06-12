@@ -18,6 +18,8 @@ import RoadmapProgressCard from '@/components/RoadmapProgressCard'
 import BusinessOutcomeTracker from '@/components/BusinessOutcomeTracker'
 import ProgressReviewCard from '@/components/ProgressReviewCard'
 import CustomerProofPrompt from '@/components/CustomerProofPrompt'
+import GrowthEventTracker from '@/components/GrowthEventTracker'
+import GrowthAnalyticsSummary from '@/components/GrowthAnalyticsSummary'
 
 const PATH_COMPLETE_KEY = 'szm_path_complete'
 
@@ -126,6 +128,7 @@ export default function DashboardPage() {
 
   return (
     <main className="min-h-dvh bg-brand-navy">
+      <GrowthEventTracker milestone="dashboard_viewed" />
 
       {/* Header */}
       <div className="px-5 pt-6 pb-6 border-b border-brand-blue/40"
@@ -333,6 +336,9 @@ export default function DashboardPage() {
 
         {/* Low-pressure, consent-first feedback (no public posting) */}
         <CustomerProofPrompt trigger="dashboard_returned" />
+
+        {/* Device-local activity summary (no cloud, no business-result claims) */}
+        <GrowthAnalyticsSummary />
 
         {/* ── Footer links ──────────────────────────────────────────── */}
         <div className="flex items-center justify-between pt-2">

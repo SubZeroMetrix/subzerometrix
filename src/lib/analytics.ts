@@ -20,6 +20,10 @@ export type AnalyticsEvent =
   | 'testimonial_interest_selected'
   | 'case_study_interest_selected'
   | 'product_feedback_submitted'
+  // Growth-6 — acquisition / activation analytics (device-local; no PII, no pixels)
+  | 'growth_event_tracked'
+  | 'acquisition_source_detected'
+  | 'activation_milestone_reached'
 
 export function trackEvent(event: AnalyticsEvent, props: Record<string, unknown> = {}): void {
   if (typeof window === 'undefined') return

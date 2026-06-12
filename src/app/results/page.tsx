@@ -18,6 +18,7 @@ import { recordAssessmentSnapshot, type RetentionView } from '@/lib/metrixRetent
 import OutcomeBriefing from '@/components/OutcomeBriefing'
 import RoadmapProgressCard from '@/components/RoadmapProgressCard'
 import ShareReferralCard from '@/components/ShareReferralCard'
+import GrowthEventTracker from '@/components/GrowthEventTracker'
 
 function riskColor(level: string): string {
   switch (level) {
@@ -122,6 +123,7 @@ export default function ResultsPage() {
 
   return (
     <main className="min-h-dvh bg-brand-navy flex flex-col">
+      <GrowthEventTracker milestone="results_viewed" />
 
       {/* Header */}
       <div className="px-5 pt-5 pb-4 border-b border-brand-blue/40"

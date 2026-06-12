@@ -4,6 +4,7 @@ import { ArrowLeft, ArrowRight, Info } from 'lucide-react'
 import { buildOpenGraph, buildTwitter, breadcrumbJsonLd } from '@/lib/seo'
 import { getGeneralBusinessStarterPackage } from '@/lib/generalBusinessStarter'
 import ShareReferralCard from '@/components/ShareReferralCard'
+import GrowthEventTracker from '@/components/GrowthEventTracker'
 
 const TITLE = 'General Business Starter'
 const DESCRIPTION =
@@ -26,6 +27,7 @@ export default function GeneralBusinessStarterPage() {
 
   return (
     <main className="min-h-dvh bg-brand-navy">
+      <GrowthEventTracker milestone="public_page_viewed" />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumb) }} />
 
       <div className="px-5 pt-5 pb-4 border-b border-brand-blue/40"

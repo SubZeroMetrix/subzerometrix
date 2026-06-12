@@ -8,6 +8,7 @@ import {
 } from '@/lib/partnerDistribution'
 import PartnerInterestForm from '@/components/PartnerInterestForm'
 import ShareReferralCard from '@/components/ShareReferralCard'
+import GrowthEventTracker from '@/components/GrowthEventTracker'
 
 const TITLE = 'Partners'
 const DESCRIPTION =
@@ -31,6 +32,7 @@ export default function PartnersPage() {
 
   return (
     <main className="min-h-dvh bg-brand-navy">
+      <GrowthEventTracker milestone="public_page_viewed" />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumb) }} />
 
       <div className="px-5 pt-5 pb-4 border-b border-brand-blue/40"
