@@ -306,6 +306,50 @@ export function getSyncStorageModeLabel(mode: SyncStorageMode): string {
   return SYNC_STORAGE_MODE_LABELS[mode]
 }
 
+// ── Presentational helpers for the Sync Status UI (Account-2C) ─────────────────
+// Pure string maps — no network, no localStorage, no Supabase. These describe a
+// status that is PASSED IN; they never infer or claim that sync is live.
+
+export type SyncStatusTone = 'neutral' | 'positive' | 'warning' | 'prompt'
+
+const SYNC_STATUS_DESCRIPTIONS: Record<SyncStatus, string> = {
+  saved_on_device: 'Stored in this browser on this device. Clearing browser data could remove it.',
+  synced_to_account: 'Backed up to your account and available when you sign in.',
+  sync_unavailable: 'Cloud backup is not available right now — your progress is still saved on this device.',
+  sign_in_to_back_up: 'Saved on this device. Sign in later to back it up to your account.',
+}
+
+// Optional, non-actionable helper text. The badge renders this as plain text — it does
+// NOT wire a sign-in flow (none is added in this phase).
+const SYNC_STATUS_ACTION_LABELS: Record<SyncStatus, string | null> = {
+  saved_on_device: null,
+  synced_to_account: null,
+  sync_unavailable: null,
+  sign_in_to_back_up: 'Sign in to back up progress',
+}
+
+const SYNC_STATUS_TONES: Record<SyncStatus, SyncStatusTone> = {
+  saved_on_device: 'neutral',
+  synced_to_account: 'positive',
+  sync_unavailable: 'warning',
+  sign_in_to_back_up: 'prompt',
+}
+
+/** A short, honest description of where progress lives for a given status. */
+export function getSyncStatusDescription(status: SyncStatus): string {
+  return SYNC_STATUS_DESCRIPTIONS[status]
+}
+
+/** Optional helper/CTA text for a status (null when none). Non-actionable in 2C. */
+export function getSyncStatusActionLabel(status: SyncStatus): string | null {
+  return SYNC_STATUS_ACTION_LABELS[status]
+}
+
+/** A visual tone hint for the status (styling only). */
+export function getSyncStatusTone(status: SyncStatus): SyncStatusTone {
+  return SYNC_STATUS_TONES[status]
+}
+
 /** The contract for a single entity type. */
 export function getSyncEntityByType(type: SyncEntityType): SyncEntityContract {
   return ENTITY_CONTRACTS[type]

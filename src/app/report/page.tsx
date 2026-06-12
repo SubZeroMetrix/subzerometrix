@@ -29,6 +29,7 @@ import ProgressReviewCard from '@/components/ProgressReviewCard'
 import CustomerProofPrompt from '@/components/CustomerProofPrompt'
 import GrowthEventTracker from '@/components/GrowthEventTracker'
 import FeedbackBox from '@/components/FeedbackBox'
+import SyncStatusBadge from '@/components/SyncStatusBadge'
 import { trackEvent } from '@/lib/analytics'
 
 // ── Score ring ────────────────────────────────────────────────────────────────
@@ -1170,6 +1171,8 @@ function ReportContent() {
                   🎯 Roadmap complete — time to reassess!
                 </p>
               )}
+              {/* Honest storage status — this checklist progress is device-local (Account-2C) */}
+              <SyncStatusBadge status="saved_on_device" entityType="roadmap_action_progress" compact className="mt-3" />
             </div>
 
             {/* State notice */}

@@ -19,6 +19,7 @@ import OutcomeBriefing from '@/components/OutcomeBriefing'
 import RoadmapProgressCard from '@/components/RoadmapProgressCard'
 import ShareReferralCard from '@/components/ShareReferralCard'
 import GrowthEventTracker from '@/components/GrowthEventTracker'
+import SyncStatusBadge from '@/components/SyncStatusBadge'
 
 function riskColor(level: string): string {
   switch (level) {
@@ -338,6 +339,8 @@ export default function ResultsPage() {
             <Link href="/dashboard" className="text-brand-accent underline underline-offset-2">dashboard</Link>{' '}
             to track progress and reassess over time. Cloud account sync is coming later.
           </p>
+          {/* Honest storage status — device-local snapshot; no cloud sync wired (Account-2C) */}
+          <SyncStatusBadge status="saved_on_device" entityType="assessment_history" compact className="mt-2" />
         </div>
 
         {/* Share / invite another contractor (manual share only) */}

@@ -348,9 +348,14 @@ local-key → cloud-table audit).
   writer wired, no "synced" claim. Privacy-sensitive tables (partner_interest = PII+free
   text; customer_feedback = free text; growth_events = non-PII by design) need a privacy
   review before wiring.
-- **Account-2C — Sync Status UI: next.** A small honest status chip (defaults to "Saved on
-  this device"; "Synced to your account" only after a confirmed write). Then 2D onward
-  wires real flows, lowest privacy risk first.
+- **Account-2C — Sync Status UI: built.** `src/components/SyncStatusBadge.tsx` + three pure
+  helpers in `syncContracts.ts` (`sync-status-ui-component.md`). Presentational only —
+  defaults to "Saved on this device"; "Synced to your account" renders only when explicitly
+  passed (after a confirmed write). Placed on `/dashboard`, `/report`, `/results`, all
+  passing device-local status. No Supabase writes, no sign-in flow added.
+- **Account-2D — Assessment / MetrixScore™ History Sync: next.** Apply migration `002`,
+  verify RLS, perform confirmed writes to `cloud_sync_assessment_history` /
+  `cloud_sync_score_history`, then surface "Synced to your account" only on success.
 
 **Placement:** after Growth-6, before **Product-5 — Guided Business Foundation Builder**.
 Required infrastructure before Product-5B/5C checklist tracking becomes a core feature.

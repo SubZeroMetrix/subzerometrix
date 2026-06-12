@@ -20,6 +20,7 @@ import ProgressReviewCard from '@/components/ProgressReviewCard'
 import CustomerProofPrompt from '@/components/CustomerProofPrompt'
 import GrowthEventTracker from '@/components/GrowthEventTracker'
 import GrowthAnalyticsSummary from '@/components/GrowthAnalyticsSummary'
+import SyncStatusBadge from '@/components/SyncStatusBadge'
 
 const PATH_COMPLETE_KEY = 'szm_path_complete'
 
@@ -339,6 +340,9 @@ export default function DashboardPage() {
 
         {/* Device-local activity summary (no cloud, no business-result claims) */}
         <GrowthAnalyticsSummary />
+
+        {/* Honest storage status — device-local today; no cloud sync wired (Account-2C) */}
+        <SyncStatusBadge status="saved_on_device" entityType="metrix_score_history" />
 
         {/* ── Footer links ──────────────────────────────────────────── */}
         <div className="flex items-center justify-between pt-2">

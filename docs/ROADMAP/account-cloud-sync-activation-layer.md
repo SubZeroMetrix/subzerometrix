@@ -51,8 +51,8 @@ change, no wired sync.**
 
 - **Account-2A** — architecture / migration plan / contracts only *(built)*.
 - **Account-2B** — Supabase tables + RLS *(built — `supabase/migrations/002_cloud_sync_progress_records.sql`)*.
-- **Account-2C** — add the sync-status UI component *(next)*.
-- **Account-2D onward** — wire actual flows (assessment/score first, lowest privacy risk).
+- **Account-2C** — sync-status UI component *(built — `SyncStatusBadge.tsx`; see `sync-status-ui-component.md`)*.
+- **Account-2D onward** — wire actual flows (assessment/score first, lowest privacy risk) *(next)*.
 
 ## Account-2B artifacts (built — schema + RLS only)
 

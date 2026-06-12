@@ -26,9 +26,11 @@ later wiring phase (2D onward). **Next: Account-2C — Sync Status UI.**
 
 1. **Account-2B — Supabase Tables + RLS for Progress Records.** *(Built — migration `002`.)*
    Ten `cloud_sync_*` tables, RLS owner-only, `updated_at` trigger. No writer wired.
-2. **Account-2C — Sync Status UI Component.** A small, honest status chip reading the
-   four `SyncStatus` labels — defaults to "Saved on this device"; shows "Synced to your
-   account" only on a confirmed `synced` result.
+2. **Account-2C — Sync Status UI Component.** *(Built — `src/components/SyncStatusBadge.tsx`,
+   see `sync-status-ui-component.md`.)* A small, honest status chip reading the four
+   `SyncStatus` labels — defaults to "Saved on this device"; shows "Synced to your account"
+   only when explicitly passed after a confirmed `synced` result. Presentational only; no
+   Supabase writes. Placed on `/dashboard`, `/report`, `/results`.
 3. **Account-2D — Assessment / MetrixScore™ History Sync.** Wire the existing
    `metrixCloudSync` writer + sign-in + cloud→local hydrate. Lowest privacy risk first.
 4. **Account-2E — Roadmap Action + KPI Sync.** Activate the existing action/KPI writers.
