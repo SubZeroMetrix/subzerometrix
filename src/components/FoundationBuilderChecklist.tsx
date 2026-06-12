@@ -20,6 +20,7 @@ import {
   getFoundationStageLabel, getFoundationPriorityLabel,
   foundationItemsToCsv, foundationItemsToPrintableHtml,
   normalizeFoundationTrade, withTradeSteps,
+  getFoundationStateResources, normalizeFoundationState,
   type FoundationChecklistItem, type FoundationStage, type FoundationCategoryId,
 } from '@/lib/foundationBuilder'
 import { loadIntake } from '@/lib/intake'
@@ -46,11 +47,14 @@ export default function FoundationBuilderChecklist() {
   const [openNote, setOpenNote] = useState<string | null>(null)
   const [fbStatus, setFbStatus] = useState<SyncStatus>('saved_on_device')
   const [fbSyncedAt, setFbSyncedAt] = useState<string | null>(null)
+  const [userState, setUserState] = useState<string | null>(null)
 
   useEffect(() => {
     // Seed with the user's trade (from intake) and upgrade an existing checklist with any
     // missing trade-specific steps. No trade → general core steps only.
-    const trade = normalizeFoundationTrade(loadIntake()?.trade)
+    const intake = loadIntake()
+    const trade = normalizeFoundationTrade(intake?.trade)
+    setUserState(intake?.region ?? null)
     const seeded = getFoundationItemsOrDefaults(trade)
     const upgraded = withTradeSteps(seeded, trade)
     if (upgraded.length !== seeded.length) saveFoundationItems(upgraded)
@@ -230,6 +234,36 @@ export default function FoundationBuilderChecklist() {
                             {getFoundationStageLabel(item.stage)}
                           </span>
                         </div>
+
+                        {/* Official-resource starting points (only on flagged steps) */}
+                        {def?.officialSourceReminder && (() => {
+                          const resources = getFoundationStateResources(userState, item.category)
+                          return (
+                            <div className="mt-2 rounded-lg p-2.5" style={{ background: 'rgba(239,159,39,0.06)', border: '1px solid rgba(239,159,39,0.2)' }}>
+                              <p className="text-[10px] text-brand-silver/80 leading-relaxed">
+                                Official starting points{normalizeFoundationState(userState) ? ` for ${normalizeFoundationState(userState)}` : ''} —
+                                verify current requirements with official state/local sources. Not legal, tax, or licensing advice.
+                              </p>
+                              {resources.length > 0 ? (
+                                <ul className="mt-1.5 space-y-1">
+                                  {resources.map(r => (
+                                    <li key={r.url}>
+                                      <a href={r.url} target="_blank" rel="noopener noreferrer"
+                                        className="inline-flex items-center gap-1 text-[11px] text-brand-accent underline underline-offset-2">
+                                        <ExternalLink className="w-3 h-3 flex-shrink-0" /> {r.label}
+                                      </a>
+                                    </li>
+                                  ))}
+                                </ul>
+                              ) : (
+                                <p className="text-[10px] text-brand-silver/60 mt-1.5">
+                                  Set your state in the assessment to see official starting points, then verify
+                                  requirements with your state/local government sources.
+                                </p>
+                              )}
+                            </div>
+                          )
+                        })()}
 
                         {/* Stage controls */}
                         <div className="flex flex-wrap gap-1.5 mt-2">

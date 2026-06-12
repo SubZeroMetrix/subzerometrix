@@ -422,8 +422,13 @@ local-key → cloud-table audit).
   `getFoundationItemsByTrade` / `withTradeSteps` / `normalizeFoundationTrade`; checklist seeds
   from the user's intake trade, falls back to general core steps. Trade steps route to official
   state/local sources (educational, not advice).
-- **Next build — Product-5G — State-Specific Official-Resource Routing.** (Account-2J/2K remain
-  later Account-2 hardening phases.)
+- **Product-5G — State-Specific Official-Resource Routing: built.** Official-portal starting
+  points for the 6 launch states (FL, CO, TX, AZ, OH, NC) on `officialSourceReminder` steps
+  (legal/entity, tax/EIN, licensing) + federal EIN/GBP; `getFoundationStateResources` /
+  `normalizeFoundationState`; reads intake `region`, generic verify-your-state fallback.
+  Educational starting points only — not advice, no completeness/currency claim.
+- **Next build — Product-5H — Spanish Foundation Builder.** (Account-2J/2K remain later
+  Account-2 hardening phases.)
 
 **Placement:** after Growth-6, before **Product-5 — Guided Business Foundation Builder**.
 Required infrastructure before Product-5B/5C checklist tracking becomes a core feature.

@@ -582,3 +582,96 @@ export function foundationItemsToPrintableHtml(items: FoundationChecklistItem[])
     `<p class="note">Educational only. Verify legal, tax, and licensing requirements with official sources.</p>` +
     `</body></html>`
 }
+
+// ── Product-5G: state-specific official-resource routing ────────────────────────
+// EDUCATIONAL STARTING POINTS ONLY. These point to official government portals so the
+// user can verify requirements themselves. They are NOT legal/tax/licensing advice and
+// make NO claim that a state's requirements are complete or current. Always verify.
+
+export interface FoundationOfficialResource {
+  label: string
+  url: string
+  scope: 'federal' | 'state'
+}
+
+// Federal resources (same for every state).
+const FEDERAL_EIN_RESOURCE: FoundationOfficialResource = {
+  label: 'IRS — Apply for an EIN (official)', url: 'https://www.irs.gov/businesses/small-businesses-self-employed/get-an-employer-identification-number', scope: 'federal',
+}
+const GBP_RESOURCE: FoundationOfficialResource = {
+  label: 'Google Business Profile (official)', url: 'https://www.google.com/business/', scope: 'federal',
+}
+
+interface StateResourceSet {
+  entity: FoundationOfficialResource     // Secretary of State / business registration
+  tax: FoundationOfficialResource        // state department of revenue
+  licensing: FoundationOfficialResource  // state licensing authority
+}
+
+// Launch states only. Links are official-portal starting points (homepages/portals),
+// chosen to be stable. Labels say "official"; the UI adds a "verify current" caption.
+const LAUNCH_STATE_RESOURCES: Record<string, StateResourceSet> = {
+  Florida: {
+    entity: { label: 'Florida Division of Corporations — Sunbiz (official)', url: 'https://www.sunbiz.org/', scope: 'state' },
+    tax: { label: 'Florida Department of Revenue (official)', url: 'https://floridarevenue.com/', scope: 'state' },
+    licensing: { label: 'Florida DBPR — licensing (official)', url: 'https://www.myfloridalicense.com/', scope: 'state' },
+  },
+  Colorado: {
+    entity: { label: 'Colorado Secretary of State — Business (official)', url: 'https://www.coloradosos.gov/', scope: 'state' },
+    tax: { label: 'Colorado Department of Revenue — Taxation (official)', url: 'https://tax.colorado.gov/', scope: 'state' },
+    licensing: { label: 'Colorado DORA — professions & occupations (official)', url: 'https://dpo.colorado.gov/', scope: 'state' },
+  },
+  Texas: {
+    entity: { label: 'Texas Secretary of State (official)', url: 'https://www.sos.state.tx.us/', scope: 'state' },
+    tax: { label: 'Texas Comptroller (official)', url: 'https://comptroller.texas.gov/', scope: 'state' },
+    licensing: { label: 'Texas Dept. of Licensing & Regulation — TDLR (official)', url: 'https://www.tdlr.texas.gov/', scope: 'state' },
+  },
+  Arizona: {
+    entity: { label: 'Arizona Corporation Commission (official)', url: 'https://azcc.gov/', scope: 'state' },
+    tax: { label: 'Arizona Department of Revenue (official)', url: 'https://azdor.gov/', scope: 'state' },
+    licensing: { label: 'Arizona Registrar of Contractors — ROC (official)', url: 'https://roc.az.gov/', scope: 'state' },
+  },
+  Ohio: {
+    entity: { label: 'Ohio Secretary of State — Business (official)', url: 'https://www.ohiosos.gov/', scope: 'state' },
+    tax: { label: 'Ohio Department of Taxation (official)', url: 'https://tax.ohio.gov/', scope: 'state' },
+    licensing: { label: 'Ohio eLicense (official)', url: 'https://elicense.ohio.gov/', scope: 'state' },
+  },
+  'North Carolina': {
+    entity: { label: 'North Carolina Secretary of State — Business (official)', url: 'https://www.sosnc.gov/', scope: 'state' },
+    tax: { label: 'North Carolina Department of Revenue (official)', url: 'https://www.ncdor.gov/', scope: 'state' },
+    licensing: { label: 'NC Licensing Board for General Contractors (official)', url: 'https://nclbgc.org/', scope: 'state' },
+  },
+}
+
+export const FOUNDATION_LAUNCH_STATES: string[] = Object.keys(LAUNCH_STATE_RESOURCES)
+
+/** Canonical launch-state name if we have official resources for it, else null. */
+export function normalizeFoundationState(value: string | null | undefined): string | null {
+  if (!value) return null
+  const match = FOUNDATION_LAUNCH_STATES.find(s => s.toLowerCase() === value.trim().toLowerCase())
+  return match ?? null
+}
+
+/**
+ * Official-resource starting points for a step's category, given the user's state.
+ * Federal resources (EIN, GBP) apply to every state. State resources only resolve for the
+ * launch states; other states return just the federal items (UI shows a verify-your-state
+ * fallback). NEVER advice; NEVER a completeness/currency claim.
+ */
+export function getFoundationStateResources(
+  state: string | null | undefined,
+  category: FoundationCategoryId,
+): FoundationOfficialResource[] {
+  const out: FoundationOfficialResource[] = []
+  if (category === 'tax_ein') out.push(FEDERAL_EIN_RESOURCE)
+  if (category === 'google_business_profile') out.push(GBP_RESOURCE)
+
+  const canonical = normalizeFoundationState(state)
+  if (canonical) {
+    const set = LAUNCH_STATE_RESOURCES[canonical]
+    if (category === 'legal_entity') out.push(set.entity)
+    else if (category === 'tax_ein') out.push(set.tax)
+    else if (category === 'licensing_insurance') out.push(set.licensing)
+  }
+  return out
+}

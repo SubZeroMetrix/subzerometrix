@@ -130,8 +130,13 @@ model **cloud-ready from day one**. Device-local is an acceptable fallback/first
   `normalizeFoundationTrade`; checklist seeds from intake trade and falls back to general
   core steps. Each trade step says verify with official state/local sources — educational,
   not advice.)*
-- **Product-5G** — State-Specific Official-Resource Routing *(next)*
-- **Product-5H** — Spanish Foundation Builder
+- **Product-5G** — State-Specific Official-Resource Routing *(built — official-portal
+  starting points for the 6 launch states (FL, CO, TX, AZ, OH, NC) on
+  `officialSourceReminder` steps (legal/entity, tax/EIN, licensing/insurance) + federal
+  EIN/GBP; helpers `getFoundationStateResources` / `normalizeFoundationState` /
+  `FOUNDATION_LAUNCH_STATES`; reads intake `region`, generic verify-your-state fallback
+  otherwise. Starting points only — not advice, no completeness/currency claim.)*
+- **Product-5H** — Spanish Foundation Builder *(next)*
 - **Product-5I** — Account-Synced Foundation Progress *(sync plumbing ready: Account-2I
   `src/lib/foundationBuilderSync.ts` + the three `cloud_sync_*` tables; populate
   `FOUNDATION_BUILDER_KEYS` from the Product-5 data model to activate, no further wiring)*
