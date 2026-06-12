@@ -15,6 +15,7 @@ import {
 import { buildStarterScore, explainRisk } from '@/lib/metrixReport'
 import { generateActions, type PathAction } from '@/lib/pathActions'
 import { recordAssessmentSnapshot, type RetentionView } from '@/lib/metrixRetention'
+import OutcomeBriefing from '@/components/OutcomeBriefing'
 
 function riskColor(level: string): string {
   switch (level) {
@@ -229,6 +230,9 @@ export default function ResultsPage() {
             </div>
           )}
         </div>
+
+        {/* Why this score? + next improvement lever (explanation only) */}
+        <OutcomeBriefing score={starter} intake={intake} variant="results" />
 
         {/* MetrixProfile™ context */}
         {pillGroups.length > 0 && (

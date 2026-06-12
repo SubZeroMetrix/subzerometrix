@@ -23,6 +23,7 @@ import { STATE_RESOURCES } from '@/lib/stateResources'
 import { loadIntake, goalLabel, challengeLabel, stageLabel, type QuickIntake } from '@/lib/intake'
 import { buildStarterScore, explainRisk, firstAction, alternativePaths } from '@/lib/metrixReport'
 import ChoosePathSection from '@/components/ChoosePathSection'
+import OutcomeBriefing from '@/components/OutcomeBriefing'
 import FeedbackBox from '@/components/FeedbackBox'
 import { trackEvent } from '@/lib/analytics'
 
@@ -1053,6 +1054,9 @@ function ReportContent() {
             {/* ── Choose Your Path — roadmap options + first actions ────── */}
             <ChoosePathSection starter={starter} intake={intake} />
 
+            {/* Score explanation + 30/90-day execution plan (explanation only) */}
+            <OutcomeBriefing score={starter} intake={intake} variant="report" />
+
             <section className="mt-6 mb-8">
               <div className="flex items-center gap-2 mb-1">
                 <TrendingUp className="w-5 h-5 text-brand-accent" />
@@ -1097,7 +1101,7 @@ function ReportContent() {
                 </p>
                 <p className="text-sm text-brand-white leading-relaxed mb-2">{report.builderPath}</p>
                 <p className="text-[12px] text-brand-silver leading-relaxed">
-                  As your MetrixScore™ rises, {platform.name} unlocks deeper benchmarks and guidance
+                  As your MetrixScore™ rises, {platform.name} unlocks deeper guidance
                   built specifically for {result.businessType || 'your trade'} businesses.
                 </p>
               </div>

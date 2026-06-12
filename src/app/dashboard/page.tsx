@@ -14,6 +14,7 @@ import { generateActions } from '@/lib/pathActions'
 import { recordAssessmentSnapshot, recordActionProgress, getRetentionView, type RetentionView } from '@/lib/metrixRetention'
 import { RETENTION_COPY } from '@/lib/metrixHistory'
 import { MANUAL_KPI_DEFINITIONS } from '@/lib/metrixKpis'
+import OutcomeBriefing from '@/components/OutcomeBriefing'
 
 const PATH_COMPLETE_KEY = 'szm_path_complete'
 
@@ -201,6 +202,9 @@ export default function DashboardPage() {
             </div>
           </div>
         </section>
+
+        {/* ── What to work on (next best action + 7-day plan) ───────── */}
+        <OutcomeBriefing score={starter} intake={intake} variant="dashboard" />
 
         {/* ── MetrixMomentum ────────────────────────────────────────── */}
         <section>
