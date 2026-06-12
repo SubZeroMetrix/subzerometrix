@@ -199,6 +199,57 @@ contractor business — without manipulation.
 - business readiness score for contractors
 - trade business launch roadmap
 
+## Growth-2B — General Business Starter Information Package
+
+**Goal:** give value to visitors arriving through broad "how to start a business" /
+"business startup checklist" intent, even when they are not in a supported
+contractor/trade category — capture general startup demand, educate, route relevant
+users into contractor/service paths, and collect future-expansion signals.
+
+**Honesty rule (required on every page):**
+> "SubZeroMetrix™ is currently strongest for contractors, tradespeople, and
+> service-business owners. This general business starter package is educational and
+> may be less industry-specific."
+Do **not** claim SubZeroMetrix™ fully supports every industry yet.
+
+### Package contents
+- General Business Startup Checklist
+- Business Readiness Self-Check
+- Business Setup Basics
+- Legal / tax / licensing disclaimer + official-resource routing
+- Financial Readiness Checklist
+- Pricing and Revenue Basics
+- Customer Acquisition Basics
+- Operations and Systems Basics
+- First-Hire Readiness Basics
+- Vendor / Tool Readiness Basics
+- 30-Day Startup Action Plan
+- CTA to take the SubZeroMetrix™ assessment
+- Routing into contractor / trade / service-business paths when relevant
+
+### Future page ideas
+`/how-to-start-a-business` · `/business-startup-checklist` · `/general-business-starter` ·
+`/business-readiness-assessment` · `/small-business-readiness-score`
+
+### Future analytics fields
+`user_selected_industry` · `business_type` · `startup_stage` ·
+`general_business_starter_viewed` · `general_business_checklist_started` ·
+`general_business_checklist_completed` · `routed_to_contractor_path` ·
+`routed_to_service_business_path` · `unsupported_industry_selected` ·
+`future_vertical_interest`
+
+### Guardrails
+- Educational only.
+- No legal advice; no tax advice; no financial advice; no licensing advice.
+- No guaranteed business success; no guaranteed leads.
+- No claim of full industry support; no fake industry expertise.
+- No thin duplicate pages; no doorway pages; no keyword stuffing.
+- State-specific pages should direct users to official state/local sources where appropriate.
+
+**Placement:** after Growth-2 (AI Answer Engine Discovery Foundation), before Growth-3
+(Product-Led Sharing + Referral Engine). Preserves the strongest contractor/trade/
+service-business positioning while serving broad startup visitors.
+
 ## Growth-3 — Product-Led Sharing + Referral Engine
 
 - Shareable Starter MetrixScore™ snapshot
@@ -379,9 +430,10 @@ testimonials, partner leads, and reassessments.
 1. Growth-1 — Organic Discovery Foundation
 2. Growth-1B — Keyword + Search Intent Foundation
 3. Growth-2 — AI Answer Engine Discovery Foundation
-4. Growth-3 — Product-Led Sharing + Referral Engine
-5. Growth-4 — Customer Proof / Review Engine
-6. Growth-5 — Partner / Vendor / Association Distribution System
-7. Growth-6 — Acquisition + Activation Analytics
-8. Pre-Launch Audit-1A / 1B / 1C (`pre-launch-audit-system.md`)
-9. Pre-Launch Fix-1 — Resolve blockers and launch-trust issues
+4. Growth-2B — General Business Starter Information Package
+5. Growth-3 — Product-Led Sharing + Referral Engine
+6. Growth-4 — Customer Proof / Review Engine
+7. Growth-5 — Partner / Vendor / Association Distribution System
+8. Growth-6 — Acquisition + Activation Analytics
+9. Pre-Launch Audit-1A / 1B / 1C (`pre-launch-audit-system.md`)
+10. Pre-Launch Fix-1 — Resolve blockers and launch-trust issues
