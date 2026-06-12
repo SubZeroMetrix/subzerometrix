@@ -26,6 +26,7 @@ import ChoosePathSection from '@/components/ChoosePathSection'
 import OutcomeBriefing from '@/components/OutcomeBriefing'
 import RoadmapProgressCard from '@/components/RoadmapProgressCard'
 import ProgressReviewCard from '@/components/ProgressReviewCard'
+import CustomerProofPrompt from '@/components/CustomerProofPrompt'
 import FeedbackBox from '@/components/FeedbackBox'
 import { trackEvent } from '@/lib/analytics'
 
@@ -1067,6 +1068,11 @@ function ReportContent() {
             {/* Progress review digest (device-local reads only) */}
             <div className="mb-8">
               <ProgressReviewCard score={starter} intake={intake} />
+            </div>
+
+            {/* Low-pressure, consent-first feedback (no public posting) */}
+            <div className="mb-8">
+              <CustomerProofPrompt trigger="report_viewed" />
             </div>
 
             <section className="mt-6 mb-8">

@@ -1,60 +1,78 @@
-# Customer Proof / Review Engine — Future Build Backlog
+# Customer Proof / Review Engine — Growth-4 (Foundation Built)
 
-**Status:** Backlog / not started. This is a planning doc for a future phase. No code,
-UI, scoring, payment, or data writes are implemented by adding this file.
+**Status:** Foundation built. Ethical, consent-first feedback + proof model with a
+low-pressure in-app prompt. **No fake reviews, no incentivized reviews, no positive-
+only gating, no automatic public posting, and no public use of a user's words without
+explicit permission.** No third-party review-platform integration yet.
 
-## Why
+Owner/operator: **The Modern Trades Mentor LLC**. Branding: **SubZeroMetrix™**,
+**MetrixScore™** (™, not ®).
 
-SubZeroMetrix™ helps contractors build a business; the platform should capture and
-ethically surface proof that it works — satisfaction, testimonials, and case studies —
-while routing unhappy customers to support and product improvement instead of public
-reviews.
+## What Growth-4 built
 
-## Scope (planned components)
+- **`src/lib/customerProof.ts`** — model: `CustomerProofTrigger`,
+  `CustomerFeedbackScore`, `CustomerProofRoute`, `TestimonialConsentStatus`,
+  `CaseStudyCandidate`, `ReviewRoutingRecommendation`, `CustomerProofPrompt`;
+  helpers `getCustomerProofPrompt`, `getReviewRoutingRecommendation`,
+  `getTestimonialConsentCopy`, `getCaseStudyCandidateSignal`,
+  `shouldShowCustomerProofPrompt`.
+- **`src/components/CustomerProofPrompt.tsx`** — a low-pressure, dismissible
+  "Was this useful?" prompt (shows once per device).
+- **`src/lib/analytics.ts`** — added `feedback_prompt_viewed`,
+  `feedback_score_selected`, `testimonial_interest_selected`,
+  `case_study_interest_selected`, `product_feedback_submitted` to the no-op event union.
+- UI added to `/dashboard` (trigger `dashboard_returned`) and `/report`
+  (trigger `report_viewed`).
 
-1. **In-app feedback checkpoints**
-   - Lightweight prompts at natural moments (after results, after completing an outcome
-     step, at reassessment) asking "was this helpful?"
-   - Captured locally first (device), account-synced later — same honest local→cloud
-     pattern as the retention foundation.
+## Feedback score bands
 
-2. **Customer satisfaction score**
-   - A simple satisfaction signal (e.g., a 1–5 or thumbs scale) tracked over time.
-   - Internal product metric first; never presented as part of the MetrixScore™.
+`positive` · `neutral` · `negative`.
 
-3. **Testimonial capture**
-   - Opt-in flow for a contractor to share a short written testimonial.
-   - Explicit consent required before any storage or display.
+## Testimonial consent model
 
-4. **Case-study candidate capture**
-   - Flag accounts that show meaningful progress (score improvement, completed plans)
-     as potential case-study candidates for outreach — internal only until consented.
+Explicit, optional, withdrawable. The prompt offers a positive user an OPTIONAL
+testimonial/case-study interest with clear copy: "We never publish your name, quote,
+or business without your explicit permission, and you can withdraw it at any time."
+`getTestimonialConsentCopy()` provides permission, case-study, contact-later, no-
+public-without-permission, and decline strings. `TestimonialConsentStatus` =
+`not_asked | granted | declined | interested_contact_later`.
 
-5. **Ethical public review routing**
-   - Only invite clearly-satisfied users to leave a public review.
-   - No incentives for reviews; follow each platform's review policy.
-   - Never filter to only positive reviewers in a way that violates platform rules —
-     invite genuinely-satisfied users and let them say what they think.
+## Case-study candidate model
 
-6. **Review consent / permission**
-   - No name, quote, business, or testimonial is shown publicly without explicit,
-     revocable consent. Store consent state and honor revocation.
+`getCaseStudyCandidateSignal(trigger, score)` flags a candidate only when feedback is
+**positive after real progress** (action completed, KPI saved, reassessment completed,
+roadmap progress) — and even then, **consent is required before any use**.
 
-7. **Negative-feedback → support / product-improvement flow**
-   - Dissatisfied feedback routes privately to support and the product backlog, NOT to
-     a public review prompt — fix the problem first.
+## Negative feedback routing
 
-## Guardrails (apply when built)
+Negative feedback routes to `private_support_feedback` — privately to product/support,
+**never to a public review page**. Negative feedback is **not suppressed**; it is used
+for improvement. `publicReviewAllowed` is `false` for every band in this phase.
 
-- Honest copy only — no "guaranteed", "benchmarked", "predictive" framing.
-- **Never use credit-bureau / credit-score brand names** in any user-facing copy
-  (platform-wide permanent rule).
-- No fake testimonials, no purchased reviews, no "approved/preferred vendor" implications.
-- Consent-first: nothing public without explicit permission.
-- Keep separate from the MetrixScore™ engine — satisfaction is a product metric, not a
-  readiness score input.
+## Future public review routing (planned, NOT built)
 
-## Out of scope for now
+A future phase may invite clearly-satisfied, consenting users to leave a public review
+— with no incentives and following each platform's policy. Not wired here.
 
-No implementation, UI, schema, or writes. This is a backlog placeholder to be picked up
-in a dedicated future phase after the current retention + outcome-plan work.
+## Future Spanish customer-proof support (planned, NOT built)
+
+Spanish proof/feedback copy is a future addition. No Spanish customer-proof flow is
+wired today; Spanish remains discovery-layer only.
+
+## Ethical guardrails (FTC / G2 / Capterra / Google-style, high level)
+
+- **No fake reviews or testimonials.**
+- **No incentivized review manipulation** (no money/discount/gift for a review).
+- **No positive-only review gating** — never filter so only happy users are asked in a
+  policy-violating way; ask honestly and let people say what they think.
+- **No public use without explicit, withdrawable consent.**
+- **No automatic public posting; no auto-invites.**
+- **No claim that customer feedback guarantees outcomes.**
+- **No legal/tax/financial/licensing advice.**
+- Negative feedback goes to private support/product improvement, not public reviews.
+
+## Analytics / future tracking
+
+The five proof events are emitted to the existing **no-op** `trackEvent` stub
+(dataLayer if present, else a dev log). No third-party analytics, no network calls,
+no new dependencies.

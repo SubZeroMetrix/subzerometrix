@@ -14,6 +14,12 @@ export type AnalyticsEvent =
   | 'resource_shared'
   | 'referral_created'
   | 'share_link_copied'
+  // Growth-4 — customer proof / review (consent-first; no public posting)
+  | 'feedback_prompt_viewed'
+  | 'feedback_score_selected'
+  | 'testimonial_interest_selected'
+  | 'case_study_interest_selected'
+  | 'product_feedback_submitted'
 
 export function trackEvent(event: AnalyticsEvent, props: Record<string, unknown> = {}): void {
   if (typeof window === 'undefined') return

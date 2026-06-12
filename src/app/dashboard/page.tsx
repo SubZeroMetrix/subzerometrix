@@ -17,6 +17,7 @@ import OutcomeBriefing from '@/components/OutcomeBriefing'
 import RoadmapProgressCard from '@/components/RoadmapProgressCard'
 import BusinessOutcomeTracker from '@/components/BusinessOutcomeTracker'
 import ProgressReviewCard from '@/components/ProgressReviewCard'
+import CustomerProofPrompt from '@/components/CustomerProofPrompt'
 
 const PATH_COMPLETE_KEY = 'szm_path_complete'
 
@@ -329,6 +330,9 @@ export default function DashboardPage() {
 
         {/* ── Progress Review (digest) ──────────────────────────────── */}
         <ProgressReviewCard score={starter} intake={intake} />
+
+        {/* Low-pressure, consent-first feedback (no public posting) */}
+        <CustomerProofPrompt trigger="dashboard_returned" />
 
         {/* ── Footer links ──────────────────────────────────────────── */}
         <div className="flex items-center justify-between pt-2">
