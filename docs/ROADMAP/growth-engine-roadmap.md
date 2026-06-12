@@ -53,6 +53,125 @@ A source-of-truth keyword/intent system that the discovery pages are built from.
 - 10-trade query mapping
 - **No keyword stuffing; no thin duplicate pages.**
 
+## Broad "How to Start a Business" Search Intent Layer (extends Growth-1B + Growth-2)
+
+**Goal:** do not make SubZeroMetrix™ discovery exclusive to the initial 10 contractor
+trades. Add a broader business-startup search-intent layer to capture, educate, and
+track users researching business startup generally — then use that demand data to
+identify future industries, trades, and verticals to expand into under The Modern
+Trades Mentor LLC ecosystem.
+
+**Honesty:** SubZeroMetrix™ stays clear that its **current strongest focus is
+contractors, trades, and service businesses.** Broad business-startup content is
+**educational discovery + routing** content. **Do not claim the platform fully
+supports every industry unless that support is actually built.**
+
+### Broad keyword / search-intent clusters
+
+**1. General business startup intent**
+- how to start a business
+- how to start a small business
+- business startup checklist
+- small business startup checklist
+- new business checklist
+- business launch checklist
+- startup roadmap for small business
+- how to know if I am ready to start a business
+- business readiness assessment
+- business readiness score
+- small business readiness checklist
+- business setup checklist
+- steps to start a business
+- what do I need to start a business
+
+**2. State-based business startup intent**
+- how to start a business in Florida / Colorado / Texas / Arizona / Ohio / North Carolina
+- small business startup checklist Florida
+- small business startup checklist Texas
+- business launch checklist by state
+
+**3. Service-business startup intent**
+- how to start a service business
+- home service business startup checklist
+- local service business startup checklist
+- field service business startup
+- service contractor business checklist
+- one-person service business startup
+- first-time business owner checklist
+- solo operator business checklist
+
+**4. Readiness / self-assessment intent**
+- am I ready to start a business
+- business readiness test
+- business readiness assessment
+- startup readiness checklist
+- small business readiness score
+- business launch readiness
+- do I have what I need to start a business
+
+**5. Expansion-discovery intent** (broad searches that may reveal future verticals)
+- how to start a cleaning business
+- how to start a landscaping business
+- how to start a handyman business
+- how to start a painting business
+- how to start a roofing company
+- how to start a restoration business
+- how to start a home service business
+- how to start a contractor business
+- how to start a trade business
+
+### Implementation ideas (future — not built yet)
+- A keyword source-of-truth file such as `src/lib/searchIntentKeywords.ts`.
+- An `intentType` field, one of:
+  `general_business_startup` · `state_business_startup` · `trade_business_startup` ·
+  `service_business_startup` · `readiness_assessment` · `pricing_readiness` ·
+  `lead_generation` · `first_hire` · `vendor_setup` · `future_vertical_discovery`.
+
+### Tracking fields (future analytics)
+`search_intent_type` · `keyword_cluster` · `state` · `trade` · `business_type` ·
+`user_selected_industry` · `assessment_started_from_keyword` ·
+`assessment_completed_from_keyword` · `report_unlocked_from_keyword` ·
+`dashboard_returned_from_keyword` · `referral_created_from_keyword`.
+
+### Future public page strategy
+- `/how-to-start-a-business`
+- `/business-startup-checklist`
+- `/business-readiness-assessment`
+- `/small-business-readiness-score`
+- `/state/florida/how-to-start-a-business`
+- `/state/texas/how-to-start-a-business`
+- `/state/colorado/how-to-start-a-business`
+- `/state/arizona/how-to-start-a-business`
+- `/state/ohio/how-to-start-a-business`
+- `/state/north-carolina/how-to-start-a-business`
+- `/service-business-startup-checklist`
+- `/contractor-business-startup-checklist`
+- `/trade-business-launch-roadmap`
+
+### Routing rules
+- Broad business-startup pages explain general readiness concepts.
+- CTAs route users into the SubZeroMetrix™ assessment.
+- If a user selects a contractor / trade / service-business path, personalize accordingly.
+- If a user is outside the current supported trades, be honest:
+  > "SubZeroMetrix™ is currently strongest for contractors, trades, and service businesses. You can still use the readiness framework, but some recommendations may be less industry-specific."
+
+### Guardrails
+- No claim that SubZeroMetrix™ fully supports every business type yet.
+- No fake industry expertise.
+- No thin duplicate pages.
+- No doorway pages.
+- No keyword stuffing.
+- No guaranteed ranking claims.
+- No guaranteed business success claims.
+- No legal / tax / financial advice claims.
+- State pages should direct users to official resources where appropriate.
+- Broad pages should be useful, educational, and clear.
+
+### Strategic reason
+This attracts broader startup demand while analytics reveal which verticals, states,
+trades, and service-business categories should become future expansion opportunities
+under The Modern Trades Mentor LLC ecosystem.
+
 ## Growth-2 — AI Answer Engine Discovery Foundation
 
 **Goal:** make SubZeroMetrix™ easier for AI search/chat platforms to discover,
