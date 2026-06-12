@@ -14,6 +14,7 @@ import {
 } from '@/lib/intake'
 import { buildStarterScore, explainRisk } from '@/lib/metrixReport'
 import { generateActions, type PathAction } from '@/lib/pathActions'
+import { recordAssessmentSnapshot, type RetentionView } from '@/lib/metrixRetention'
 
 function riskColor(level: string): string {
   switch (level) {
@@ -38,18 +39,26 @@ export default function ResultsPage() {
   const [loaded, setLoaded] = useState(false)
   const [result, setResult] = useState<ScoreResult | null>(null)
   const [intake, setIntake] = useState<QuickIntake | null>(null)
+  const [retention, setRetention] = useState<RetentionView | null>(null)
 
   useEffect(() => {
+    let parsed: ScoreResult | null = null
     try {
       const raw = sessionStorage.getItem('szm_score') ?? localStorage.getItem('szm_score')
       if (!raw) { router.replace('/assessment'); return }
-      setResult(JSON.parse(raw))
+      parsed = JSON.parse(raw) as ScoreResult
+      setResult(parsed)
     } catch {
       router.replace('/assessment')
       return
     }
-    setIntake(loadIntake())
+    const loadedIntake = loadIntake()
+    setIntake(loadedIntake)
     setLoaded(true)
+    // Save a local-device MetrixScore™ + MetrixProfile™ snapshot (idempotent per assessment).
+    if (parsed) {
+      try { setRetention(recordAssessmentSnapshot(parsed, loadedIntake).view) } catch {}
+    }
   }, [router])
 
   if (!loaded || !result) return (
@@ -149,6 +158,19 @@ export default function ResultsPage() {
               <div className="font-mono text-[8px] tracking-[0.15em] uppercase text-brand-silver mt-1">Profile</div>
             </div>
           </div>
+
+          {/* Previous vs current (local-device history, when a reassessment exists) */}
+          {retention?.previous && retention.latest && (
+            <p className="text-[11px] text-center text-brand-silver/70">
+              Since your last check:{' '}
+              <span className="text-brand-white">{retention.previous.overall}</span> →{' '}
+              <span className="text-brand-white">{retention.latest.overall}</span>{' '}
+              <span style={{ color: retention.latest.overall - retention.previous.overall >= 0 ? '#3FBE93' : '#E05A4E' }}>
+                ({retention.latest.overall - retention.previous.overall >= 0 ? '+' : ''}
+                {retention.latest.overall - retention.previous.overall})
+              </span>
+            </p>
+          )}
 
           {/* Risk language */}
           <div className="rounded-xl px-4 py-3"
@@ -301,8 +323,9 @@ export default function ResultsPage() {
         {/* Save note (no working save yet — Phase B) */}
         <div className="glass-light rounded-xl px-4 py-3">
           <p className="text-[11px] text-brand-silver leading-relaxed">
-            Your Starter Snapshot is saved in this browser. In the next step, members will be able to
-            save their MetrixProfile™ and track progress over time.
+            Your Starter Snapshot is saved on this device. Visit your{' '}
+            <Link href="/dashboard" className="text-brand-accent underline underline-offset-2">dashboard</Link>{' '}
+            to track progress and reassess over time. Cloud account sync is coming later.
           </p>
         </div>
 

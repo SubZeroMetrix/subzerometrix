@@ -5,11 +5,15 @@ import Link from 'next/link'
 import {
   Loader2, Thermometer, Shield, Map, Lightbulb, TrendingUp,
   CheckCircle2, Target, ClipboardList, ArrowRight, ArrowLeft,
+  History, RefreshCw, Bell, BarChart3,
 } from 'lucide-react'
 import type { ScoreResult } from '@/lib/scoring'
 import { loadIntake, stageLabel, type QuickIntake } from '@/lib/intake'
 import { buildStarterScore, estimatePotential } from '@/lib/metrixReport'
 import { generateActions } from '@/lib/pathActions'
+import { recordAssessmentSnapshot, recordActionProgress, getRetentionView, type RetentionView } from '@/lib/metrixRetention'
+import { RETENTION_COPY } from '@/lib/metrixHistory'
+import { MANUAL_KPI_DEFINITIONS } from '@/lib/metrixKpis'
 
 const PATH_COMPLETE_KEY = 'szm_path_complete'
 
@@ -38,18 +42,30 @@ export default function DashboardPage() {
   const [result, setResult] = useState<ScoreResult | null>(null)
   const [intake, setIntake] = useState<QuickIntake | null>(null)
   const [completed, setCompleted] = useState<Set<string>>(new Set())
+  const [retention, setRetention] = useState<RetentionView | null>(null)
 
   useEffect(() => {
+    let parsed: ScoreResult | null = null
     try {
       const raw = sessionStorage.getItem('szm_score') ?? localStorage.getItem('szm_score')
-      if (raw) setResult(JSON.parse(raw))
+      if (raw) { parsed = JSON.parse(raw) as ScoreResult; setResult(parsed) }
     } catch {}
-    setIntake(loadIntake())
+    const loadedIntake = loadIntake()
+    setIntake(loadedIntake)
+    let completedIds: string[] = []
     try {
       const pc = localStorage.getItem(PATH_COMPLETE_KEY)
-      if (pc) setCompleted(new Set(JSON.parse(pc) as string[]))
+      if (pc) { completedIds = JSON.parse(pc) as string[]; setCompleted(new Set(completedIds)) }
     } catch {}
     setLoaded(true)
+    // Local retention loop (device-only): record snapshot + action progress, then read the view.
+    if (parsed) {
+      try {
+        recordAssessmentSnapshot(parsed, loadedIntake)
+        recordActionProgress(completedIds, null, 'dashboard_path')
+        setRetention(getRetentionView())
+      } catch {}
+    }
   }, [])
 
   if (!loaded) return (
@@ -91,6 +107,18 @@ export default function DashboardPage() {
 
   const firstName = result.leadName || ''
   const rColor = riskColor(starter.riskLevel)
+
+  // Local retention view (device-only MetrixScore™ history)
+  const lastAssessed = retention?.summary.lastAssessedAt
+    ? new Date(retention.summary.lastAssessedAt).toLocaleDateString('en-US', { dateStyle: 'medium' })
+    : null
+  const prevOverall = retention?.summary.previousOverall ?? null
+  const curOverall = retention?.summary.latestOverall ?? null
+  const scoreDelta = retention?.summary.scoreDelta ?? null
+  const reminder = retention?.reassessmentReminder ?? null
+  const nextCheckIn = reminder?.dueAt
+    ? new Date(reminder.dueAt).toLocaleDateString('en-US', { dateStyle: 'medium' })
+    : null
 
   return (
     <main className="min-h-dvh bg-brand-navy">
@@ -225,6 +253,87 @@ export default function DashboardPage() {
                 <span className="font-semibold" style={{ color: '#3FBE93' }}>{potential.projected}</span>.
               </p>
             )}
+          </div>
+        </section>
+
+        {/* ── Your Progress (local-device MetrixScore™ history) ─────── */}
+        <section>
+          <div className="flex items-center gap-2 mb-3">
+            <History className="w-5 h-5 text-brand-accent" />
+            <h2 className="font-display text-xl tracking-wider text-brand-white">YOUR PROGRESS</h2>
+          </div>
+          <div className="glass rounded-2xl p-5 space-y-4">
+            {lastAssessed && (
+              <div className="flex items-center justify-between">
+                <span className="text-[11px] text-brand-silver/70">Last assessed</span>
+                <span className="text-[12px] text-brand-white font-medium">{lastAssessed}</span>
+              </div>
+            )}
+            {prevOverall !== null && curOverall !== null ? (
+              <div className="flex items-center justify-between">
+                <span className="text-[11px] text-brand-silver/70">Previous → current</span>
+                <span className="text-[13px] font-semibold text-brand-white">
+                  {prevOverall} → {curOverall}
+                  {scoreDelta !== null && (
+                    <span className="ml-1.5 text-[11px]" style={{ color: scoreDelta >= 0 ? '#3FBE93' : '#E05A4E' }}>
+                      ({scoreDelta >= 0 ? '+' : ''}{scoreDelta})
+                    </span>
+                  )}
+                </span>
+              </div>
+            ) : (
+              <p className="text-[11px] text-brand-silver/70 leading-relaxed">
+                This is your first check. Reassess later to see your previous vs current MetrixScore™ here.
+              </p>
+            )}
+            <Link href="/start"
+              className="flex items-center justify-center gap-2 w-full py-3 rounded-xl text-[13px] font-semibold tracking-wide uppercase bg-brand-accent text-white active:scale-[0.98] transition-all touch-target">
+              <RefreshCw className="w-4 h-4" /> Recheck My Score
+            </Link>
+            <p className="text-center text-[10px] text-brand-silver/50">{RETENTION_COPY.localOnly}</p>
+          </div>
+        </section>
+
+        {/* ── Stay on track (in-app accountability nudge) ───────────── */}
+        {reminder && (
+          <section>
+            <div className="flex items-center gap-2 mb-3">
+              <Bell className="w-5 h-5" style={{ color: '#EFB967' }} />
+              <h2 className="font-display text-xl tracking-wider text-brand-white">STAY ON TRACK</h2>
+            </div>
+            <div className="rounded-2xl p-5"
+              style={{ background: 'rgba(239,159,39,0.08)', border: '1px solid rgba(239,159,39,0.25)' }}>
+              <p className="text-[13px] font-semibold text-brand-white mb-1">{reminder.title}</p>
+              <p className="text-[12px] text-brand-silver leading-relaxed">{reminder.detail}</p>
+              {nextCheckIn && (
+                <p className="text-[11px] text-brand-silver/60 mt-2">Suggested next check-in: {nextCheckIn}</p>
+              )}
+              <p className="text-[10px] text-brand-silver/50 mt-2">
+                In-app reminder only — no emails or texts are sent.
+              </p>
+            </div>
+          </section>
+        )}
+
+        {/* ── Track your numbers (manual KPI preview — not live) ─────── */}
+        <section>
+          <div className="flex items-center gap-2 mb-3">
+            <BarChart3 className="w-5 h-5 text-brand-accent" />
+            <h2 className="font-display text-xl tracking-wider text-brand-white">TRACK YOUR NUMBERS</h2>
+          </div>
+          <div className="glass rounded-2xl p-5">
+            <p className="text-[12px] text-brand-silver leading-relaxed mb-3">
+              Track your own key numbers over time to see your momentum. Manual entry, saved on this
+              device — coming to your dashboard soon.
+            </p>
+            <div className="flex flex-wrap gap-2">
+              {MANUAL_KPI_DEFINITIONS.slice(0, 6).map(k => (
+                <span key={k.key} className="text-[11px] px-3 py-1.5 rounded-sm leading-snug"
+                  style={{ background: 'rgba(168,184,204,0.1)', color: '#C8D4E0' }}>
+                  {k.label}
+                </span>
+              ))}
+            </div>
           </div>
         </section>
 
