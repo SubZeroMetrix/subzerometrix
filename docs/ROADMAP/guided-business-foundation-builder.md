@@ -78,6 +78,16 @@ Each item should eventually support:
 - `lastUpdated`
 - `nextAction`
 
+## Quality gate — Quality-1 Platform Standard
+
+Product-5 build work (starting at Product-5A) must pass the **Quality-1 — Platform
+Quality, Trust, UX, and Customer Success Standard** (`platform-quality-trust-ux-standard.md`):
+answer the 8-question feature gate, keep the Builder an **execution system** (not a content
+library), apply the User Simplicity Standard (Start Here · Do This Next · Later · Done ·
+Blocked; progressive disclosure, not a checklist wall), honor the Cloud Sync Standard
+(below), and support outcome measurement (started/completed/blocked/skipped/revisited/
+improved/exported).
+
 ## Dependency — Account-2 Cloud Sync Activation Layer
 
 The full Foundation Builder **should not be built as local-only.** The **Account-2 Cloud

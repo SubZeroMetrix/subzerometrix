@@ -213,6 +213,13 @@ a core customer feature — otherwise a contractor's foundation progress lives o
 browser and is lost when cache is cleared. Account-2I (Foundation Builder Sync Readiness)
 is the explicit bridge: design the Foundation Builder data model cloud-ready from day one.
 
+## Relationship to Quality-1
+
+The Cloud Sync Standard (pillar 2) of **Quality-1 — Platform Quality, Trust, UX, and
+Customer Success Standard** (`platform-quality-trust-ux-standard.md`) is defined by this
+layer: the four honest sync-status labels and the "no core progress stays local-only"
+rule. Quality-1 depends on Account-2 being on the roadmap; this doc is that dependency.
+
 ## 7. Guardrails
 
 - **Do not claim cloud sync is live** unless the exact flow is built, tested, and labeled.

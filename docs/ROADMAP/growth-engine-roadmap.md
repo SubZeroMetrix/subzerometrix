@@ -346,6 +346,29 @@ gating/dependencies/`.env.local`; no banned credit-score terminology.
 
 ---
 
+## Quality-1 — Platform Quality, Trust, UX, and Customer Success Standard
+
+**Status: roadmap / standard only (not a feature).** A platform operating standard every
+future build is judged against — customer usefulness, simplicity, legal/trust safety,
+cloud-sync readiness, measurable outcomes, and ethical growth. Core rule: SubZeroMetrix™
+must stay an **execution system** (Assessment → Score → Roadmap → Action → Tracking →
+Outcome → Re-scoring), **not a content library**. Includes the 8-question feature gate,
+10 quality pillars (Simplicity, Cloud Sync, Trust/Legal, Customer Proof, Partner/Vendor,
+Security/Privacy, Public Content, Spanish Expansion, Outcome Measurement, Feature Ranking),
+a 1–5 × 8-axis feature-ranking rule, and the current top-priority ranking.
+
+See `platform-quality-trust-ux-standard.md`.
+
+**Placement:** after **Account-2 — Cloud Sync Activation Layer** and before **Product-5A**
+(Guided Business Foundation Builder build work begins). Depends on Account-2 being on the
+roadmap (it is).
+
+**Guardrails:** standard only; educational only; no legal/tax/financial/licensing advice;
+no guarantees; no fake reviews/partnerships; RLS + no exposed secrets; no invasive
+tracking; no banned credit-score terminology.
+
+---
+
 ## Product-5 — Guided Business Foundation Builder
 
 **Status: roadmap only (not built).** A guided, trackable business-foundation checklist
@@ -500,7 +523,8 @@ testimonials, partner leads, and reassessments.
 8. Growth-5 — Partner / Vendor / Association Distribution System
 9. Growth-6 — Acquisition + Activation Analytics
 10. Account-2 — Cloud Sync Activation Layer (`account-cloud-sync-activation-layer.md`)
-11. Product-5 — Guided Business Foundation Builder (`guided-business-foundation-builder.md`)
-12. Growth-7 — Public Tool / Resource Page Engine (future)
-13. Pre-Launch Audit-1A / 1B / 1C (`pre-launch-audit-system.md`)
-14. Pre-Launch Fix-1 — Resolve blockers and launch-trust issues
+11. Quality-1 — Platform Quality, Trust, UX, and Customer Success Standard (`platform-quality-trust-ux-standard.md`)
+12. Product-5 — Guided Business Foundation Builder (`guided-business-foundation-builder.md`)
+13. Growth-7 — Public Tool / Resource Page Engine (future)
+14. Pre-Launch Audit-1A / 1B / 1C (`pre-launch-audit-system.md`)
+15. Pre-Launch Fix-1 — Resolve blockers and launch-trust issues
