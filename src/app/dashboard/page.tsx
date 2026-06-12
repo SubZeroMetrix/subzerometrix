@@ -5,7 +5,7 @@ import Link from 'next/link'
 import {
   Loader2, Thermometer, Shield, Map, Lightbulb, TrendingUp,
   CheckCircle2, Target, ClipboardList, ArrowRight, ArrowLeft,
-  History, RefreshCw, Bell, BarChart3,
+  History, RefreshCw, Bell,
 } from 'lucide-react'
 import type { ScoreResult } from '@/lib/scoring'
 import { loadIntake, stageLabel, type QuickIntake } from '@/lib/intake'
@@ -13,9 +13,10 @@ import { buildStarterScore, estimatePotential } from '@/lib/metrixReport'
 import { generateActions } from '@/lib/pathActions'
 import { recordAssessmentSnapshot, recordActionProgress, getRetentionView, type RetentionView } from '@/lib/metrixRetention'
 import { RETENTION_COPY } from '@/lib/metrixHistory'
-import { MANUAL_KPI_DEFINITIONS } from '@/lib/metrixKpis'
 import OutcomeBriefing from '@/components/OutcomeBriefing'
 import RoadmapProgressCard from '@/components/RoadmapProgressCard'
+import BusinessOutcomeTracker from '@/components/BusinessOutcomeTracker'
+import ProgressReviewCard from '@/components/ProgressReviewCard'
 
 const PATH_COMPLETE_KEY = 'szm_path_complete'
 
@@ -323,27 +324,11 @@ export default function DashboardPage() {
           </section>
         )}
 
-        {/* ── Track your numbers (manual KPI preview — not live) ─────── */}
-        <section>
-          <div className="flex items-center gap-2 mb-3">
-            <BarChart3 className="w-5 h-5 text-brand-accent" />
-            <h2 className="font-display text-xl tracking-wider text-brand-white">TRACK YOUR NUMBERS</h2>
-          </div>
-          <div className="glass rounded-2xl p-5">
-            <p className="text-[12px] text-brand-silver leading-relaxed mb-3">
-              Track your own key numbers over time to see your momentum. Manual entry, saved on this
-              device — coming to your dashboard soon.
-            </p>
-            <div className="flex flex-wrap gap-2">
-              {MANUAL_KPI_DEFINITIONS.slice(0, 6).map(k => (
-                <span key={k.key} className="text-[11px] px-3 py-1.5 rounded-sm leading-snug"
-                  style={{ background: 'rgba(168,184,204,0.1)', color: '#C8D4E0' }}>
-                  {k.label}
-                </span>
-              ))}
-            </div>
-          </div>
-        </section>
+        {/* ── Business Outcome Tracker (real manual KPI input) ──────── */}
+        <BusinessOutcomeTracker />
+
+        {/* ── Progress Review (digest) ──────────────────────────────── */}
+        <ProgressReviewCard score={starter} intake={intake} />
 
         {/* ── Footer links ──────────────────────────────────────────── */}
         <div className="flex items-center justify-between pt-2">
