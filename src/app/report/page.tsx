@@ -24,6 +24,7 @@ import { loadIntake, goalLabel, challengeLabel, stageLabel, type QuickIntake } f
 import { buildStarterScore, explainRisk, firstAction, alternativePaths } from '@/lib/metrixReport'
 import ChoosePathSection from '@/components/ChoosePathSection'
 import OutcomeBriefing from '@/components/OutcomeBriefing'
+import RoadmapProgressCard from '@/components/RoadmapProgressCard'
 import FeedbackBox from '@/components/FeedbackBox'
 import { trackEvent } from '@/lib/analytics'
 
@@ -1056,6 +1057,11 @@ function ReportContent() {
 
             {/* Score explanation + 30/90-day execution plan (explanation only) */}
             <OutcomeBriefing score={starter} intake={intake} variant="report" />
+
+            {/* Roadmap progress + tool recommendations tied to the roadmap */}
+            <div className="mt-6 mb-8">
+              <RoadmapProgressCard score={starter} intake={intake} variant="report" />
+            </div>
 
             <section className="mt-6 mb-8">
               <div className="flex items-center gap-2 mb-1">

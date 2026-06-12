@@ -15,6 +15,7 @@ import { recordAssessmentSnapshot, recordActionProgress, getRetentionView, type 
 import { RETENTION_COPY } from '@/lib/metrixHistory'
 import { MANUAL_KPI_DEFINITIONS } from '@/lib/metrixKpis'
 import OutcomeBriefing from '@/components/OutcomeBriefing'
+import RoadmapProgressCard from '@/components/RoadmapProgressCard'
 
 const PATH_COMPLETE_KEY = 'szm_path_complete'
 
@@ -202,6 +203,9 @@ export default function DashboardPage() {
             </div>
           </div>
         </section>
+
+        {/* ── Roadmap progress (execution engine) ───────────────────── */}
+        <RoadmapProgressCard score={starter} intake={intake} variant="dashboard" />
 
         {/* ── What to work on (next best action + 7-day plan) ───────── */}
         <OutcomeBriefing score={starter} intake={intake} variant="dashboard" />
