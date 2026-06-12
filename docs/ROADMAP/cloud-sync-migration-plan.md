@@ -11,11 +11,21 @@ Owner/operator: **The Modern Trades Mentor LLC**. Branding: **SubZeroMetrix™**
 > four sync-status labels are a future standard; "Synced to your account" may only appear
 > after a real confirmed write.
 
+## Account-2B status — schema + RLS migration created (built)
+
+`supabase/migrations/002_cloud_sync_progress_records.sql` creates the ten unified,
+payload-first `cloud_sync_*` tables (one per `SyncEntityType`), each with **RLS enabled
+and owner-only** policies (`auth.uid() = user_id`), an `updated_at` trigger, and a
+`UNIQUE (user_id, local_id)` constraint for idempotent upserts. **Schema + RLS only — no
+app flow is wired, and nothing claims "Synced to your account."** The migration is **not
+auto-applied**; a reviewer applies it. The earlier Mega-Phase 3C `metrix_*` tables
+(migration `001`) are left untouched; reconciling them with the `cloud_sync_*` schema is a
+later wiring phase (2D onward). **Next: Account-2C — Sync Status UI.**
+
 ## Implementation order (Account-2B → Account-2K)
 
-1. **Account-2B — Supabase Tables + RLS for Progress Records.** Apply migration `001`
-   (the six existing `metrix_*` tables) to the project; add new tables for the
-   not-yet-covered flows. RLS owner-only on every table. *(Next step after 2A.)*
+1. **Account-2B — Supabase Tables + RLS for Progress Records.** *(Built — migration `002`.)*
+   Ten `cloud_sync_*` tables, RLS owner-only, `updated_at` trigger. No writer wired.
 2. **Account-2C — Sync Status UI Component.** A small, honest status chip reading the
    four `SyncStatus` labels — defaults to "Saved on this device"; shows "Synced to your
    account" only on a confirmed `synced` result.
@@ -35,18 +45,24 @@ Owner/operator: **The Modern Trades Mentor LLC**. Branding: **SubZeroMetrix™**
 10. **Account-2K — Data Export / Delete / Privacy Controls.** Export-my-data and
     delete-my-account-data, cascading on `account_user_id`.
 
-## Table creation order
+## Tables created in migration `002` (Account-2B)
 
-1. Apply migration `001` as-is (already authored): `metrix_profiles`,
-   `metrix_score_snapshots`, `metrix_action_progress`, `metrix_reassessment_events`,
-   `metrix_kpi_snapshots`, `metrix_reminder_preferences`.
-2. `metrix_customer_feedback` *(after privacy review)*.
-3. `metrix_partner_interest` *(after privacy review; consent column required)*.
-4. `metrix_growth_events` *(aggregate/non-PII; after privacy review)*.
-5. Foundation Builder set: `metrix_foundation_items`, `metrix_vendor_tracker`,
-   `metrix_launch_readiness` *(built with Product-5)*.
+All ten are user-owned, RLS-protected, payload-first, with an `updated_at` trigger and a
+`UNIQUE (user_id, local_id)` idempotency constraint:
 
-> No table is created in Account-2A. This is the order for **future** migrations.
+1. `cloud_sync_assessment_history` — no PII, no free text (wire first, 2D).
+2. `cloud_sync_score_history` — no PII, no free text (2D).
+3. `cloud_sync_roadmap_action_progress` — no PII, no free text (2E).
+4. `cloud_sync_kpi_entries` — free-text note, no PII (2E).
+5. `cloud_sync_customer_feedback` — **free-text comment**; privacy review before wiring (2F).
+6. `cloud_sync_partner_interest` — **PII + free text**; consent + privacy review before wiring (2G).
+7. `cloud_sync_growth_events` — **non-PII by design**; aggregate only (2H).
+8. `cloud_sync_foundation_builder_progress` — free-text notes (2I / Product-5).
+9. `cloud_sync_vendor_tool_tracker` — references only, never secrets (2I).
+10. `cloud_sync_launch_readiness_progress` — free-text notes (2I).
+
+> Tables are **created** by `002` but **not wired**. Writing rows is a later phase; the
+> privacy-sensitive tables (5–7) require a privacy review before any flow writes to them.
 
 ## RLS policy requirements
 

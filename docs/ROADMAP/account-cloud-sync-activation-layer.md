@@ -49,10 +49,34 @@ change, no wired sync.**
 
 **Phase boundaries:**
 
-- **Account-2A** — architecture / migration plan / contracts only *(this step — built)*.
-- **Account-2B** — create Supabase tables + RLS *(next)*.
-- **Account-2C** — add the sync-status UI component.
+- **Account-2A** — architecture / migration plan / contracts only *(built)*.
+- **Account-2B** — Supabase tables + RLS *(built — `supabase/migrations/002_cloud_sync_progress_records.sql`)*.
+- **Account-2C** — add the sync-status UI component *(next)*.
 - **Account-2D onward** — wire actual flows (assessment/score first, lowest privacy risk).
+
+## Account-2B artifacts (built — schema + RLS only)
+
+`supabase/migrations/002_cloud_sync_progress_records.sql` creates ten unified,
+payload-first per-user tables (one per `SyncEntityType`):
+`cloud_sync_assessment_history`, `cloud_sync_score_history`,
+`cloud_sync_roadmap_action_progress`, `cloud_sync_kpi_entries`,
+`cloud_sync_customer_feedback`, `cloud_sync_partner_interest`,
+`cloud_sync_growth_events`, `cloud_sync_foundation_builder_progress`,
+`cloud_sync_vendor_tool_tracker`, `cloud_sync_launch_readiness_progress`.
+
+- **RLS owner-only on every table:** `select/insert/update/delete` gated on
+  `auth.uid() = user_id`. No public read, no anonymous access, no service-role-only policy.
+- `user_id references auth.users(id) on delete cascade`; `UNIQUE (user_id, local_id)` for
+  idempotent upserts; `payload jsonb` for schema flexibility; `deleted_at` for soft delete;
+  an `updated_at` trigger (`cloud_sync_set_updated_at`).
+- **Privacy:** `cloud_sync_partner_interest` may hold PII (name/company/email/website) +
+  free text — highest risk; `cloud_sync_customer_feedback` holds a free-text comment —
+  moderate; `cloud_sync_growth_events` is **non-PII by design** (no names/emails/phone/
+  company/free text). All three are user-owned under strict RLS and require a privacy
+  review before any flow writes to them.
+- **Status:** schema + RLS only. **No app flow is wired; nothing claims "Synced to your
+  account."** The migration is not auto-applied. The earlier Mega-Phase 3C `metrix_*`
+  tables (`001`) are untouched.
 
 ---
 

@@ -341,9 +341,16 @@ local-key → cloud-table audit).
   only — `cloud-sync-architecture-map.md`, `cloud-sync-migration-plan.md`, and
   `src/lib/syncContracts.ts`. No migration created, no schema change, no wired sync, no
   active "synced" claim.
-- **Account-2B — Supabase Tables + RLS for Progress Records: next.** Apply migration `001`
-  and add tables for the not-yet-covered flows, RLS owner-only. Then 2C (sync-status UI),
-  2D onward (wire flows, lowest privacy risk first).
+- **Account-2B — Supabase Tables + RLS for Progress Records: built.** Migration
+  `supabase/migrations/002_cloud_sync_progress_records.sql` — ten user-owned, RLS-protected,
+  payload-first `cloud_sync_*` tables (owner-only `auth.uid() = user_id`; no public/anon
+  read), an `updated_at` trigger, and `UNIQUE (user_id, local_id)`. Schema + RLS only — no
+  writer wired, no "synced" claim. Privacy-sensitive tables (partner_interest = PII+free
+  text; customer_feedback = free text; growth_events = non-PII by design) need a privacy
+  review before wiring.
+- **Account-2C — Sync Status UI: next.** A small honest status chip (defaults to "Saved on
+  this device"; "Synced to your account" only after a confirmed write). Then 2D onward
+  wires real flows, lowest privacy risk first.
 
 **Placement:** after Growth-6, before **Product-5 — Guided Business Foundation Builder**.
 Required infrastructure before Product-5B/5C checklist tracking becomes a core feature.

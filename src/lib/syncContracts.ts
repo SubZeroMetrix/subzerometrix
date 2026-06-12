@@ -78,8 +78,11 @@ export type SyncEntityMap = Record<SyncEntityType, SyncEntityContract>
 
 // ─────────────────────────────────────────────────────────────────────────────
 // The contract map. Mirrors docs/ROADMAP/cloud-sync-architecture-map.md.
-// Table names mirror the existing migration (001) where one already exists, and use
-// the planned metrix_* names for future tables. NO table is created by this file.
+// futureCloudTable names match the Account-2B migration
+// (supabase/migrations/002_cloud_sync_progress_records.sql), which creates the
+// cloud_sync_* tables (schema + RLS only — NOT wired). The Mega-Phase 3C structured
+// tables in 001 (metrix_*) are a separate, earlier schema; reconciling the two is a
+// later wiring phase. NO table is created by this file.
 // ─────────────────────────────────────────────────────────────────────────────
 const ENTITY_CONTRACTS: SyncEntityMap = {
   assessment_history: {
@@ -88,7 +91,7 @@ const ENTITY_CONTRACTS: SyncEntityMap = {
     owningFeature: 'MetrixProfile™ / assessment (metrixStorage, metrixHistory)',
     localStorageKey: 'szm_metrix_profile',
     recordType: 'MetrixProfileSnapshot',
-    futureCloudTable: 'metrix_profiles', // exists in migration 001 (not yet applied)
+    futureCloudTable: 'cloud_sync_assessment_history', // created in migration 002 (schema+RLS only)
     containsFreeText: false,
     mayContainPii: false,
     syncPriority: 'high',
@@ -105,7 +108,7 @@ const ENTITY_CONTRACTS: SyncEntityMap = {
     owningFeature: 'MetrixScore™ history (metrixHistory, metrixStorage)',
     localStorageKey: 'szm_metrix_history',
     recordType: 'MetrixScoreSnapshot[] (+ ReassessmentEvent[])',
-    futureCloudTable: 'metrix_score_snapshots', // exists in migration 001
+    futureCloudTable: 'cloud_sync_score_history', // created in migration 002 (schema+RLS only)
     containsFreeText: false,
     mayContainPii: false,
     syncPriority: 'high',
@@ -122,7 +125,7 @@ const ENTITY_CONTRACTS: SyncEntityMap = {
     owningFeature: 'Roadmap progress (roadmapProgress)',
     localStorageKey: 'szm_path_complete',
     recordType: 'string[] (completed action ids) → ActionProgressSnapshot',
-    futureCloudTable: 'metrix_action_progress', // exists in migration 001
+    futureCloudTable: 'cloud_sync_roadmap_action_progress', // created in migration 002 (schema+RLS only)
     containsFreeText: false,
     mayContainPii: false,
     syncPriority: 'high',
@@ -139,7 +142,7 @@ const ENTITY_CONTRACTS: SyncEntityMap = {
     owningFeature: 'Manual KPI tracking (kpiProgress, metrixKpis)',
     localStorageKey: 'szm_metrix_history',
     recordType: 'ManualKpiSnapshot',
-    futureCloudTable: 'metrix_kpi_snapshots', // exists in migration 001
+    futureCloudTable: 'cloud_sync_kpi_entries', // created in migration 002 (schema+RLS only)
     containsFreeText: true, // optional `note`
     mayContainPii: false,
     syncPriority: 'high',
@@ -156,7 +159,7 @@ const ENTITY_CONTRACTS: SyncEntityMap = {
     owningFeature: 'Customer proof / feedback (customerProof)',
     localStorageKey: 'szm_customer_feedback',
     recordType: 'CustomerFeedbackRecord',
-    futureCloudTable: 'metrix_customer_feedback', // NOT in migration 001 (future)
+    futureCloudTable: 'cloud_sync_customer_feedback', // created in migration 002 (schema+RLS only)
     containsFreeText: true, // free-text `comment`
     mayContainPii: true, // comment may contain anything the user types
     syncPriority: 'medium',
@@ -173,7 +176,7 @@ const ENTITY_CONTRACTS: SyncEntityMap = {
     owningFeature: 'Partner / vendor distribution (partnerDistribution)',
     localStorageKey: 'szm_partner_interest',
     recordType: 'PartnerInterestSubmission',
-    futureCloudTable: 'metrix_partner_interest', // NOT in migration 001 (future)
+    futureCloudTable: 'cloud_sync_partner_interest', // created in migration 002 (schema+RLS only)
     containsFreeText: true, // `collaborationNote`
     mayContainPii: true, // name, company, email, website
     syncPriority: 'low', // defer: highest PII surface
@@ -190,7 +193,7 @@ const ENTITY_CONTRACTS: SyncEntityMap = {
     owningFeature: 'Acquisition + activation analytics (growthAnalytics)',
     localStorageKey: 'szm_growth_events',
     recordType: 'GrowthActivationRecord',
-    futureCloudTable: 'metrix_growth_events', // NOT in migration 001 (future; aggregate)
+    futureCloudTable: 'cloud_sync_growth_events', // created in migration 002 (schema+RLS only; non-PII)
     containsFreeText: false, // non-PII metadata only by design
     mayContainPii: false, // must STAY non-PII; no email/name/phone/free text
     syncPriority: 'medium',
@@ -207,7 +210,7 @@ const ENTITY_CONTRACTS: SyncEntityMap = {
     owningFeature: 'Guided Business Foundation Builder (Product-5, future)',
     localStorageKey: null, // not built yet — design cloud-ready from day one
     recordType: 'FoundationChecklistItem (future)',
-    futureCloudTable: 'metrix_foundation_items', // future
+    futureCloudTable: 'cloud_sync_foundation_builder_progress', // created in migration 002 (schema+RLS only)
     containsFreeText: true, // notes per item
     mayContainPii: false,
     syncPriority: 'high', // Product-5 must not be local-only (Quality-1 pillar 2)
@@ -224,7 +227,7 @@ const ENTITY_CONTRACTS: SyncEntityMap = {
     owningFeature: 'Foundation Builder vendor/tool tracker (future)',
     localStorageKey: null, // not built yet
     recordType: 'VendorToolItem (future)',
-    futureCloudTable: 'metrix_vendor_tracker', // future
+    futureCloudTable: 'cloud_sync_vendor_tool_tracker', // created in migration 002 (schema+RLS only)
     containsFreeText: true, // notes / account references
     mayContainPii: false, // no credentials/secrets ever stored or synced
     syncPriority: 'medium',
@@ -241,7 +244,7 @@ const ENTITY_CONTRACTS: SyncEntityMap = {
     owningFeature: 'Foundation Builder launch readiness (future)',
     localStorageKey: null, // not built yet
     recordType: 'LaunchReadinessItem (future)',
-    futureCloudTable: 'metrix_launch_readiness', // future
+    futureCloudTable: 'cloud_sync_launch_readiness_progress', // created in migration 002 (schema+RLS only)
     containsFreeText: true, // notes
     mayContainPii: false,
     syncPriority: 'medium',
