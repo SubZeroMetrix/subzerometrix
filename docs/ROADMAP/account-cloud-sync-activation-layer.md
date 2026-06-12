@@ -59,7 +59,7 @@ change, no wired sync.**
 - **Account-2H** — growth analytics privacy-safe sync *(built — `growthAnalyticsSync.ts`; see `growth-analytics-sync.md`)*. Whitelist payload of structured non-PII fields only (free-form `metadata` never synced) + skip gate for free-text/PII-looking events; no third-party analytics/cookies/pixels; wired into `/dashboard`.
 - **Account-2I** — Foundation Builder sync readiness *(built, readiness only — `foundationBuilderSync.ts`; see `foundation-builder-sync.md`)*. Cloud-ready plumbing for the three Foundation Builder tables; no UI/feature built (that is Product-5); no live local data yet, so nothing is written/claimed; notes screened for secrets; vendor references store URLs only.
 - **Account-2J** — local-to-cloud migration + conflict handling *(built — `src/lib/syncConflict.ts` + `reconcile*FromAccount` on every wired flow; see `local-to-cloud-migration-conflict-handling.md`)*. Newest-wins by id (`updatedAt ?? createdAt`); recommendation only, never overwrites local; tie/local-newer keeps local; skipped/PII records never reintroduced.
-- **Account-2K onward** — data export / delete / privacy controls next. *(Product-5 Foundation Builder track 5A–5I is complete.)*
+- **Account-2K** — data export / delete / privacy controls *(built — `src/lib/accountDataPrivacy.ts` + `/account/privacy`; export own rows from the ten `cloud_sync_*` tables as JSON, delete own rows via RLS with explicit confirmation, separate device-local clear; "all deleted" only when every table succeeds; auth-account deletion labeled admin-assisted (service-role not in browser))*. *(Account-2 cloud sync layer complete, 2A–2K.)*
 
 ## Account-2B artifacts (built — schema + RLS only)
 

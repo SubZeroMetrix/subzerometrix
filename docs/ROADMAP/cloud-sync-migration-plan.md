@@ -73,8 +73,11 @@ later wiring phase (2D onward). **Next: Account-2C — Sync Status UI.**
    Newest-wins by id (`updatedAt ?? createdAt`); pure, recommendation-only (never overwrites
    local); tie/local-newer keeps local; additive idempotent writes unchanged; skipped/PII
    records never reintroduced.
-10. **Account-2K — Data Export / Delete / Privacy Controls.** Export-my-data and
-    delete-my-account-data, cascading on `account_user_id`.
+10. **Account-2K — Data Export / Delete / Privacy Controls.** *(Built — `src/lib/accountDataPrivacy.ts`
+    + `/account/privacy`.)* Export the user's own rows from all ten `cloud_sync_*` tables as
+    JSON; delete own rows via RLS owner-only with explicit confirmation; separate, explicitly
+    confirmed device-local clear. "All deleted" only when every table succeeds; auth-account
+    deletion labeled admin-assisted (service-role not in browser). No public/anon access.
 
 ## Tables created in migration `002` (Account-2B)
 

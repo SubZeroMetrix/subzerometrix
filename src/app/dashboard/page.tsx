@@ -507,6 +507,12 @@ export default function DashboardPage() {
           </Link>
         </div>
 
+        <div className="text-center pt-1">
+          <Link href="/account/privacy" className="text-[11px] text-brand-silver/70 hover:text-brand-white transition-colors underline underline-offset-2">
+            Manage my data
+          </Link>
+        </div>
+
         <p className="text-center text-[9px] text-brand-silver/40 mt-6 leading-relaxed">
           SubZeroMetrix™ and MetrixScore™ are owned by The Modern Trades Mentor LLC.
         </p>

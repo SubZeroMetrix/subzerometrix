@@ -442,7 +442,12 @@ local-key → cloud-table audit).
   flow (2D–2I); see `local-to-cloud-migration-conflict-handling.md`. Recommendation-only —
   never overwrites local; tie/local-newer keeps local; writes stay additive/idempotent;
   skipped/PII records never reintroduced.
-- **Next build — Account-2K — Data Export / Delete / Privacy Controls.**
+- **Account-2K — Data Export / Delete / Privacy Controls: built.** `src/lib/accountDataPrivacy.ts`
+  + `/account/privacy` (dashboard "Manage my data" link). Export own rows from the ten
+  `cloud_sync_*` tables as JSON; delete own rows via RLS owner-only with explicit confirmation;
+  separate, explicitly-confirmed device-local clear. "All deleted" only when every table
+  succeeds; auth-account deletion labeled admin-assisted (no service-role in browser).
+  **Account-2 Cloud Sync Activation Layer complete (2A–2K).**
 
 **Placement:** after Growth-6, before **Product-5 — Guided Business Foundation Builder**.
 Required infrastructure before Product-5B/5C checklist tracking becomes a core feature.
