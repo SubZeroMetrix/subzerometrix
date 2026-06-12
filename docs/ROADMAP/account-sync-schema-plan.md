@@ -119,6 +119,23 @@ A dedicated phase (not bundled with retention-model work), in order:
 
 Do not combine this with any checkout / pricing / report-gating / scoring / roadmap change.
 
+## 11. Mega-Phase 3B — implemented (account identity)
+
+**Shipped (helpers only, no UI, no cloud writes):**
+- `src/lib/supabaseClient.ts` — lazy, env-guarded **browser** Supabase client using the **public anon key only** (never the service-role key). Returns `null` on the server and when env vars are missing; never throws at load. Uses the **already-installed** `@supabase/supabase-js` — **no new dependency**.
+- `src/lib/accountAuth.ts` — real magic-link auth helpers: `getCurrentAccountUser()`, `getCurrentAccountSession()`, `isAccountSignedIn()`, `getAccountAuthStatus()`, `requestMagicLink()`, `signOutAccount()`, plus sync cache accessors `getCachedAccountUser()` / `getCachedAuthStatus()`. Honest statuses: `unavailable` | `signed_out` | `signed_in` | `error`. Never fakes signed-in state; SSR/build safe.
+- `src/lib/metrixAccountSync.ts` — `getCurrentAccountUser()` now reads accountAuth's cache; `canUseAccountSync()` is true only for a real account user; `getAccountSyncStatus()` returns `unavailable` | `local_only` | `account_available` | `error`. `prepare*ForSync()` still return `null` unless a real account user exists.
+
+**Dependency approval needed?** No — `@supabase/supabase-js@^2.44.4` was already a dependency.
+
+**What remains before actual cloud writes:**
+1. A small, honest **sign-in UI** (email → magic link → session), calling the async accountAuth checks on mount to populate the cache.
+2. The six `metrix_*` **tables + RLS** and `(account_user_id, client_id)` unique indexes (per §2/§3).
+3. A **sync writer** that upserts `prepareHistoryForSync()` payloads and flips `storage_status` to `synced` after a confirmed write.
+4. **One-time local adoption** on first sign-in (§5).
+
+**Exact next phase:** *Cloud-saved MetrixProfile™ + MetrixScore™ history* — wire the sign-in UI + first-sign-in adoption + RLS-protected upserts, surfacing "Synced to your account" only after a confirmed write. Keep checkout / report gating / pricing / scoring / roadmap unchanged.
+
 ---
 
 ### Out of scope for Mega-Phase 3 (explicitly NOT done)

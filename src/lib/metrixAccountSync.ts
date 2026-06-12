@@ -1,16 +1,15 @@
 // ─────────────────────────────────────────────────────────────────────────────
-// MetrixAccountSync — safe account-sync preparation (Mega-Phase 3)
+// MetrixAccountSync — account-sync eligibility + preparation (Mega-Phase 3B)
 // ─────────────────────────────────────────────────────────────────────────────
-// PREPARATION ONLY. There is NO auth/session in the app yet, so:
-//   • getCurrentAccountUser() always returns null today,
-//   • canUseAccountSync() is always false today,
-//   • every prepare*ForSync() returns null today,
-//   • getAccountSyncStatus() reports 'local_only'.
+// Now wired to REAL account identity via ./accountAuth (Supabase magic-link auth).
+// Synchronous reads use accountAuth's last-known cache, never a faked state:
+//   • getCurrentAccountUser() returns the cached signed-in account user, or null,
+//   • canUseAccountSync() is true only when a real account user is present,
+//   • getAccountSyncStatus() → unavailable / local_only / account_available / error,
+//   • prepare*ForSync() return null unless a real account user exists.
 //
-// Nothing here writes to Supabase or any database, and nothing claims sync is
-// active. These wrappers exist so that the day real account auth ships, the local
-// retention models can be shaped into account payloads in one place — without any
-// other part of the app changing.
+// PREPARATION ONLY — this module still does NOT write to Supabase or any database.
+// Cloud history writes are the NEXT phase. Nothing here claims sync is active.
 // ─────────────────────────────────────────────────────────────────────────────
 
 import {
@@ -26,7 +25,6 @@ import {
   type AccountReassessmentEvent,
   type AccountManualKpiSnapshot,
   type AccountReminderPreference,
-  type CloudStorageStatus,
 } from './metrixCloudSchema'
 import type {
   MetrixProfileSnapshot,
@@ -37,31 +35,33 @@ import type {
 } from './metrixHistory'
 import type { ManualKpiSnapshot } from './metrixKpis'
 import type { ReminderPreference } from './metrixReminders'
+import { getCachedAccountUser, getCachedAuthStatus, type AccountUser } from './accountAuth'
 
-export interface AccountUser {
-  id: string
-  email: string | null
-}
+// Re-export so this module stays the single retention/sync entry point.
+export type { AccountUser }
 
-/**
- * The signed-in account user, or null. No auth exists yet, so this ALWAYS returns
- * null today. (Future: read from a real Supabase/auth session.)
- */
+// How eligible the user is for account sync right now — honest, never faked.
+export type AccountSyncEligibility = 'unavailable' | 'local_only' | 'account_available' | 'error'
+
+/** The signed-in account user (from accountAuth's last-known cache), or null. */
 export function getCurrentAccountUser(): AccountUser | null {
-  return null
+  return getCachedAccountUser()
 }
 
-/**
- * Whether account-based cloud sync can be used right now. Requires a signed-in
- * account AND a wired sync backend — both are future work, so this is false today.
- */
+/** True only when a real signed-in account user is present. */
 export function canUseAccountSync(): boolean {
   return getCurrentAccountUser() !== null
 }
 
-/** Honest current status. Always 'local_only' until auth + sync ship. */
-export function getAccountSyncStatus(): CloudStorageStatus {
-  return canUseAccountSync() ? 'cloud_ready' : 'local_only'
+/** Honest sync eligibility from the real auth status. Cloud writes still do NOT exist. */
+export function getAccountSyncStatus(): AccountSyncEligibility {
+  switch (getCachedAuthStatus()) {
+    case 'unavailable': return 'unavailable'
+    case 'error':       return 'error'
+    case 'signed_in':   return 'account_available'
+    case 'signed_out':  return 'local_only'
+    default:            return 'local_only'
+  }
 }
 
 // ── Prepare-for-sync wrappers (return null when there is no account) ───────────
