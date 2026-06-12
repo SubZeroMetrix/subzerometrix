@@ -9,6 +9,8 @@
 // ─────────────────────────────────────────────────────────────────────────────
 
 import type { ScoreResult } from '@/lib/scoring'
+import type { QuickIntake } from '@/lib/intake'
+import { roadmapFocus } from '@/lib/roadmapFocus'
 
 export type BudgetRange = 'bootstrap' | 'lean' | 'moderate' | 'invested'
 // bootstrap = under $2K  |  lean = $2K–$10K  |  moderate = $10K–$25K  |  invested = $25K+
@@ -62,11 +64,19 @@ export interface RoadmapItem {
   scoreGapTriggers: string[]    // which answer IDs or score areas trigger this step
 }
 
+// A roadmap item after per-user selection: carries the computed urgency and a
+// focusPriority flag (true when it matches the user's stated challenge/goal).
+// focusPriority is ordering/labelling only — it never affects any score.
+export interface ComputedRoadmapItem extends RoadmapItem {
+  computedUrgency: UrgencyLevel
+  focusPriority: boolean
+}
+
 export interface RoadmapPhase {
   id: PhaseId
   title: string
   subtitle: string
-  items: RoadmapItem[]
+  items: ComputedRoadmapItem[]
 }
 
 // ── Budget mapper ─────────────────────────────────────────────────────────────
@@ -542,7 +552,10 @@ export const URGENCY_CONFIG: Record<UrgencyLevel, {
 }
 
 // ── Roadmap engine ────────────────────────────────────────────────────────────
-export function buildPersonalizedRoadmap(result: ScoreResult): RoadmapPhase[] {
+export function buildPersonalizedRoadmap(
+  result: ScoreResult,
+  intake: QuickIntake | null = null,
+): RoadmapPhase[] {
   const { answers, categoryScores } = result
   const setupIds     = answers.setup_steps ?? []
   const isNone       = setupIds.includes('none_yet')
@@ -553,8 +566,13 @@ export function buildPersonalizedRoadmap(result: ScoreResult): RoadmapPhase[] {
   const custPlan     = answers.customer_plan ?? ''
   const needsFunding = answers.financial === 'need_funding' || answers.financial === 'not_sure'
 
+  // Items that match the user's stated biggest challenge / main goal. Used only
+  // to surface matching items earlier within their urgency tier and to tag them
+  // as a focus area — never to change any score, phase, or urgency label.
+  const focus = roadmapFocus(intake)
+
   // Which items to include and at what urgency
-  const selectedItems: (RoadmapItem & { computedUrgency: UrgencyLevel })[] = []
+  const selectedItems: ComputedRoadmapItem[] = []
 
   function add(id: string, urgencyOverride?: UrgencyLevel) {
     const item = ROADMAP_LIBRARY.find(i => i.id === id)
@@ -568,7 +586,7 @@ export function buildPersonalizedRoadmap(result: ScoreResult): RoadmapPhase[] {
     const urgency     = urgencyOverride ?? item.urgency
 
     // Filter vendor options by budget
-    const filteredItem = {
+    const filteredItem: ComputedRoadmapItem = {
       ...item,
       vendorOptions: item.vendorOptions.filter(v => {
         if (v.isFree) return true
@@ -577,6 +595,7 @@ export function buildPersonalizedRoadmap(result: ScoreResult): RoadmapPhase[] {
         return true
       }),
       computedUrgency: urgency,
+      focusPriority: focus.itemIds.has(item.id),
     }
     selectedItems.push(filteredItem)
   }
@@ -641,11 +660,16 @@ export function buildPersonalizedRoadmap(result: ScoreResult): RoadmapPhase[] {
     const phaseA = phaseOrder.indexOf(a.phase)
     const phaseB = phaseOrder.indexOf(b.phase)
     if (phaseA !== phaseB) return phaseA - phaseB
-    return URGENCY_CONFIG[a.computedUrgency].order - URGENCY_CONFIG[b.computedUrgency].order
+    const urgencyDiff =
+      URGENCY_CONFIG[a.computedUrgency].order - URGENCY_CONFIG[b.computedUrgency].order
+    if (urgencyDiff !== 0) return urgencyDiff
+    // Tiebreak within the same phase + urgency: stated-focus items first.
+    if (a.focusPriority !== b.focusPriority) return a.focusPriority ? -1 : 1
+    return 0
   })
 
   // ── Group into phases ────────────────────────────────────────────────────
-  const phaseMap = new Map<PhaseId, RoadmapItem[]>()
+  const phaseMap = new Map<PhaseId, ComputedRoadmapItem[]>()
   for (const item of selectedItems) {
     if (!phaseMap.has(item.phase)) phaseMap.set(item.phase, [])
     phaseMap.get(item.phase)!.push(item)

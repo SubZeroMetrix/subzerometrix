@@ -11,7 +11,8 @@ import {
 import { getBandColor, type ScoreResult } from '@/lib/scoring'
 import { PLATFORM_ROUTES } from '@/lib/questions'
 import { affiliateUrl, AFFILIATE_PARTNERS, type AffiliateCategory } from '@/lib/affiliates'
-import { buildPersonalizedRoadmap, URGENCY_CONFIG, type RoadmapPhase, type RoadmapItem, type UrgencyLevel } from '@/lib/roadmap'
+import { buildPersonalizedRoadmap, URGENCY_CONFIG, type RoadmapPhase, type ComputedRoadmapItem, type UrgencyLevel } from '@/lib/roadmap'
+import { roadmapFocus, pathReason } from '@/lib/roadmapFocus'
 import { SCORE_IMPACT_PER_TAB } from '@/lib/growthRoadmap'
 import { getGrowthPhases } from '@/lib/growthPhases'
 import { getVendorsForPhase } from '@/lib/vendorCategories'
@@ -68,7 +69,7 @@ function RoadmapItemCard({
   item, index, completed, onToggleComplete,
 }: {
   key?: string
-  item: RoadmapItem & { computedUrgency: UrgencyLevel }
+  item: ComputedRoadmapItem
   index: number
   completed: boolean
   onToggleComplete: () => void
@@ -100,6 +101,12 @@ function RoadmapItemCard({
         </div>
         <span className="flex-1 text-[13px] font-semibold text-brand-white leading-snug pr-2">{item.title}</span>
         <div className="flex items-center gap-2 flex-shrink-0">
+          {item.focusPriority && !completed && (
+            <span className="text-[10px] font-medium px-2 py-0.5 rounded-sm hidden sm:block"
+              style={{ background: 'rgba(239,159,39,0.14)', color: '#EFB967', border: '1px solid rgba(239,159,39,0.35)' }}>
+              Focus area
+            </span>
+          )}
           <span className="text-[10px] font-medium px-2 py-0.5 rounded-sm hidden sm:block"
             style={{ background: uc.bg, color: uc.color }}>
             {completed ? 'Done' : uc.label}
@@ -288,7 +295,7 @@ function PhaseGroup({
       {phase.items.map((item, i) => (
         <RoadmapItemCard
           key={item.id}
-          item={item as RoadmapItem & { computedUrgency: UrgencyLevel }}
+          item={item}
           index={i}
           completed={completedSteps.has(item.id)}
           onToggleComplete={() => onToggleComplete(item.id)}
@@ -772,8 +779,10 @@ function ReportContent() {
     ? parseFloat(Math.min(100, starter.overall + completedGrowthTabs.size * SCORE_IMPACT_PER_TAB).toFixed(1))
     : null
 
-  // Build the personalized roadmap
-  const roadmapPhases  = buildPersonalizedRoadmap(result)
+  // Build the personalized roadmap. Intake (biggest challenge + main goal) drives
+  // focus tagging + within-tier ordering only — never the score, phases, or urgency.
+  const roadmapPhases  = buildPersonalizedRoadmap(result, intake)
+  const roadmapReason  = pathReason(roadmapFocus(intake))
   const allItems       = roadmapPhases.flatMap(p => p.items)
   const totalItems     = allItems.length
   const completedCount = completedSteps.size
@@ -1141,6 +1150,17 @@ function ReportContent() {
                 <span className="text-brand-accent font-medium">State context: {userState}.</span>
                 {' '}State-specific links are included in relevant steps below. Requirements also vary by
                 city and county — verify locally before operating.
+              </div>
+            )}
+
+            {/* Why this path — honest, ordering-only explanation from stated goal/challenge */}
+            {roadmapReason && roadmapPhases.length > 0 && (
+              <div className="rounded-sm p-3 mb-4 text-[11px] leading-relaxed"
+                style={{ background: 'rgba(239,159,39,0.08)', border: '1px solid rgba(239,159,39,0.25)', color: '#C8D4E0' }}>
+                <span className="font-mono text-[9px] tracking-widest uppercase mr-1.5" style={{ color: '#EFB967' }}>
+                  Roadmap priority
+                </span>
+                {roadmapReason}
               </div>
             )}
 
