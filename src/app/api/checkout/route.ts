@@ -21,21 +21,21 @@ const TIER_PRICES: Record<string, {
     amount: 999,
     name: 'SubZeroMetrix MetrixScore™',
     description:
-      'Full MetrixScore™ report: score reveal, 6-area breakdown, top 3 risks, 5 action steps, and curated resource links.',
+      'Full report, category breakdown, top risk areas, prioritized first actions, and official resource links.',
     recurring: false,
   },
   pro: {
     amount: 1999,
     name: 'SubZeroMetrix MetrixScore™ Pro',
     description:
-      'Complete report + personalized 90-day roadmap, AI trade-specific actions, affiliate resource map, and reassessment sequence.',
+      'Full roadmap, growth phases, financial and sales systems, practical contractor tools, vendor research, and risk/category detail.',
     recurring: false,
   },
   platform: {
     amount: 2900,
     name: 'SubZeroMetrix Trade Platform',
     description:
-      'Monthly trade-specific platform: live KPI dashboard, AI coach, peer benchmarking, and proactive metric alerts.',
+      'Everything in Pro plus trade-specific platform access, trade-focused KPIs and guidance, and future-facing trade modules as released.',
     recurring: true,
   },
 }
