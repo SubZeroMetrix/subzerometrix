@@ -1,14 +1,23 @@
 import type { Metadata, Viewport } from 'next'
 import './globals.css'
 import InstallPrompt from '@/components/InstallPrompt'
+import {
+  SITE_URL, DEFAULT_TITLE, TITLE_TEMPLATE, DEFAULT_DESCRIPTION,
+  buildOpenGraph, buildTwitter, organizationJsonLd,
+} from '@/lib/seo'
 
 export const metadata: Metadata = {
-  title: 'SubZeroMetrix | MetrixScore™ — Know Your Business Temperature',
-  description:
-    'Get your MetrixScore™ — personalized business readiness roadmap for trades and service businesses. Know your temperature. Build from there.',
+  metadataBase: new URL(SITE_URL),
+  title: {
+    default: DEFAULT_TITLE,
+    template: TITLE_TEMPLATE,
+  },
+  description: DEFAULT_DESCRIPTION,
   applicationName: 'SubZeroMetrix',
-  keywords: ['MetrixScore', 'trades business', 'contractor readiness', 'HVAC business', 'plumbing business', 'electrical contractor', 'roofing business', 'landscaping', 'cleaning business', 'handyman', 'SubZeroMetrix'],
-  authors: [{ name: 'The Modern Trades Mentor' }],
+  keywords: ['MetrixScore', 'business readiness', 'contractor readiness', 'trades business', 'service business', 'business startup checklist', 'HVAC business', 'plumbing business', 'electrical contractor', 'SubZeroMetrix'],
+  authors: [{ name: 'The Modern Trades Mentor LLC' }],
+  alternates: { canonical: '/' },
+  robots: { index: true, follow: true },
   manifest: '/manifest.json',
   appleWebApp: {
     capable: true,
@@ -24,17 +33,8 @@ export const metadata: Metadata = {
       { url: '/icons/splash-640x1136.png',  media: '(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)' },
     ],
   },
-  openGraph: {
-    title: 'SubZeroMetrix | MetrixScore™',
-    description: 'Is your business running cold? Take the free MetrixScore™ assessment and get your personalized roadmap.',
-    type: 'website',
-    siteName: 'SubZeroMetrix',
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title: 'SubZeroMetrix | MetrixScore™',
-    description: 'Is your business running cold? Free assessment + personalized roadmap for every trade.',
-  },
+  openGraph: buildOpenGraph(),
+  twitter: buildTwitter(),
   icons: {
     icon: [
       { url: '/icons/icon-32.png',  sizes: '32x32',   type: 'image/png' },
@@ -84,6 +84,11 @@ export default function RootLayout({
         <meta name="format-detection" content="telephone=no" />
       </head>
       <body className="noise">
+        {/* Organization structured data (schema.org) */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd()) }}
+        />
         {children}
         <InstallPrompt />
       </body>
