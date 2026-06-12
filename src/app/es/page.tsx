@@ -5,6 +5,7 @@ import { buildOpenGraph, buildTwitter } from '@/lib/seo'
 import {
   getSpanishScopeNote, getSpanishNotFullyTranslatedNote, getSpanishDiscoveryPages, SPANISH_OG_LOCALE,
 } from '@/lib/spanishDiscovery'
+import ShareReferralCard from '@/components/ShareReferralCard'
 
 const PAGE = getSpanishDiscoveryPages()[0]
 
@@ -89,6 +90,9 @@ export default function SpanishHomePage() {
             Aprender sobre preparación empresarial
           </Link>
         </div>
+
+        {/* Compartir (solo manual) */}
+        <ShareReferralCard context="spanish_discovery" lang="es" />
 
         <p className="text-[11px] text-brand-silver/70 leading-relaxed pt-1">{getSpanishNotFullyTranslatedNote()}</p>
 

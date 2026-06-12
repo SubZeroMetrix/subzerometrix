@@ -17,6 +17,7 @@ import { generateActions, type PathAction } from '@/lib/pathActions'
 import { recordAssessmentSnapshot, type RetentionView } from '@/lib/metrixRetention'
 import OutcomeBriefing from '@/components/OutcomeBriefing'
 import RoadmapProgressCard from '@/components/RoadmapProgressCard'
+import ShareReferralCard from '@/components/ShareReferralCard'
 
 function riskColor(level: string): string {
   switch (level) {
@@ -336,6 +337,9 @@ export default function ResultsPage() {
             to track progress and reassess over time. Cloud account sync is coming later.
           </p>
         </div>
+
+        {/* Share / invite another contractor (manual share only) */}
+        <ShareReferralCard context="results" />
 
         {/* Primary CTA */}
         <div>

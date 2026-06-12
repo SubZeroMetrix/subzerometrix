@@ -10,6 +10,10 @@ export type AnalyticsEvent =
   | 'report_view'
   | 'feedback_rating_selected'
   | 'feedback_submitted'
+  // Growth-3 — product-led sharing / referral (manual share only)
+  | 'resource_shared'
+  | 'referral_created'
+  | 'share_link_copied'
 
 export function trackEvent(event: AnalyticsEvent, props: Record<string, unknown> = {}): void {
   if (typeof window === 'undefined') return

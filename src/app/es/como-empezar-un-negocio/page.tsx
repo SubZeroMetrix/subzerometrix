@@ -3,6 +3,7 @@ import Link from 'next/link'
 import { ArrowLeft, ArrowRight, Info } from 'lucide-react'
 import { buildOpenGraph, buildTwitter } from '@/lib/seo'
 import { getSpanishBusinessStarterCopy, getSpanishDiscoveryPages, SPANISH_OG_LOCALE } from '@/lib/spanishDiscovery'
+import ShareReferralCard from '@/components/ShareReferralCard'
 
 const PAGE = getSpanishDiscoveryPages()[1]
 
@@ -70,6 +71,9 @@ export default function ComoEmpezarUnNegocioPage() {
           className="flex items-center justify-center gap-3 w-full py-4 px-6 rounded-xl text-sm font-semibold tracking-wide uppercase bg-brand-accent text-white shadow-glow-blue active:scale-[0.98] transition-all touch-target">
           Comenzar evaluación <ArrowRight className="w-4 h-4" />
         </Link>
+
+        {/* Compartir (solo manual) */}
+        <ShareReferralCard context="spanish_business_starter" lang="es" />
 
         <p className="text-[10px] text-brand-silver/60 leading-relaxed pt-1">{copy.disclaimer}</p>
         <div className="flex flex-wrap gap-x-4 gap-y-2">

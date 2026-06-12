@@ -3,6 +3,7 @@ import Link from 'next/link'
 import { ArrowLeft, ArrowRight, Info } from 'lucide-react'
 import { buildOpenGraph, buildTwitter, breadcrumbJsonLd } from '@/lib/seo'
 import { getGeneralBusinessStarterPackage } from '@/lib/generalBusinessStarter'
+import ShareReferralCard from '@/components/ShareReferralCard'
 
 const TITLE = 'General Business Starter'
 const DESCRIPTION =
@@ -83,6 +84,9 @@ export default function GeneralBusinessStarterPage() {
             ))}
           </div>
         </section>
+
+        {/* Share this starter guide (manual share only) */}
+        <ShareReferralCard context="general_business_starter" />
 
         {/* Primary CTAs */}
         <div className="space-y-2">

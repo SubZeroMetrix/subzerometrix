@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import { ArrowLeft, ArrowRight } from 'lucide-react'
 import { buildOpenGraph, buildTwitter, faqPageJsonLd, type FaqEntry } from '@/lib/seo'
+import ShareReferralCard from '@/components/ShareReferralCard'
 
 const TITLE = 'Business Readiness for Contractors & Trades'
 const DESCRIPTION =
@@ -81,6 +82,9 @@ export default function BusinessReadinessPage() {
 
       <div className="px-5 max-w-md mx-auto w-full pb-12 pt-6 space-y-4">
         {FAQ.map(entry => <QA key={entry.question} entry={entry} />)}
+
+        {/* Share this readiness guide (manual share only) */}
+        <ShareReferralCard context="business_readiness" />
 
         <Link href="/start"
           className="flex items-center justify-center gap-3 w-full py-4 px-6 rounded-xl text-sm font-semibold tracking-wide uppercase bg-brand-accent text-white shadow-glow-blue active:scale-[0.98] transition-all touch-target">
