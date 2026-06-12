@@ -47,8 +47,13 @@ later wiring phase (2D onward). **Next: Account-2C — Sync Status UI.**
    with secret-like comments or missing consent metadata (kept local-only, counted — never
    "all feedback synced"). No publishing/reviews/incentives. Local-first; confirmed-write-only
    "synced" status; missing migration/table → `sync_unavailable`. Wired into `/dashboard` + `/report`.
-6. **Account-2G — Partner Interest Sync.** New table + writer. **Privacy review first**
-   (PII: name/company/email/website). Explicit consent gate.
+6. **Account-2G — Partner Interest Sync.** *(Built, consent-gated —
+   `src/lib/partnerInterestSync.ts`, see `partner-interest-sync.md`.)* Syncs only
+   `cloud_sync_partner_interest`. Highest-PII surface: a record syncs **only** when
+   `consentToContact === true`; non-consented or secret-like-note records are skipped
+   (kept local-only, counted — never "all partner interest synced"). Private backup only —
+   no outreach/CRM/public listing. Local-first; confirmed-write-only "synced" status;
+   missing migration/table → `sync_unavailable`. Wired into `PartnerInterestForm` (`/partners`).
 7. **Account-2H — Growth Analytics Privacy-Safe Sync.** Aggregate, non-PII only. Privacy /
    non-invasive review first.
 8. **Account-2I — Foundation Builder Sync Readiness.** Build the Foundation Builder data

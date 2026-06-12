@@ -8,12 +8,15 @@
 // is by email (shown). No official-partner / endorsement / affiliate claims.
 // ─────────────────────────────────────────────────────────────────────────────
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { Handshake, Check } from 'lucide-react'
 import {
   getPartnerDistributionChannels, createPartnerInterestSubmission, savePartnerInterestLocal,
   getPartnerDisclosureText, PARTNER_CONTACT_EMAIL, type PartnerChannelType,
 } from '@/lib/partnerDistribution'
+import SyncStatusBadge from '@/components/SyncStatusBadge'
+import { getPartnerInterestSyncReadiness, syncPartnerInterestToAccount } from '@/lib/partnerInterestSync'
+import type { SyncStatus } from '@/lib/syncContracts'
 
 export default function PartnerInterestForm() {
   const channels = getPartnerDistributionChannels()
@@ -26,6 +29,29 @@ export default function PartnerInterestForm() {
   const [consent, setConsent] = useState(false)
   const [saved, setSaved] = useState(false)
   const [error, setError] = useState('')
+  // Account-2G: partner interest backup status (consent-gated). Device-local until a confirmed write.
+  const [piSyncStatus, setPiSyncStatus] = useState<SyncStatus>('saved_on_device')
+  const [piSyncedAt, setPiSyncedAt] = useState<string | null>(null)
+
+  // Resolve partner interest backup status after saving (additive; never blocks the form).
+  useEffect(() => {
+    if (!saved) return
+    let cancelled = false
+    ;(async () => {
+      try {
+        const readiness = await getPartnerInterestSyncReadiness()
+        if (readiness.canSync) {
+          const result = await syncPartnerInterestToAccount()
+          if (!cancelled) { setPiSyncStatus(result.status); setPiSyncedAt(result.lastSyncedAt) }
+        } else if (!cancelled) {
+          setPiSyncStatus(readiness.status)
+        }
+      } catch {
+        // Expected-failure safe: keep the device-local default.
+      }
+    })()
+    return () => { cancelled = true }
+  }, [saved])
 
   function handleSave() {
     if (name.trim() === '' && company.trim() === '') {
@@ -51,6 +77,8 @@ export default function PartnerInterestForm() {
           To formally contact us, email{' '}
           <a href={`mailto:${PARTNER_CONTACT_EMAIL}`} className="text-brand-accent underline underline-offset-2">{PARTNER_CONTACT_EMAIL}</a>.
         </p>
+        {/* Account-2G: partner interest backup status (consent-gated) — device-local unless consented and confirmed backed up */}
+        <SyncStatusBadge status={piSyncStatus} lastSyncedAt={piSyncedAt} entityType="partner_interest" compact className="mt-3" />
       </section>
     )
   }

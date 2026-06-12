@@ -373,9 +373,16 @@ local-key → cloud-table audit).
   counted (never claims "all feedback synced"). No publishing, no reviews, no incentives.
   Wired into `/dashboard` + `/report` by the consent-first prompt. Local-first preserved;
   migration `002` must be applied for live sync.
-- **Account-2G — Partner Interest Sync: next (highest privacy care).**
-  `cloud_sync_partner_interest` holds PII (name/company/email/website) — needs the
-  strictest privacy review + explicit consent gate. Growth/Foundation deferred.
+- **Account-2G — Partner Interest Sync: built (consent-gated).** Highest-PII surface.
+  `cloud_sync_partner_interest` only (`src/lib/partnerInterestSync.ts`;
+  `partner-interest-sync.md`). Strict consent gate — a record syncs **only** when
+  `consentToContact === true`; non-consented or secret-like-note records are skipped
+  (kept local-only, counted; never "all partner interest synced"). Private backup only —
+  no outreach/CRM/public listing. Wired into `PartnerInterestForm` (`/partners`).
+  Local-first preserved; migration `002` must be applied for live sync.
+- **Account-2H — Growth Analytics Privacy-Safe Sync: next.** `cloud_sync_growth_events`
+  is non-PII by design and must stay aggregate-only — privacy/non-invasive review before
+  any write; never third-party-style tracking. Foundation/vendor/launch deferred.
 
 **Placement:** after Growth-6, before **Product-5 — Guided Business Foundation Builder**.
 Required infrastructure before Product-5B/5C checklist tracking becomes a core feature.
