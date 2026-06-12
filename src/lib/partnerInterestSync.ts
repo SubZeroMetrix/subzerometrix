@@ -34,6 +34,7 @@
 import { getBrowserSupabase, isSupabaseConfigured } from './supabaseClient'
 import { getCurrentAccountUser } from './accountAuth'
 import { getPartnerInterestLocal, type PartnerInterestSubmission } from './partnerDistribution'
+import { reconcileByIdNewestWins, type ReconcileResult, type TimestampedRecord } from './syncConflict'
 import type { SyncStatus } from './syncContracts'
 
 // Only this table — the user's own private partner-interest backup.
@@ -222,6 +223,19 @@ export async function loadPartnerInterestFromAccount(): Promise<unknown[]> {
   } catch {
     return []
   }
+}
+
+/**
+ * Account-2J: newest-wins reconciliation of local partner interest against the account
+ * (by id, using createdAt). Recommendation only — never overwrites local. Only consented/
+ * eligible records were ever written to the cloud, so reconcile cannot reintroduce skipped
+ * (non-consented or sensitive) records.
+ */
+export async function reconcilePartnerInterestFromAccount(
+  local: TimestampedRecord[],
+): Promise<ReconcileResult<TimestampedRecord>> {
+  const cloud = (await loadPartnerInterestFromAccount()) as TimestampedRecord[]
+  return reconcileByIdNewestWins(local, cloud)
 }
 
 /** A non-scary, user-facing message for a given sync status. */

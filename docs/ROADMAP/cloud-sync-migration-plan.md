@@ -68,8 +68,11 @@ later wiring phase (2D onward). **Next: Account-2C — Sync Status UI.**
    built (Product-5 owns that); no live local data yet, so nothing is written/claimed. Notes
    screened for secrets; vendor references store URLs only, never credentials. Syncs with no
    further wiring once Product-5 populates the local model.
-9. **Account-2J — Local-to-Cloud Migration + Conflict Handling.** One-time adoption per
-   flow + `updated_at` newest-wins conflict resolution.
+9. **Account-2J — Local-to-Cloud Migration + Conflict Handling.** *(Built — `src/lib/syncConflict.ts`
+   + `reconcile*FromAccount` per flow, see `local-to-cloud-migration-conflict-handling.md`.)*
+   Newest-wins by id (`updatedAt ?? createdAt`); pure, recommendation-only (never overwrites
+   local); tie/local-newer keeps local; additive idempotent writes unchanged; skipped/PII
+   records never reintroduced.
 10. **Account-2K — Data Export / Delete / Privacy Controls.** Export-my-data and
     delete-my-account-data, cascading on `account_user_id`.
 

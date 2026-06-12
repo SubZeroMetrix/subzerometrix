@@ -31,6 +31,7 @@
 import { getBrowserSupabase, isSupabaseConfigured } from './supabaseClient'
 import { getCurrentAccountUser } from './accountAuth'
 import { getGrowthEventsLocal, type GrowthActivationRecord } from './growthAnalytics'
+import { reconcileByIdNewestWins, type ReconcileResult, type TimestampedRecord } from './syncConflict'
 import type { SyncStatus } from './syncContracts'
 
 // Only this table — the user's own privacy-safe, aggregate activity backup.
@@ -224,6 +225,18 @@ export async function loadGrowthAnalyticsFromAccount(): Promise<unknown[]> {
   } catch {
     return []
   }
+}
+
+/**
+ * Account-2J: newest-wins reconciliation of local growth events against the account (by id,
+ * using createdAt). Recommendation only — never overwrites local. Only privacy-safe events
+ * passed the whitelist/skip gate before being written, so reconcile stays non-PII.
+ */
+export async function reconcileGrowthAnalyticsFromAccount(
+  local: TimestampedRecord[],
+): Promise<ReconcileResult<TimestampedRecord>> {
+  const cloud = (await loadGrowthAnalyticsFromAccount()) as TimestampedRecord[]
+  return reconcileByIdNewestWins(local, cloud)
 }
 
 /** A non-scary, user-facing message for a given sync status. */

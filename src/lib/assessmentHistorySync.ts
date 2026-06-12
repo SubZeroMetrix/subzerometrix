@@ -24,6 +24,7 @@ import { getBrowserSupabase, isSupabaseConfigured } from './supabaseClient'
 import { getCurrentAccountUser } from './accountAuth'
 import { loadLocalMetrixHistory } from './metrixStorage'
 import type { MetrixScoreSnapshot, MetrixProfileSnapshot } from './metrixHistory'
+import { reconcileByIdNewestWins, type ReconcileResult, type TimestampedRecord } from './syncConflict'
 import type { SyncStatus } from './syncContracts'
 
 // Only these two tables — the lowest-risk, non-PII, non-free-text entities.
@@ -249,6 +250,22 @@ export async function loadAssessmentHistoryFromAccount(): Promise<AccountAssessm
   } catch {
     return empty
   }
+}
+
+/**
+ * Account-2J: newest-wins reconciliation of local assessment + score history against the
+ * account (by id, using createdAt). Returns a RECOMMENDATION only — never overwrites local.
+ * Conflict rule: tie/local-newer keeps local; cloud-newer/cloud-only flags a hydrate.
+ */
+export async function reconcileAssessmentHistoryFromAccount(
+  local: TimestampedRecord[],
+): Promise<ReconcileResult<TimestampedRecord>> {
+  const cloud = await loadAssessmentHistoryFromAccount()
+  const flat = [
+    ...(cloud.assessmentHistory as TimestampedRecord[]),
+    ...(cloud.scoreHistory as TimestampedRecord[]),
+  ]
+  return reconcileByIdNewestWins(local, flat)
 }
 
 /** A non-scary, user-facing message for a given sync status. */

@@ -30,6 +30,7 @@ import { getCurrentAccountUser } from './accountAuth'
 import { loadLocalMetrixHistory } from './metrixStorage'
 import { getCompletedActionIds } from './roadmapProgress'
 import type { ManualKpiSnapshot } from './metrixKpis'
+import { reconcileByIdNewestWins, type ReconcileResult, type TimestampedRecord } from './syncConflict'
 import type { SyncStatus } from './syncContracts'
 
 // Only these two tables — structured, low-risk, non-PII.
@@ -220,6 +221,23 @@ export async function loadRoadmapKpiProgressFromAccount(): Promise<AccountRoadma
   } catch {
     return empty
   }
+}
+
+/**
+ * Account-2J: newest-wins reconciliation of local roadmap progress + KPI entries against
+ * the account (by id, using updatedAt/createdAt). Recommendation only — never overwrites
+ * local. Roadmap progress is a single idempotent row (last-write-wins via upsert); KPI
+ * entries reconcile per id. Tie/local-newer keeps local; cloud-newer/cloud-only → hydrate.
+ */
+export async function reconcileRoadmapKpiFromAccount(
+  local: TimestampedRecord[],
+): Promise<ReconcileResult<TimestampedRecord>> {
+  const cloud = await loadRoadmapKpiProgressFromAccount()
+  const flat = [
+    ...(cloud.roadmapProgress as TimestampedRecord[]),
+    ...(cloud.kpiEntries as TimestampedRecord[]),
+  ]
+  return reconcileByIdNewestWins(local, flat)
 }
 
 /** A non-scary, user-facing message for a given sync status. */

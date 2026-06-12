@@ -437,8 +437,12 @@ local-key → cloud-table audit).
   result. Local-first stays primary; "synced" only after a confirmed write; signed-out /
   unapplied-migration falls back to device-local. Foundation Builder progress (+ vendor/launch)
   only — no unrelated sync expansion. **Product-5 Foundation Builder track complete (5A–5I).**
-- **Next build — Account-2J — Local-to-Cloud Migration + Conflict Handling.** Then Account-2K
-  (Export / Delete / Privacy Controls).
+- **Account-2J — Local-to-Cloud Migration + Conflict Handling: built.** `src/lib/syncConflict.ts`
+  (pure newest-wins by id, `updatedAt ?? createdAt`) + a `reconcile*FromAccount` on every wired
+  flow (2D–2I); see `local-to-cloud-migration-conflict-handling.md`. Recommendation-only —
+  never overwrites local; tie/local-newer keeps local; writes stay additive/idempotent;
+  skipped/PII records never reintroduced.
+- **Next build — Account-2K — Data Export / Delete / Privacy Controls.**
 
 **Placement:** after Growth-6, before **Product-5 — Guided Business Foundation Builder**.
 Required infrastructure before Product-5B/5C checklist tracking becomes a core feature.

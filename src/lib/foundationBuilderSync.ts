@@ -38,6 +38,7 @@ import {
   type VendorToolItem,
   type LaunchReadinessItem,
 } from './foundationBuilder'
+import { reconcileByIdNewestWins, type ReconcileResult, type TimestampedRecord } from './syncConflict'
 import type { SyncStatus } from './syncContracts'
 
 // Re-export the canonical model keys/types so existing sync consumers are unaffected.
@@ -286,6 +287,24 @@ export async function loadFoundationBuilderFromAccount(): Promise<AccountFoundat
   } catch {
     return empty
   }
+}
+
+/**
+ * Account-2J: newest-wins reconciliation of local Foundation Builder progress against the
+ * account (by id, using updatedAt/createdAt). Recommendation only — never overwrites local.
+ * Flattens foundation + vendor + launch (vendor/launch empty until those surfaces exist).
+ * Tie/local-newer keeps local; cloud-newer/cloud-only → hydrate recommendation.
+ */
+export async function reconcileFoundationBuilderFromAccount(
+  local: TimestampedRecord[],
+): Promise<ReconcileResult<TimestampedRecord>> {
+  const cloud = await loadFoundationBuilderFromAccount()
+  const flat = [
+    ...(cloud.foundation as TimestampedRecord[]),
+    ...(cloud.vendor as TimestampedRecord[]),
+    ...(cloud.launch as TimestampedRecord[]),
+  ]
+  return reconcileByIdNewestWins(local, flat)
 }
 
 /** A non-scary, user-facing message for a given sync status. */

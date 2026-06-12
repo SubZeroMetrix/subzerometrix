@@ -34,6 +34,7 @@
 import { getBrowserSupabase, isSupabaseConfigured } from './supabaseClient'
 import { getCurrentAccountUser } from './accountAuth'
 import { getCustomerFeedbackLocal, type CustomerFeedbackRecord } from './customerProof'
+import { reconcileByIdNewestWins, type ReconcileResult, type TimestampedRecord } from './syncConflict'
 import type { SyncStatus } from './syncContracts'
 
 // Only this table — the user's own private feedback backup.
@@ -228,6 +229,18 @@ export async function loadCustomerFeedbackFromAccount(): Promise<unknown[]> {
   } catch {
     return []
   }
+}
+
+/**
+ * Account-2J: newest-wins reconciliation of local feedback against the account (by id,
+ * using createdAt). Recommendation only — never overwrites local. Only consented/eligible
+ * records were ever written to the cloud, so reconcile cannot reintroduce skipped records.
+ */
+export async function reconcileCustomerFeedbackFromAccount(
+  local: TimestampedRecord[],
+): Promise<ReconcileResult<TimestampedRecord>> {
+  const cloud = (await loadCustomerFeedbackFromAccount()) as TimestampedRecord[]
+  return reconcileByIdNewestWins(local, cloud)
 }
 
 /** A non-scary, user-facing message for a given sync status. */
