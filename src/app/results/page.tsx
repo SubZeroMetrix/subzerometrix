@@ -20,6 +20,8 @@ import RoadmapProgressCard from '@/components/RoadmapProgressCard'
 import ShareReferralCard from '@/components/ShareReferralCard'
 import GrowthEventTracker from '@/components/GrowthEventTracker'
 import SyncStatusBadge from '@/components/SyncStatusBadge'
+import { getAssessmentSyncReadiness, syncAssessmentHistoryToAccount } from '@/lib/assessmentHistorySync'
+import type { SyncStatus } from '@/lib/syncContracts'
 
 function riskColor(level: string): string {
   switch (level) {
@@ -45,6 +47,10 @@ export default function ResultsPage() {
   const [result, setResult] = useState<ScoreResult | null>(null)
   const [intake, setIntake] = useState<QuickIntake | null>(null)
   const [retention, setRetention] = useState<RetentionView | null>(null)
+  // Account-2D: assessment/score history backup status. Defaults device-local; only
+  // becomes 'synced_to_account' after a confirmed write. Failures are swallowed.
+  const [syncStatus, setSyncStatus] = useState<SyncStatus>('saved_on_device')
+  const [syncedAt, setSyncedAt] = useState<string | null>(null)
 
   useEffect(() => {
     let parsed: ScoreResult | null = null
@@ -65,6 +71,25 @@ export default function ResultsPage() {
       try { setRetention(recordAssessmentSnapshot(parsed, loadedIntake).view) } catch {}
     }
   }, [router])
+
+  // Resolve assessment/score history backup status (additive; never blocks the page).
+  useEffect(() => {
+    let cancelled = false
+    ;(async () => {
+      try {
+        const readiness = await getAssessmentSyncReadiness()
+        if (readiness.canSync) {
+          const result = await syncAssessmentHistoryToAccount()
+          if (!cancelled) { setSyncStatus(result.status); setSyncedAt(result.lastSyncedAt) }
+        } else if (!cancelled) {
+          setSyncStatus(readiness.status)
+        }
+      } catch {
+        // Expected-failure safe: keep the device-local default.
+      }
+    })()
+    return () => { cancelled = true }
+  }, [])
 
   if (!loaded || !result) return (
     <div className="min-h-dvh bg-brand-navy flex flex-col items-center justify-center gap-3">
@@ -339,8 +364,8 @@ export default function ResultsPage() {
             <Link href="/dashboard" className="text-brand-accent underline underline-offset-2">dashboard</Link>{' '}
             to track progress and reassess over time. Cloud account sync is coming later.
           </p>
-          {/* Honest storage status — device-local snapshot; no cloud sync wired (Account-2C) */}
-          <SyncStatusBadge status="saved_on_device" entityType="assessment_history" compact className="mt-2" />
+          {/* Account-2D: assessment history backup status — device-local until a confirmed write */}
+          <SyncStatusBadge status={syncStatus} lastSyncedAt={syncedAt} entityType="assessment_history" compact className="mt-2" />
         </div>
 
         {/* Share / invite another contractor (manual share only) */}

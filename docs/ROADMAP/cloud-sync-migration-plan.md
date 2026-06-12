@@ -31,8 +31,11 @@ later wiring phase (2D onward). **Next: Account-2C — Sync Status UI.**
    `SyncStatus` labels — defaults to "Saved on this device"; shows "Synced to your account"
    only when explicitly passed after a confirmed `synced` result. Presentational only; no
    Supabase writes. Placed on `/dashboard`, `/report`, `/results`.
-3. **Account-2D — Assessment / MetrixScore™ History Sync.** Wire the existing
-   `metrixCloudSync` writer + sign-in + cloud→local hydrate. Lowest privacy risk first.
+3. **Account-2D — Assessment / MetrixScore™ History Sync.** *(Built — `src/lib/assessmentHistorySync.ts`,
+   see `assessment-score-history-sync.md`.)* Syncs only `cloud_sync_assessment_history` +
+   `cloud_sync_score_history` (structured, non-PII). Local-first; confirmed-write-only
+   "synced" status; missing migration/table → `sync_unavailable` with local intact. Wired
+   into `/results` + `/dashboard`. Migration `002` must be applied for live sync.
 4. **Account-2E — Roadmap Action + KPI Sync.** Activate the existing action/KPI writers.
 5. **Account-2F — Feedback / Customer Proof Sync.** New table + writer. **Privacy review
    first** (free-text `comment`).

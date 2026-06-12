@@ -52,7 +52,8 @@ change, no wired sync.**
 - **Account-2A** — architecture / migration plan / contracts only *(built)*.
 - **Account-2B** — Supabase tables + RLS *(built — `supabase/migrations/002_cloud_sync_progress_records.sql`)*.
 - **Account-2C** — sync-status UI component *(built — `SyncStatusBadge.tsx`; see `sync-status-ui-component.md`)*.
-- **Account-2D onward** — wire actual flows (assessment/score first, lowest privacy risk) *(next)*.
+- **Account-2D** — assessment / MetrixScore™ history sync *(built — `assessmentHistorySync.ts`; see `assessment-score-history-sync.md`)*. First active flow; structured non-PII data only; local-first preserved; migration `002` must be applied for live sync.
+- **Account-2E onward** — roadmap action + KPI sync next; feedback/partner/growth/Foundation deferred.
 
 ## Account-2B artifacts (built — schema + RLS only)
 

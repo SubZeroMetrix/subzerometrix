@@ -353,9 +353,16 @@ local-key → cloud-table audit).
   defaults to "Saved on this device"; "Synced to your account" renders only when explicitly
   passed (after a confirmed write). Placed on `/dashboard`, `/report`, `/results`, all
   passing device-local status. No Supabase writes, no sign-in flow added.
-- **Account-2D — Assessment / MetrixScore™ History Sync: next.** Apply migration `002`,
-  verify RLS, perform confirmed writes to `cloud_sync_assessment_history` /
-  `cloud_sync_score_history`, then surface "Synced to your account" only on success.
+- **Account-2D — Assessment / MetrixScore™ History Sync: built.** First active sync flow,
+  scoped to `cloud_sync_assessment_history` + `cloud_sync_score_history` only
+  (`src/lib/assessmentHistorySync.ts`; `assessment-score-history-sync.md`). Structured,
+  non-PII, non-free-text data only. Local-first fallback preserved; "Synced to your account"
+  only after a confirmed write; missing migration/table → "Sync unavailable" with local
+  intact. Wired into `/results` and `/dashboard` badges. Migration `002` must be applied
+  before live sync works.
+- **Account-2E — Roadmap Action + KPI Sync: next.** Same local-first, confirmed-write-only
+  pattern for `cloud_sync_roadmap_action_progress` + `cloud_sync_kpi_entries`. No PII/
+  free-text sync; feedback/partner/growth remain deferred.
 
 **Placement:** after Growth-6, before **Product-5 — Guided Business Foundation Builder**.
 Required infrastructure before Product-5B/5C checklist tracking becomes a core feature.

@@ -21,6 +21,8 @@ import CustomerProofPrompt from '@/components/CustomerProofPrompt'
 import GrowthEventTracker from '@/components/GrowthEventTracker'
 import GrowthAnalyticsSummary from '@/components/GrowthAnalyticsSummary'
 import SyncStatusBadge from '@/components/SyncStatusBadge'
+import { getAssessmentSyncReadiness, syncAssessmentHistoryToAccount } from '@/lib/assessmentHistorySync'
+import type { SyncStatus } from '@/lib/syncContracts'
 
 const PATH_COMPLETE_KEY = 'szm_path_complete'
 
@@ -50,6 +52,9 @@ export default function DashboardPage() {
   const [intake, setIntake] = useState<QuickIntake | null>(null)
   const [completed, setCompleted] = useState<Set<string>>(new Set())
   const [retention, setRetention] = useState<RetentionView | null>(null)
+  // Account-2D: assessment/score history backup status. Device-local until a confirmed write.
+  const [syncStatus, setSyncStatus] = useState<SyncStatus>('saved_on_device')
+  const [syncedAt, setSyncedAt] = useState<string | null>(null)
 
   useEffect(() => {
     let parsed: ScoreResult | null = null
@@ -73,6 +78,25 @@ export default function DashboardPage() {
         setRetention(getRetentionView())
       } catch {}
     }
+  }, [])
+
+  // Resolve assessment/score history backup status (additive; never blocks the page).
+  useEffect(() => {
+    let cancelled = false
+    ;(async () => {
+      try {
+        const readiness = await getAssessmentSyncReadiness()
+        if (readiness.canSync) {
+          const result = await syncAssessmentHistoryToAccount()
+          if (!cancelled) { setSyncStatus(result.status); setSyncedAt(result.lastSyncedAt) }
+        } else if (!cancelled) {
+          setSyncStatus(readiness.status)
+        }
+      } catch {
+        // Expected-failure safe: keep the device-local default.
+      }
+    })()
+    return () => { cancelled = true }
   }, [])
 
   if (!loaded) return (
@@ -341,8 +365,8 @@ export default function DashboardPage() {
         {/* Device-local activity summary (no cloud, no business-result claims) */}
         <GrowthAnalyticsSummary />
 
-        {/* Honest storage status — device-local today; no cloud sync wired (Account-2C) */}
-        <SyncStatusBadge status="saved_on_device" entityType="metrix_score_history" />
+        {/* Account-2D: MetrixScore™ + assessment history backup status — device-local until a confirmed write */}
+        <SyncStatusBadge status={syncStatus} lastSyncedAt={syncedAt} entityType="metrix_score_history" />
 
         {/* ── Footer links ──────────────────────────────────────────── */}
         <div className="flex items-center justify-between pt-2">
