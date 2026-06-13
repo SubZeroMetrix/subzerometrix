@@ -9,7 +9,8 @@ import {
 } from 'lucide-react'
 import type { ScoreResult } from '@/lib/scoring'
 import { loadIntake, stageLabel, type QuickIntake } from '@/lib/intake'
-import { buildStarterScore, estimatePotential } from '@/lib/metrixReport'
+import { estimatePotential } from '@/lib/metrixReport'
+import { getCanonicalProfile, toMetrixScore } from '@/lib/metrix'
 import { generateActions } from '@/lib/pathActions'
 import { recordAssessmentSnapshot, recordActionProgress, getRetentionView, type RetentionView } from '@/lib/metrixRetention'
 import { RETENTION_COPY } from '@/lib/metrixHistory'
@@ -212,7 +213,8 @@ export default function DashboardPage() {
 
   // ── Derive everything from the Starter MetrixScore ──────────────────────────
   const answers   = result.answers
-  const starter   = buildStarterScore(answers, intake)
+  // Canonical read: one evaluation, persisted once, read here (no competing score).
+  const starter   = toMetrixScore(getCanonicalProfile(answers, intake))
   const actions   = generateActions('recommended', starter, intake, 'stabilize')
   const currentAction = actions.find(a => !completed.has(a.id)) ?? null
   const actionsDone   = actions.filter(a => completed.has(a.id)).length

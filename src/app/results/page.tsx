@@ -12,7 +12,8 @@ import {
   loadIntake, stageLabel, tradeLabel, goalLabel, challengeLabel,
   yearsLabel, revenueLabel, teamLabel, type QuickIntake,
 } from '@/lib/intake'
-import { buildStarterScore, explainRisk } from '@/lib/metrixReport'
+import { explainRisk } from '@/lib/metrixReport'
+import { getCanonicalProfile, toMetrixScore } from '@/lib/metrix'
 import { generateActions, type PathAction } from '@/lib/pathActions'
 import { recordAssessmentSnapshot, type RetentionView } from '@/lib/metrixRetention'
 import OutcomeBriefing from '@/components/OutcomeBriefing'
@@ -99,7 +100,8 @@ export default function ResultsPage() {
   )
 
   const answers     = result.answers
-  const starter     = buildStarterScore(answers, intake)
+  // Canonical read: one evaluation, persisted once, read here (no competing score).
+  const starter     = toMetrixScore(getCanonicalProfile(answers, intake))
   const strengths   = starter.strengths.filter(s => s.score > 0)
   const actions     = generateActions('recommended', starter, intake, 'stabilize').slice(0, 3)
   const firstName   = result.leadName || ''

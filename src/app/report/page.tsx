@@ -21,7 +21,8 @@ import { getFlyersByIds, getRoadPathsForPhase, SOCIAL_STARTER_PLAN } from '@/lib
 import { getFinancialPathsForPhase, type FinancialPath } from '@/lib/financialSystemsRoadmap'
 import { STATE_RESOURCES } from '@/lib/stateResources'
 import { loadIntake, goalLabel, challengeLabel, stageLabel, type QuickIntake } from '@/lib/intake'
-import { buildStarterScore, explainRisk, firstAction, alternativePaths } from '@/lib/metrixReport'
+import { explainRisk, firstAction, alternativePaths } from '@/lib/metrixReport'
+import { getCanonicalProfile, toMetrixScore } from '@/lib/metrix'
 import ChoosePathSection from '@/components/ChoosePathSection'
 import OutcomeBriefing from '@/components/OutcomeBriefing'
 import RoadmapProgressCard from '@/components/RoadmapProgressCard'
@@ -803,8 +804,8 @@ function ReportContent() {
   const userState  = answers?.location?.state ?? ''
   const stateData  = STATE_RESOURCES[userState] ?? null
 
-  // Starter MetrixScore — stage-adjusted preview from existing answers + intake
-  const starter        = buildStarterScore(answers, intake)
+  // Starter MetrixScore — canonical read (one evaluation, persisted once, no competing score)
+  const starter        = toMetrixScore(getCanonicalProfile(answers, intake))
   const starterStrengths = starter.strengths.filter(s => s.score > 0)
   const altPaths       = alternativePaths(starter)
 

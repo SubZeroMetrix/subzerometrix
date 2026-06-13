@@ -5,6 +5,8 @@ import { useRouter } from 'next/navigation'
 import { ArrowLeft, ArrowRight, CheckCircle2, ChevronDown } from 'lucide-react'
 import { QUESTIONS, TOTAL_QUESTIONS } from '@/lib/questions'
 import { calculateScores, type RawAnswers } from '@/lib/scoring'
+import { loadIntake } from '@/lib/intake'
+import { getCanonicalProfile } from '@/lib/metrix'
 import clsx from 'clsx'
 
 // US States list
@@ -231,6 +233,10 @@ export default function AssessmentPage() {
       const scoreJson = JSON.stringify(result)
       sessionStorage.setItem('szm_score', scoreJson)
       localStorage.setItem('szm_score', scoreJson)
+
+      // Canonical Metrix Profile — evaluate once and persist at the source.
+      // (Raw answers above are preserved; this is the single authoritative evaluation.)
+      try { getCanonicalProfile(finalAnswers, loadIntake(), { source: 'assessment' }) } catch {}
 
       // Save assessment to Supabase and capture the returned id
       if (
