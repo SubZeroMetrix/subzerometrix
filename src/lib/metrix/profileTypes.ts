@@ -20,9 +20,9 @@ import type {
 } from '../metrixEngine'
 
 // ── Version constants (bump deliberately; adapters key off these) ──────────────
-export const PROFILE_SCHEMA_VERSION = 1
-export const SCORING_VERSION = 1
-export const RULESET_VERSION = 1
+export const PROFILE_SCHEMA_VERSION = 2  // SZM-2: added critical gates + Metrix Priority + questions
+export const SCORING_VERSION = 1         // scoring math unchanged
+export const RULESET_VERSION = 2         // SZM-2: critical-gate + priority policy
 
 export type StageGroup = 'early' | 'establishing' | 'growth' | 'reset'
 
@@ -113,10 +113,90 @@ export interface PrioritySeed {
 export interface RoadmapSeedStep {
   order: number
   category: MetrixCategory
-  reason: 'priority_focus' | 'constraint' | 'foundation_default'
+  reason: 'priority_focus' | 'dependency' | 'constraint' | 'foundation_default'
 }
 export interface RoadmapSeed {
   steps: RoadmapSeedStep[]
+}
+
+// ── SZM-2: Critical gates ──────────────────────────────────────────────────────
+export type GateDomain =
+  | 'licensing' | 'entity' | 'insurance' | 'banking' | 'financial_visibility'
+  | 'pricing' | 'customer_path' | 'capacity' | 'quality' | 'owner_dependency'
+  | 'data_quality' | 'growth'
+
+// Bounded statuses — never claim "cleared" when required evidence is missing.
+export type GateStatus = 'triggered' | 'possible' | 'cleared' | 'unknown' | 'not_applicable'
+export type GateSeverity = 'blocking' | 'critical' | 'high' | 'moderate' | 'informational'
+export type EvidenceStatus = 'evidence_backed' | 'partial_evidence' | 'low_evidence' | 'no_evidence'
+export type GateSourceType = 'assessment' | 'intake' | 'derived'
+
+export interface CriticalGate {
+  id: string
+  domain: GateDomain
+  severity: GateSeverity
+  status: GateStatus
+  title: string
+  explanation: string
+  reasonCodes: string[]
+  triggeringEvidence: string[]
+  missingEvidence: string[]
+  affectedStage: StageGroup | 'all'
+  blocksGrowth: boolean
+  blocksPaidWork: boolean
+  blocksStageAdvance: boolean
+  requiredOutcome: string
+  resolutionPathIds: string[]
+  evidenceStatus: EvidenceStatus
+  sourceType: GateSourceType
+  rulesetVersion: number
+}
+
+// ── SZM-2: Blocked recommendations (growth work suppressed by an active gate) ──
+export interface BlockedRecommendation {
+  id: string
+  label: string
+  reason: string
+  blockedByGateId: string
+}
+
+// ── SZM-2: Metrix Priority (the single most important next outcome) ────────────
+export interface MetrixPriority {
+  priorityId: string
+  title: string
+  requiredOutcome: string
+  rationale: string
+  domain: GateDomain
+  domainCategory: MetrixCategory
+  severity: GateSeverity
+  sourceGateIds: string[]
+  sourceConstraintIds: string[]
+  reasonCodes: string[]
+  dependencies: string[]
+  blockedRecommendations: string[]
+  firstAction: string
+  completionCriteria: string
+  reassessmentTrigger: string
+  evidenceStatus: EvidenceStatus
+  rulesetVersion: number
+  rank: number
+}
+
+// ── SZM-2: Next-best-question candidates (progressive profiling) ───────────────
+export type QuestionUrgency = 'now' | 'soon' | 'later'
+export type QuestionImpact = 'changes_priority' | 'confirms_gate' | 'refines_roadmap' | 'improves_confidence'
+export type QuestionDataStatus = 'missing' | 'uncertain' | 'conflicting' | 'low_confidence'
+export interface NextBestQuestion {
+  candidateId: string
+  questionKey: string
+  evidenceKey: string
+  reason: string
+  relatedGateId: string | null
+  expectedDecisionImpact: QuestionImpact
+  urgency: QuestionUrgency
+  blocking: boolean
+  currentDataStatus: QuestionDataStatus
+  rank: number
 }
 
 // ── Profile quality (coverage / evidence quality / freshness — NO confidence %) ─
@@ -159,6 +239,12 @@ export interface MetrixProfileSnapshot {
   prioritySeed: PrioritySeed
   profileQuality: ProfileQuality
   roadmapSeed: RoadmapSeed
+  // ── SZM-2 additions ──────────────────────────────────────────────────────────
+  criticalGates: CriticalGate[]
+  metrixPriority: MetrixPriority        // exactly one active primary priority
+  secondaryPriorities: MetrixPriority[] // ranked; never compete with the primary in the read model
+  blockedRecommendations: BlockedRecommendation[]
+  nextBestQuestions: NextBestQuestion[]
   legacySource?: LegacySourceMeta
 }
 

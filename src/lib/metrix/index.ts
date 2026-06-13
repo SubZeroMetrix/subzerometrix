@@ -11,12 +11,20 @@ export { deriveProfileSignals } from './signals'
 export { calculateReadiness } from './readiness'
 export { deriveCriticalFlagCandidates } from './criticalFlags'
 export { deriveConstraintCandidates } from './constraints'
-export { derivePrioritySeed } from './priority'
+export { derivePrioritySeed, prioritySeedFromPriority } from './priority'
 export { deriveRoadmapSeed } from './roadmapSeed'
+export { deriveCriticalGates, GATE_DOMAIN_CATEGORY } from './gates'
+export { selectMetrixPriority, DOMAIN_BASE_TIER, type PrioritySelection } from './metrixPriority'
+export { deriveNextBestQuestions } from './nextBestQuestions'
 export { deriveProfileQuality, freshnessCategory } from './quality'
 export { evaluateMetrixProfile } from './snapshot'
 export { getCanonicalProfile, loadMetrixProfile, persistMetrixProfile, CANONICAL_PROFILE_KEY } from './persist'
-export { toMetrixScore } from './readModel'
+export {
+  toMetrixScore,
+  getMetrixPriority, getSecondaryPriorities, getActiveCriticalGates, getPossibleGates,
+  getBlockedRecommendations, getNextBestQuestions, getProfileQuality, getPriorityExplanation,
+  type PriorityExplanation,
+} from './readModel'
 export { estimatePotentialFromSnapshot, type PotentialEstimate } from './potential'
 export {
   projectCanonicalToLegacyScoreResult, projectCanonicalToLegacyAssessmentRow, type LeadData,

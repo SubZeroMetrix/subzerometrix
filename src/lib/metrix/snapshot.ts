@@ -3,9 +3,9 @@
 // ─────────────────────────────────────────────────────────────────────────────
 // THE CANONICAL EVALUATOR. One assessment → one evaluation → one versioned snapshot.
 // It calls the single scoring kernel (metrixReport.buildStarterScore) EXACTLY ONCE and
-// composes the focused modules around it. No consumer should score independently — they
-// read this snapshot (see readModel.toMetrixScore). Stays modular: this file only wires
-// the pure modules together; it contains no scoring math of its own.
+// composes the focused modules around it: signals → readiness → critical gates → Metrix
+// Priority (one primary) → next-best-questions → priority-aligned roadmap seed. No consumer
+// scores or re-prioritizes independently — they read this snapshot (see readModel).
 //
 // Determinism: with the same normalized inputs + version constants + EvaluateOptions
 // (profileId, now), the produced snapshot is byte-identical.
@@ -23,9 +23,12 @@ import { deriveProfileSignals } from './signals'
 import { calculateReadiness } from './readiness'
 import { deriveCriticalFlagCandidates } from './criticalFlags'
 import { deriveConstraintCandidates } from './constraints'
-import { derivePrioritySeed } from './priority'
+import { prioritySeedFromPriority } from './priority'
 import { deriveRoadmapSeed } from './roadmapSeed'
 import { deriveProfileQuality } from './quality'
+import { deriveCriticalGates } from './gates'
+import { selectMetrixPriority } from './metrixPriority'
+import { deriveNextBestQuestions } from './nextBestQuestions'
 
 function newProfileId(): string {
   const g = globalThis as unknown as { crypto?: { randomUUID?: () => string } }
@@ -64,7 +67,15 @@ export function evaluateMetrixProfile(
 
   const readiness = calculateReadiness(score)
   const constraintCandidates = deriveConstraintCandidates(readiness)
-  const prioritySeed = derivePrioritySeed(score)
+  const profileQuality = deriveProfileQuality(signals, createdAt, createdAt)
+
+  // SZM-2: critical gates → one Metrix Priority → questions → priority-aligned roadmap seed.
+  const criticalGates = deriveCriticalGates(normalized, signals, readiness, score.stageGroup)
+  const selection = selectMetrixPriority(criticalGates, constraintCandidates, profileQuality)
+  const prioritySeed = prioritySeedFromPriority(selection.primary, score.recommendedPath)
+  const nextBestQuestions = deriveNextBestQuestions(criticalGates, selection.primary)
+  const growthBlocked = selection.blockedRecommendations.length > 0
+  const roadmapSeed = deriveRoadmapSeed(selection.primary, criticalGates, constraintCandidates, growthBlocked)
 
   return {
     profileId: opts.profileId ?? newProfileId(),
@@ -87,8 +98,13 @@ export function evaluateMetrixProfile(
     criticalFlagCandidates: deriveCriticalFlagCandidates(normalized, signals),
     constraintCandidates,
     prioritySeed,
-    profileQuality: deriveProfileQuality(signals, createdAt, createdAt),
-    roadmapSeed: deriveRoadmapSeed(prioritySeed, constraintCandidates),
+    profileQuality,
+    roadmapSeed,
+    criticalGates,
+    metrixPriority: selection.primary,
+    secondaryPriorities: selection.secondary,
+    blockedRecommendations: selection.blockedRecommendations,
+    nextBestQuestions,
     ...(opts.legacySource ? { legacySource: opts.legacySource } : {}),
   }
 }
