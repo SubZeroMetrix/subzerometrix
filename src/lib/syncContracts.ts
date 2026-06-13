@@ -8,7 +8,9 @@
 // localStorage, and is SSR/build safe (pure data + pure functions).
 //
 // HONESTY RULES (enforced by construction):
-//   • `cloudWriteWired` is false for EVERY entity in Account-2A — nothing syncs yet.
+//   • `cloudWriteWired` is TRUE only for the two assessment/score history entities that
+//     Account-2D actively syncs (assessmentHistorySync.ts → cloud_sync_assessment_history,
+//     cloud_sync_score_history). Every other entity remains false (contract/model only).
 //   • getSyncStatusLabel('synced_to_account') returns the label string, but that
 //     label may only be SHOWN after a real, confirmed cloud write exists. Until then
 //     the honest status is 'saved_on_device' → "Saved on this device".
@@ -68,7 +70,7 @@ export interface SyncEntityContract {
   syncStatusLabelNeeded: boolean
   /** Whether the LOCAL feature exists in the product today. */
   builtLocally: boolean
-  /** Whether a REAL cloud write is wired. Always false in Account-2A. */
+  /** Whether a REAL cloud write is wired. True for the Account-2D history entities; false otherwise. */
   cloudWriteWired: boolean
   /** Whether a privacy review is required before this entity may sync. */
   privacyReviewRequired: boolean
@@ -99,7 +101,7 @@ const ENTITY_CONTRACTS: SyncEntityMap = {
     localFallbackRule: 'Saved on this device first; cloud is an additive backup.',
     syncStatusLabelNeeded: true,
     builtLocally: true,
-    cloudWriteWired: false,
+    cloudWriteWired: true, // Account-2D: assessmentHistorySync.ts writes cloud_sync_assessment_history
     privacyReviewRequired: false,
   },
   metrix_score_history: {
@@ -116,7 +118,7 @@ const ENTITY_CONTRACTS: SyncEntityMap = {
     localFallbackRule: 'Local history stays authoritative until a confirmed cloud write.',
     syncStatusLabelNeeded: true,
     builtLocally: true,
-    cloudWriteWired: false,
+    cloudWriteWired: true, // Account-2D: assessmentHistorySync.ts writes cloud_sync_score_history
     privacyReviewRequired: false,
   },
   roadmap_action_progress: {
@@ -358,7 +360,7 @@ export function getSyncEntityByType(type: SyncEntityType): SyncEntityContract {
 export interface SyncReadinessSummary {
   totalEntities: number
   builtLocally: number
-  cloudWriteWired: number            // always 0 in Account-2A
+  cloudWriteWired: number            // count of entities with a wired cloud write (2 as of Account-2D)
   requiringPrivacyReview: number
   byPriority: Record<SyncPriority, number>
   byPrivacyRisk: Record<SyncPrivacyRisk, number>

@@ -9,7 +9,7 @@ import {
 } from 'lucide-react'
 import type { ScoreResult } from '@/lib/scoring'
 import { loadIntake, stageLabel, type QuickIntake } from '@/lib/intake'
-import { buildStarterScore, estimatePotential } from '@/lib/metrixReport'
+import { getCanonicalProfile, toMetrixScore, estimatePotentialFromSnapshot } from '@/lib/metrix'
 import { generateActions } from '@/lib/pathActions'
 import { recordAssessmentSnapshot, recordActionProgress, getRetentionView, type RetentionView } from '@/lib/metrixRetention'
 import { RETENTION_COPY } from '@/lib/metrixHistory'
@@ -212,12 +212,15 @@ export default function DashboardPage() {
 
   // ── Derive everything from the Starter MetrixScore ──────────────────────────
   const answers   = result.answers
-  const starter   = buildStarterScore(answers, intake)
+  // Canonical read: one evaluation, persisted once, read here (no competing score).
+  const profile   = getCanonicalProfile(answers, intake)
+  const starter   = toMetrixScore(profile)
   const actions   = generateActions('recommended', starter, intake, 'stabilize')
   const currentAction = actions.find(a => !completed.has(a.id)) ?? null
   const actionsDone   = actions.filter(a => completed.has(a.id)).length
   const totalDone     = completed.size
-  const potential     = estimatePotential(answers, intake)
+  // Potential is sourced from the canonical snapshot (current) + a what-if projection.
+  const potential     = estimatePotentialFromSnapshot(profile)
 
   // Next profile section to complete: least-answered category, weight as tiebreak
   const incomplete = [...starter.categories]

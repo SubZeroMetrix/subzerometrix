@@ -337,3 +337,21 @@ export function getBandColor(band: ScoreBand): string {
 
   return colors[band]
 }
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Bounded NON-SCORING utilities (SZM-1A)
+// ─────────────────────────────────────────────────────────────────────────────
+// These do NOT run the Engine-1 calculation. They expose the band thresholds and the
+// builder-path catalog as pure lookups so the canonical → legacy projection can present
+// a band/builder-path derived from the CANONICAL score without re-running calculateScores.
+
+/** Map an already-computed (canonical) overall score onto the display band thresholds. */
+export function bandFromScore(overall: number): { band: ScoreBand; bandMessage: string } {
+  const cfg = BAND_CONFIG.find((b) => overall >= b.min && overall <= b.max) ?? BAND_CONFIG[0]
+  return { band: cfg.band, bandMessage: cfg.bandMessage }
+}
+
+/** The builder-path blurb for a business-type id (pure catalog lookup). */
+export function builderPathForType(businessType: string): string {
+  return BUILDER_PATHS[businessType] ?? BUILDER_PATHS.other
+}

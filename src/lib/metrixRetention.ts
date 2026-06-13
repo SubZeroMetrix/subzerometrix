@@ -16,7 +16,7 @@
 import type { ScoreResult } from './scoring'
 import type { QuickIntake } from './intake'
 import type { MetrixScore } from './metrixEngine'
-import { buildStarterScore } from './metrixReport'
+import { getCanonicalProfile, toMetrixScore } from './metrix'
 import {
   createScoreSnapshot,
   createProfileSnapshot,
@@ -131,7 +131,8 @@ export function recordAssessmentSnapshot(
     }
   }
 
-  const starter = buildStarterScore(result.answers, intake)
+  // Canonical read: history/sync snapshots are sourced from the one canonical profile.
+  const starter = toMetrixScore(getCanonicalProfile(result.answers, intake))
   const prior = getLatestScoreSnapshot(state)
 
   const snapshot = createScoreSnapshot({
