@@ -134,3 +134,60 @@ auth/build, unauthorized DB access, or materially false legal/financial/security
   controls, and checkout; ensure destructive-action confirmations are clear (present).
 - **Deployment/manual verification:** the section 6 list (apply `003`, verify RLS, production
   checkout, export/delete, email provider + unsubscribe before any send).
+
+## 9. Finalization & status reconciliation (2026-06-12)
+
+**Audit-1A is COMPLETE and will not be repeated** without a concrete new risk or material
+data-flow change. Verdict stands: **PASS WITH REQUIRED FIXES — 0 blockers.** Privacy Policy
+alignment is complete at commit `15b7764` (audit accepted at `1558dc8`). Remaining items are
+transferred to **Pre-Launch Fix-1** / deployment verification — the next phase is Fix-1, not
+another Audit-1A run.
+
+### Should-fix reconciliation (4 original)
+
+- **#1 verify-session raw Stripe error string** — **UNRESOLVED → Fix-1 (code).** Not touched
+  by `15b7764`. Return a generic user-safe 500 message; keep `console.error` server-side.
+- **#2 tier-preview vendor labels (`tierPreview.ts:50–51`)** — **UNRESOLVED → Fix-1 (code/copy
+  verify).** Not touched by `15b7764`. Confirm "approved/preferred vendors" render only as
+  future/premium-tier feature names; adjust if present-tense.
+- **#3 Privacy Policy processor/collection accuracy + sale-language voice** — **RESOLVED by
+  `15b7764`.** Processors corrected (Stripe/Supabase/Vercel; the unconfigured "Resend" email
+  provider removed); present-tense affiliate commission removed; current collection categories
+  (incl. analytics + email-consent), uses, device-vs-cloud storage, de-identified language,
+  future-evolution notice, and Account-2K export/delete + admin-assisted account-deletion limit
+  disclosed; legally-required state-law sale/opt-out disclosures retained as factual.
+- **#4 anonymous marketing-INSERT abuse risk** — **UNRESOLVED → Deployment / future hardening.**
+  Add provider-side double-opt-in before any send; consider a server route / rate limit if spam
+  appears. (Honeypot + cooldown + length/enum validation + server CHECK constraints already in
+  place.) Not a launch blocker.
+
+### Nice-to-have reconciliation (3 original)
+
+- Privacy-summary "do not sell" voice + "what we collect" line — **RESOLVED by `15b7764`** (the
+  old standalone reassurance line was replaced; collection categories now list marketing-
+  subscription + analytics). Roadmap cross-link — handled in `growth-engine-roadmap.md`.
+
+### Legal-disclosure preservation confirmed
+
+The policy distinguishes **prohibited marketing slogans / absolute promises** (removed) from
+**formal factual/legal disclosures required by applicable privacy laws** (retained: TDPSA/CPA/
+OCPA/FDBR access/correction/deletion/opt-out-of-sale rights, which accurately state that no
+data selling or targeted advertising occurs). No new user-facing data-selling slogan was added.
+
+### Exact items transferred to Pre-Launch Fix-1
+
+| Item | Class |
+|---|---|
+| Generic verify-session 500 error message (`verify-session/route.ts`) | Fix-1 code |
+| Confirm/adjust tier-preview vendor labels (`tierPreview.ts`) | Fix-1 code/copy |
+| Marketing-INSERT double-opt-in / rate-limit hardening | Deployment / future hardening |
+| Apply migration `003` (+ confirm `001`/`002`); verify production RLS | Deployment/manual |
+| Test public email-consent insert against applied tables | Deployment/manual |
+| Configure + verify double opt-in / unsubscribe before any marketing send | Deployment/manual |
+| Test production Stripe checkout → paid report access; confirm DEV_UNLOCK unset | Deployment/manual |
+| Test signed-in account export / delete | Deployment/manual |
+| Confirm Privacy Policy vs. actual processors + production data flows | Deployment/manual |
+| Attorney review before public launch | Deployment/manual |
+
+> Migration `003` is **authored but NOT confirmed applied** in production — do not treat it as
+> applied until the production Supabase project confirms it.
