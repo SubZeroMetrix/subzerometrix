@@ -483,8 +483,9 @@ export default function AssessmentPage() {
             {/* Reassurance */}
             <div className="glass-light rounded-xl p-4 mt-2">
               <p className="text-[11px] text-brand-silver leading-relaxed">
-                Your roadmap will be held here securely. We do not sell your information.
-                Your results are held securely in this browser session.
+                Your results are saved in this browser on your device. See our{' '}
+                <a href="/privacy" className="underline underline-offset-2">privacy policy</a> for how
+                your information is handled.
               </p>
             </div>
 
