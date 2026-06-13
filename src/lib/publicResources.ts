@@ -85,6 +85,20 @@ export function getSupportedTrades(): TradeStartupNote[] {
   return SUPPORTED_TRADES
 }
 
+// Growth-8: which strong-intent resource pages show the email-capture form (one per page).
+const EMAIL_CAPTURE_SLUGS: Set<string> = new Set([
+  'starting-a-contractor-business',
+  'contractor-startup-checklist',
+  'start-a-trade-business',
+  'start-a-home-service-business',
+  'contractor-business-readiness',
+  'foundation-builder-guide',
+])
+
+export function resourceHasEmailCapture(slug: string): boolean {
+  return EMAIL_CAPTURE_SLUGS.has(slug)
+}
+
 const SHARED_DISCLAIMER =
   'SubZeroMetrix™ is an educational business-readiness platform from The Modern Trades Mentor LLC. ' +
   'This page is general education — not legal, tax, financial, or licensing advice. Verify requirements ' +

@@ -659,7 +659,7 @@ testimonials, partner leads, and reassessments.
 11. Quality-1 — Platform Quality, Trust, UX, and Customer Success Standard (`platform-quality-trust-ux-standard.md`)
 12. Product-5 — Guided Business Foundation Builder (`guided-business-foundation-builder.md`)
 13. Growth-7 — Public Tool / Resource Page Engine (**built** — `/learn` engine; `publicResources.ts`)
-14. Growth-8 — Email Capture / Nurture Foundation (**next**)
+14. Growth-8 — Email Capture / Nurture Foundation (**built** — consent-first capture; `emailCapture.ts` + `EmailCaptureForm.tsx` + migration `003`; `growth-8-email-capture-nurture-foundation.md`)
 15. Pre-Launch Audit-1A / 1B / 1C (`pre-launch-audit-system.md`)
 16. Pre-Launch Fix-1 — Resolve blockers and launch-trust issues
 17. Launch Readiness Final Pass (future)

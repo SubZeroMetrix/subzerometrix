@@ -8,8 +8,9 @@
 
 import Link from 'next/link'
 import { ArrowLeft, ArrowRight, CheckCircle2, ExternalLink } from 'lucide-react'
-import type { PublicResource } from '@/lib/publicResources'
+import { resourceHasEmailCapture, type PublicResource } from '@/lib/publicResources'
 import SupportedTrades from '@/components/SupportedTrades'
+import EmailCaptureForm from '@/components/EmailCaptureForm'
 
 export default function ResourcePageView({ resource }: { resource: PublicResource }) {
   return (
@@ -77,6 +78,11 @@ export default function ResourcePageView({ resource }: { resource: PublicResourc
             ))}
           </div>
         </section>
+
+        {/* Email capture (one per page, strong-intent pages only) */}
+        {resourceHasEmailCapture(resource.slug) && (
+          <EmailCaptureForm sourcePage={`/learn/${resource.slug}`} sourceIntent={resource.intent} />
+        )}
 
         {/* FAQ */}
         {resource.faq && resource.faq.length > 0 && (

@@ -24,6 +24,12 @@ export type AnalyticsEvent =
   | 'growth_event_tracked'
   | 'acquisition_source_detected'
   | 'activation_milestone_reached'
+  // Growth-8 — email capture (NO email/name/raw content ever sent to analytics)
+  | 'email_capture_viewed'
+  | 'email_capture_started'
+  | 'email_capture_submitted'
+  | 'email_capture_success'
+  | 'email_capture_failed'
 
 export function trackEvent(event: AnalyticsEvent, props: Record<string, unknown> = {}): void {
   if (typeof window === 'undefined') return

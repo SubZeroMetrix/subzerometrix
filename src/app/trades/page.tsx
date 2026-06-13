@@ -3,6 +3,7 @@ import Link from 'next/link'
 import { ArrowLeft, ArrowRight } from 'lucide-react'
 import { buildOpenGraph, buildTwitter, breadcrumbJsonLd } from '@/lib/seo'
 import SupportedTrades from '@/components/SupportedTrades'
+import EmailCaptureForm from '@/components/EmailCaptureForm'
 
 const TITLE = 'Supported Trades'
 const DESCRIPTION =
@@ -58,6 +59,9 @@ export default function TradesPage() {
             </Link>
           </div>
         </section>
+
+        <EmailCaptureForm sourcePage="/trades" sourceIntent="supported trades overview"
+          heading="Trade-specific startup guidance" />
 
         <p className="text-[10px] text-brand-silver/50 leading-relaxed border-t border-brand-blue/30 pt-4">
           SubZeroMetrix™ is an educational business-readiness platform from The Modern Trades Mentor LLC.
