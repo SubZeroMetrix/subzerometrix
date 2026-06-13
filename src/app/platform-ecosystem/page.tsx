@@ -140,7 +140,7 @@ export default function PlatformEcosystemPage() {
           <p className="text-brand-silver text-sm leading-relaxed">
             SubZeroMetrix is the temperature instrument for every trades and service business.
             Start with the free MetrixScore™. As your score rises, your trade-specific platform
-            unlocks deeper benchmarks, AI coaching, and KPI tracking built for exactly what you do.
+            unlocks deeper KPI tracking — with planned upgrades like benchmarks built for exactly what you do.
           </p>
         </div>
 
@@ -189,7 +189,7 @@ export default function PlatformEcosystemPage() {
               { num: '01', title: 'Take the free MetrixScore™ assessment', desc: 'Seven questions. Every business — every trade — starts here.' },
               { num: '02', title: 'Get your temperature reading', desc: 'Your score across six areas shows exactly where your business is running cold.' },
               { num: '03', title: 'Unlock your personalized roadmap', desc: 'Trade-specific action steps, resource links, and 90-day priorities.' },
-              { num: '04', title: 'Graduate to your trade platform', desc: 'As your temperature rises, your platform unlocks deeper data and AI coaching.' },
+              { num: '04', title: 'Graduate to your trade platform', desc: 'As your temperature rises, your platform unlocks deeper data and tracking.' },
             ].map(({ num, title, desc }) => (
               <div
                 key={num}

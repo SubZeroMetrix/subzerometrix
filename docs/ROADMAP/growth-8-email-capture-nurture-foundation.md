@@ -81,10 +81,14 @@ never sent to analytics.** No third-party pixels, cookies, or trackers.
 
 ## Delivery-provider status
 
-**No email-delivery provider is configured.** No emails are sent in this phase. Copy uses
-honest "Join the update list" wording — it does **not** claim an immediate guide download or
-email delivery. The success state explicitly notes no emails are sent until the delivery
-list is live.
+**Email-delivery provider: Resend — gated off by default (Fix-2 reconciliation).** A
+pre-existing route `src/app/api/email-trigger/route.ts` integrates **Resend** for
+assessment/post-purchase/day-7/30/89 sequences, but returns a skipped 202 unless
+`RESEND_API_KEY` is set. The Growth-8 capture form is separate (consent-first update list) and
+sends nothing itself. The Privacy Policy names Resend as the provider (used when enabled). The
+capture copy uses honest "Join the update list" wording and does not claim immediate delivery.
+**Before any marketing send:** confirm the consent model (assessment-email vs. explicit-list),
+apply double opt-in, and wire unsubscribe.
 
 ## Future nurture sequence (NOT active)
 

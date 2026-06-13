@@ -40,7 +40,7 @@ function getEmail(data: EmailTriggerBody): { subject: string; html: string } | n
   const fine = `font-size:11px;color:#5B8FB9;`
 
   if (trigger === 'assessment_complete') return {
-    subject: `${first}, your MetrixScore™ is ready — don't lose it`,
+    subject: `${first}, your MetrixScore™ is ready`,
     html: wrap(`
       <p style="${pill}">SubZeroMetrix · MetrixScore™</p>
       <h1 style="${h1}">Your score is calculated, ${first}.</h1>
@@ -48,7 +48,7 @@ function getEmail(data: EmailTriggerBody): { subject: string; html: string } | n
       <p>Band: <strong style="color:${color};">${band}</strong> — the exact number and roadmap are locked.</p>
       <p>Unlock the full breakdown for as little as $9.99. The full roadmap with 90-day action plan is $19.99.</p>
       ${btn(`${APP_URL}/unlock`, 'Unlock My MetrixScore™ →')}
-      <p style="${fine}">Your results are saved — but the longer you wait, the longer your business runs cold.</p>
+      <p style="${fine}">Your results are saved. When you're ready, unlock the full breakdown and roadmap.</p>
     `),
   }
 

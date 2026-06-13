@@ -209,3 +209,28 @@ email/consent model reconciled) before launch.
 
 **Next:** **Pre-Launch Fix-2** (required — reconcile email delivery/consent + the should-fix
 list), then **Pre-Launch Audit-1C** (visual/accessibility polish).
+
+## 15. Pre-Launch Fix-2 resolution (2026-06-12)
+
+- **#1 Email delivery/consent contradiction → RESOLVED (disclosure aligned).** Privacy Policy
+  now names **Resend** as the email-delivery provider (used when enabled; automation configured
+  but **off unless `RESEND_API_KEY` is present**) in both the Email section and the Service
+  Providers list. `/api/email-trigger` already returns a skipped 202 without the key. **Manual:**
+  confirm `RESEND_API_KEY` is unset at launch (no sends) and wire double opt-in + unsubscribe
+  before enabling; reconcile the assessment-email vs. explicit-list consent model before sending.
+- **#2 Urgency copy → RESOLVED.** Softened the email-trigger subject ("don't lose it" removed)
+  and the "runs cold" pressure line.
+- **#3 AI coaching/benchmarks framing → RESOLVED.** Homepage + platform-ecosystem now describe
+  KPI tracking + **planned** upgrades (no current AI-coaching claim).
+- **#4 Paid-report "coming soon" → DEFERRED (acceptable).** Honestly labeled future content
+  inside an otherwise-populated paid report; content expansion is post-launch, not a blocker.
+- **#5 Company-name consistency → RESOLVED.** Terms IP line now reads "The Modern Trades Mentor LLC".
+- **#6 Sign-in entry → RESOLVED.** `AccountAuthPanel` (existing magic-link auth, no new
+  architecture) added to `/account/privacy` (now "Account & Data"); dashboard link updated to
+  "Account & data (sign in to back up)". Honest unavailable/link-sent/signed-in states; four sync
+  states preserved; local-only use not forced. **Manual:** verify production Supabase auth +
+  signed-in cloud write end-to-end.
+
+**Status:** 5 of 6 resolved in code/copy; #4 deferred as acceptable. 0 blockers. Remaining items
+are manual deployment verifications (Supabase auth, migration `003`, RLS, Stripe checkout, email
+provider/unsubscribe, state-link click tests, mobile/device review).

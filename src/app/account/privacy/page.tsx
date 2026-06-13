@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import { ArrowLeft } from 'lucide-react'
 import { buildOpenGraph, buildTwitter, breadcrumbJsonLd } from '@/lib/seo'
+import AccountAuthPanel from '@/components/AccountAuthPanel'
 import AccountDataPrivacyControls from '@/components/AccountDataPrivacyControls'
 
 const TITLE = 'Manage my data'
@@ -33,11 +34,12 @@ export default function AccountPrivacyPage() {
           <ArrowLeft className="w-4 h-4" />
           <span className="text-xs tracking-wide">Dashboard</span>
         </Link>
-        <p className="font-mono text-[10px] tracking-[0.25em] uppercase text-brand-silver mb-1">Privacy & Data</p>
-        <h1 className="font-display text-3xl tracking-wider text-brand-white leading-tight">MANAGE MY DATA</h1>
+        <p className="font-mono text-[10px] tracking-[0.25em] uppercase text-brand-silver mb-1">Account · Privacy & Data</p>
+        <h1 className="font-display text-3xl tracking-wider text-brand-white leading-tight">ACCOUNT & DATA</h1>
       </div>
 
-      <div className="px-5 py-6 max-w-2xl mx-auto">
+      <div className="px-5 py-6 max-w-2xl mx-auto space-y-6">
+        <AccountAuthPanel />
         <AccountDataPrivacyControls />
       </div>
     </main>

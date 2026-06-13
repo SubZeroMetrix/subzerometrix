@@ -486,7 +486,7 @@ export default function HomePage() {
             <p className="text-brand-silver text-[15px] leading-relaxed mb-6">
               Every trade starts at the same foundation and grows into its own platform.
               As your MetrixScoreâ„¢ rises, your trade-specific experience unlocks â€”
-              with deeper benchmarks, AI coaching, and KPI tracking built for your work.
+              with deeper KPI tracking — and planned upgrades like benchmarks built for your work.
             </p>
           </Reveal>
 

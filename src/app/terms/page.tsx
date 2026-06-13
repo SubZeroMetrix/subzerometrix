@@ -110,7 +110,7 @@ SubZeroMetrix is not responsible for outcomes based on incomplete, inaccurate, o
   {
     id: 'ip',
     title: 'Intellectual Property',
-    body: `All content on the SubZeroMetrix platform — including the MetrixScore™ name and methodology, platform names (HeatMetrix, VoltMetrix, FlowMetrix, RoofMetrix, SunMetrix, BuildMetrix, FixMetrix, GroundMetrix, CleanMetrix, PaintMetrix), scoring algorithms, report content, text, graphics, roadmap frameworks, and design — is the intellectual property of The Modern Trades Mentor.
+    body: `All content on the SubZeroMetrix platform — including the MetrixScore™ name and methodology, platform names (HeatMetrix, VoltMetrix, FlowMetrix, RoofMetrix, SunMetrix, BuildMetrix, FixMetrix, GroundMetrix, CleanMetrix, PaintMetrix), scoring algorithms, report content, text, graphics, roadmap frameworks, and design — is the intellectual property of The Modern Trades Mentor LLC.
 
 You may not reproduce, copy, distribute, resell, scrape, reverse-engineer, or create derivative works from any portion of this Platform without prior written permission. Purchasing a report grants you a personal, non-transferable license for your own business planning purposes only.`,
   },

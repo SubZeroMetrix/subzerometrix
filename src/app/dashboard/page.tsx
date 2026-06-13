@@ -509,7 +509,7 @@ export default function DashboardPage() {
 
         <div className="text-center pt-1">
           <Link href="/account/privacy" className="text-[11px] text-brand-silver/70 hover:text-brand-white transition-colors underline underline-offset-2">
-            Manage my data
+            Account &amp; data (sign in to back up)
           </Link>
         </div>
 

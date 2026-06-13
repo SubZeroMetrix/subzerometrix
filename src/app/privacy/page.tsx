@@ -84,7 +84,7 @@ For subscription purchases, Stripe manages your billing cycle. You may cancel at
     title: 'Email & Communications',
     body: `We send email only where you have requested it or given consent. Some pages offer an optional email update list; the consent checkbox is unchecked by default, and we record the version of the consent text you agreed to and the time you agreed. We do not enroll you in marketing email merely because you created an account, completed an assessment, downloaded a file, or used a tool.
 
-We do not currently operate an automated marketing-email delivery system. We collect consented interest now and will not send marketing email until a verified delivery provider, double opt-in where appropriate, and a working unsubscribe process are in place. We will identify our email-delivery provider here once it is configured.
+Our email is delivered through Resend (resend.com) when email is enabled. Email automation is configured but remains off unless an email API key is present in our environment; we will not send marketing email until double opt-in (where appropriate) and a working unsubscribe process are in place.
 
 Transactional messages (such as a payment receipt or a support response) are part of service delivery. When marketing email is active, you will be able to unsubscribe from non-transactional email at any time, and we will follow the CAN-SPAM Act.`,
   },
@@ -157,7 +157,9 @@ Note: Tax laws change frequently. This notice reflects our understanding as of t
 • Supabase (supabase.com) — database, authentication, and data storage
 • Vercel (vercel.com) — website hosting and infrastructure
 
-These providers process information on our behalf to deliver the service, and they maintain their own privacy practices. We do not currently use a third-party email-delivery provider or a third-party advertising or ad-tracking provider; if we add one, we will update this policy and identify it.
+• Resend (resend.com) — email delivery (used when email is enabled)
+
+These providers process information on our behalf to deliver the service, and they maintain their own privacy practices. We do not currently use a third-party advertising or ad-tracking provider; if we add one, we will update this policy and identify it.
 
 Affiliate and vendor relationships: our resources reference third-party tools for educational purposes only. We do not currently have active affiliate or paid vendor relationships. If we add affiliate links, sponsored placements, or paid vendor relationships in the future, we will disclose them clearly, and they will not change your MetrixScore™, report content, or recommendations. See our Affiliate Disclosure for details.
 
