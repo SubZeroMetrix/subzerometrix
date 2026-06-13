@@ -497,6 +497,19 @@ export default function DashboardPage() {
           )}
         </Link>
 
+        {/* Product-6: Customer Growth Roadmap entry card */}
+        <Link href="/growth"
+          className="glass rounded-2xl p-4 flex items-center justify-between gap-3 active:scale-[0.99] transition-all touch-target">
+          <span className="flex items-center gap-2.5">
+            <TrendingUp className="w-5 h-5 text-brand-accent flex-shrink-0" />
+            <span>
+              <span className="block text-[13px] font-semibold text-brand-white">Customer Growth Roadmap</span>
+              <span className="block text-[11px] text-brand-silver/70">Find your real growth constraint and next moves</span>
+            </span>
+          </span>
+          <ArrowRight className="w-4 h-4 text-brand-silver flex-shrink-0" />
+        </Link>
+
         {/* ── Footer links ──────────────────────────────────────────── */}
         <div className="flex items-center justify-between pt-2">
           <Link href="/start" className="text-[12px] text-brand-accent hover:underline underline-offset-2">

@@ -23,6 +23,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { path: '/learn', priority: 0.8 },
     { path: '/trades', priority: 0.7 },
     { path: '/foundation-builder', priority: 0.7 },
+    { path: '/growth', priority: 0.6 },
     { path: '/partners', priority: 0.6 },
     { path: '/platform-ecosystem', priority: 0.7 },
     { path: '/terms', priority: 0.3 },
