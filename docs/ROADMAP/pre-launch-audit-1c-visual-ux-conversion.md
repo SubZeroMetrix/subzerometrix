@@ -126,8 +126,12 @@ accessibility sweep above.
 - **(1) Growth Roadmap a11y → RESOLVED.** Added `aria-label` to the stage `<select>` and all 8
   number inputs; checkboxes were already wrapped in `<label>`. Touch targets unchanged.
 - **(2) Dashboard CTA hierarchy → RESOLVED.** Added one dominant, full-width primary CTA derived
-  from state (foundation incomplete → "Continue your business foundation" → `/foundation-builder`;
-  else → "Continue your growth roadmap" → `/growth`); existing cards/links retained as secondary.
+  from reliable state: no result → "Start Assessment" (existing); foundation incomplete →
+  "Continue your business foundation" → `/foundation-builder`; foundation complete **with real
+  Product-6 progress** → "Continue your customer growth roadmap" → `/growth`; foundation complete
+  **without** growth progress → "Open your customer growth roadmap" → `/growth` (we do not infer
+  "growth-stage" from a completed Foundation checklist alone). Existing cards/links retained as
+  secondary; sign-in not made primary.
 - **(3) `/results` next-path prominence → RESOLVED.** Added a prominent "Your next step (free)"
   section after the score explanation: Foundation (primary) + Growth (secondary), each with a
   brief why. No scoring/historical-results change.

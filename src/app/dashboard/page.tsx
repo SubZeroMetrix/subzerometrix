@@ -26,6 +26,7 @@ import { getRoadmapKpiSyncReadiness, syncRoadmapKpiProgressToAccount } from '@/l
 import { getCustomerFeedbackSyncReadiness, syncCustomerFeedbackToAccount } from '@/lib/customerFeedbackSync'
 import { getGrowthAnalyticsSyncReadiness, syncGrowthAnalyticsToAccount } from '@/lib/growthAnalyticsSync'
 import { getFoundationItemsOrDefaults, getFoundationCompletionStats, getNextFoundationItem, type FoundationCompletionStats } from '@/lib/foundationBuilder'
+import { loadGrowthInputs } from '@/lib/growthEngine'
 import type { SyncStatus } from '@/lib/syncContracts'
 
 const PATH_COMPLETE_KEY = 'szm_path_complete'
@@ -71,6 +72,7 @@ export default function DashboardPage() {
   // Product-5D: Foundation Builder progress summary (device-local).
   const [foundationStats, setFoundationStats] = useState<FoundationCompletionStats | null>(null)
   const [foundationNext, setFoundationNext] = useState<string | null>(null)
+  const [hasGrowthProgress, setHasGrowthProgress] = useState(false)
 
   useEffect(() => {
     let parsed: ScoreResult | null = null
@@ -178,6 +180,9 @@ export default function DashboardPage() {
       const items = getFoundationItemsOrDefaults()
       setFoundationStats(getFoundationCompletionStats(items))
       setFoundationNext(getNextFoundationItem(items)?.stepName ?? null)
+      // Fix-3: real Product-6 progress (so we don't guess growth-stage from foundation alone).
+      const gi = loadGrowthInputs()
+      setHasGrowthProgress(!!gi && Object.keys(gi).some(k => k !== 'trade' && (gi as Record<string, unknown>)[k] != null))
     } catch {
       // non-fatal — the card simply falls back to the basic entry link
     }
@@ -235,11 +240,15 @@ export default function DashboardPage() {
     ? new Date(reminder.dueAt).toLocaleDateString('en-US', { dateStyle: 'medium' })
     : null
 
-  // Fix-3: one dominant primary next action, from current state (safe Foundation default).
+  // Fix-3: one dominant primary next action, from reliable existing state.
+  // Foundation-first (safe default); route to Growth only with real Product-6 progress —
+  // we do not infer "growth-stage" from a completed Foundation checklist alone.
   const foundationIncomplete = !foundationStats || foundationStats.completed < foundationStats.total
   const primaryCta = foundationIncomplete
     ? { label: 'Continue your business foundation', href: '/foundation-builder' }
-    : { label: 'Continue your growth roadmap', href: '/growth' }
+    : hasGrowthProgress
+      ? { label: 'Continue your customer growth roadmap', href: '/growth' }
+      : { label: 'Open your customer growth roadmap', href: '/growth' }
 
   return (
     <main className="min-h-dvh bg-brand-navy">
