@@ -44,15 +44,20 @@ confidence %**), roadmapSeed, optional legacySource.
 - `isLegacyScoreResult` — structural detector (rejects malformed input).
 
 ## Retained legacy functions (not authoritative live writers)
-- **`scoring.ts:calculateScores` (Engine 1):** retained ONLY as the Supabase `assessments` log writer
-  and as the input to the legacy paid roadmap (`buildPersonalizedRoadmap`) in `/report`. No page
-  displays its number. **Removal condition:** when the `assessments` log + paid roadmap are migrated to
-  canonical fields.
+- **`scoring.ts:calculateScores` (Engine 1):** **RETIRED from the live assessment write path (SZM-1A).**
+  New submissions no longer run it — `szm_score` and the Supabase `assessments` row are projected from
+  the canonical snapshot (`projectCanonicalToLegacyScoreResult` / `projectCanonicalToLegacyAssessmentRow`).
+  It now executes **only in characterization tests**, retained for its historical `ScoreResult` shape +
+  comparison logic. `scoring.bandFromScore` / `builderPathForType` are bounded **non-scoring** lookups the
+  projection uses to present a band/builder-path derived from the canonical score. **Removal condition:**
+  when no test or historical adapter needs the Engine-1 shape.
 - **`metrixReport.ts:buildStarterScore` / `metrixEngine.ts:scoreAssessment`:** retained as the internal
-  scoring kernel called *only* by the canonical evaluator (no page calls them directly anymore).
-  **Removal condition:** when scoring is reimplemented natively inside the metrix modules.
-- **`metrixReport.ts:estimatePotential`:** retained for the dashboard "+X possible gain" projection;
-  uses the same kernel (its `current` equals the canonical overall — not a competing display score).
+  scoring kernel. `buildStarterScore` is called *only* by `evaluateMetrixProfile`; `scoreAssessment` is
+  called only by `buildStarterScore` and by `metrix/potential.ts` (a what-if projection). No page calls
+  either directly. **Removal condition:** when scoring is reimplemented natively inside the metrix modules.
+- **`metrixReport.ts:estimatePotential`:** **REMOVED (SZM-1A)** — it recomputed the live `current` via
+  `scoreAssessment`. Replaced by `metrix/potential.ts:estimatePotentialFromSnapshot`, which reads
+  `current` from the canonical snapshot and runs the kernel only for the hypothetical projection.
 - **Not live consumers (left untouched, deferred):** `scoringInfluenceMap.ts`,
   `metrixProfileProgression.ts` (neither is imported by any page/component).
 
@@ -83,8 +88,23 @@ persistence is **deferred**; the live sign-in path does not touch `szm_metrix_ca
 stays authoritative by construction. The reconciler is the tested forward primitive for when a
 canonical cloud table exists.
 
+## SZM-1A correction — Engine 1 retired from the live write path
+**Accurate statement:** Engine 1 is **retired from new live assessment evaluation and decision paths.**
+Its historical data shape and comparison logic remain temporarily for compatibility and tests. (This
+supersedes any earlier note framing Engine-1 retirement as a post-launch decision.)
+- New submission (`assessment/page.tsx:handleSubmit`): evaluates the canonical snapshot once, then writes
+  `szm_score` + the Supabase row via the canonical→legacy **projections** — `calculateScores` is not run.
+- Live report/roadmap: `/report` reads the now canonical-projected `szm_score`, so `buildPersonalizedRoadmap`
+  and the band/labels derive from canonical values (its `categoryScores` are projected from the canonical
+  readiness). No Engine-1 band/path drives a live decision.
+- Dashboard "possible gain": `estimatePotentialFromSnapshot` (canonical) replaces `estimatePotential`.
+- New files: `metrix/legacyProjection.ts`, `metrix/potential.ts`; `scoring.ts` gains the bounded
+  non-scoring helpers `bandFromScore` + `builderPathForType`.
+
 ## Explicitly deferred (post-SZM-1)
 Final critical-gate **policy** (only candidate structure exists now); wiring `contractorNeeds` into the
-UI; action→re-scoring feedback loop; canonical cloud table + live anonymous→account cloud merge;
-retiring Engine-1 / native scoring reimplementation; predictive scoring, ML, benchmarks, evidence
-registry, advanced outcome tracking; Start It / Build It / Grow It lifecycle behavior.
+UI; action→re-scoring feedback loop; canonical cloud table + live anonymous→account cloud merge; native
+scoring reimplementation inside the metrix modules (Engine-1 is already retired as a live writer; the
+retained kernel `buildStarterScore`/`scoreAssessment` still backs the canonical evaluator); predictive
+scoring, ML, benchmarks, evidence registry, advanced outcome tracking; Start It / Build It / Grow It
+lifecycle behavior.

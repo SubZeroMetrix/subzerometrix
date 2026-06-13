@@ -4,9 +4,13 @@ import React, { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 import { ArrowLeft, ArrowRight, CheckCircle2, ChevronDown } from 'lucide-react'
 import { QUESTIONS, TOTAL_QUESTIONS } from '@/lib/questions'
-import { calculateScores, type RawAnswers } from '@/lib/scoring'
+import { type RawAnswers } from '@/lib/scoring'
 import { loadIntake } from '@/lib/intake'
-import { getCanonicalProfile } from '@/lib/metrix'
+import {
+  getCanonicalProfile,
+  projectCanonicalToLegacyScoreResult,
+  projectCanonicalToLegacyAssessmentRow,
+} from '@/lib/metrix'
 import clsx from 'clsx'
 
 // US States list
@@ -229,14 +233,20 @@ export default function AssessmentPage() {
   async function handleSubmit(finalAnswers: RawAnswers) {
     setSubmitting(true)
     try {
-      const result = calculateScores(finalAnswers)
-      const scoreJson = JSON.stringify(result)
+      // Canonical Metrix Profile — the SINGLE authoritative evaluation (raw answers
+      // preserved; persisted to szm_metrix_canonical). Engine 1 is NOT run here.
+      const snapshot = getCanonicalProfile(finalAnswers, loadIntake(), { source: 'assessment' })
+      const lead = {
+        firstName: finalAnswers.lead?.firstName ?? '',
+        email: finalAnswers.lead?.email ?? '',
+      }
+
+      // Legacy szm_score carrier (read by results/report/dashboard/unlock) — PROJECTED
+      // from the canonical snapshot, never an Engine-1 calculation.
+      const legacyResult = projectCanonicalToLegacyScoreResult(snapshot, finalAnswers, lead)
+      const scoreJson = JSON.stringify(legacyResult)
       sessionStorage.setItem('szm_score', scoreJson)
       localStorage.setItem('szm_score', scoreJson)
-
-      // Canonical Metrix Profile — evaluate once and persist at the source.
-      // (Raw answers above are preserved; this is the single authoritative evaluation.)
-      try { getCanonicalProfile(finalAnswers, loadIntake(), { source: 'assessment' }) } catch {}
 
       // Save assessment to Supabase and capture the returned id
       if (
@@ -252,25 +262,8 @@ export default function AssessmentPage() {
           )
           const { data: inserted, error: dbErr } = await supabase
             .from('assessments')
-            .insert({
-              lead_name:       finalAnswers.lead?.firstName ?? '',
-              lead_email:      finalAnswers.lead?.email ?? '',
-              business_type:   finalAnswers.business_type ?? '',
-              state:           finalAnswers.location?.state ?? '',
-              city:            finalAnswers.location?.city ?? '',
-              stage:           finalAnswers.stage ?? '',
-              setup_steps:     finalAnswers.setup_steps ?? [],
-              financial:       finalAnswers.financial ?? '',
-              customer_plan:   finalAnswers.customer_plan ?? '',
-              blocker:         finalAnswers.blocker ?? '',
-              overall_score:   result.overall,
-              band:            result.band,
-              score_label:     result.bandLabel,
-              category_scores: result.categoryScores,
-              report_json:     result.report,
-              answers_json:    finalAnswers,
-              completed_at:    result.completedAt,
-            })
+            // Canonical → legacy row projection (no Engine-1 calculation; raw answers preserved).
+            .insert(projectCanonicalToLegacyAssessmentRow(snapshot, finalAnswers, lead))
             .select('id')
             .single()
 

@@ -810,11 +810,10 @@ function ReportContent() {
   const altPaths       = alternativePaths(starter)
 
   // ── MetrixScore™ reconciliation (display-only) ──────────────────────────────
-  // The user-facing headline score is the unified Starter MetrixScore™ — the same
-  // value shown on /results and /dashboard. The old `result` (scoring.ts) object is
-  // kept ONLY for the legacy paid roadmap (buildPersonalizedRoadmap) and the old
-  // category breakdown below. No scoring logic is changed here; a future phase should
-  // migrate the roadmap/breakdown to the unified engine.
+  // The user-facing headline score is the canonical Starter MetrixScore™ (toMetrixScore
+  // above) — the same value shown on /results and /dashboard. `result` is the legacy
+  // szm_score carrier, now PROJECTED from the canonical snapshot (SZM-1A); it is NOT an
+  // Engine-1 calculation. The legacy roadmap below reads its canonical-derived fields.
   const headerScoreColor =
     starter.riskLevel === 'high'     ? '#E05A4E'
     : starter.riskLevel === 'elevated' ? '#EF9F27'
@@ -840,9 +839,9 @@ function ReportContent() {
     ? parseFloat(Math.min(100, starter.overall + completedGrowthTabs.size * SCORE_IMPACT_PER_TAB).toFixed(1))
     : null
 
-  // SCORE BREAKDOWN reflects the unified Starter MetrixScore™ categories (display-only).
-  // Legacy result.categoryScores + paid roadmap logic are untouched — buildPersonalizedRoadmap
-  // reads `result` internally. A future phase can fully migrate the roadmap to the new engine.
+  // SCORE BREAKDOWN reflects the canonical Starter MetrixScore™ categories (display-only).
+  // buildPersonalizedRoadmap reads `result` internally, whose categoryScores are now
+  // PROJECTED from the canonical snapshot (SZM-1A) — no Engine-1 calculation runs.
   const categories: { label: string; score: number; max: number }[] =
     starter.categories
       .filter(c => c.answered > 0)

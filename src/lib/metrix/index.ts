@@ -17,6 +17,10 @@ export { deriveProfileQuality, freshnessCategory } from './quality'
 export { evaluateMetrixProfile } from './snapshot'
 export { getCanonicalProfile, loadMetrixProfile, persistMetrixProfile, CANONICAL_PROFILE_KEY } from './persist'
 export { toMetrixScore } from './readModel'
+export { estimatePotentialFromSnapshot, type PotentialEstimate } from './potential'
+export {
+  projectCanonicalToLegacyScoreResult, projectCanonicalToLegacyAssessmentRow, type LeadData,
+} from './legacyProjection'
 export {
   isLegacyScoreResult, adaptLegacyScoreResult, adaptLegacyHistorySnapshot,
 } from './legacyAdapter'

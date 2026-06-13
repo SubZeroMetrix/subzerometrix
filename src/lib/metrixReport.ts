@@ -15,7 +15,6 @@ import type { RawAnswers } from './scoring'
 import type { QuickIntake, BusinessStage } from './intake'
 import {
   scoreAssessment,
-  CRITERIA,
   type AssessmentResponse,
   type AnswerChoice,
   type MetrixScore,
@@ -178,27 +177,11 @@ function applyChallengeTiebreak(score: MetrixScore, intake: QuickIntake | null):
   }
 }
 
-// Estimate the score headroom from strengthening the current weak areas.
-// Projects the overall score if every answered criterion in the top risk
-// categories were raised to "strong and documented".
-export function estimatePotential(
-  answers: RawAnswers,
-  intake: QuickIntake | null,
-): { current: number; projected: number; improvement: number } {
-  const base = buildStarterResponse(answers, intake)
-  const scored = scoreAssessment(base)
-  const current = scored.overall
-  const riskCats = new Set<MetrixCategory>(scored.risks.map(r => r.category))
-
-  const improvedAnswers: Record<string, AnswerChoice> = { ...base.answers }
-  for (const id of Object.keys(improvedAnswers)) {
-    const crit = CRITERIA.find(c => c.id === id)
-    if (crit && riskCats.has(crit.category)) improvedAnswers[id] = 'strong_documented'
-  }
-
-  const projected = scoreAssessment({ stage: base.stage, answers: improvedAnswers }).overall
-  return { current, projected, improvement: Math.max(0, projected - current) }
-}
+// NOTE (SZM-1A): estimatePotential() was moved to the canonical engine
+// (src/lib/metrix/potential.ts → estimatePotentialFromSnapshot). It sourced the displayed
+// CURRENT score by recomputing scoreAssessment(), which duplicated the live score. The
+// canonical version reads `current` from the persisted snapshot and only runs the kernel
+// for the hypothetical PROJECTED what-if.
 
 // ─────────────────────────────────────────────────────────────────────────────
 // Copy helpers

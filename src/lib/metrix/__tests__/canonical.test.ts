@@ -7,7 +7,7 @@
 import test from 'node:test'
 import assert from 'node:assert/strict'
 
-import { calculateScores, type RawAnswers } from '../../scoring'
+import { calculateScores, bandFromScore, type RawAnswers } from '../../scoring'
 import { EMPTY_INTAKE, type QuickIntake } from '../../intake'
 import { getSyncEntityByType, getSyncReadinessSummary } from '../../syncContracts'
 import {
@@ -15,9 +15,13 @@ import {
   persistMetrixProfile, loadMetrixProfile,
   isLegacyScoreResult, adaptLegacyScoreResult,
   reconcileCanonicalProfiles,
+  projectCanonicalToLegacyScoreResult, projectCanonicalToLegacyAssessmentRow,
+  estimatePotentialFromSnapshot,
   PROFILE_SCHEMA_VERSION, SCORING_VERSION, RULESET_VERSION,
   type MetrixProfileSnapshot,
 } from '../index'
+
+const LEAD = { firstName: 'B', email: 'b@example.com' }
 
 // ── Fixtures (mirror the canonical-audit personas) ─────────────────────────────
 const NOW = '2026-01-01T00:00:00.000Z'
@@ -202,4 +206,77 @@ test('reconcile: newer-but-less-complete cloud does not overwrite local', () => 
   const r = reconcileCanonicalProfiles(local, [lessComplete])
   assert.equal(r.action, 'kept_local_conflict')
   assert.equal(r.resolved, local)
+})
+
+// ── SZM-1A: Engine 1 removed from the live submission write path ────────────────
+
+// 15 — the projected szm_score carries the CANONICAL score, not an Engine-1 calculation.
+test('SZM-1A: projected szm_score overall is canonical, not Engine-1', () => {
+  const snap = evaluateMetrixProfile(personaA_answers, personaA_intake, { now: NOW, profileId: 'mp_p' })
+  const projected = projectCanonicalToLegacyScoreResult(snap, personaA_answers, { firstName: 'A', email: 'a@example.com' })
+  const e1 = calculateScores(personaA_answers)
+  assert.equal(projected.overall, snap.readiness.overall)   // canonical
+  assert.notEqual(projected.overall, e1.overall)             // not the Engine-1 number
+})
+
+// 16 — the projected band is derived from the canonical score (bandFromScore).
+test('SZM-1A: projected band derives from the canonical score', () => {
+  const snap = evaluateMetrixProfile(personaB_answers, personaB_intake, { now: NOW, profileId: 'mp_b' })
+  const projected = projectCanonicalToLegacyScoreResult(snap, personaB_answers, LEAD)
+  assert.equal(projected.band, bandFromScore(snap.readiness.overall).band)
+})
+
+// 17 — compatibility projection preserves raw answers + canonical timestamp.
+test('SZM-1A: projection preserves raw answers and canonical createdAt', () => {
+  const snap = evaluateMetrixProfile(personaB_answers, personaB_intake, { now: NOW, profileId: 'mp_pa' })
+  const projected = projectCanonicalToLegacyScoreResult(snap, personaB_answers, LEAD)
+  assert.deepStrictEqual(projected.answers, personaB_answers)
+  assert.equal(projected.completedAt, snap.createdAt)
+  assert.equal(projected.leadName, 'B')
+})
+
+// 18 — the legacy roadmap inputs (categoryScores) derive from the canonical categories.
+test('SZM-1A: projected categoryScores derive from canonical readiness', () => {
+  const snap = evaluateMetrixProfile(personaB_answers, personaB_intake, { now: NOW, profileId: 'mp_cat' })
+  const projected = projectCanonicalToLegacyScoreResult(snap, personaB_answers, LEAD)
+  const fc = snap.readiness.categories.find(c => c.category === 'financial_control')!.score
+  const bf = snap.readiness.categories.find(c => c.category === 'business_foundation')!.score
+  assert.equal(projected.categoryScores.financialReadiness, Math.round((fc / 100) * 20))
+  assert.equal(projected.categoryScores.setupReadiness, Math.round((bf / 100) * 20))
+})
+
+// 19 — the Supabase row is canonical-sourced + version-tagged, not labeled Engine 1.
+test('SZM-1A: Supabase row is canonical-sourced and version-tagged', () => {
+  const snap = evaluateMetrixProfile(personaB_answers, personaB_intake, { now: NOW, profileId: 'mp_row' })
+  const row = projectCanonicalToLegacyAssessmentRow(snap, personaB_answers, LEAD) as Record<string, unknown>
+  assert.equal(row.overall_score, snap.readiness.overall)
+  assert.deepStrictEqual(row.answers_json, personaB_answers)
+  const reportJson = row.report_json as Record<string, unknown>
+  assert.equal(reportJson.canonical, true)
+  assert.equal(reportJson.scoringVersion, SCORING_VERSION)
+  assert.equal(reportJson.source, 'assessment')
+})
+
+// 20 — stored canonical score equals displayed read-model score.
+test('SZM-1A: stored projection overall equals displayed read-model overall', () => {
+  const snap = evaluateMetrixProfile(personaB_answers, personaB_intake, { now: NOW, profileId: 'mp_eq' })
+  const projected = projectCanonicalToLegacyScoreResult(snap, personaB_answers, LEAD)
+  assert.equal(projected.overall, toMetrixScore(snap).overall)
+})
+
+// 21 — dashboard potential sources CURRENT from the canonical snapshot (no recompute).
+test('SZM-1A: potential current equals the canonical snapshot overall', () => {
+  const snap = evaluateMetrixProfile(personaB_answers, personaB_intake, { now: NOW, profileId: 'mp_pot' })
+  const pot = estimatePotentialFromSnapshot(snap)
+  assert.equal(pot.current, snap.readiness.overall)
+  assert.ok(pot.projected >= pot.current)
+})
+
+// 22 — historical Engine-1 records remain readable + adaptable (provenance retained).
+test('SZM-1A: historical Engine-1 record remains readable', () => {
+  const historical = calculateScores(personaA_answers)   // an old szm_score shape
+  assert.equal(isLegacyScoreResult(historical), true)
+  const snap = adaptLegacyScoreResult(historical, personaA_intake, { profileId: 'mp_hist', now: NOW })
+  assert.equal(snap.legacySource?.originalOverall, historical.overall)
+  assert.deepStrictEqual(snap.normalizedAnswers.rawAnswers, personaA_answers)
 })
