@@ -133,13 +133,13 @@ export function deriveCriticalGates(
     const severity: GateSeverity = !hasEntity && operating ? 'critical' : !hasEntity ? 'high' : 'informational'
     gates.push(gate({
       id: 'gate_entity', domain: 'entity', status, severity,
-      title: hasEntity ? 'Business entity registered' : 'Business entity not registered',
-      explanation: 'A registered entity separates personal and business liability and is the basis for banking, tax, and contracts.',
+      title: hasEntity ? 'Business structure registered' : 'Business structure not confirmed',
+      explanation: 'A formal business structure can support contracts, banking, taxes, and liability planning. The appropriate structure and registration requirements depend on your business and jurisdiction.',
       reasonCodes: hasEntity ? ['entity_registered'] : operating ? ['no_entity', 'operating_without_entity'] : ['no_entity'],
       triggeringEvidence: hasEntity ? [] : ['entity_reg not selected'],
-      missingEvidence: [],
+      missingEvidence: hasEntity ? [] : ['business_structure_confirmed'],
       blocksGrowth: !hasEntity, blocksStageAdvance: !hasEntity,
-      requiredOutcome: 'Register a business entity (e.g., LLC) with your state.',
+      requiredOutcome: 'Confirm the appropriate business structure and complete any required state or local registration.',
       resolutionPathIds: ['foundation:entity'],
       evidenceStatus: 'evidence_backed',
     }))
@@ -172,7 +172,7 @@ export function deriveCriticalGates(
     gates.push(gate({
       id: 'gate_banking', domain: 'banking', status, severity: hasBank ? 'informational' : 'moderate',
       title: hasBank ? 'Business banking separated' : 'No separate business banking',
-      explanation: 'A dedicated business account keeps finances clean for taxes and protects your entity.',
+      explanation: 'A dedicated business account improves financial separation, bookkeeping, and tax records, and may help support proper business formalities.',
       reasonCodes: hasBank ? ['banking_separated'] : ['no_business_bank'],
       triggeringEvidence: hasBank ? [] : ['bank not selected'], missingEvidence: [],
       blocksStageAdvance: false,
