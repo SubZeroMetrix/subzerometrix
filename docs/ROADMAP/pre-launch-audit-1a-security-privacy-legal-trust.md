@@ -181,6 +181,33 @@ data selling or targeted advertising occurs). No new user-facing data-selling sl
 | Generic verify-session 500 error message (`verify-session/route.ts`) | Fix-1 code |
 | Confirm/adjust tier-preview vendor labels (`tierPreview.ts`) | Fix-1 code/copy |
 | Marketing-INSERT double-opt-in / rate-limit hardening | Deployment / future hardening |
+
+## 10. Pre-Launch Fix-1 resolution (2026-06-12)
+
+- **#1 verify-session raw Stripe error → RESOLVED.** The catch block now returns a generic
+  `"Unable to verify payment right now. Please try again."` (HTTP 500) to the browser; the
+  provider message is logged **server-side only** via `console.error` (no secrets/tokens/
+  payment-method/full Stripe objects). Stripe verification logic, `payment_status === 'paid'`,
+  checkout, webhook, report gating, success/cancel, DEV_UNLOCK, pricing, and env are unchanged.
+- **#2 tier-preview vendor terminology → RESOLVED (verified safe; no change needed).** In
+  `src/lib/tierPreview.ts`, "approved vendors"/"preferred vendors"/"affiliate tools"/"partner
+  marketplace" exist **only** inside the `DO_NOT_CLAIM` blocklist (the guard that prevents such
+  claims). Rendered copy is neutral ("Tool and vendor research library", `availableNow`) or
+  negative-framed ("Affiliate tools presented as an upsell", `notYetAvailable`). No current
+  approved/preferred/partner/sponsored vendor claim exists; the guard was preserved.
+- **Active affiliate statuses:** `affiliateStatus: 'active'` count = **0** (focused recheck).
+- **#4 anonymous marketing INSERT → remains Deployment / future-hardening** (not redesigned).
+  Honest residual risk: a script can insert consented rows outside the browser UI. Current
+  mitigations: INSERT-only RLS, no public subscriber reads, consent required, honeypot,
+  cooldown, validation, DB CHECK constraints, unique normalized email, no upsert. Before any
+  marketing send, require: migration `003` applied, production RLS verified, double opt-in (or
+  equivalent verified-consent), and a working unsubscribe/suppression process. Future hardening
+  may add a server-side endpoint, rate limiting, Turnstile/CAPTCHA, or provider abuse controls.
+  Scripted abuse is **not** claimed to be fully prevented; no service-role key was added to
+  browser code; no provider/dependency was added.
+
+**Audit-1A blockers remaining: 0. Privacy Policy alignment remains complete (`15b7764`).**
+**Next phase: Pre-Launch Audit-1B — Product Quality, Blind Spots, and Ten-Trade Coverage.**
 | Apply migration `003` (+ confirm `001`/`002`); verify production RLS | Deployment/manual |
 | Test public email-consent insert against applied tables | Deployment/manual |
 | Configure + verify double opt-in / unsubscribe before any marketing send | Deployment/manual |

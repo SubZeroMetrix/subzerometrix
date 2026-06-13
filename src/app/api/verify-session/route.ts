@@ -56,8 +56,13 @@ export async function GET(req: NextRequest) {
       band:         session.metadata?.band ?? null,
     })
   } catch (err: unknown) {
+    // Log the message server-side only (no secrets/tokens/payment details/full objects);
+    // never return the raw provider error string to the browser.
     const message = err instanceof Error ? err.message : 'Stripe error'
     console.error('verify-session error:', message)
-    return NextResponse.json({ paid: false, error: message }, { status: 500 })
+    return NextResponse.json(
+      { paid: false, error: 'Unable to verify payment right now. Please try again.' },
+      { status: 500 },
+    )
   }
 }

@@ -661,5 +661,7 @@ testimonials, partner leads, and reassessments.
 13. Growth-7 — Public Tool / Resource Page Engine (**built** — `/learn` engine; `publicResources.ts`)
 14. Growth-8 — Email Capture / Nurture Foundation (**built** — consent-first capture; `emailCapture.ts` + `EmailCaptureForm.tsx` + migration `003`; `growth-8-email-capture-nurture-foundation.md`)
 15. Pre-Launch Audit-1A — Security, Privacy, Legal, Compliance, Trust (**finalized** — verdict **PASS WITH REQUIRED FIXES**, 0 blockers; Privacy Policy aligned at `15b7764`; `pre-launch-audit-1a-security-privacy-legal-trust.md` + `privacy-policy-future-readiness-audit.md`). Not to be re-run without a concrete new risk. Then 1B / 1C (`pre-launch-audit-system.md`).
-16. Pre-Launch Fix-1 — **next.** Remaining Audit-1A items: verify-session generic error (code), tier-preview vendor-label check (code/copy), marketing-INSERT double-opt-in/rate-limit (deployment/hardening) + deployment/manual verifications (apply `003`, prod RLS, checkout, export/delete, attorney review).
-17. Launch Readiness Final Pass (future)
+16. Pre-Launch Fix-1 — **complete.** verify-session generic error (resolved, code); tier-preview vendor terminology (resolved — verified safe, `DO_NOT_CLAIM` guard + neutral copy); marketing-INSERT hardening (deployment/future). 0 active affiliate statuses. Deployment/manual verifications remain (apply `003`, prod RLS, checkout, export/delete, double opt-in before send, attorney review).
+17. Pre-Launch Audit-1B — Product Quality, Blind Spots, and Ten-Trade Coverage (**next**)
+18. Pre-Launch Audit-1C (`pre-launch-audit-system.md`)
+19. Launch Readiness Final Pass (future)
