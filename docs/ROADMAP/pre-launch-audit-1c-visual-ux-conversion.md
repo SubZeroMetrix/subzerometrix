@@ -120,3 +120,21 @@ See `manual-launch-verification-checklist.md` (DB/RLS/migration `003`, Supabase 
 Stripe test checkout → paid unlock, public email insert, export/delete, state-link click tests,
 `RESEND_API_KEY` unset/consent reconciled, attorney review) **plus** the Audit-1C device/
 accessibility sweep above.
+
+## Fix-3 resolution (2026-06-13)
+
+- **(1) Growth Roadmap a11y → RESOLVED.** Added `aria-label` to the stage `<select>` and all 8
+  number inputs; checkboxes were already wrapped in `<label>`. Touch targets unchanged.
+- **(2) Dashboard CTA hierarchy → RESOLVED.** Added one dominant, full-width primary CTA derived
+  from state (foundation incomplete → "Continue your business foundation" → `/foundation-builder`;
+  else → "Continue your growth roadmap" → `/growth`); existing cards/links retained as secondary.
+- **(3) `/results` next-path prominence → RESOLVED.** Added a prominent "Your next step (free)"
+  section after the score explanation: Foundation (primary) + Growth (secondary), each with a
+  brief why. No scoring/historical-results change.
+- **(4) Paid-report "coming soon" → RESOLVED.** Removed the dead "Unlock the Full Execution
+  Module" button, the secondary 🔒 preview box, and the three "coming soon" footnotes; relabeled
+  the remaining 🔒 preview to neutral "What deeper execution work covers" (no purchase CTA, no
+  timing promise, no waitlist/fake preview). Report no longer invites a purchase it can't deliver.
+
+**Status:** all 4 should-fix items resolved. Remaining = the manual device/accessibility sweep +
+the launch checklist. Next: manual verification → **Launch Readiness Final Pass**.

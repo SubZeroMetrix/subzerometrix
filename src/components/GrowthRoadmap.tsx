@@ -93,19 +93,19 @@ export default function GrowthRoadmap() {
           <p className="text-[10px] text-brand-silver/60 leading-relaxed">
             Enter what you know — leave blank what you don’t track yet. "Not tracked" is itself a useful signal.
           </p>
-          <select value={inputs.stage ?? ''} onChange={e => update('stage', (e.target.value || undefined) as GrowthStage)} className={`${input} appearance-none cursor-pointer`}>
+          <select aria-label="Business stage" value={inputs.stage ?? ''} onChange={e => update('stage', (e.target.value || undefined) as GrowthStage)} className={`${input} appearance-none cursor-pointer`}>
             <option value="" className="bg-brand-navy">Business stage…</option>
             {STAGES.map(s => <option key={s.value} value={s.value} className="bg-brand-navy text-brand-white">{s.label}</option>)}
           </select>
           <div className="grid grid-cols-2 gap-2">
-            <input type="number" inputMode="numeric" placeholder="Monthly leads" className={input} value={inputs.monthlyLeads ?? ''} onChange={e => update('monthlyLeads', numOrNull(e.target.value))} />
-            <input type="number" inputMode="numeric" placeholder="Response time (min)" className={input} value={inputs.responseMinutes ?? ''} onChange={e => update('responseMinutes', numOrNull(e.target.value))} />
-            <input type="number" inputMode="numeric" placeholder="Missed calls / week" className={input} value={inputs.missedCallsWeekly ?? ''} onChange={e => update('missedCallsWeekly', numOrNull(e.target.value))} />
-            <input type="number" inputMode="numeric" placeholder="Booking rate %" className={input} value={inputs.bookingRatePct ?? ''} onChange={e => update('bookingRatePct', numOrNull(e.target.value))} />
-            <input type="number" inputMode="numeric" placeholder="Close rate %" className={input} value={inputs.closeRatePct ?? ''} onChange={e => update('closeRatePct', numOrNull(e.target.value))} />
-            <input type="number" inputMode="numeric" placeholder="Average ticket $" className={input} value={inputs.avgTicket ?? ''} onChange={e => update('avgTicket', numOrNull(e.target.value))} />
-            <input type="number" inputMode="numeric" placeholder="Repeat customer %" className={input} value={inputs.repeatCustomerPct ?? ''} onChange={e => update('repeatCustomerPct', numOrNull(e.target.value))} />
-            <input type="number" inputMode="numeric" placeholder="Reviews (total)" className={input} value={inputs.reviewCount ?? ''} onChange={e => update('reviewCount', numOrNull(e.target.value))} />
+            <input type="number" inputMode="numeric" aria-label="Monthly leads" placeholder="Monthly leads" className={input} value={inputs.monthlyLeads ?? ''} onChange={e => update('monthlyLeads', numOrNull(e.target.value))} />
+            <input type="number" inputMode="numeric" aria-label="Response time in minutes" placeholder="Response time (min)" className={input} value={inputs.responseMinutes ?? ''} onChange={e => update('responseMinutes', numOrNull(e.target.value))} />
+            <input type="number" inputMode="numeric" aria-label="Missed calls per week" placeholder="Missed calls / week" className={input} value={inputs.missedCallsWeekly ?? ''} onChange={e => update('missedCallsWeekly', numOrNull(e.target.value))} />
+            <input type="number" inputMode="numeric" aria-label="Booking rate percent" placeholder="Booking rate %" className={input} value={inputs.bookingRatePct ?? ''} onChange={e => update('bookingRatePct', numOrNull(e.target.value))} />
+            <input type="number" inputMode="numeric" aria-label="Close rate percent" placeholder="Close rate %" className={input} value={inputs.closeRatePct ?? ''} onChange={e => update('closeRatePct', numOrNull(e.target.value))} />
+            <input type="number" inputMode="numeric" aria-label="Average ticket in dollars" placeholder="Average ticket $" className={input} value={inputs.avgTicket ?? ''} onChange={e => update('avgTicket', numOrNull(e.target.value))} />
+            <input type="number" inputMode="numeric" aria-label="Repeat customer percent" placeholder="Repeat customer %" className={input} value={inputs.repeatCustomerPct ?? ''} onChange={e => update('repeatCustomerPct', numOrNull(e.target.value))} />
+            <input type="number" inputMode="numeric" aria-label="Total reviews" placeholder="Reviews (total)" className={input} value={inputs.reviewCount ?? ''} onChange={e => update('reviewCount', numOrNull(e.target.value))} />
           </div>
           <div className="flex flex-wrap gap-3 pt-1">
             {([['gbpComplete', 'Google Business Profile complete'], ['recurringRevenue', 'Have recurring/agreement revenue'], ['atCapacity', 'At or near capacity'], ['followUpProcess', 'Have estimate follow-up process']] as const).map(([k, label]) => (

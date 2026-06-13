@@ -406,7 +406,7 @@ function PlaybookCard({ pb, bandColor }: { pb: SalesPlaybook; bandColor: string 
           <div className="rounded-sm px-3 py-2"
             style={{ background: 'rgba(239,159,39,0.07)', border: '1px solid rgba(239,159,39,0.2)' }}>
             <p className="font-mono text-[8px] tracking-widest uppercase mb-1.5" style={{ color: '#EF9F27' }}>
-              🔒 Full Module Preview
+              What deeper execution work covers
             </p>
             <div className="space-y-0.5">
               {pb.lockedContent.split('·').filter(s => s.trim()).map((item, i) => (
@@ -416,9 +416,6 @@ function PlaybookCard({ pb, bandColor }: { pb: SalesPlaybook; bandColor: string 
                 </div>
               ))}
             </div>
-            <p className="text-[9px] text-brand-silver/30 mt-2">
-              Coming soon — full scripts, templates &amp; training guides
-            </p>
           </div>
 
         </div>
@@ -669,12 +666,6 @@ function FinancialPathCard({ path, bandColor }: { path: FinancialPath; bandColor
                 </div>
               ))}
             </div>
-          </div>
-          <div className="rounded-sm px-3 py-2"
-            style={{ background: 'rgba(239,159,39,0.06)', border: '1px solid rgba(239,159,39,0.18)' }}>
-            <p className="font-mono text-[8px] tracking-widest uppercase mb-1" style={{ color: '#EF9F27' }}>🔒 Full Module Preview</p>
-            <p className="text-[10px] text-brand-silver/50 leading-relaxed">{path.upgradePreview}</p>
-            <p className="text-[9px] text-brand-silver/30 mt-1">Coming soon — templates, checklists &amp; calculators</p>
           </div>
         </div>
       )}
@@ -1638,11 +1629,6 @@ function ReportContent() {
                               ))}
                             </div>
                           </div>
-                          <button className="w-full py-3 rounded-sm text-[12px] font-semibold tracking-wide uppercase transition-all"
-                            style={{ background: `${bandColor}20`, border: `1px solid ${bandColor}50`, color: bandColor }}>
-                            Unlock the Full Execution Module
-                          </button>
-                          <p className="text-[9px] text-brand-silver/40 text-center mt-2">Coming soon — scripts, templates, calculators, SOPs</p>
                         </div>
                       )}
 

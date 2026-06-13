@@ -665,7 +665,7 @@ testimonials, partner leads, and reassessments.
 17. Pre-Launch Audit-1B — Product Quality, Blind Spots, and Ten-Trade Coverage (**complete** — verdict **PASS WITH REQUIRED FIXES**, 0 blockers; `pre-launch-audit-1b-product-quality-ten-trade-coverage.md`). Highest-risk: email-delivery/consent contradiction (`/api/email-trigger` Resend vs. "no delivery" docs).
 18. Pre-Launch Fix-2 — **complete.** Sign-in entry wired (`AccountAuthPanel` on `/account/privacy`); email delivery/consent disclosed (Resend, gated); AI coaching/benchmarks future-framed; company-name → LLC; urgency copy softened; paid-report "coming soon" deferred (acceptable). 5/6 resolved, #4 deferred. See `manual-launch-verification-checklist.md`.
 19. Pre-Launch Audit-1C — visual UX / usability / conversion / cross-device (**complete** — verdict **PASS WITH REQUIRED FIXES**, 0 blockers; `pre-launch-audit-1c-visual-ux-conversion.md`).
-20. Pre-Launch Fix-3 — **next.** Growth Roadmap input labels (a11y); dashboard primary-CTA hierarchy; `/results` next-step prominence; paid-report "coming soon"; then the manual device/accessibility sweep + `manual-launch-verification-checklist.md`.
-21. Launch Readiness Final Pass (future)
+20. Pre-Launch Fix-3 — **complete.** Growth Roadmap a11y labels; dashboard dominant primary CTA; `/results` next-path section (Foundation/Growth); paid-report purchase-CTA + "coming soon" removed. Remaining = manual device/accessibility sweep + `manual-launch-verification-checklist.md`.
+21. Launch Readiness Final Pass — **next** (manual verification + final QA).
 
 Parallel builds (not in the launch-blocker sequence): **Product-6 — Contractor Customer Growth Engine** (`product-6-contractor-customer-growth-engine.md`, `/growth`); **MetrixScore™ needs-mapping** (`metrixscore-needs-mapping-and-direction-audit.md`, `contractorNeeds.ts`).

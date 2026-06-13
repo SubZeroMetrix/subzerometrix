@@ -264,6 +264,27 @@ export default function ResultsPage() {
         {/* Why this score? + next improvement lever (explanation only) */}
         <OutcomeBriefing score={starter} intake={intake} variant="results" />
 
+        {/* Fix-3: prominent free next-step paths (Foundation primary, Growth secondary) */}
+        <section className="glass rounded-2xl p-5">
+          <p className="font-mono text-[9px] tracking-[0.18em] uppercase text-brand-silver mb-2">Your next step (free)</p>
+          <Link href="/foundation-builder"
+            className="flex items-center justify-center gap-2 w-full py-3 rounded-xl text-[13px] font-bold tracking-wide uppercase bg-brand-accent text-white active:scale-[0.98] transition-all touch-target">
+            Build your business foundation <ArrowRight className="w-4 h-4" />
+          </Link>
+          <p className="text-[11px] text-brand-silver/70 leading-relaxed mt-2">
+            Track the real-world setup steps — identity, legal, licensing, banking, brand, and launch —
+            for your trade and state.
+          </p>
+          <Link href="/growth"
+            className="flex items-center justify-center gap-2 w-full py-2.5 rounded-xl text-[12px] font-semibold glass text-brand-white active:scale-[0.98] transition-all touch-target mt-3">
+            Already launched? Open the Customer Growth Roadmap <ArrowRight className="w-3.5 h-3.5" />
+          </Link>
+          <p className="text-[11px] text-brand-silver/70 leading-relaxed mt-2">
+            For working contractors who want more customers — find your real growth constraint and the
+            highest-impact next moves. Educational only; no guaranteed results.
+          </p>
+        </section>
+
         {/* Roadmap progress (light preview) */}
         <RoadmapProgressCard score={starter} intake={intake} variant="results" />
 

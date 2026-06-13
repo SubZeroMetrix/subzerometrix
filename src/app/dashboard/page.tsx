@@ -235,6 +235,12 @@ export default function DashboardPage() {
     ? new Date(reminder.dueAt).toLocaleDateString('en-US', { dateStyle: 'medium' })
     : null
 
+  // Fix-3: one dominant primary next action, from current state (safe Foundation default).
+  const foundationIncomplete = !foundationStats || foundationStats.completed < foundationStats.total
+  const primaryCta = foundationIncomplete
+    ? { label: 'Continue your business foundation', href: '/foundation-builder' }
+    : { label: 'Continue your growth roadmap', href: '/growth' }
+
   return (
     <main className="min-h-dvh bg-brand-navy">
       <GrowthEventTracker milestone="dashboard_viewed" />
@@ -260,6 +266,12 @@ export default function DashboardPage() {
           <Stat label="Profile" value={`${starter.progress.completion}%`} sub="complete" />
           <Stat label="Risk" value={starter.riskLabel.split(' ')[0]} color={rColor} />
         </div>
+
+        {/* ── Primary next action (one dominant CTA; Fix-3) ─────────── */}
+        <Link href={primaryCta.href}
+          className="flex items-center justify-center gap-2 w-full py-4 rounded-xl text-[14px] font-bold tracking-wide uppercase bg-brand-accent text-white active:scale-[0.98] transition-all touch-target">
+          {primaryCta.label} <ArrowRight className="w-4 h-4" />
+        </Link>
 
         {/* ── Current focus ─────────────────────────────────────────── */}
         <section>
