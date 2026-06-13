@@ -6,84 +6,103 @@ export const metadata = { title: 'Privacy Policy | SubZeroMetrix' }
 const SECTIONS = [
   {
     title: 'Overview',
-    body: `SubZeroMetrix ("we," "us," or "our") is operated by The Modern Trades Mentor. This Privacy Policy explains how we collect, use, store, and protect your personal information when you use our platform at subzerometrix.com.
+    body: `SubZeroMetrix™ ("we," "us," or "our") is owned and operated by The Modern Trades Mentor LLC. This Privacy Policy explains how we collect, use, store, and protect your personal information when you use our platform at subzerometrix.com. It describes our current data practices and is written to remain accurate as the platform develops.
 
 By using the platform, you agree to the practices described in this policy. If you do not agree, please do not use the platform.
 
-SubZeroMetrix currently serves users across the United States, with initial operations focused on Colorado, Florida, Arizona, Texas, North Carolina, and Ohio. We comply with applicable state privacy laws in each jurisdiction where we operate.`,
+SubZeroMetrix™ currently serves users across the United States, with initial operations focused on Florida, Colorado, Texas, Arizona, Ohio, and North Carolina. We follow applicable state privacy laws in the jurisdictions where we operate.`,
   },
   {
     title: 'Information We Collect',
-    body: `We collect information you provide directly when using the platform:
+    body: `Depending on how you use the platform, we may collect the following categories of information:
 
-• First name and email address (entered at the end of the assessment)
-• Business type, operating state and city, business stage, financial readiness level, customer acquisition plan, and biggest current blocker (your assessment answers)
-• Payment confirmation details (tier purchased, transaction ID) — we do NOT store your card number, CVV, or full payment credentials; these are handled entirely by Stripe
+• Account and contact information you provide directly (such as first name and email address)
+• Assessment responses you submit
+• Business-readiness and MetrixScore™ information generated from your assessment activity
+• Roadmap, checklist, milestone, and progress information
+• Foundation Builder activity (your selections, stages, and any notes you choose to enter)
+• Platform usage and interaction information
+• Technical, browser, device, diagnostic, security, and log information needed to operate and protect the service
+• Email-consent and communication-preference information
+• Customer feedback you submit
+• Voluntary testimonial, review, case-study, or research-participation information (only if you choose to provide it)
+• Referral, acquisition, activation, and growth-event information collected through privacy-safe analytics
+• Business-outcome information you may voluntarily provide in the future
 
-We also collect limited technical data automatically:
-• Browser type, device type, and operating system
-• Pages visited and time spent
-• Referring URL (how you found us)
-• IP address (used for fraud prevention and analytics, not linked to your identity in reports)
+Sources: most information comes directly from you. Technical and log information is generated automatically by your device and by our infrastructure providers as you use the service.
 
-We do NOT collect: Social Security numbers, government IDs, biometric data, health information, financial account numbers, racial or ethnic origin, religious beliefs, or geolocation beyond the state/city you self-report.`,
+We do not ask you to provide, and you should not enter, passwords, API keys, Social Security numbers, banking or payment-card numbers, government IDs, biometric or health data, or other sensitive personal information into free-form fields such as notes.`,
   },
   {
     title: 'How We Use Your Information',
-    body: `We use your information for the following purposes only:
+    body: `We may use your information to:
 
-• To calculate and generate your MetrixScore™ report and personalized roadmap
-• To process and verify your payment through Stripe
-• To send your report confirmation and (if opted in) follow-up educational emails
-• To save your assessment record in our database for support and reassessment purposes
-• To improve the platform using aggregated, anonymized data
-• To comply with applicable legal obligations
+• Provide and operate SubZeroMetrix™
+• Create assessments, MetrixScore™ results, recommendations, roadmaps, checklists, and progress tools
+• Save and synchronize your progress (on your device and, when you sign in, to your account)
+• Personalize educational guidance based on the business context you provide
+• Maintain accounts and provide support
+• Improve platform functionality and user experience
+• Measure platform performance, reliability, adoption, and effectiveness
+• Protect platform security and prevent abuse
+• Communicate with you when you have requested or consented to communications
+• Develop new tools, features, integrations, services, and educational resources
+• Conduct internal analytics, product research, and quality evaluation
+• Evaluate whether platform milestones, recommendations, and workflows are associated with improved business outcomes
+• Create aggregated or de-identified analytics, benchmarking, research, and industry insights (see "Aggregated & De-Identified Information")
+• Comply with applicable legal obligations
 
-We do NOT use your information for targeted advertising.
-We do NOT sell your personal data to third parties.
-We do NOT share your individual assessment results with anyone outside of our team.`,
+We do not sell your personal information for money, and we do not use it for cross-context behavioral or targeted advertising. We do not share your individual assessment results, MetrixScore™, or progress data with third parties except the service providers described below, with your direction, or as required by law.`,
+  },
+  {
+    title: 'Aggregated & De-Identified Information',
+    body: `We may create aggregated or de-identified information from platform activity. "De-identified" does not necessarily mean "anonymous" — removing direct identifiers does not guarantee that information can never be associated with an individual or business.
+
+Where we use de-identified information, we will use reasonable measures to prevent it from being associated with a particular individual or business, and we will not intentionally attempt to re-identify it except where permitted or required for security, compliance, testing, or legal purposes.
+
+We may retain and use aggregated or de-identified information for lawful research, analytics, benchmarking, product development, operational improvement, and industry-insight purposes — for example, contractor and service-business benchmarking, business-readiness research, outcome analysis, industry-trend analysis, developing readiness/risk/momentum/growth indicators, comparing milestone completion with voluntarily reported business outcomes, and publishing high-level statistical insights that do not identify individual users or businesses.
+
+We do not currently publish benchmarking or outcome claims (for example, that completing certain milestones makes a particular revenue result more likely). We may develop and publish such evidence-based, high-level statistical insights in the future only when we have sufficient reliable data and a documented, supportable methodology — and such insights will not identify individual users or businesses.`,
+  },
+  {
+    title: 'Local-Device vs. Account / Cloud Storage',
+    body: `Much of your activity is stored locally on your device by default. Your latest assessment result and progress data (including roadmap, KPI entries, Foundation Builder progress, and feedback you enter) are saved in your browser on your device. Clearing your browser data can remove information that is only stored on your device.
+
+If a signed-in account and cloud sync are available to you, you may choose to back up certain progress data to your account. When that happens, the data is stored in our database (hosted by Supabase) under access controls that limit each record to its owner. We show an honest storage status, and we do not indicate that data is "synced to your account" unless a backup has actually been confirmed.
+
+You can export or delete the data backed up to your account, and you can separately clear data stored on your device — see "Your Choices."`,
   },
   {
     title: 'Payment Processing & Stripe',
-    body: `All payment processing is handled by Stripe, Inc. (stripe.com). SubZeroMetrix never sees, stores, or has access to your full credit card number, bank details, or payment credentials of any kind.
+    body: `All payment processing is handled by Stripe, Inc. (stripe.com). SubZeroMetrix™ never sees, stores, or has access to your full credit card number, bank details, or payment credentials of any kind.
 
-When you complete a purchase, Stripe processes the transaction and sends us a confirmation that includes your email address (if provided), the amount paid, and a transaction reference ID. Your payment data is governed by Stripe's Privacy Policy at stripe.com/privacy.
+When you complete a purchase, Stripe processes the transaction and sends us a confirmation that may include your email address (if provided), the amount paid, and a transaction reference ID. Your payment data is governed by Stripe's Privacy Policy at stripe.com/privacy.
 
-For subscription purchases (Trade Platform at $29/month), Stripe manages your billing cycle. You may cancel at any time — see our Cancellation & Refund Policy.`,
+For subscription purchases, Stripe manages your billing cycle. You may cancel at any time — see our Cancellation & Refund Policy.`,
   },
   {
-    title: 'Data Storage & Retention',
-    body: `Your assessment answers and MetrixScore™ result are temporarily stored in your browser's sessionStorage during your visit. This data stays on your device and is cleared when you close your browser tab.
+    title: 'Email & Communications',
+    body: `We send email only where you have requested it or given consent. Some pages offer an optional email update list; the consent checkbox is unchecked by default, and we record the version of the consent text you agreed to and the time you agreed. We do not enroll you in marketing email merely because you created an account, completed an assessment, downloaded a file, or used a tool.
 
-If you complete a payment, we save a record of your assessment to our secure database (hosted by Supabase at supabase.com) that includes your name, email, business type, state, score, band, and report content. This record is used for:
+We do not currently operate an automated marketing-email delivery system. We collect consented interest now and will not send marketing email until a verified delivery provider, double opt-in where appropriate, and a working unsubscribe process are in place. We will identify our email-delivery provider here once it is configured.
 
-• Customer support
-• Sending your reassessment reminder (90 days after purchase)
-• Improving our scoring model using anonymized aggregate data
-
-Retention period: We retain personal data for a maximum of 3 years from the date of your last activity, after which it is deleted unless retention is required by applicable law.`,
-  },
-  {
-    title: 'Email Communications',
-    body: `By providing your email address during the assessment, you consent to receiving:
-
-• A one-time report confirmation email
-• A limited educational follow-up email sequence related to your MetrixScore and roadmap
-• A reassessment reminder approximately 90 days after your purchase
-
-You may opt out of all non-transactional emails at any time by clicking the unsubscribe link in any email. Transactional emails (payment receipts, support responses) cannot be opted out of as they are required for service delivery.
-
-We comply with the CAN-SPAM Act for all email communications.`,
+Transactional messages (such as a payment receipt or a support response) are part of service delivery. When marketing email is active, you will be able to unsubscribe from non-transactional email at any time, and we will follow the CAN-SPAM Act.`,
   },
   {
     title: 'Cookies & Analytics',
-    body: `We use cookies and similar technologies for:
+    body: `We use first-party, privacy-safe analytics to understand how the platform is used and to improve it. Our in-app activity analytics are stored on your device and use a limited, non-identifying set of fields (such as the page path, acquisition channel, and milestone reached). We do not put your email, name, assessment answers, MetrixScore™ values, or free-form notes into analytics.
 
-• Session management — to maintain your assessment state as you move through questions
-• Analytics — to understand traffic patterns and improve the platform
-• Payment — Stripe uses cookies as part of its fraud detection and checkout flow
+We use limited cookies/browser storage for session management (to maintain your assessment state) and for payment (Stripe uses cookies as part of checkout and fraud detection). We do not currently use third-party advertising cookies or ad-targeting pixels. If we add a third-party analytics or tag-management provider in the future, we will update this policy and obtain consent where required. You can disable cookies in your browser settings, though this may affect platform functionality.`,
+  },
+  {
+    title: 'Your Choices: Access, Export, Deletion & Preferences',
+    body: `You can request access to or correction of the personal information we hold about you. For data backed up to a signed-in account, the platform also provides self-service controls to export your own data (as a downloadable file) and to delete your own synced records. These actions are limited to your own data and report partial failures honestly.
 
-We do not use third-party advertising cookies or tracking pixels for ad targeting. You can disable cookies in your browser settings, though this may affect platform functionality.`,
+Data stored only on your device can be cleared separately and is only removed when you explicitly confirm that action.
+
+Deleting your synced data does not delete the data saved on your device, and it does not delete your sign-in account itself. Deletion of the underlying sign-in account is currently admin-assisted (not automated) — contact us to request it.
+
+You can decline or withdraw consent to marketing communications at any time.`,
   },
   {
     title: 'State-Specific Privacy Rights',
@@ -131,17 +150,26 @@ Stripe, our payment processor, handles sales tax calculation and collection wher
 Note: Tax laws change frequently. This notice reflects our understanding as of the effective date of this policy and is not legal or tax advice. Consult a tax professional for guidance specific to your situation.`,
   },
   {
-    title: 'Third-Party Services & Affiliate Links',
-    body: `We use the following third-party services:
+    title: 'Service Providers & Processors',
+    body: `We use the following service providers to operate the platform:
 
 • Stripe (stripe.com) — payment processing
-• Supabase (supabase.com) — database and data storage
-• Resend or similar — transactional email delivery
+• Supabase (supabase.com) — database, authentication, and data storage
 • Vercel (vercel.com) — website hosting and infrastructure
 
-Our reports and resources pages contain affiliate links. If you click an affiliate link and make a purchase, we may receive a commission at no additional cost to you. Affiliate relationships do not affect your MetrixScore, report content, or recommendations. See our Affiliate Disclosure for full details.
+These providers process information on our behalf to deliver the service, and they maintain their own privacy practices. We do not currently use a third-party email-delivery provider or a third-party advertising or ad-tracking provider; if we add one, we will update this policy and identify it.
+
+Affiliate and vendor relationships: our resources reference third-party tools for educational purposes only. We do not currently have active affiliate or paid vendor relationships. If we add affiliate links, sponsored placements, or paid vendor relationships in the future, we will disclose them clearly, and they will not change your MetrixScore™, report content, or recommendations. See our Affiliate Disclosure for details.
 
 When you leave our platform and visit a third-party site, that site's privacy policy governs your data.`,
+  },
+  {
+    title: 'Data Retention',
+    body: `We keep personal information only as long as needed for the purposes described in this policy, to provide the service, to support and reassess your account, and to meet legal, tax, security, and recordkeeping obligations.
+
+Information stored only on your device remains until you clear it or your browser removes it. Information backed up to your account remains until you delete it or it reaches the end of our retention schedule. As a general guide, we aim to retain account-linked personal information for up to 3 years after your last activity, after which it is deleted unless a longer period is required by law.
+
+As described above, we may retain aggregated or de-identified information that is not used to identify you for longer periods for research, analytics, and product-improvement purposes.`,
   },
   {
     title: "Children's Privacy",
@@ -153,13 +181,12 @@ We do not target marketing to minors and our assessment is not designed for or d
     title: 'Data Security',
     body: `We take reasonable technical and organizational measures to protect your personal data, including:
 
-• HTTPS encryption on all pages (TLS)
-• Database access restricted to server-side code only via Row Level Security (Supabase)
-• Payment data handled entirely by Stripe with PCI DSS compliance
-• No plaintext storage of payment credentials
-• Security headers on all web responses (X-Frame-Options, HSTS, CSP)
+• HTTPS/TLS encryption in transit
+• Row Level Security on user-owned database tables, so each record is limited to its owner; account writes use a public key plus your session, never a privileged service key in the browser
+• Payment data handled entirely by Stripe (a PCI-DSS-compliant processor); we do not store payment-card credentials
+• Marketing-list sign-ups are insert-only — they cannot be read, listed, or modified by other users
 
-No method of internet transmission is 100% secure. We cannot guarantee absolute security, but we work continuously to protect your information.`,
+No method of internet transmission or electronic storage is completely secure, and we cannot guarantee absolute security. We work to protect your information using reasonable safeguards.`,
   },
   {
     title: 'Do Not Track & Global Privacy Control',
@@ -168,12 +195,18 @@ No method of internet transmission is 100% secure. We cannot guarantee absolute 
 Texas residents: As of January 1, 2025, the TDPSA requires businesses to recognize Global Privacy Control signals for opt-out of data sale and targeted advertising. We do not sell personal data and do not engage in targeted advertising, so GPC signals are effectively honored by default.`,
   },
   {
+    title: 'Future Evolution of Our Services',
+    body: `As our services evolve, we may introduce additional features, analytics capabilities, integrations, and services. We may update this Privacy Policy when our data practices materially change. Where required, we will provide notice or obtain consent before applying materially different practices to personal information we previously collected.
+
+This policy is intended to keep pace with legitimate platform development. It is not a blanket authorization to use your information without limits — we use information for the purposes described here and consistent with applicable law.`,
+  },
+  {
     title: 'Changes to This Policy',
-    body: `We may update this Privacy Policy periodically. The "Last updated" date at the top reflects the most recent revision. Continued use of the platform after updates constitutes acceptance of the revised policy. For significant changes affecting your rights, we will attempt to notify active users by email.`,
+    body: `We may update this Privacy Policy periodically. The "Last updated" date at the top reflects the most recent revision and serves as the effective date of that version. Continued use of the platform after updates constitutes acceptance of the revised policy. For significant changes affecting your rights, we will provide notice or obtain consent where required, and we will attempt to notify active account users by email.`,
   },
   {
     title: 'Contact & Data Requests',
-    body: `For privacy questions, data access requests, correction requests, deletion requests, or concerns about this policy, contact us through The Modern Trades Mentor website.
+    body: `SubZeroMetrix™ is owned and operated by The Modern Trades Mentor LLC. For privacy questions, data access requests, correction requests, deletion requests, or concerns about this policy, contact us by email at info@subzerometrix.com.
 
 Please include:
 • Your name and email address used on the platform
@@ -200,7 +233,7 @@ export default function PrivacyPage() {
         <p className="font-mono text-[10px] tracking-[0.25em] uppercase text-brand-accent mb-2">Legal</p>
         <h1 className="font-display text-4xl tracking-wider text-brand-white mb-1">PRIVACY POLICY</h1>
         <p className="font-mono text-[10px] text-brand-silver mb-2">
-          Last updated: June 2026
+          Last updated: June 12, 2026
         </p>
         <p className="text-brand-silver/70 text-[11px] leading-relaxed mb-8">
           Applies to users in all states, with specific provisions for Colorado, Florida, Arizona, Texas, North Carolina, and Ohio.
