@@ -29,6 +29,9 @@ import { deriveProfileQuality } from './quality'
 import { deriveCriticalGates } from './gates'
 import { selectMetrixPriority } from './metrixPriority'
 import { deriveNextBestQuestions } from './nextBestQuestions'
+import { buildCompletionPaths } from './completionPaths'
+import { buildNextUp } from './nextUp'
+import { deriveInitialProgress } from './priorityProgress'
 
 function newProfileId(): string {
   const g = globalThis as unknown as { crypto?: { randomUUID?: () => string } }
@@ -77,6 +80,11 @@ export function evaluateMetrixProfile(
   const growthBlocked = selection.blockedRecommendations.length > 0
   const roadmapSeed = deriveRoadmapSeed(selection.primary, criticalGates, constraintCandidates, growthBlocked)
 
+  // SZM-2A: completion paths (one recommended) → ordered action steps → next-up → progress.
+  const completion = buildCompletionPaths(selection.primary, criticalGates, normalized)
+  const nextUpPriorities = buildNextUp(selection.secondary, criticalGates)
+  const priorityProgress = deriveInitialProgress(selection.primary, completion.primaryActionSteps)
+
   return {
     profileId: opts.profileId ?? newProfileId(),
     assessmentId: opts.assessmentId ?? null,
@@ -105,6 +113,11 @@ export function evaluateMetrixProfile(
     secondaryPriorities: selection.secondary,
     blockedRecommendations: selection.blockedRecommendations,
     nextBestQuestions,
+    completionPaths: completion.paths,
+    recommendedCompletionPathId: completion.recommendedId,
+    primaryActionSteps: completion.primaryActionSteps,
+    nextUpPriorities,
+    priorityProgress,
     ...(opts.legacySource ? { legacySource: opts.legacySource } : {}),
   }
 }

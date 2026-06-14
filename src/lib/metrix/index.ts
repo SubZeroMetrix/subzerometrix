@@ -16,6 +16,9 @@ export { deriveRoadmapSeed } from './roadmapSeed'
 export { deriveCriticalGates, GATE_DOMAIN_CATEGORY } from './gates'
 export { selectMetrixPriority, DOMAIN_BASE_TIER, type PrioritySelection } from './metrixPriority'
 export { deriveNextBestQuestions } from './nextBestQuestions'
+export { buildCompletionPaths, type CompletionPathResult } from './completionPaths'
+export { buildNextUp } from './nextUp'
+export { deriveInitialProgress } from './priorityProgress'
 export { deriveProfileQuality, freshnessCategory } from './quality'
 export { evaluateMetrixProfile } from './snapshot'
 export { getCanonicalProfile, loadMetrixProfile, persistMetrixProfile, CANONICAL_PROFILE_KEY } from './persist'
@@ -23,6 +26,8 @@ export {
   toMetrixScore,
   getMetrixPriority, getSecondaryPriorities, getActiveCriticalGates, getPossibleGates,
   getBlockedRecommendations, getNextBestQuestions, getProfileQuality, getPriorityExplanation,
+  getCompletionPaths, getRecommendedCompletionPath, getPrimaryActionSteps, getFirstActionStep,
+  getNextUpPriorities, getPriorityProgress,
   type PriorityExplanation,
 } from './readModel'
 export { estimatePotentialFromSnapshot, type PotentialEstimate } from './potential'
