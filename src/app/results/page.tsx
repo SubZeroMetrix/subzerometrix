@@ -22,6 +22,7 @@ import MetrixPriorityExperience from '@/components/MetrixPriorityExperience'
 import ReassessmentPanel from '@/components/ReassessmentPanel'
 import ProfileIntelligenceCard from '@/components/ProfileIntelligenceCard'
 import TradeIntelligenceCard from '@/components/TradeIntelligenceCard'
+import LicensingIntelligenceCard from '@/components/LicensingIntelligenceCard'
 import ShareReferralCard from '@/components/ShareReferralCard'
 import GrowthEventTracker from '@/components/GrowthEventTracker'
 import SyncStatusBadge from '@/components/SyncStatusBadge'
@@ -276,6 +277,9 @@ export default function ResultsPage() {
 
         {/* Wave 3: trade context — trade-specific strengths/risks/recurring revenue (display-only; subordinate) */}
         <TradeIntelligenceCard snapshot={profile} variant="full" />
+
+        {/* Wave 4: licensing & jurisdiction — verify-before-action, official-source-backed (display-only; subordinate) */}
+        <LicensingIntelligenceCard snapshot={profile} variant="full" />
 
         {/* Wave 1: explicit, user-triggered reassessment (never auto-rescores on load) */}
         <ReassessmentPanel snapshot={profile} answers={answers} intake={intake} />

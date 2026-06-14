@@ -120,3 +120,37 @@ export {
 export {
   deriveTradeIntelligence, type TradeIntelligenceOptions,
 } from './tradeIntelligence'
+// ── Wave 4: Six-State Licensing, Jurisdiction & Trusted Routing (additive adapter; no new engine) ──
+export {
+  LICENSING_INTELLIGENCE_VERSION, LICENSING_REVIEWED_DATE, LICENSING_FRESHNESS_WINDOW_DAYS,
+  type CanonicalStateId, type StateSupportStatus, type StateCoverageStatus,
+  type StateRegistryEntry, type StateAuthorityRef, type ResolvedState,
+  type SourceType, type JurisdictionLevel, type FreshnessStatus, type CorrectionStatus,
+  type LicensingSource, type FreshnessVerdict,
+  type AuthorityLevel, type JurisdictionComplexity, type PathwayCoverage, type TradeStatePathway,
+  type RoutingCategoryId, type RoutingCategory,
+  type CorrectionIssueType, type CorrectionReportInput, type CorrectionReport,
+  type LicensingPathwayStatus, type LicensingRequirementItem, type VerificationStep,
+  type LicensingIntelligence,
+} from './licensingTypes'
+export {
+  CANONICAL_STATE_IDS, STATE_REGISTRY, resolveState, isSupportedState,
+} from './states'
+export {
+  LICENSING_SOURCES, getLicensingSource, getPathwaySources, sourceId,
+} from './licensingSources'
+export {
+  dayDiff, computeNextReviewDate, evaluateFreshness, isSourceStale, rollupFreshness,
+} from './sourceFreshness'
+export {
+  LICENSING_PATHWAYS, getPathway, allPathways, pathwayKey,
+} from './licensingPathways'
+export {
+  ROUTING_CATALOG, getRoutingCategory, getRoutingCategories, getSpecialistCategories,
+} from './licensingRouting'
+export {
+  buildCorrectionReport,
+} from './licensingCorrections'
+export {
+  deriveLicensingIntelligence, type LicensingIntelligenceOptions,
+} from './licensingIntelligence'
