@@ -76,7 +76,16 @@ specific outcomes.
 - About: ${SITE_URL}/about
 - Business readiness: ${SITE_URL}/business-readiness
 - Resources: ${SITE_URL}/resources
+- Learn: ${SITE_URL}/learn
+- Trades overview: ${SITE_URL}/trades
 - Disclaimer: ${SITE_URL}/disclaimer
+
+## State licensing pages (educational; verify with the official authority)
+State-level contractor licensing and setup overviews exist for the six launch states:
+Florida, Colorado, Texas, Arizona, Ohio, and North Carolina — for example
+${SITE_URL}/state/fl. They cite official authorities and a reviewed date, use
+verify-before-action language, and do not replace city, county, board, or project
+requirements. They are not legal advice.
 `
 
   return new Response(body, {

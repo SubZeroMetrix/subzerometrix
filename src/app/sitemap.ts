@@ -2,6 +2,7 @@ import type { MetadataRoute } from 'next'
 import { SITE_URL } from '@/lib/seo'
 import { TRADE_CONFIGS } from '@/lib/tradeData'
 import { getPublicResourceSlugs } from '@/lib/publicResources'
+import { CANONICAL_STATE_IDS } from '@/lib/metrix'
 
 // Growth-1 sitemap — REAL public, indexable routes only.
 // Excludes private/paid/stateful pages (/report, /dashboard, /unlock, /results,
@@ -30,6 +31,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { path: '/privacy', priority: 0.3 },
     { path: '/disclaimer', priority: 0.3 },
     { path: '/affiliate-disclosure', priority: 0.3 },
+    { path: '/resource-directory-disclosure', priority: 0.3 },
     { path: '/cancellation', priority: 0.3 },
   ]
 
@@ -57,5 +59,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.7,
   }))
 
-  return [...staticEntries, ...platformEntries, ...learnEntries]
+  // Wave 7 CP8 — per-state licensing/setup pages (FL/CO/TX/AZ/OH/NC), each a real page.
+  const stateEntries: MetadataRoute.Sitemap = CANONICAL_STATE_IDS.map(id => ({
+    url: `${SITE_URL}/state/${id.toLowerCase()}`,
+    lastModified,
+    changeFrequency: 'monthly',
+    priority: 0.7,
+  }))
+
+  return [...staticEntries, ...platformEntries, ...learnEntries, ...stateEntries]
 }

@@ -115,3 +115,45 @@ export function trackRecommendationOutboundClick(res: CanonicalResource, opts: A
 export function trackRecommendationFeedback(res: CanonicalResource, feedback: ResourceHelpfulness, opts: AttributionOptions): void {
   emit('recommendation_feedback_submitted', res, opts, { feedback })
 }
+
+// ── Field-based entry points (Wave 7 CP6/CP7) ───────────────────────────────────
+// Surfaces that hold a presentation-safe DirectoryEntry (not a full CanonicalResource) — the
+// directory + tracked redirect — emit through THESE. They use the SAME `trackEvent` sink and the
+// SAME event names + consent gate as the funnel above; this is NOT a second analytics system.
+// The fields below are the strict privacy-safe allow-list — no PII can be passed.
+export interface OutboundClickFields {
+  resourceId: string
+  vendorId: string | null
+  placement: string
+  relationshipStatus: string
+  disclosureRequired: boolean
+  trade?: string | null
+  lifecycleStage?: string | null
+  priorityCategory?: string | null
+}
+
+function emitFields(event: AnalyticsEvent, props: Record<string, string | number | boolean | null>, consentGranted: boolean): void {
+  if (consentGranted !== true) return  // consent-aware: no consent → no event (navigation is never blocked)
+  try { trackEvent(event, props) } catch { /* attribution must never break the UI */ }
+}
+
+/** Emit the consent-gated outbound-click funnel signal from allow-listed entry fields. */
+export function trackOutboundClickFields(f: OutboundClickFields, consentGranted: boolean): void {
+  emitFields('recommendation_outbound_click', {
+    resourceId: f.resourceId,
+    vendorId: f.vendorId,
+    placement: f.placement,
+    relationshipStatus: f.relationshipStatus,
+    disclosureRequired: f.disclosureRequired,
+    trade: f.trade ?? null,
+    lifecycleStage: f.lifecycleStage ?? null,
+    priorityCategory: f.priorityCategory ?? null,
+  }, consentGranted)
+}
+
+/** Emit the consent-gated feedback funnel signal from allow-listed entry fields. */
+export function trackFeedbackFields(
+  resourceId: string, vendorId: string | null, placement: string, feedback: string, consentGranted: boolean,
+): void {
+  emitFields('recommendation_feedback_submitted', { resourceId, vendorId, placement, feedback }, consentGranted)
+}

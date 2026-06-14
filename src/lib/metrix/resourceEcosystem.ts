@@ -30,6 +30,7 @@ export type EcosystemVerificationStatus =
   | 'draft'
   | 'pending_verification'
   | 'verified'
+  | 'live_link_confirmed'   // Wave 7: educational listing whose live link was confirmed (publishable)
   | 'needs_review'
   | 'stale'
   | 'broken'
@@ -121,7 +122,10 @@ export interface EcosystemRelationshipMeta {
   compensationDisclosure: string | null  // human-readable disclosure when compensation exists
 }
 
+export type ProviderClass = 'official' | 'government' | 'nonprofit' | 'association' | 'commercial'
+
 export interface EcosystemOperationsMeta {
+  providerClass?: ProviderClass        // factual nature of the listed entity (display label only)
   businessNeed: string                 // the contractor need this resource serves
   eligibility: string | null           // who qualifies (null = no restriction)
   limitations: string | null           // known limitations / caveats

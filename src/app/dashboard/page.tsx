@@ -9,7 +9,8 @@ import {
 } from 'lucide-react'
 import type { ScoreResult } from '@/lib/scoring'
 import { loadIntake, stageLabel, type QuickIntake } from '@/lib/intake'
-import { getCanonicalProfile, toMetrixScore, estimatePotentialFromSnapshot } from '@/lib/metrix'
+import { getCanonicalProfile, toMetrixScore, estimatePotentialFromSnapshot, buildCanonicalPresentation } from '@/lib/metrix'
+import { toPresentationSyncStatus } from '@/lib/ui/presentationState'
 import { generateActions } from '@/lib/pathActions'
 import { recordAssessmentSnapshot, recordActionProgress, getRetentionView, type RetentionView } from '@/lib/metrixRetention'
 import { RETENTION_COPY } from '@/lib/metrixHistory'
@@ -25,6 +26,8 @@ import TradeIntelligenceCard from '@/components/TradeIntelligenceCard'
 import LicensingIntelligenceCard from '@/components/LicensingIntelligenceCard'
 import ResourceRecommendations from '@/components/ResourceRecommendations'
 import SyncStatusBadge from '@/components/SyncStatusBadge'
+import CanonicalSummaryPanel from '@/components/CanonicalSummaryPanel'
+import { isFeatureEnabled } from '@/lib/featureFlags'
 import { getAssessmentSyncReadiness, syncAssessmentHistoryToAccount } from '@/lib/assessmentHistorySync'
 import { getRoadmapKpiSyncReadiness, syncRoadmapKpiProgressToAccount } from '@/lib/roadmapKpiSync'
 import { getCustomerFeedbackSyncReadiness, syncCustomerFeedbackToAccount } from '@/lib/customerFeedbackSync'
@@ -219,6 +222,14 @@ export default function DashboardPage() {
   // Canonical read: one evaluation, persisted once, read here (no competing score).
   const profile   = getCanonicalProfile(answers, intake)
   const starter   = toMetrixScore(profile)
+  // Wave 7 CP4: one canonical presentation object per snapshot. Presentation-safe values
+  // (score, risk, confidence, freshness, sync, disclosures) read from here; `starter` is kept
+  // only as a compatibility adapter for fields the adapter does not model (categories, progress
+  // completion, recommendedPath) and `estimatePotentialFromSnapshot` for the what-if projection.
+  const presentation = buildCanonicalPresentation({
+    snapshot: profile,
+    sync: { status: toPresentationSyncStatus(syncStatus), lastSyncedAt: syncedAt, cloudWired: false },
+  })
   const actions   = generateActions('recommended', starter, intake, 'stabilize')
   const currentAction = actions.find(a => !completed.has(a.id)) ?? null
   const actionsDone   = actions.filter(a => completed.has(a.id)).length
@@ -233,7 +244,7 @@ export default function DashboardPage() {
   const nextSection = incomplete[0] ?? null
 
   const firstName = result.leadName || ''
-  const rColor = riskColor(starter.riskLevel)
+  const rColor = riskColor(presentation.score.riskLevel)
 
   // Local retention view (device-only MetrixScore™ history)
   const lastAssessed = retention?.summary.lastAssessedAt
@@ -278,9 +289,9 @@ export default function DashboardPage() {
 
         {/* ── Top stats ─────────────────────────────────────────────── */}
         <div className="grid grid-cols-3 gap-3">
-          <Stat label="MetrixScore™" value={`${starter.overall}`} sub="/ 100" />
+          <Stat label="MetrixScore™" value={`${presentation.score.overall}`} sub="/ 100" />
           <Stat label="Profile" value={`${starter.progress.completion}%`} sub="complete" />
-          <Stat label="Risk" value={starter.riskLabel.split(' ')[0]} color={rColor} />
+          <Stat label="Risk" value={presentation.score.riskLabel.split(' ')[0]} color={rColor} />
         </div>
 
         {/* ── Primary next action (one dominant CTA; Fix-3) ─────────── */}
@@ -345,6 +356,13 @@ export default function DashboardPage() {
             </div>
           </div>
         </section>
+
+        {/* ── Wave 7 CP4: subordinate confidence/freshness/sync strip from the same presentation
+            object (flag-gated, OFF by default). The MetrixScore/Risk stats above already render
+            FROM the adapter; this strip only surfaces unified state not shown elsewhere. ── */}
+        {isFeatureEnabled('presentation_shell') && (
+          <CanonicalSummaryPanel presentation={presentation} />
+        )}
 
         {/* ── Wave 2: quiet lifecycle/profile summary (display-only adapter; subordinate to the CTA) ── */}
         <DashboardIntelligenceSummary snapshot={profile} />

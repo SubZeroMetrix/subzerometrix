@@ -38,8 +38,12 @@ export interface DirectoryFilter {
 }
 
 // A presentation-safe directory row. Carries no private user data and no ranking score.
+// Wave 7 (CP6) extends this with additional PRESENTATION-SAFE card fields. It deliberately
+// excludes internal verification notes/owner, raw compensation terms, eligibility internals,
+// and support contacts — those stay internal to EcosystemResource.
 export interface DirectoryEntry {
   resourceId: string
+  vendorId: string | null
   title: string
   category: EcosystemCategory
   description: string
@@ -50,12 +54,22 @@ export interface DirectoryEntry {
   disclosureText: string | null
   officialAlternativeUrl: string | null
   useAnotherProviderOption: true
+  // ── Wave 7 CP6: presentation-safe card fields ──
+  businessNeed: string
+  tradeApplicability: string[]         // [] = all trades
+  lifecycleApplicability: LifecycleStage[] // [] = all stages
+  regionApplicability: string[]        // [] = nationwide / all regions
+  relationshipStatus: ResourceRelationshipStatus
+  isOfficialOrFree: boolean
+  providerClass: 'official' | 'government' | 'nonprofit' | 'association' | 'commercial' | null
+  limitations: string | null
 }
 
 function toDirectoryEntry(r: EcosystemResource): DirectoryEntry {
   const disclose = requiresDisclosure(r)
   return {
     resourceId: r.resourceId,
+    vendorId: r.vendorId,
     title: r.title,
     category: r.ecosystemCategory,
     description: r.description,
@@ -66,6 +80,15 @@ function toDirectoryEntry(r: EcosystemResource): DirectoryEntry {
     disclosureText: disclose ? r.disclosureText : null,
     officialAlternativeUrl: r.operations.officialAlternativeUrl,
     useAnotherProviderOption: true,
+    businessNeed: r.operations.businessNeed,
+    tradeApplicability: r.tradeApplicability,
+    lifecycleApplicability: r.operations.lifecycleStagesServed,
+    regionApplicability: r.operations.regionsServed,
+    relationshipStatus: r.relationshipStatus,
+    isOfficialOrFree: r.operations.officialAlternativeUrl != null
+      || r.ecosystemCategory === 'government_free_resources',
+    providerClass: r.operations.providerClass ?? null,
+    limitations: r.operations.limitations,
   }
 }
 

@@ -250,10 +250,12 @@ test('recommendation card: returns null for non-public-eligible records', () => 
 })
 
 // ── 12. No unverified provider publication ───────────────────────────────────────
-test('no publication: the published ecosystem catalog is empty at Wave 6 close', () => {
-  assert.deepEqual(getPublishedEcosystemCatalog(), [])
-  assert.deepEqual(buildDirectoryView(getPublishedEcosystemCatalog()), [])
-  assert.equal(publicEligibleResources(getPublishedEcosystemCatalog()).length, 0)
+test('publication: every published record is public-eligible (Wave 7 activated launch set)', () => {
+  const catalog = getPublishedEcosystemCatalog()
+  assert.ok(catalog.length > 0, 'the published catalog is the activated educational launch set')
+  assert.equal(publicEligibleResources(catalog).length, catalog.length)
+  for (const r of catalog) assert.equal(isPublicEligible(r), true)
+  assert.equal(buildDirectoryView(catalog).length, catalog.length)
 })
 
 // ── 13. Canonical presentation passthrough (no competing engine) ─────────────────

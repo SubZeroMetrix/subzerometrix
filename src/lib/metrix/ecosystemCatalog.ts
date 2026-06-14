@@ -12,11 +12,15 @@
 // ─────────────────────────────────────────────────────────────────────────────
 
 import type { EcosystemResource } from './resourceEcosystem'
+import { PUBLISHED_LAUNCH_CATALOG } from './publishedLaunchCatalog'
 
-// EMPTY by design — see the file header. Append only verified, evidence-backed records.
-export const PUBLISHED_ECOSYSTEM_CATALOG: EcosystemResource[] = []
+// Wave 7: the published catalog is the activated educational launch set — the 88 technically-
+// verified ('live_link_confirmed', active, evidence-backed) educational listings generated in
+// publishedLaunchCatalog.ts. The 20 held records are excluded. Public surfaces remain flag-gated
+// (public_resource_directory / tracked_resource_redirects default OFF) until controlled activation.
+export const PUBLISHED_ECOSYSTEM_CATALOG: EcosystemResource[] = PUBLISHED_LAUNCH_CATALOG
 
-/** The records currently eligible for the public ecosystem. Empty until Wave 7 verification. */
+/** The records eligible for the public ecosystem (directory / recommendations / tracked redirects). */
 export function getPublishedEcosystemCatalog(): EcosystemResource[] {
   return PUBLISHED_ECOSYSTEM_CATALOG
 }

@@ -24,6 +24,7 @@ export type VerificationBlockReason =
   | 'inactive'
   | 'broken'
   | 'stale'
+  | 'disclosure_unavailable'   // Wave 7: required disclosure cannot render (fail-closed)
 
 export interface PublicEligibility {
   eligible: boolean
@@ -34,8 +35,12 @@ export interface PublicEligibility {
  * Whether a master ecosystem record may appear in public recommendations / directory pages
  * or resolve a tracked redirect. Reads only verification + health — never commercial status.
  */
+// Verification statuses that authorize publication: a full editorial 'verified', OR a Wave 7
+// 'live_link_confirmed' educational listing (live destination confirmed with evidence).
+const PUBLISHABLE_VERIFICATION_STATUSES: ReadonlyArray<string> = ['verified', 'live_link_confirmed']
+
 export function evaluatePublicEligibility(r: EcosystemResource): PublicEligibility {
-  if (r.review.verificationStatus !== 'verified') return { eligible: false, reason: 'not_verified' }
+  if (!PUBLISHABLE_VERIFICATION_STATUSES.includes(r.review.verificationStatus)) return { eligible: false, reason: 'not_verified' }
   if (!r.active) return { eligible: false, reason: 'inactive' }
   if (r.broken) return { eligible: false, reason: 'broken' }
   if (r.stale) return { eligible: false, reason: 'stale' }
@@ -96,4 +101,26 @@ export function launchReadyResources(catalog: EcosystemResource[]): EcosystemRes
  */
 export function hasVerificationEvidence(r: EcosystemResource): boolean {
   return !!(r.review.verificationOwner && r.review.verificationNotes && r.review.reviewedDate)
+}
+
+// ── Disclosure publication gate (Wave 7 Build-A) ────────────────────────────────
+/**
+ * Whether a record's required disclosure can actually render. FAIL-CLOSED: if a disclosure is
+ * required but the disclosure text is missing/blank, the disclosure cannot render, so the record
+ * is NOT publication-approved. Records that require no disclosure pass trivially.
+ */
+export function disclosureRenderable(r: EcosystemResource): boolean {
+  if (!requiresDisclosure(r)) return true
+  return typeof r.disclosureText === 'string' && r.disclosureText.trim().length > 0
+}
+
+/**
+ * The PUBLICATION-APPROVAL gate (stricter than public-eligibility). A record may be published to
+ * the public surface only when it is public-eligible AND its required disclosure can render.
+ * This is intentionally separate from `isPublicEligible` so eligibility stays commercial-neutral
+ * (two records differing only in relationship have identical eligibility), while publication
+ * additionally fails closed on a missing-but-required disclosure.
+ */
+export function publicationApproved(r: EcosystemResource): boolean {
+  return isPublicEligible(r) && disclosureRenderable(r)
 }

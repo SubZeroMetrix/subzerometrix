@@ -20,6 +20,21 @@ export const TITLE_TEMPLATE = '%s | SubZeroMetrix™'
 export const DEFAULT_DESCRIPTION =
   'SubZeroMetrix™ helps contractors, tradespeople, and service-business owners assess business readiness, understand next steps, and build a practical action roadmap. Educational only. Not legal, tax, financial, licensing, or compliance advice.'
 
+// Private / paid / stateful / redirect routes kept OUT of the index (robots disallow). The six
+// public state pages and other public surfaces are NOT here — only non-indexable routes.
+export const ROBOTS_DISALLOW: string[] = [
+  '/api/',
+  '/dashboard',     // user-specific, device-local progress
+  '/account',       // private account / privacy controls
+  '/report',        // paid / private report
+  '/unlock',        // checkout entry, stateful
+  '/results',       // post-assessment, stateful
+  '/resources/go',  // tracked outbound redirect / fail-safe pages (no index)
+]
+
+/** The six public launch-state page slugs (lowercase) for sitemap/discovery. */
+export const SEO_STATE_CODES = ['fl', 'co', 'tx', 'az', 'oh', 'nc'] as const
+
 /** Absolute canonical URL for a path (e.g. "/resources"). Root returns the origin. */
 export function canonicalUrl(path = '/'): string {
   const clean = path.startsWith('/') ? path : `/${path}`

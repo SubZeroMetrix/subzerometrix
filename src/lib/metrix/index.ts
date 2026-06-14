@@ -207,8 +207,11 @@ export {
 export {
   evaluatePublicEligibility, isPublicEligible, isDirectLinkEligible, isRegulatoryAuthority,
   requiresDisclosure, publicEligibleResources, launchReadyResources, hasVerificationEvidence,
+  disclosureRenderable, publicationApproved,
   type PublicEligibility, type VerificationBlockReason,
 } from './resourceVerification'
+// NOTE: resourceLinkAudit (large evidence dataset) is intentionally NOT re-exported here, to keep
+// it out of client bundles. Import it directly from '@/lib/metrix/resourceLinkAudit' (audit/tests).
 export {
   RESOURCE_REDIRECT_VERSION, RESOURCE_REDIRECT_BASE, buildRedirectPath,
   resolveRedirect, contextCarriesPrivateData,
