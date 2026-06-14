@@ -23,6 +23,7 @@ import GrowthAnalyticsSummary from '@/components/GrowthAnalyticsSummary'
 import DashboardIntelligenceSummary from '@/components/DashboardIntelligenceSummary'
 import TradeIntelligenceCard from '@/components/TradeIntelligenceCard'
 import LicensingIntelligenceCard from '@/components/LicensingIntelligenceCard'
+import ResourceRecommendations from '@/components/ResourceRecommendations'
 import SyncStatusBadge from '@/components/SyncStatusBadge'
 import { getAssessmentSyncReadiness, syncAssessmentHistoryToAccount } from '@/lib/assessmentHistorySync'
 import { getRoadmapKpiSyncReadiness, syncRoadmapKpiProgressToAccount } from '@/lib/roadmapKpiSync'
@@ -353,6 +354,9 @@ export default function DashboardPage() {
 
         {/* ── Wave 4: quiet licensing strip (display-only adapter; subordinate to the CTA) ── */}
         <LicensingIntelligenceCard snapshot={profile} variant="compact" />
+
+        {/* ── Wave 5: optional, profile-aware resource suggestions (display-only; subordinate to the CTA) ── */}
+        <ResourceRecommendations snapshot={profile} placement="dashboard" limit={3} />
 
         {/* ── Roadmap progress (execution engine) ───────────────────── */}
         <RoadmapProgressCard score={starter} intake={intake} variant="dashboard" />

@@ -30,6 +30,11 @@ export type AnalyticsEvent =
   | 'email_capture_submitted'
   | 'email_capture_success'
   | 'email_capture_failed'
+  // Wave 5 — resource recommendation funnel (privacy-safe; no PII, no raw answers)
+  | 'recommendation_impression'
+  | 'recommendation_card_opened'
+  | 'recommendation_outbound_click'
+  | 'recommendation_feedback_submitted'
 
 export function trackEvent(event: AnalyticsEvent, props: Record<string, unknown> = {}): void {
   if (typeof window === 'undefined') return
