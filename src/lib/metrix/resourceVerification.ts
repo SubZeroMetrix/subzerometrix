@@ -97,3 +97,25 @@ export function launchReadyResources(catalog: EcosystemResource[]): EcosystemRes
 export function hasVerificationEvidence(r: EcosystemResource): boolean {
   return !!(r.review.verificationOwner && r.review.verificationNotes && r.review.reviewedDate)
 }
+
+// ── Disclosure publication gate (Wave 7 Build-A) ────────────────────────────────
+/**
+ * Whether a record's required disclosure can actually render. FAIL-CLOSED: if a disclosure is
+ * required but the disclosure text is missing/blank, the disclosure cannot render, so the record
+ * is NOT publication-approved. Records that require no disclosure pass trivially.
+ */
+export function disclosureRenderable(r: EcosystemResource): boolean {
+  if (!requiresDisclosure(r)) return true
+  return typeof r.disclosureText === 'string' && r.disclosureText.trim().length > 0
+}
+
+/**
+ * The PUBLICATION-APPROVAL gate (stricter than public-eligibility). A record may be published to
+ * the public surface only when it is public-eligible AND its required disclosure can render.
+ * This is intentionally separate from `isPublicEligible` so eligibility stays commercial-neutral
+ * (two records differing only in relationship have identical eligibility), while publication
+ * additionally fails closed on a missing-but-required disclosure.
+ */
+export function publicationApproved(r: EcosystemResource): boolean {
+  return isPublicEligible(r) && disclosureRenderable(r)
+}
