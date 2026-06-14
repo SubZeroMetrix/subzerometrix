@@ -103,18 +103,19 @@ test('SZM-2E: anonymous reload resumes progress', () => {
   assert.equal(resumed.priorityId, snap.metrixPriority.priorityId)
 })
 
-// 7 — authenticated sync uses only proven infrastructure (never a false "synced").
-test('SZM-2E: cloud sync is truthful and not wired', async () => {
-  assert.equal(PRIORITY_PROGRESS_CLOUD_WIRED, false)
+// 7 — cloud sync is now WIRED (migration 004), but never fakes "synced" without a write.
+test('SZM-2E: cloud sync is wired and truthful', async () => {
+  assert.equal(PRIORITY_PROGRESS_CLOUD_WIRED, true)
+  // No Supabase configured in the test env → honest device-local readiness, never synced.
   const r = await getPriorityProgressSyncReadiness()
+  assert.equal(r.cloudWired, true)
   assert.notEqual(r.status, 'synced_to_account')
-  assert.equal(r.cloudWired, false)
-  assert.equal(r.canSync, false)
+  assert.equal(r.canSync, false)            // no client in this env → cannot sync
   assert.ok(['saved_on_device', 'sign_in_to_back_up', 'sync_unavailable'].includes(r.status))
 })
 
-// 8 — sync-unavailable / device-local state is truthful (covered above); explicit guard.
-test('SZM-2E: never reports synced when no table exists', async () => {
+// 8 — without a Supabase session, readiness never reports a confirmed cloud write.
+test('SZM-2E: never reports synced without a confirmed write', async () => {
   const r = await getPriorityProgressSyncReadiness()
   assert.equal(r.status === 'synced_to_account', false)
 })

@@ -33,9 +33,18 @@ export {
   PRIORITY_PROGRESS_KEY, getActiveProgress, persistProgress, getProgressArchive, loadProgressBlob,
 } from './progressStore'
 export {
-  PRIORITY_PROGRESS_CLOUD_WIRED, getPriorityProgressSyncReadiness, reconcilePriorityProgress,
+  PRIORITY_PROGRESS_CLOUD_WIRED, PRIORITY_PROGRESS_TABLE, progressLocalId,
+  getPriorityProgressSyncReadiness, reconcilePriorityProgress,
+  syncPriorityProgressToAccount, adoptPriorityProgressFromAccount,
   type PriorityProgressSyncReadiness, type ProgressReconcileResult, type ProgressReconcileAction,
+  type PriorityProgressSyncResult,
+  type ProgressSyncClient, type ProgressSyncQuery, type ProgressSyncUser, type ProgressSyncDeps,
 } from './progressSync'
+export {
+  REASSESSMENT_CLOUD_WIRED, REASSESSMENT_TABLE,
+  syncReassessmentHistoryToAccount, loadReassessmentHistoryFromAccount,
+  type ReassessmentSyncResult,
+} from './reassessmentSync'
 export { deriveProfileQuality, freshnessCategory } from './quality'
 export { evaluateMetrixProfile } from './snapshot'
 export {

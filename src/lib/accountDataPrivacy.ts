@@ -21,7 +21,9 @@
 import { getBrowserSupabase } from './supabaseClient'
 import { getCurrentAccountUser } from './accountAuth'
 
-// The ten Account-2 cloud tables (migration 002).
+// The Account-2 cloud tables (migration 002) + the Wave 1 metrix progress tables
+// (migration 004). Every account-owned cloud_sync_* table the user can write must be
+// covered here so export and delete reach all of their own data.
 export const CLOUD_SYNC_TABLES = [
   'cloud_sync_assessment_history',
   'cloud_sync_score_history',
@@ -33,6 +35,8 @@ export const CLOUD_SYNC_TABLES = [
   'cloud_sync_foundation_builder_progress',
   'cloud_sync_vendor_tool_tracker',
   'cloud_sync_launch_readiness_progress',
+  'cloud_sync_priority_progress',       // migration 004 — Metrix priority progress
+  'cloud_sync_reassessment_history',    // migration 004 — Metrix reassessment events
 ] as const
 
 // Deleting the sign-in account itself needs a server-side admin API (service-role),
@@ -163,6 +167,8 @@ export const DEVICE_LOCAL_SYNCED_KEYS = [
   'szm_foundation_builder',
   'szm_vendor_tracker',
   'szm_launch_readiness',
+  'szm_priority_progress',      // migration 004 — device-local Metrix priority progress
+  'szm_reassessment_history',   // migration 004 — device-local Metrix reassessment history
 ] as const
 
 /** Remove the device-local synced-progress keys from THIS browser. Explicit action only. */
