@@ -21,6 +21,7 @@ import RoadmapProgressCard from '@/components/RoadmapProgressCard'
 import MetrixPriorityExperience from '@/components/MetrixPriorityExperience'
 import ReassessmentPanel from '@/components/ReassessmentPanel'
 import ProfileIntelligenceCard from '@/components/ProfileIntelligenceCard'
+import TradeIntelligenceCard from '@/components/TradeIntelligenceCard'
 import ShareReferralCard from '@/components/ShareReferralCard'
 import GrowthEventTracker from '@/components/GrowthEventTracker'
 import SyncStatusBadge from '@/components/SyncStatusBadge'
@@ -272,6 +273,9 @@ export default function ResultsPage() {
 
         {/* Wave 2: profile intelligence — lifecycle, completeness, explainability (display-only adapter) */}
         <ProfileIntelligenceCard snapshot={profile} />
+
+        {/* Wave 3: trade context — trade-specific strengths/risks/recurring revenue (display-only; subordinate) */}
+        <TradeIntelligenceCard snapshot={profile} variant="full" />
 
         {/* Wave 1: explicit, user-triggered reassessment (never auto-rescores on load) */}
         <ReassessmentPanel snapshot={profile} answers={answers} intake={intake} />

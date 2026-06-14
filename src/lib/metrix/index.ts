@@ -94,10 +94,29 @@ export {
   deriveImportantUnknowns, deriveRisks, deriveNeeds, deriveGaps,
 } from './profileCompleteness'
 export {
-  selectProgressiveQuestions, hasProgressiveQuestions, type ProgressiveQuestionOptions,
+  selectProgressiveQuestions, hasProgressiveQuestions, filterQuestionCandidates,
+  type ProgressiveQuestionOptions,
 } from './progressiveQuestions'
 export { explainPriorityDetail, type ExplainOptions } from './priorityExplanation'
 export {
   deriveProfileIntelligence, deriveReassessmentTriggers, deriveOutcomeDefinitions, deriveProfileHistory,
   type ProfileIntelligenceOptions,
 } from './profileIntelligence'
+// ── Wave 3: Ten-Trade Contractor Intelligence (additive canonical adapter; no new engine) ──
+export {
+  CANONICAL_TRADE_IDS, TRADE_REGISTRY, resolveTrade, isSupportedTrade,
+  type CanonicalTradeId, type TradeSupportStatus, type TradeRegistryEntry, type ResolvedTrade,
+} from './trades'
+export {
+  TRADE_INTELLIGENCE_VERSION,
+  type TradeIntelligence, type ContractorDimension, type ContractorDimensionId,
+  type DimensionIntensity, type TradeInsight, type ResourceCategory, type ResourceCategoryKind,
+  type CanonicalTradeRef,
+} from './tradeIntelligenceTypes'
+export {
+  DIMENSION_LABELS, TRADE_MODIFIERS,
+  type TradeModifier, type TradeQuestionTemplate,
+} from './tradeModifiers'
+export {
+  deriveTradeIntelligence, type TradeIntelligenceOptions,
+} from './tradeIntelligence'

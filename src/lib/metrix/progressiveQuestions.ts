@@ -30,22 +30,25 @@ function isAnswered(raw: RawAnswers, key: string): boolean {
 }
 
 /**
- * The bounded, deduped, relevant set of next-best questions to actually ask. Already ranked
- * by the canonical engine; this never re-scores or invents questions.
+ * The ONE bounded/deduped/relevant filter. Applies the progressive-question framework rules to
+ * ANY already-ranked candidate list (canonical or trade-aware): no repeats (by questionKey),
+ * skip dismissed (by candidate/question/evidence id), skip already-answered, bound to `limit`.
+ * Never mutates inputs or re-ranks. Reused by both canonical and Wave 3 trade questions so there
+ * is exactly one filter — no duplicate question engine.
  */
-export function selectProgressiveQuestions(
-  s: MetrixProfileSnapshot,
+export function filterQuestionCandidates(
+  candidates: NextBestQuestion[],
+  raw: RawAnswers,
   opts: ProgressiveQuestionOptions = {},
 ): NextBestQuestion[] {
   const limit = Math.max(0, opts.limit ?? 3)
   if (limit === 0) return []
   const dismissed = new Set(opts.dismissed ?? [])
-  const raw = (s?.normalizedAnswers?.rawAnswers ?? {}) as RawAnswers
-  const candidates = Array.isArray(s?.nextBestQuestions) ? s.nextBestQuestions : []
+  const list = Array.isArray(candidates) ? candidates : []
 
   const seen = new Set<string>()
   const out: NextBestQuestion[] = []
-  for (const q of candidates) {
+  for (const q of list) {
     if (!q || typeof q.questionKey !== 'string') continue
     if (seen.has(q.questionKey)) continue                                  // no repeats
     if (dismissed.has(q.candidateId) || dismissed.has(q.questionKey) || dismissed.has(q.evidenceKey)) continue
@@ -55,6 +58,19 @@ export function selectProgressiveQuestions(
     if (out.length >= limit) break
   }
   return out
+}
+
+/**
+ * The bounded, deduped, relevant set of next-best questions to actually ask. Already ranked
+ * by the canonical engine; this never re-scores or invents questions.
+ */
+export function selectProgressiveQuestions(
+  s: MetrixProfileSnapshot,
+  opts: ProgressiveQuestionOptions = {},
+): NextBestQuestion[] {
+  const raw = (s?.normalizedAnswers?.rawAnswers ?? {}) as RawAnswers
+  const candidates = Array.isArray(s?.nextBestQuestions) ? s.nextBestQuestions : []
+  return filterQuestionCandidates(candidates, raw, opts)
 }
 
 /** True when there is at least one high-value question worth surfacing right now. */
