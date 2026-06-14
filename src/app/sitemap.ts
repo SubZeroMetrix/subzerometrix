@@ -36,9 +36,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { path: '/cancellation', priority: 0.3 },
   ]
 
-  // Wave 7 CP11 — the pricing presentation only resolves (and so is only indexable) when the
-  // new-experience flag is on. Until then it 404s, so it must not appear in the sitemap.
-  if (isFeatureEnabled('presentation_shell')) {
+  // Wave 7 CP11 / Wave 8 CP1A — the pricing presentation only resolves (and so is only indexable)
+  // when its OWN dedicated flag is on. Until then it 404s, so it must not appear in the sitemap.
+  // Decoupled from `presentation_shell` so activating the public homepage never indexes /pricing.
+  if (isFeatureEnabled('approved_pricing_presentation')) {
     staticPaths.push({ path: '/pricing', priority: 0.7 })
   }
 

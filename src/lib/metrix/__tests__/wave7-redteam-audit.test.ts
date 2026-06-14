@@ -75,13 +75,14 @@ test('audit: private/stateful routes are robots-disallowed', () => {
   for (const p of ['/dashboard', '/account', '/report', '/results', '/unlock', '/resources/go', '/api/']) {
     assert.ok(ROBOTS_DISALLOW.includes(p), `${p} disallowed`)
   }
-  // /pricing 404s in production (presentation_shell OFF) and its sitemap entry is flag-gated.
+  // /pricing 404s in production (approved_pricing_presentation OFF — Wave 8 CP1A decoupled it from
+  // presentation_shell) and its sitemap entry is flag-gated by the same dedicated flag.
   const page = read('src/app/pricing/page.tsx')
-  assert.ok(/isFeatureEnabled\('presentation_shell'\)/.test(page) && /notFound\(\)/.test(page),
-    'pricing route 404s when the flag is off')
+  assert.ok(/isFeatureEnabled\('approved_pricing_presentation'\)/.test(page) && /notFound\(\)/.test(page),
+    'pricing route 404s when the dedicated pricing flag is off')
   const sitemap = read('src/app/sitemap.ts')
-  assert.ok(/isFeatureEnabled\('presentation_shell'\)[\s\S]*?'\/pricing'/.test(sitemap),
-    'pricing sitemap entry is gated behind the flag')
+  assert.ok(/isFeatureEnabled\('approved_pricing_presentation'\)[\s\S]*?'\/pricing'/.test(sitemap),
+    'pricing sitemap entry is gated behind the dedicated pricing flag')
 })
 
 // ── 5. Six state surfaces remain generated ───────────────────────────────────────

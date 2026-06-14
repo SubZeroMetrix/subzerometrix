@@ -1,10 +1,12 @@
 // ─────────────────────────────────────────────────────────────────────────────
 // /pricing — Wave 7 CP11: approved pricing presentation surface (flag-gated)
 // ─────────────────────────────────────────────────────────────────────────────
-// A NEW public surface that presents the approved pricing model. Gated behind the new-experience
-// flag `presentation_shell` (default OFF) so production behavior is unchanged until launch — when
-// the flag is OFF the route 404s rather than exposing an unfinished surface. It wires no payment
-// behavior; the live checkout path (/unlock + /api/checkout) is untouched.
+// A NEW public surface that presents the approved pricing model. Gated behind its OWN dedicated
+// flag `approved_pricing_presentation` (default OFF), DECOUPLED from `presentation_shell` so the
+// public homepage / positioning can be activated without exposing this surface — which stays held
+// per the R8 launch blocker (approved prices must not show while the only live checkout charges the
+// legacy tiers). When the flag is OFF the route 404s. It wires no payment behavior; the live
+// checkout path (/unlock + /api/checkout) is untouched.
 // ─────────────────────────────────────────────────────────────────────────────
 
 import type { Metadata } from 'next'
@@ -24,7 +26,7 @@ export const metadata: Metadata = {
 }
 
 export default function PricingPage() {
-  if (!isFeatureEnabled('presentation_shell')) notFound()
+  if (!isFeatureEnabled('approved_pricing_presentation')) notFound()
 
   return (
     <AppShell variant="content" header={false}>

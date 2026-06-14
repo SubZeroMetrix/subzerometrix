@@ -28,6 +28,7 @@ export const FEATURE_FLAGS = [
   'referral_sharing',            // referral / sharing features
   'customer_proof_feedback',     // customer proof + feedback surfaces
   'lifetime_offer_presentation', // lifetime-offer presentation (display only; NO Stripe change)
+  'approved_pricing_presentation', // /pricing approved-model presentation (display only; held per R8 — decoupled from presentation_shell so the public homepage can activate without exposing pricing)
 ] as const
 
 export type FeatureFlag = (typeof FEATURE_FLAGS)[number]
