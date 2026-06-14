@@ -19,6 +19,7 @@ import { recordAssessmentSnapshot, type RetentionView } from '@/lib/metrixRetent
 import OutcomeBriefing from '@/components/OutcomeBriefing'
 import RoadmapProgressCard from '@/components/RoadmapProgressCard'
 import MetrixPriorityExperience from '@/components/MetrixPriorityExperience'
+import ReassessmentPanel from '@/components/ReassessmentPanel'
 import ShareReferralCard from '@/components/ShareReferralCard'
 import GrowthEventTracker from '@/components/GrowthEventTracker'
 import SyncStatusBadge from '@/components/SyncStatusBadge'
@@ -267,6 +268,9 @@ export default function ResultsPage() {
 
         {/* SZM-2B: interactive Metrix Priority experience (read-only, from the canonical snapshot) */}
         <MetrixPriorityExperience snapshot={profile} />
+
+        {/* Wave 1: explicit, user-triggered reassessment (never auto-rescores on load) */}
+        <ReassessmentPanel snapshot={profile} answers={answers} intake={intake} />
 
         {/* Why this score? + next improvement lever (explanation only) */}
         <OutcomeBriefing score={starter} intake={intake} variant="results" />

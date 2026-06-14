@@ -17,7 +17,8 @@ import {
 } from 'lucide-react'
 import {
   buildPriorityView, getActiveProgress, persistProgress, selectPath, toggleStep, canCompleteStep,
-  getPriorityProgressSyncReadiness, type MetrixProfileSnapshot, type PersistedPriorityProgress,
+  getPriorityProgressSyncReadiness, adoptPriorityProgressFromAccount, syncPriorityProgressToAccount,
+  type MetrixProfileSnapshot, type PersistedPriorityProgress,
 } from '@/lib/metrix'
 import { getSyncStatusLabel, type SyncStatus } from '@/lib/syncContracts'
 
@@ -31,13 +32,27 @@ export default function MetrixPriorityExperience({ snapshot }: { snapshot: Metri
   const [syncStatus, setSyncStatus] = useState<SyncStatus>('saved_on_device')
 
   const priorityId = snapshot?.metrixPriority?.priorityId
-  // Resume-or-create device-local progress for the active priority.
+  // Resume device-local progress, then (when signed in) adopt the account copy for
+  // cross-device resume. Reconciliation never loses or stale-overwrites local work.
   useEffect(() => {
     if (!snapshot || view.state !== 'ready') return
-    try { setRecord(getActiveProgress(snapshot, nowIso())) } catch { /* non-fatal */ }
+    let cancelled = false
+    let local: PersistedPriorityProgress | null = null
+    try { local = getActiveProgress(snapshot, nowIso()); setRecord(local) } catch { /* non-fatal */ }
+    ;(async () => {
+      try {
+        const res = await adoptPriorityProgressFromAccount(local)
+        if (cancelled || !res.resolved) return
+        if (res.action === 'adopted_account' || res.action === 'merged') {
+          persistProgress(res.resolved)
+          setRecord(res.resolved)
+        }
+      } catch { /* keep device-local record */ }
+    })()
+    return () => { cancelled = true }
   }, [snapshot, view.state, priorityId])
 
-  // Honest save/sync status (cloud not wired for this entity → never a false "synced").
+  // Honest save/sync status (cloud wired via migration 004; never a false "synced" pre-write).
   useEffect(() => {
     let cancelled = false
     ;(async () => {
@@ -49,15 +64,25 @@ export default function MetrixPriorityExperience({ snapshot }: { snapshot: Metri
     return () => { cancelled = true }
   }, [])
 
+  // Best-effort cloud backup after a local mutation — never blocks/throws; updates the badge.
+  const backUp = (next: PersistedPriorityProgress) => {
+    ;(async () => {
+      try {
+        const res = await syncPriorityProgressToAccount(next)
+        setSyncStatus(res.status)
+      } catch { /* keep device-local status */ }
+    })()
+  }
+
   const togglePath = (id: string) => setOpenPaths(s => ({ ...s, [id]: !s[id] }))
   const toggleStepOpen = (id: string) => setOpenSteps(s => ({ ...s, [id]: !s[id] }))
   const choosePath = (pathId: string) => {
     if (!snapshot || !record) return
-    const next = selectPath(record, pathId, snapshot, nowIso()); persistProgress(next); setRecord(next)
+    const next = selectPath(record, pathId, snapshot, nowIso()); persistProgress(next); setRecord(next); backUp(next)
   }
   const completeStep = (stepId: string) => {
     if (!snapshot || !record) return
-    const next = toggleStep(record, stepId, snapshot, nowIso()); persistProgress(next); setRecord(next)
+    const next = toggleStep(record, stepId, snapshot, nowIso()); persistProgress(next); setRecord(next); backUp(next)
   }
 
   if (view.state === 'missing') return null
