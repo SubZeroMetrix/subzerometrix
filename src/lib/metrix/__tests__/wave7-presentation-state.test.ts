@@ -11,7 +11,7 @@ import assert from 'node:assert/strict'
 import { scoreBand, TEMPERATURE } from '../../ui/tokens'
 import {
   confidencePresentation, freshnessPresentation, syncPresentation,
-  riskPresentation, scorePresentation, toneClasses, type Tone,
+  riskPresentation, scorePresentation, toneClasses, toPresentationSyncStatus, type Tone,
 } from '../../ui/presentationState'
 
 test('scoreBand covers 0–100 contiguously, cold→hot, clamps out-of-range', () => {
@@ -88,6 +88,17 @@ test('toneClasses returns class fragments for every tone', () => {
     const c = toneClasses(t)
     assert.ok(c.text && c.border && c.bg && c.dot, `tone ${t} has all fragments`)
   }
+})
+
+test('toPresentationSyncStatus maps app sync vocab to the adapter enum, unknown → unknown', () => {
+  assert.equal(toPresentationSyncStatus('saved_on_device'), 'local_only')
+  assert.equal(toPresentationSyncStatus('synced_to_account'), 'synced')
+  assert.equal(toPresentationSyncStatus('synced'), 'synced')
+  assert.equal(toPresentationSyncStatus('saving'), 'pending')
+  assert.equal(toPresentationSyncStatus('offline'), 'offline')
+  assert.equal(toPresentationSyncStatus('conflict'), 'conflict')
+  assert.equal(toPresentationSyncStatus(undefined), 'unknown')
+  assert.equal(toPresentationSyncStatus('whatever'), 'unknown')
 })
 
 test('mappers are deterministic: same input → identical descriptor', () => {

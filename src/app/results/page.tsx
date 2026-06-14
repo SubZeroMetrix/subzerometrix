@@ -13,7 +13,8 @@ import {
   yearsLabel, revenueLabel, teamLabel, type QuickIntake,
 } from '@/lib/intake'
 import { explainRisk } from '@/lib/metrixReport'
-import { getCanonicalProfile, toMetrixScore } from '@/lib/metrix'
+import { getCanonicalProfile, toMetrixScore, buildCanonicalPresentation } from '@/lib/metrix'
+import { toPresentationSyncStatus } from '@/lib/ui/presentationState'
 import { generateActions, type PathAction } from '@/lib/pathActions'
 import { recordAssessmentSnapshot, type RetentionView } from '@/lib/metrixRetention'
 import OutcomeBriefing from '@/components/OutcomeBriefing'
@@ -111,10 +112,18 @@ export default function ResultsPage() {
   // Canonical read: one evaluation, persisted once, read here (no competing score).
   const profile     = getCanonicalProfile(answers, intake)
   const starter     = toMetrixScore(profile)
+  // Wave 7 CP4: one canonical presentation object per snapshot. The presentation-safe values
+  // it exposes (score, risk, confidence, freshness, sync, disclosures) are the primary read path
+  // below; `starter` is retained only as a compatibility adapter for fields the presentation
+  // adapter intentionally does not model (strengths, risks, recommendedPath, completion).
+  const presentation = buildCanonicalPresentation({
+    snapshot: profile,
+    sync: { status: toPresentationSyncStatus(syncStatus), lastSyncedAt: syncedAt, cloudWired: false },
+  })
   const strengths   = starter.strengths.filter(s => s.score > 0)
   const actions     = generateActions('recommended', starter, intake, 'stabilize').slice(0, 3)
   const firstName   = result.leadName || ''
-  const rColor      = riskColor(starter.riskLevel)
+  const rColor      = riskColor(presentation.score.riskLevel)
 
   // MetrixProfile™ context (display-only — does not change the score)
   const tradeName  = intake?.trade ? tradeLabel(intake.trade) : ''
@@ -188,7 +197,7 @@ export default function ResultsPage() {
         <div className="glass rounded-2xl p-5 space-y-5">
           <div className="grid grid-cols-3 gap-2 text-center">
             <div className="px-1">
-              <div className="font-display text-3xl leading-none text-brand-white">{starter.overall}</div>
+              <div className="font-display text-3xl leading-none text-brand-white">{presentation.score.overall}</div>
               <div className="font-mono text-[8px] tracking-[0.15em] uppercase text-brand-silver mt-1">Starter / 100</div>
             </div>
             <div className="px-1 border-x border-brand-blue/30">
@@ -220,7 +229,7 @@ export default function ResultsPage() {
             <div className="flex items-center gap-1.5 mb-1.5">
               <Shield className="w-3.5 h-3.5 flex-shrink-0" style={{ color: rColor }} />
               <span className="font-mono text-[9px] tracking-[0.18em] uppercase" style={{ color: rColor }}>
-                Risk: {starter.riskLabel}
+                Risk: {presentation.score.riskLabel}
               </span>
             </div>
             <p className="text-[12px] text-brand-silver leading-relaxed">{explainRisk(starter)}</p>
@@ -272,11 +281,11 @@ export default function ResultsPage() {
           )}
         </div>
 
-        {/* Wave 7 CP4: canonical-adapter summary (subordinate; flag-gated, OFF by default).
-            Sources score/confidence/freshness/sync from buildCanonicalPresentation — no recompute,
-            no competing priority CTA. */}
+        {/* Wave 7 CP4: subordinate confidence/freshness/sync strip from the same presentation
+            object (flag-gated, OFF by default). The score/risk above already render FROM the
+            adapter; this strip only surfaces unified state not shown elsewhere. */}
         {isFeatureEnabled('presentation_shell') && (
-          <CanonicalSummaryPanel snapshot={profile} syncStatus={syncStatus} syncedAt={syncedAt} />
+          <CanonicalSummaryPanel presentation={presentation} />
         )}
 
         {/* SZM-2B: interactive Metrix Priority experience (read-only, from the canonical snapshot) */}

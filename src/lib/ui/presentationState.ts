@@ -9,9 +9,37 @@
 // No React; SSR-safe; covered by wave7-presentation-state.test.ts.
 // ─────────────────────────────────────────────────────────────────────────────
 
+import type { PresentationSyncStatus } from '../metrix/canonicalPresentation'
 import { scoreBand } from './tokens'
 
 export const PRESENTATION_STATE_VERSION = 1
+
+/**
+ * Map any sync-status vocabulary a surface uses (e.g. the `SyncStatus` union:
+ * 'saved_on_device' | 'synced_to_account' | …) to the canonical `PresentationSyncStatus`
+ * the presentation adapter consumes. Defensive: unknown values become 'unknown'.
+ */
+export function toPresentationSyncStatus(raw?: string): PresentationSyncStatus {
+  switch ((raw ?? '').trim().toLowerCase()) {
+    case 'synced':
+    case 'synced_to_account':
+      return 'synced'
+    case 'pending':
+    case 'saving':
+    case 'syncing':
+      return 'pending'
+    case 'offline':
+      return 'offline'
+    case 'conflict':
+      return 'conflict'
+    case 'local_only':
+    case 'local':
+    case 'saved_on_device':
+      return 'local_only'
+    default:
+      return 'unknown'
+  }
+}
 
 /** Visual tone vocabulary shared by every state pill / alert / badge. */
 export type Tone = 'positive' | 'caution' | 'critical' | 'info' | 'neutral'
