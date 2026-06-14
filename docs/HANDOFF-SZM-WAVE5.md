@@ -2,70 +2,156 @@
 
 ## Status
 
-* Wave 5 complete on branch `feature/metrix-wave5-foundation-growth-resources`.
-* Branch pushed. **PR NOT opened** (await explicit merge instruction).
-* Built on `main` at `daaa4eb` (Wave 4 merged). Working tree clean after commit.
+* Wave 5 complete, merged, and synchronized to `main`.
+* **PR #11** — merge commit `4e36989` (`Merge pull request #11 from SubZeroMetrix/feature/metrix-wave5-foundation-growth-resources`).
+* Feature commit `17a9811`.
+* Feature branch `feature/metrix-wave5-foundation-growth-resources` deleted remotely (pruned locally).
+* `main` == `origin/main` at `4e36989`. Working tree clean.
 
 ## Objective
 
-Wave 5 adds **one additive, deterministic integration layer** that unifies the existing
-Foundation Builder, Customer Growth Engine, and the three resource sources (vendor catalog,
-affiliate registry, educational guides) onto the canonical Metrix pipeline — plus a
-profile-aware recommendation adapter, privacy-safe attribution, optional helpfulness/outcome
-feedback, and partner-revenue readiness. It creates **no** competing score, priority, gate,
-path, profile, progress, reassessment, trade-intelligence, licensing-intelligence, or
-recommendation-ranking engine. Every existing engine is **wrapped**, not replaced.
+Wave 5 integrated the existing Foundation Builder, Customer Growth Engine, a canonical
+action/evidence/outcome model, the resource/vendor systems, profile-aware recommendations,
+referral attribution, helpfulness/outcome feedback, and partner-revenue readiness — **without
+creating duplicate engines**. It is one additive, deterministic adapter + integration layer that
+remains subordinate to the canonical Metrix pipeline.
 
-## Key Architectural Decision
+## Architectural Decision
 
-The codebase already contained mature, working systems for nearly every Wave 5 subsystem
-(`foundationBuilder.ts`, `growthEngine.ts`/`growthPhases.ts`, `vendorCategories.ts`,
-`affiliates.ts`, `publicResources.ts`, `tracking.ts`, `analytics.ts`, `feedback.ts`,
-`partnerDistribution.ts`). Per the hard guardrails (no duplicate engines), Wave 5 is a
-**canonical adapter layer** in `src/lib/metrix/` (matching the Wave 2–4 pattern) that projects
-and consolidates these, plus the genuinely-new recommendation/attribution/feedback adapters.
+The repository already contained mature, working systems for every Wave 5 subsystem:
+
+* Foundation Builder (`src/lib/foundationBuilder.ts`, `foundationBuilderSync.ts`)
+* Growth Engine and growth phases (`src/lib/growthEngine.ts`, `growthPhases.ts`, `growthRoadmap.ts`, `growthAnalytics.ts`)
+* vendor categories (`src/lib/vendorCategories.ts`)
+* affiliates (`src/lib/affiliates.ts`)
+* public resources (`src/lib/publicResources.ts`)
+* tracking and analytics (`src/lib/tracking.ts`, `analytics.ts`, `/api/track-click`, `/api/postback/[vendor]`)
+* feedback (`src/lib/feedback.ts`, `customerFeedbackSync.ts`, `customerProof.ts`)
+* partner distribution (`src/lib/partnerDistribution.ts`, `partnerInterestSync.ts`, `membershipTiers.ts`)
+
+Wave 5 therefore added an **adapter and integration layer** in `src/lib/metrix/` (matching the
+Wave 2–4 pattern) that projects, consolidates, and recommends across these systems. It did not
+replace or duplicate any of them.
 
 ## Completed Capabilities
 
-### Canonical action / evidence / outcome model (`actionTypes.ts`, `actionModel.ts`)
-* ONE `CanonicalAction` shape (id, category, source priority/path, trade/state/lifecycle
-  applicability, prerequisites, blocked, completion status, evidence, notes, timestamps,
-  owner, progress linkage, outcome type/value, verification status, provenance,
-  resource associations).
-* Pure read-only projections — `projectPriorityActions`, `projectFoundationActions`,
-  `projectGrowthActions`, `collectCanonicalActions` (deduped, priority-first).
-* Original step/item/action ids preserved verbatim in `sourceId`. No storage replaced.
+* canonical action, evidence, and outcome model
+* Foundation Builder integration
+* Growth Engine integration
+* resource/vendor registry integration
+* deterministic profile-aware recommendations
+* trade-aware recommendations
+* state-aware recommendations
+* lifecycle-aware recommendations
+* priority-aware recommendations
+* licensing-aware recommendations
+* recommendation rationale (why each resource is shown)
+* bounded and deduplicated results
+* completed/dismissed suppression
+* privacy-safe attribution
+* helpfulness feedback
+* voluntarily reported outcomes
+* affiliate and sponsorship disclosure support
+* commercial-neutrality protections
+* display-only product integration (dashboard + results)
+* malformed and legacy-data safety (never throws; safe fallback)
 
-### Foundation Builder + Growth Engine integration
-* Foundation checklist items + Growth roadmap actions project into the canonical action model
-  and feed the recommendation adapter's `currentActions`. Growth actions are always
-  subordinate and never falsely completed. No duplicate checklist/progress engine.
+## Canonical Flow
 
-### Canonical resource/vendor registry (`resourceTypes.ts`, `resourceRegistry.ts`)
-* ONE `CanonicalResource[]` consolidating the vendor catalog, affiliate partners, and
-  educational guides. A tool that is both a catalog vendor and an affiliate partner is
-  **merged into a single record** (vendor entry enriched with factual affiliate status) — never
-  presented twice. All vendor/partner/slug ids preserved. Commercial fields stored separately.
+`Assessment → Metrix Profile → MetrixScore → Metrix Priority → Roadmap → Action → Evidence → Metrix Progress → Outcome → Reassessment`
 
-### Recommendation adapter (`resourceRecommendations.ts`)
-* `deriveResourceRecommendations(...)` — deterministic, defensive, bounded, deduped.
-* Relevance uses ONLY fit signals; relationship/affiliate/sponsorship status is **never** a
-  ranking input. Deterministic order: relevance desc, then `resourceId` asc.
-* Trade/state explicit-mismatch exclusion; lifecycle/priority/freshness boosts; helpfulness
-  signal honored. Dismissed + completed + negatively-rated resources suppressed. Safe fallback.
-* Output carries **no** competing score/priority field — it links into the canonical pipeline.
+Wave 5 plugs in at **Action → Evidence → Outcome** (projection) and as a subordinate
+recommendation surface. Explicitly:
 
-### Attribution + feedback (`resourceAttribution.ts`, `resourceFeedback.ts`)
-* Consent-aware, allow-listed, non-PII attribution funnel (impression → open → outbound → feedback)
-  routed through the existing `trackEvent` sink. Existing `/api/track-click` + `referral_clicks`
-  remain the source of truth for outbound affiliate clicks — not duplicated.
-* Optional device-local helpfulness/outcome feedback (`szm_resource_feedback`). Never affects
-  MetrixScore. No testimonials/reviews/review-pressure. Deletion coverage via `clearResourceFeedback`.
+* no new score
+* no competing priority engine
+* no second profile
+* no duplicate checklist/progress engine
+* no duplicate reassessment engine
+* no competing recommendation-ranking engine
+* no commercial influence over scoring, priority, licensing, pathway ordering, or recommendation relevance
 
-### UI (`ResourceRecommendations.tsx`)
-* Display-only, subordinate card wired into `dashboard` and `results` (where the canonical
-  snapshot is already loaded and Wave 2–4 cards live). Shows why-recommended, applicability,
-  freshness, disclosure (when required), optional helpful/dismiss. No homepage redesign.
+## Foundation Builder Coverage
+
+Projected into the canonical action model (read-only; `szm_foundation_builder` remains the source
+of truth). Coverage spans:
+
+* business formation readiness
+* licensing/registration preparation
+* insurance
+* banking/accounting
+* pricing
+* customer acquisition
+* operations
+* tools/software
+* safety/compliance
+* documentation
+* completion tracking
+* blocked steps
+* prerequisites
+* evidence
+* notes
+* local/cloud continuity (device-local fallback + Account-2I sync via `foundationBuilderSync`)
+* export readiness (CSV + printable HTML, client-side)
+
+## Growth Engine Coverage
+
+Projected into the canonical action model (subordinate; recommendations never auto-completed).
+Coverage spans:
+
+* brand positioning
+* local visibility
+* website/local search
+* social presence
+* lead generation
+* referrals
+* reviews
+* follow-up
+* sales process
+* conversion
+* estimates/proposals
+* reactivation
+* retention
+* maintenance/service agreements
+* cross-sell
+* upsell
+* recurring revenue
+* pipeline tracking
+* acquisition-channel tracking
+
+## Recommendation Integrity
+
+* deterministic relevance (relevance desc, then `resourceId` asc)
+* no paid-placement influence over ranking — relationship/affiliate/sponsorship status is never a scoring input (test-enforced)
+* relationship/affiliate/sponsorship metadata stored separately from relevance
+* disclosures shown where applicable (affiliate/active/regulated → disclosure required)
+* licensing and regulatory guidance remain commercially neutral
+
+## Privacy and Analytics
+
+Privacy-safe attribution funnel (consent-aware; emits only when the host grants consent), routed
+through the existing `trackEvent` sink. The existing `/api/track-click` + `referral_clicks` remain
+the source of truth for outbound affiliate clicks (not duplicated). Supported signals:
+
+* impressions
+* card opens
+* outbound clicks
+* originating page / placement context
+* trade
+* lifecycle stage
+* priority category
+* vendor/resource IDs
+* relationship/disclosure status
+* optional helpfulness feedback
+* voluntarily reported outcomes
+
+Never captured or transmitted:
+
+* no raw answers
+* no private notes
+* no email addresses
+* no sensitive financial data
+* no unnecessary identifiers in URLs or analytics
 
 ## Files Added
 
@@ -87,29 +173,64 @@ and consolidates these, plus the genuinely-new recommendation/attribution/feedba
 * `src/app/dashboard/page.tsx` — `<ResourceRecommendations placement="dashboard">`
 * `src/app/results/page.tsx` — `<ResourceRecommendations placement="results">`
 
+## Commit
+
+* Feature commit: `17a9811`
+* PR merge commit: `4e36989` (PR #11)
+* Handoff commit: `docs: add Wave 5 completion handoff` (this file, on `main`)
+
 ## Validation
+
+Final validation was completed on the Wave 5 branch before merge (no code changed since):
 
 * Tests: **180/180 pass** (157 prior + 23 Wave 5)
 * TypeScript (`tsc --noEmit`): clean
 * Lint (`next lint`): no warnings/errors
 * Production build: succeeds
-* Commercial-neutrality, privacy-safe-analytics, dedup, canonical-id-preservation, and
-  duplicate-engine reviews: clean. Scoped diff: 4 additive edits + 10 new files.
+* Commercial-neutrality, privacy-safe-analytics, deduplication, canonical-id-preservation, and
+  duplicate-engine reviews: all clean
+* Clean working tree
 
-## Commercial-neutrality + canonical-preservation confirmation
+**Do not rerun validation** unless code changes.
 
-* No commercial relationship alters MetrixScore, Metrix Priority, licensing applicability,
-  regulatory guidance, pathway ordering, or recommendation-quality ranking (tested).
-* Canonical scoring, priority, gates, paths, profile, progress, reassessment, trade
-  intelligence, licensing intelligence, auth, cloud sync, Stripe, pricing, and payments were
-  **not** replaced or modified.
+## Boundaries
+
+* no Stripe, pricing, checkout, entitlement, or payment changes
+* no homepage redesign
+* no internal human coaching
+* no fake testimonials, reviews, partners, conversions, or outcomes
+* no live affiliate payouts or partner billing
+* no hidden sponsored placement
 
 ## Known Limitations / Future Work
 
-* Recommendation placement is scoped to `dashboard` + `results` (where the snapshot is loaded).
-  The registry already supports `foundation_builder`/`growth_engine`/`roadmap` placements; wiring
-  those surfaces requires client-side snapshot loading on those pages (deferred).
-* Resource feedback is device-local; an account-sync adapter (mirroring `foundationBuilderSync`)
-  is not yet wired (storage shape is sync-ready).
-* No new cloud tables introduced. Attribution events are emitted only when `trackingConsent` is
-  explicitly granted by the host surface (default off).
+* Recommendation placement is scoped to `dashboard` + `results` (where the canonical snapshot is
+  already loaded). The registry already supports `foundation_builder`/`growth_engine`/`roadmap`
+  placements; wiring those surfaces requires client-side snapshot loading on those pages (deferred).
+* Resource feedback is device-local (`szm_resource_feedback`); an account-sync adapter is not yet
+  wired (the storage shape is sync-ready).
+* No new cloud tables introduced.
+
+## Wave 6 Entry Point
+
+Next controlled build:
+
+**Wave 6 — Preservation, Migration & Interface Architecture**
+
+Wave 6 should cover:
+
+* route and component inventory
+* storage keys and cloud tables
+* RLS and analytics inventory
+* action/resource/vendor/referral ID inventory
+* consent/proof/partner records
+* SEO/schema/sitemap/export inventory
+* legacy adapters
+* canonical presentation adapter
+* route-preserving app shell
+* feature flags
+* preview deployments
+* migration and rollback plan
+* no destructive removal without proof
+
+**Do not begin Wave 6 in this context.**
