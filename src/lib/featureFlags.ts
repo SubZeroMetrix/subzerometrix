@@ -29,6 +29,7 @@ export const FEATURE_FLAGS = [
   'customer_proof_feedback',     // customer proof + feedback surfaces
   'lifetime_offer_presentation', // lifetime-offer presentation (display only; NO Stripe change)
   'approved_pricing_presentation', // /pricing approved-model presentation (display only; held per R8 — decoupled from presentation_shell so the public homepage can activate without exposing pricing)
+  'live_approved_checkout',        // Wave 8: live checkout on the APPROVED model in /api/checkout (held per R8; OFF keeps the legacy /unlock tiers untouched)
 ] as const
 
 export type FeatureFlag = (typeof FEATURE_FLAGS)[number]

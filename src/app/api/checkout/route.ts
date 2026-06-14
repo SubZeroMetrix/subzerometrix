@@ -1,5 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server'
 import Stripe from 'stripe'
+import { isFeatureEnabled } from '@/lib/featureFlags'
+import { buildApprovedCheckoutIntent } from '@/lib/entitlements/checkout'
+import type { PlanId } from '@/lib/pricing/pricingPlans'
 
 // Stripe client is created lazily inside the handler so we can return a clean
 // 503 if the env var is missing, rather than throwing at module-load time.
@@ -51,6 +54,51 @@ export async function POST(req: NextRequest) {
 
   try {
     const body = await req.json()
+
+    // ── Wave 8 CP2: approved-model checkout (flag-gated, default OFF) ─────────────────
+    // Only active behind `live_approved_checkout`. When OFF (production default), this branch is
+    // skipped entirely and the legacy tier checkout below runs unchanged. The amount/mode are
+    // derived server-side from the approved model — never from the client.
+    if (isFeatureEnabled('live_approved_checkout') && typeof body?.planId === 'string') {
+      const result = buildApprovedCheckoutIntent(body.planId as PlanId, {
+        foundingSeatAvailable: false, // CP4 wires a verified-purchase-backed source; held until then.
+      })
+      if (!result.ok) {
+        return NextResponse.json({ error: `Plan not available for checkout: ${result.reason}` }, { status: 400 })
+      }
+      const { intent } = result
+      const approvedOrigin =
+        process.env.NEXT_PUBLIC_APP_URL || req.headers.get('origin') || 'https://subzerometrix.com'
+      const stripeClient = getStripe()
+      const approvedSession = await stripeClient.checkout.sessions.create({
+        mode: intent.mode,
+        customer_email: typeof body?.leadEmail === 'string' ? body.leadEmail : undefined,
+        line_items: [
+          {
+            price_data: {
+              currency: intent.lineItem.currency,
+              product_data: {
+                name: intent.lineItem.productName,
+                description: intent.lineItem.productDescription,
+              },
+              unit_amount: intent.lineItem.unitAmount,
+              ...(intent.lineItem.recurringInterval
+                ? { recurring: { interval: intent.lineItem.recurringInterval } }
+                : {}),
+            },
+            quantity: 1,
+          },
+        ],
+        success_url: `${approvedOrigin}/report?session_id={CHECKOUT_SESSION_ID}`,
+        cancel_url: `${approvedOrigin}/pricing?cancelled=true`,
+        metadata: {
+          plan_id: intent.planId,
+          checkout_model: 'approved',
+        },
+      })
+      return NextResponse.json({ url: approvedSession.url })
+    }
+
     const { scoreData, assessmentId, tierId = 'pro' } = body
 
     if (!scoreData) {
