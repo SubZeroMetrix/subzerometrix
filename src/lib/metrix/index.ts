@@ -75,3 +75,29 @@ export {
   reconcileCanonicalProfiles,
   type ReconciliationResult, type ReconcileAction, type ReconcileConflict,
 } from './reconcile'
+// ── Wave 2: Profile Intelligence (additive canonical adapters; no new engine) ──
+export {
+  LIFECYCLE_VERSION, LIFECYCLE_STAGE_ORDER, LIFECYCLE_STAGE_LABELS,
+  assessLifecycle, deriveLifecycleStage, deriveStageConfidence, detectStageTransition,
+  type LifecycleStage, type LifecycleAssessment, type StageConfidence,
+  type StageTransition, type StageDirection,
+} from './lifecycle'
+export {
+  INTELLIGENCE_VERSION,
+  type ProfileIntelligence, type ProfileCompleteness, type EvidenceConfidence,
+  type KnownFact, type ImportantUnknown, type ProfileRisk, type ProfileNeed, type ProfileGap,
+  type ProfileVersions, type ProfileHistoryPoint, type ReassessmentSignal,
+  type OutcomeDefinition, type PriorityExplanationDetail, type ExplainGateInvolvement,
+} from './intelligenceTypes'
+export {
+  deriveCompleteness, deriveEvidenceConfidence, deriveKnownFacts,
+  deriveImportantUnknowns, deriveRisks, deriveNeeds, deriveGaps,
+} from './profileCompleteness'
+export {
+  selectProgressiveQuestions, hasProgressiveQuestions, type ProgressiveQuestionOptions,
+} from './progressiveQuestions'
+export { explainPriorityDetail, type ExplainOptions } from './priorityExplanation'
+export {
+  deriveProfileIntelligence, deriveReassessmentTriggers, deriveOutcomeDefinitions, deriveProfileHistory,
+  type ProfileIntelligenceOptions,
+} from './profileIntelligence'
