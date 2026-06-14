@@ -100,7 +100,7 @@ function FoundingOffer({ plan }: { plan: PricingPlan }) {
     <Card tone="caution" className="mt-6">
       <Eyebrow>Founding offer</Eyebrow>
       <div className="flex items-start justify-between gap-3 mt-2 mb-2">
-        <h3 className="font-display text-xl tracking-wide text-brand-white leading-tight">{plan.name}</h3>
+        <h2 className="font-display text-xl tracking-wide text-brand-white leading-tight">{plan.name}</h2>
         <span className="font-display text-2xl tracking-wider text-brand-white">{plan.priceLabel}</span>
       </div>
       <p className="text-[13px] text-brand-silver leading-relaxed mb-3">{plan.summary}</p>
@@ -140,6 +140,7 @@ export default function PricingTiers() {
 
   return (
     <div>
+      <h2 className="sr-only">Plans</h2>
       <div className="grid gap-4 sm:grid-cols-2">
         {standardPlans.map(plan => (
           <PlanCard key={plan.id} plan={plan} />
