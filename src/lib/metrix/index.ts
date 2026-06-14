@@ -195,3 +195,37 @@ export {
   getCompletedResourceIds, clearResourceFeedback,
   type ResourceFeedbackType, type ResourceFeedbackEntry,
 } from './resourceFeedback'
+// ── Wave 6: Preservation, Migration & Interface Architecture (additive; no new engine) ──
+export {
+  RESOURCE_ECOSYSTEM_VERSION, ECOSYSTEM_CATEGORIES, NON_PUBLIC_VERIFICATION_STATUSES,
+  defaultEcosystemExtension,
+  type EcosystemResource, type EcosystemCategory, type EcosystemVerificationStatus,
+  type EcosystemReferralStatus, type EcosystemResellerStatus, type EcosystemIntegrationStatus,
+  type LaunchCategory, type EcosystemReviewMeta, type EcosystemLaunchMeta,
+  type EcosystemRelationshipMeta, type EcosystemOperationsMeta,
+} from './resourceEcosystem'
+export {
+  evaluatePublicEligibility, isPublicEligible, isDirectLinkEligible, isRegulatoryAuthority,
+  requiresDisclosure, publicEligibleResources, launchReadyResources, hasVerificationEvidence,
+  type PublicEligibility, type VerificationBlockReason,
+} from './resourceVerification'
+export {
+  RESOURCE_REDIRECT_VERSION, RESOURCE_REDIRECT_BASE, buildRedirectPath,
+  resolveRedirect, contextCarriesPrivateData,
+  type RedirectContext, type RedirectResolution, type RedirectStatus, type OutboundEventPayload,
+} from './resourceRedirects'
+export {
+  RESOURCE_DIRECTORY_VERSION, RECOMMENDATION_ACTIONS, buildDirectoryView, toRecommendationCard,
+  type DirectoryFilter, type DirectoryEntry, type RecommendationAction, type RecommendationCardView,
+} from './resourceDirectory'
+export {
+  PUBLISHED_ECOSYSTEM_CATALOG, getPublishedEcosystemCatalog,
+} from './ecosystemCatalog'
+export {
+  CANONICAL_PRESENTATION_VERSION, buildCanonicalPresentation,
+  type CanonicalPresentation, type CanonicalPresentationInput,
+  type ScoreView, type PriorityView as PresentationPriorityView, type ActionsView,
+  type ConfidenceView, type LifecycleSummary, type TradeSummary, type LicensingSummary,
+  type BuilderSummary, type SyncView, type PresentationSyncStatus, type SupportView,
+  type DisclosureView,
+} from './canonicalPresentation'
