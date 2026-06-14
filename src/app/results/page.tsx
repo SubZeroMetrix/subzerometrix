@@ -23,6 +23,7 @@ import ReassessmentPanel from '@/components/ReassessmentPanel'
 import ProfileIntelligenceCard from '@/components/ProfileIntelligenceCard'
 import TradeIntelligenceCard from '@/components/TradeIntelligenceCard'
 import LicensingIntelligenceCard from '@/components/LicensingIntelligenceCard'
+import ResourceRecommendations from '@/components/ResourceRecommendations'
 import ShareReferralCard from '@/components/ShareReferralCard'
 import GrowthEventTracker from '@/components/GrowthEventTracker'
 import SyncStatusBadge from '@/components/SyncStatusBadge'
@@ -280,6 +281,9 @@ export default function ResultsPage() {
 
         {/* Wave 4: licensing & jurisdiction — verify-before-action, official-source-backed (display-only; subordinate) */}
         <LicensingIntelligenceCard snapshot={profile} variant="full" />
+
+        {/* Wave 5: optional, profile-aware resource suggestions (display-only; subordinate to the priority CTA) */}
+        <ResourceRecommendations snapshot={profile} placement="results" limit={3} />
 
         {/* Wave 1: explicit, user-triggered reassessment (never auto-rescores on load) */}
         <ReassessmentPanel snapshot={profile} answers={answers} intake={intake} />

@@ -154,3 +154,44 @@ export {
 export {
   deriveLicensingIntelligence, type LicensingIntelligenceOptions,
 } from './licensingIntelligence'
+// ── Wave 5: Foundation, Growth, Resource & Partner Integration (additive; no new engine) ──
+export {
+  ACTION_MODEL_VERSION, EMPTY_OUTCOME,
+  type CanonicalAction, type CanonicalActionSource, type CanonicalActionCategory,
+  type ActionCompletionStatus, type ActionSourcePriority, type ActionOwner,
+  type CanonicalEvidence, type CanonicalEvidenceState,
+  type CanonicalOutcome, type CanonicalOutcomeType, type VerificationStatus,
+  type CanonicalActionProvenance, type ActionProgressLinkage,
+} from './actionTypes'
+export {
+  projectPriorityActions, projectFoundationActions, projectGrowthActions, collectCanonicalActions,
+  type CollectActionsInput,
+} from './actionModel'
+export {
+  RESOURCE_REGISTRY_VERSION, RESOURCE_REVIEWED_DATE, RESOURCE_FRESHNESS_WINDOW_DAYS,
+  type CanonicalResource, type CanonicalResourceCategory, type CanonicalResourceProvenance,
+  type ResourceSourceKind, type ResourcePlacement,
+  type ResourceRelationshipStatus, type ResourceAffiliateStatus, type ResourceSponsorshipStatus,
+} from './resourceTypes'
+export {
+  RESOURCE_REGISTRY, allResources, getResourceById, getResourceBySourceId,
+  getResourcesByCategory, getResourcesForPlacement,
+} from './resourceRegistry'
+export {
+  RECOMMENDATION_VERSION, deriveResourceRecommendations,
+  type ResourceRecommendationOptions, type ResourceRecommendationResult,
+  type RecommendedResource, type ResourceApplicability, type ResourceHelpfulness,
+  type RecommendationConfidence, type RecommendationDisclosure,
+} from './resourceRecommendations'
+export {
+  ATTRIBUTION_VERSION, buildAttributionContext,
+  trackRecommendationImpression, trackRecommendationOpen,
+  trackRecommendationOutboundClick, trackRecommendationFeedback,
+  type AttributionContext, type AttributionOptions,
+} from './resourceAttribution'
+export {
+  RESOURCE_FEEDBACK_VERSION, RESOURCE_FEEDBACK_KEY, RESOURCE_FEEDBACK_TYPES,
+  recordResourceFeedback, getResourceFeedback, getHelpfulnessMap,
+  getCompletedResourceIds, clearResourceFeedback,
+  type ResourceFeedbackType, type ResourceFeedbackEntry,
+} from './resourceFeedback'
