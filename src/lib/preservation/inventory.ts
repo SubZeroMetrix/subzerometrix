@@ -49,6 +49,7 @@ export const ROUTE_INVENTORY: RouteRecord[] = [
   { path: '/partners', kind: 'public', shell: 'public', dynamicParams: [], legacyAlias: false, preserve: true },
   { path: '/install', kind: 'public', shell: 'public', dynamicParams: [], legacyAlias: false, preserve: true },
   { path: '/unlock', kind: 'public', shell: 'public', dynamicParams: [], legacyAlias: false, preserve: true },
+  { path: '/pricing', kind: 'public', shell: 'content', dynamicParams: [], legacyAlias: false, preserve: true, notes: 'Wave 7 CP11 — approved pricing presentation (display only; flag-gated, no checkout)' },
   { path: '/account/privacy', kind: 'authenticated', shell: 'dashboard', dynamicParams: [], legacyAlias: false, preserve: true },
   // Legal / disclosure
   { path: '/privacy', kind: 'public', shell: 'public', dynamicParams: [], legacyAlias: false, preserve: true },

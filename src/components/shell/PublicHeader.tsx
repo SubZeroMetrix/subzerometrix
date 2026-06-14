@@ -20,6 +20,7 @@ const NAV_LINKS: { label: string; href: string }[] = [
   { label: 'Trades', href: '/trades' },
   { label: 'Resources', href: '/resources' },
   { label: 'Learn', href: '/learn' },
+  { label: 'Pricing', href: '/pricing' },
 ]
 
 export default function PublicHeader() {

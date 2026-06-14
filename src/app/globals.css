@@ -190,3 +190,21 @@ body {
 
 .blink          { animation: blink 2.4s ease-in-out infinite; }
 .crystal-pulse  { animation: crystalPulse 3s ease-in-out infinite; }
+
+/* ── Reduced motion (WCAG 2.3.3 / 2.2.2) ──────────────────────────────────────
+   Respect the OS "reduce motion" setting: neutralize non-essential animation,
+   transition, and auto-scroll. Reveal/fade utilities are forced to their final
+   visible state so content is never left hidden when motion is suppressed. */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  .reveal-block,
+  .animate-fade-up {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
