@@ -53,15 +53,11 @@ test('cp1a: /pricing sitemap entry is gated by the dedicated pricing flag', () =
   )
 })
 
-test('cp1a: the homepage still activates via presentation_shell (independent of pricing)', () => {
+test('cp1a: the homepage is independent of every commercial feature flag', () => {
   const home = read('src/app/page.tsx')
-  assert.ok(
-    /isFeatureEnabled\('presentation_shell'\)/.test(home),
-    'homepage experience remains gated by presentation_shell',
-  )
-  // Decoupling means the homepage gate does not depend on the pricing flag.
-  assert.ok(
-    !/approved_pricing_presentation/.test(home),
-    'homepage must not depend on the pricing presentation flag',
-  )
+  // Wave 8 fix: the homepage selector is the dedicated rollback switch, NOT a commercial flag.
+  assert.ok(/isLegacyHomepageEnabled/.test(home), 'homepage uses the dedicated rollback switch')
+  assert.ok(!/isFeatureEnabled/.test(home), 'homepage must not read any commercial feature flag')
+  assert.ok(!/presentation_shell/.test(home), 'homepage must not depend on presentation_shell')
+  assert.ok(!/approved_pricing_presentation/.test(home), 'homepage must not depend on the pricing flag')
 })

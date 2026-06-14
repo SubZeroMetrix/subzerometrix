@@ -1,41 +1,45 @@
 // ─────────────────────────────────────────────────────────────────────────────
-// app/page (/) — Wave 7 Checkpoint 3: flag-gated homepage switch + metadata
+// app/page (/) — Wave 8 fix: HomeExperience is the DEFAULT public homepage
 // ─────────────────────────────────────────────────────────────────────────────
-// Route-preserving switch for `/`. With `presentation_shell` OFF (production default) it renders
-// the existing homepage verbatim (LegacyHomeExperience) so behavior is unchanged. With the flag
-// ON it renders the rebuilt conversion experience (HomeExperience) and richer, truthful metadata.
-// Metadata reuses the seo.ts builders — no parallel/duplicate metadata system is introduced.
+// The rebuilt conversion homepage (HomeExperience) renders by DEFAULT. The previous homepage
+// (LegacyHomeExperience) is served ONLY when the explicit rollback env var is set
+// (NEXT_PUBLIC_USE_LEGACY_HOMEPAGE=true). The homepage selector is deliberately NOT a commercial
+// feature flag — a missing/unset environment always renders the new experience, and pricing,
+// checkout, Stripe, Founding inventory, analytics, and consent remain independently controlled by
+// their own flags. Metadata reuses the seo.ts builders — no parallel/duplicate metadata system.
 // ─────────────────────────────────────────────────────────────────────────────
 
 import type { Metadata } from 'next'
-import { isFeatureEnabled } from '@/lib/featureFlags'
+import { isLegacyHomepageEnabled } from '@/lib/home/homepageMode'
 import { buildOpenGraph, buildTwitter, websiteJsonLd } from '@/lib/seo'
 import LegacyHomeExperience from '@/components/home/LegacyHomeExperience'
 import HomeExperience from '@/components/home/HomeExperience'
 
-const NEW_HOME_TITLE = 'SubZeroMetrix™ — Find the Next Business Move That Matters Most'
-const NEW_HOME_DESCRIPTION =
+const HOME_TITLE = 'SubZeroMetrix™ — Find the Next Business Move That Matters Most'
+const HOME_DESCRIPTION =
   'Start it. Build it. Grow it. SubZeroMetrix™ gives contractors, tradespeople, and service businesses a MetrixScore™ readiness reading and a personalized roadmap — so you always know the next move. Educational only; not legal advice.'
 
 export function generateMetadata(): Metadata {
-  // Flag OFF: return nothing extra so the layout defaults (title/description/canonical '/')
-  // apply exactly as today. Flag ON: enhanced, truthful homepage metadata.
-  if (!isFeatureEnabled('presentation_shell')) {
+  // Rollback only: serve the minimal legacy metadata when the legacy homepage is forced on.
+  if (isLegacyHomepageEnabled()) {
     return { alternates: { canonical: '/' } }
   }
+  // Default: the new homepage's truthful, enhanced metadata.
   return {
-    title: NEW_HOME_TITLE,
-    description: NEW_HOME_DESCRIPTION,
+    title: HOME_TITLE,
+    description: HOME_DESCRIPTION,
     alternates: { canonical: '/' },
-    openGraph: buildOpenGraph({ title: NEW_HOME_TITLE, description: NEW_HOME_DESCRIPTION, path: '/' }),
-    twitter: buildTwitter({ title: NEW_HOME_TITLE, description: NEW_HOME_DESCRIPTION }),
+    openGraph: buildOpenGraph({ title: HOME_TITLE, description: HOME_DESCRIPTION, path: '/' }),
+    twitter: buildTwitter({ title: HOME_TITLE, description: HOME_DESCRIPTION }),
   }
 }
 
 export default function HomePage() {
-  if (!isFeatureEnabled('presentation_shell')) {
+  // Rollback only: explicit env var serves the previous homepage.
+  if (isLegacyHomepageEnabled()) {
     return <LegacyHomeExperience />
   }
+  // Default public homepage.
   return (
     <>
       {/* WebSite structured data — truthful, no ratings/reviews/offers (see seo.ts). */}
