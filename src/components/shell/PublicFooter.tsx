@@ -13,6 +13,7 @@ import IceCrystal from '@/components/ui/IceCrystal'
 
 const LEGAL_LINKS: [string, string][] = [
   ['Resources', '/resources'],
+  ['Pricing', '/pricing'],
   ['Get the App', '/install'],
   ['Platform Ecosystem', '/platform-ecosystem'],
   ['Privacy Policy', '/privacy'],

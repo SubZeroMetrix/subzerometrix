@@ -3,6 +3,7 @@ import { SITE_URL } from '@/lib/seo'
 import { TRADE_CONFIGS } from '@/lib/tradeData'
 import { getPublicResourceSlugs } from '@/lib/publicResources'
 import { CANONICAL_STATE_IDS } from '@/lib/metrix'
+import { isFeatureEnabled } from '@/lib/featureFlags'
 
 // Growth-1 sitemap — REAL public, indexable routes only.
 // Excludes private/paid/stateful pages (/report, /dashboard, /unlock, /results,
@@ -34,6 +35,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { path: '/resource-directory-disclosure', priority: 0.3 },
     { path: '/cancellation', priority: 0.3 },
   ]
+
+  // Wave 7 CP11 — the pricing presentation only resolves (and so is only indexable) when the
+  // new-experience flag is on. Until then it 404s, so it must not appear in the sitemap.
+  if (isFeatureEnabled('presentation_shell')) {
+    staticPaths.push({ path: '/pricing', priority: 0.7 })
+  }
 
   // Real trade platform pages (branded slugs: heat, volt, flow, …) from the
   // source of truth — every entry resolves to an existing page.
