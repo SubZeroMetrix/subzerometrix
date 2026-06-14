@@ -16,3 +16,15 @@
 
 **Build A outcome:** safe technical verification completed; all legally-uncertain or
 architecturally-gated behavior remains blocked/disabled pending the resolutions above.
+
+## Build C addendum (CP11–CP13)
+
+| # | Item | Area | Status | Fail-safe in effect | Resolution needed before enabling |
+| --- | --- | --- | --- | --- | --- |
+| R5 | Accessibility of the live directory at scale | Accessibility | **AUTOMATED PORTION DONE (CP12)** | Reduced-motion, touch targets, visible focus, skip-link/landmark, labeled filters + aria-live shipped and tested. | Manual assistive-technology + real-device review → **Wave 10A**. |
+| R8 | **Live checkout vs approved pricing divergence** | Payments / consumer protection | **HELD (presentation only)** | `/pricing` is flag-gated (404 in prod) and presents the approved model with no purchase wiring; `/unlock` + `/api/checkout` unchanged at prior tiers; only the free plan has an active CTA. | Wave 10A: activate live Stripe and migrate `/unlock` checkout to the approved model ($0/$19/$39mo/$79mo/$649) before enabling the pricing flag in production. |
+| R9 | **Founding Lifetime live availability counter** | Scarcity / consumer protection | **INACTIVE (truthful unknown)** | Counter derives only from completed verified purchases; with no reliable source it returns `unknown` (no number, no live counter) — no fake scarcity possible. | Wire a verified-completed-purchase source (Wave 10A) before activating any live remaining-count. |
+
+**Build C outcome:** pricing presented truthfully behind default-OFF flags with no live-payment
+change; a11y/perf/responsive automated quality completed; the automated Wave 7 audit passed. All
+hosted, manual, and qualified-review items above remain launch blockers (Wave 10A).
