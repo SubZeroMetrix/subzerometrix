@@ -20,6 +20,7 @@ import ProgressReviewCard from '@/components/ProgressReviewCard'
 import CustomerProofPrompt from '@/components/CustomerProofPrompt'
 import GrowthEventTracker from '@/components/GrowthEventTracker'
 import GrowthAnalyticsSummary from '@/components/GrowthAnalyticsSummary'
+import DashboardIntelligenceSummary from '@/components/DashboardIntelligenceSummary'
 import SyncStatusBadge from '@/components/SyncStatusBadge'
 import { getAssessmentSyncReadiness, syncAssessmentHistoryToAccount } from '@/lib/assessmentHistorySync'
 import { getRoadmapKpiSyncReadiness, syncRoadmapKpiProgressToAccount } from '@/lib/roadmapKpiSync'
@@ -341,6 +342,9 @@ export default function DashboardPage() {
             </div>
           </div>
         </section>
+
+        {/* ── Wave 2: quiet lifecycle/profile summary (display-only adapter; subordinate to the CTA) ── */}
+        <DashboardIntelligenceSummary snapshot={profile} />
 
         {/* ── Roadmap progress (execution engine) ───────────────────── */}
         <RoadmapProgressCard score={starter} intake={intake} variant="dashboard" />
