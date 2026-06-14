@@ -42,6 +42,7 @@ export const ROUTE_INVENTORY: RouteRecord[] = [
   { path: '/learn/[slug]', kind: 'content', shell: 'content', dynamicParams: ['slug'], legacyAlias: false, preserve: true },
   { path: '/trades', kind: 'content', shell: 'content', dynamicParams: [], legacyAlias: false, preserve: true },
   { path: '/platform/[trade]', kind: 'content', shell: 'content', dynamicParams: ['trade'], legacyAlias: false, preserve: true },
+  { path: '/state/[state]', kind: 'content', shell: 'content', dynamicParams: ['state'], legacyAlias: false, preserve: true, notes: 'Wave 7 CP8 — per-state licensing/setup (FL/CO/TX/AZ/OH/NC)' },
   { path: '/platform-ecosystem', kind: 'content', shell: 'content', dynamicParams: [], legacyAlias: false, preserve: true },
   { path: '/contractor-builders', kind: 'content', shell: 'content', dynamicParams: [], legacyAlias: false, preserve: true },
   { path: '/general-business-starter', kind: 'content', shell: 'content', dynamicParams: [], legacyAlias: false, preserve: true },
