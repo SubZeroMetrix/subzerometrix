@@ -18,6 +18,7 @@ import { generateActions, type PathAction } from '@/lib/pathActions'
 import { recordAssessmentSnapshot, type RetentionView } from '@/lib/metrixRetention'
 import OutcomeBriefing from '@/components/OutcomeBriefing'
 import RoadmapProgressCard from '@/components/RoadmapProgressCard'
+import MetrixPriorityExperience from '@/components/MetrixPriorityExperience'
 import ShareReferralCard from '@/components/ShareReferralCard'
 import GrowthEventTracker from '@/components/GrowthEventTracker'
 import SyncStatusBadge from '@/components/SyncStatusBadge'
@@ -101,7 +102,8 @@ export default function ResultsPage() {
 
   const answers     = result.answers
   // Canonical read: one evaluation, persisted once, read here (no competing score).
-  const starter     = toMetrixScore(getCanonicalProfile(answers, intake))
+  const profile     = getCanonicalProfile(answers, intake)
+  const starter     = toMetrixScore(profile)
   const strengths   = starter.strengths.filter(s => s.score > 0)
   const actions     = generateActions('recommended', starter, intake, 'stabilize').slice(0, 3)
   const firstName   = result.leadName || ''
@@ -262,6 +264,9 @@ export default function ResultsPage() {
             </div>
           )}
         </div>
+
+        {/* SZM-2B: interactive Metrix Priority experience (read-only, from the canonical snapshot) */}
+        <MetrixPriorityExperience snapshot={profile} />
 
         {/* Why this score? + next improvement lever (explanation only) */}
         <OutcomeBriefing score={starter} intake={intake} variant="results" />

@@ -19,6 +19,11 @@ export { deriveNextBestQuestions } from './nextBestQuestions'
 export { buildCompletionPaths, type CompletionPathResult } from './completionPaths'
 export { buildNextUp } from './nextUp'
 export { deriveInitialProgress } from './priorityProgress'
+export {
+  buildPriorityView,
+  type PriorityView, type PriorityViewState, type PathView, type StepView,
+  type NextUpView, type QuestionView, type PriorityHeadView,
+} from './priorityView'
 export { deriveProfileQuality, freshnessCategory } from './quality'
 export { evaluateMetrixProfile } from './snapshot'
 export { getCanonicalProfile, loadMetrixProfile, persistMetrixProfile, CANONICAL_PROFILE_KEY } from './persist'
