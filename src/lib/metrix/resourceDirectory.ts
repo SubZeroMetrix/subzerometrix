@@ -43,6 +43,7 @@ export interface DirectoryFilter {
 // and support contacts — those stay internal to EcosystemResource.
 export interface DirectoryEntry {
   resourceId: string
+  vendorId: string | null
   title: string
   category: EcosystemCategory
   description: string
@@ -67,6 +68,7 @@ function toDirectoryEntry(r: EcosystemResource): DirectoryEntry {
   const disclose = requiresDisclosure(r)
   return {
     resourceId: r.resourceId,
+    vendorId: r.vendorId,
     title: r.title,
     category: r.ecosystemCategory,
     description: r.description,

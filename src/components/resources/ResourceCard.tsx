@@ -10,11 +10,12 @@
 // internals, or support contacts.
 // ─────────────────────────────────────────────────────────────────────────────
 
-import Link from 'next/link'
-import { ShieldCheck, ExternalLink, CalendarCheck, Info } from 'lucide-react'
+import { ShieldCheck, CalendarCheck, Info } from 'lucide-react'
 import type { DirectoryEntry } from '@/lib/metrix/resourceDirectory'
 import { humanizeCategory } from '@/lib/metrix/directoryOptions'
 import { Card, Badge } from '@/components/ui'
+import ResourceOutboundLink from './ResourceOutboundLink'
+import ResourceFeedbackControl from './ResourceFeedbackControl'
 
 const TRADE_LABEL: Record<string, string> = {
   hvac: 'HVAC', electrical: 'Electrical', plumbing: 'Plumbing', handyman: 'Handyman',
@@ -33,7 +34,13 @@ function relationshipLabel(e: DirectoryEntry): string {
   }
 }
 
-export default function ResourceCard({ entry }: { entry: DirectoryEntry }) {
+export default function ResourceCard({
+  entry, placement = 'resource_directory', trackingConsent = false,
+}: {
+  entry: DirectoryEntry
+  placement?: string
+  trackingConsent?: boolean
+}) {
   return (
     <Card>
       <article aria-labelledby={`res-${entry.resourceId}`}>
@@ -98,12 +105,7 @@ export default function ResourceCard({ entry }: { entry: DirectoryEntry }) {
 
         {/* Outbound action (tracked redirect — re-gated server-side) + always-available alternatives */}
         <div className="flex flex-wrap items-center gap-x-4 gap-y-2 mt-3">
-          <Link
-            href={entry.redirectPath}
-            className="inline-flex items-center gap-1.5 text-[12px] font-medium text-brand-accent hover:underline underline-offset-2 touch-target"
-          >
-            Visit provider <ExternalLink className="w-3.5 h-3.5" aria-hidden="true" />
-          </Link>
+          <ResourceOutboundLink entry={entry} placement={placement} trackingConsent={trackingConsent} />
           {entry.officialAlternativeUrl ? (
             <a
               href={entry.officialAlternativeUrl}
@@ -118,6 +120,14 @@ export default function ResourceCard({ entry }: { entry: DirectoryEntry }) {
             <span className="text-[11px] text-brand-silver/60">You can always use your own provider.</span>
           ) : null}
         </div>
+
+        {/* Optional, privacy-safe feedback (device-local; no MetrixScore impact) */}
+        <ResourceFeedbackControl
+          resourceId={entry.resourceId}
+          vendorId={entry.vendorId}
+          placement={placement}
+          trackingConsent={trackingConsent}
+        />
       </article>
     </Card>
   )
