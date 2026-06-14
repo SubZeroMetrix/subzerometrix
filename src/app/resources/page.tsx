@@ -46,8 +46,14 @@ export default function ResourcesPage() {
             dashboard.
           </Lead>
           <Alert tone="info" className="mb-6">
-            Every listing shows its reviewed date and any required disclosure. Commercial relationships
-            never change which resources appear or their order. You can always use your own provider.
+            SubZeroMetrix provides these third-party links for educational and informational purposes.
+            Listings are currently unpaid, and SubZeroMetrix does not receive commissions from them.
+            Inclusion does not constitute endorsement or professional advice and does not guarantee
+            pricing, availability, eligibility, service quality, licensing, compliance, or results.
+            Verify information directly with the provider or appropriate authority.{' '}
+            <Link href="/resource-directory-disclosure" className="text-brand-accent hover:underline whitespace-nowrap">
+              Learn how resources are selected
+            </Link>
           </Alert>
           <ResourceDirectory />
         </Container>

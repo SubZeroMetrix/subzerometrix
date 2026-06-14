@@ -23,7 +23,8 @@ import {
   DIRECTORY_CATEGORY_OPTIONS, DIRECTORY_TRADE_OPTIONS, DIRECTORY_STATE_OPTIONS,
   DIRECTORY_LIFECYCLE_OPTIONS, DIRECTORY_RELATIONSHIP_OPTIONS,
 } from '@/lib/metrix/directoryOptions'
-import { EmptyState } from '@/components/ui'
+import { noticesForCategories } from '@/lib/metrix/categoryNotices'
+import { EmptyState, Alert } from '@/components/ui'
 import ResourceCard from './ResourceCard'
 
 const SELECT_CLASS =
@@ -54,6 +55,13 @@ export default function ResourceDirectory() {
   function reset() {
     setCategory(''); setTrade(''); setRegion(''); setLifecycle(''); setRelationship(''); setNeed('')
   }
+
+  // Part 6: regulated-category notices for the categories currently visible.
+  const notices = useMemo(() => {
+    const cats = entries.map(e => e.category)
+    const anyLicensing = cats.some(c => /licens/i.test(c))
+    return noticesForCategories(cats, anyLicensing)
+  }, [entries])
 
   return (
     <section aria-labelledby="directory-heading">
@@ -123,6 +131,17 @@ export default function ResourceDirectory() {
           </button>
         </div>
       </form>
+
+      {/* Part 6: regulated-category notices for visible categories */}
+      {notices.length > 0 ? (
+        <div className="space-y-2 mb-4">
+          {notices.map(n => (
+            <Alert key={n.key} tone="caution" className="py-2">
+              <span className="text-[12px]">{n.text}</span>
+            </Alert>
+          ))}
+        </div>
+      ) : null}
 
       {/* Result count (announced) */}
       <p role="status" aria-live="polite" className="text-[11px] font-mono tracking-wider uppercase text-brand-silver/70 mb-3">

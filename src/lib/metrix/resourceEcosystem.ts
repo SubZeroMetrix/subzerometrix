@@ -30,6 +30,7 @@ export type EcosystemVerificationStatus =
   | 'draft'
   | 'pending_verification'
   | 'verified'
+  | 'live_link_confirmed'   // Wave 7: educational listing whose live link was confirmed (publishable)
   | 'needs_review'
   | 'stale'
   | 'broken'

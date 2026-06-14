@@ -55,6 +55,7 @@ export const ROUTE_INVENTORY: RouteRecord[] = [
   { path: '/disclaimer', kind: 'public', shell: 'public', dynamicParams: [], legacyAlias: false, preserve: true },
   { path: '/cancellation', kind: 'public', shell: 'public', dynamicParams: [], legacyAlias: false, preserve: true },
   { path: '/affiliate-disclosure', kind: 'public', shell: 'public', dynamicParams: [], legacyAlias: false, preserve: true },
+  { path: '/resource-directory-disclosure', kind: 'public', shell: 'content', dynamicParams: [], legacyAlias: false, preserve: true, notes: 'Wave 7 — full resource directory disclosure' },
   // Spanish discovery
   { path: '/es', kind: 'content', shell: 'content', dynamicParams: [], legacyAlias: false, preserve: true, notes: 'spanish discovery hub' },
   { path: '/es/como-empezar-un-negocio', kind: 'content', shell: 'content', dynamicParams: [], legacyAlias: false, preserve: true },

@@ -30,7 +30,7 @@ function verified(overrides: Partial<EcosystemResource> = {}): EcosystemResource
     ...base, ...ext,
     active: true, stale: false, broken: false,
     officialUrl: 'https://example.com/provider',
-    relationshipStatus: 'editorial',
+    relationshipStatus: 'editorial', disclosureText: 'Educational listing disclosure.',
     review: { ...ext.review, verificationStatus: 'verified', reviewedDate: '2026-06-14', verificationOwner: 'r', verificationNotes: 'ok' },
     ...overrides,
   } as EcosystemResource
@@ -64,11 +64,15 @@ test('unknown resource id fails safe (not_found, no destination)', () => {
   assert.equal(resolveRedirect('x', [], {}, ENABLED).status, 'not_found')
 })
 
-test('all CP5 launch records remain non-resolvable (empty published catalog)', () => {
-  assert.equal(getPublishedEcosystemCatalog().length, 0)
+test('workbook IDs never resolve (canonical IDs are the resourceIds); catalog has 88', () => {
+  assert.equal(getPublishedEcosystemCatalog().length, 88)
+  // The redirect resolves by canonical resourceId; raw workbook IDs (VER-*) are never resourceIds,
+  // so they always fail safe — only the published records' canonical IDs resolve (when enabled).
   for (const m of RESOURCE_LAUNCH_IMPORT.slice(0, 10)) {
     assert.equal(resolveRedirect(m.workbookResourceId, getPublishedEcosystemCatalog(), {}, ENABLED).status, 'not_found')
   }
+  const published = getPublishedEcosystemCatalog()[0]
+  assert.equal(resolveRedirect(published.resourceId, getPublishedEcosystemCatalog(), {}, ENABLED).status, 'ok')
 })
 
 test('a verified+active record resolves ok to its destination', () => {

@@ -45,7 +45,7 @@ export default function ResourceOutboundLink({
       onClick={onClick}
       className="inline-flex items-center gap-1.5 text-[12px] font-medium text-brand-accent hover:underline underline-offset-2 touch-target"
     >
-      {children ?? 'Visit provider'} <ExternalLink className="w-3.5 h-3.5" aria-hidden="true" />
+      {children ?? 'Visit resource'} <ExternalLink className="w-3.5 h-3.5" aria-hidden="true" />
     </Link>
   )
 }

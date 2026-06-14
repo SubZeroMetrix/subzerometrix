@@ -60,18 +60,19 @@ test('healthy results are HTTPS and have an identity-matching final domain', () 
   }
 })
 
-test('ACTIVATION IS HELD — nothing was activated; the published catalog stays EMPTY', () => {
-  assert.equal(ACTIVATION_HELD, true)
-  assert.equal(ACTIVATED_COUNT, 0)
-  assert.equal(summarizeLinkAudit().activated, 0)
-  assert.equal(getPublishedEcosystemCatalog().length, 0)
+test('ACTIVATION COMPLETE — exactly 88 educational records published; catalog non-empty', () => {
+  assert.equal(ACTIVATION_HELD, false)
+  assert.equal(ACTIVATED_COUNT, 88)
+  assert.equal(summarizeLinkAudit().activated, 88)
+  assert.equal(getPublishedEcosystemCatalog().length, 88)
 })
 
-test('every CP5 record remains held_for_review (no record flipped to public)', () => {
-  for (const m of RESOURCE_LAUNCH_IMPORT) {
-    assert.equal(m.publicationStatus, 'held_for_review')
-    assert.notEqual(m.verificationStatus, 'approved_for_publication')
-  }
+test('exactly 88 CP5 records are approved_for_publication; exactly 20 remain held', () => {
+  const approved = RESOURCE_LAUNCH_IMPORT.filter(m => m.publicationStatus === 'approved_for_publication')
+  const held = RESOURCE_LAUNCH_IMPORT.filter(m => m.publicationStatus === 'held_for_review')
+  assert.equal(approved.length, 88)
+  assert.equal(held.length, 20)
+  for (const m of approved) assert.equal(m.verificationStatus, 'live_link_confirmed')
 })
 
 // In-memory fixture (NEVER published).

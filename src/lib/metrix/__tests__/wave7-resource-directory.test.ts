@@ -36,9 +36,16 @@ function makeRecord(overrides: Partial<EcosystemResource> = {}): EcosystemResour
   } as EcosystemResource
 }
 
-test('directory is EMPTY while the published catalog is empty (no held record surfaces)', () => {
-  assert.equal(getPublishedEcosystemCatalog().length, 0)
-  assert.deepEqual(buildDirectoryView(getPublishedEcosystemCatalog(), {}), [])
+test('directory surfaces the 88 activated public-eligible records; no held record appears', () => {
+  const catalog = getPublishedEcosystemCatalog()
+  assert.equal(catalog.length, 88)
+  const view = buildDirectoryView(catalog, {})
+  assert.equal(view.length, 88)
+  // Every surfaced record is verified/active (live_link_confirmed) — nothing held leaks in.
+  for (const r of catalog) {
+    assert.ok(['verified', 'live_link_confirmed'].includes(r.review.verificationStatus))
+    assert.equal(r.active, true)
+  }
 })
 
 test('a verified+active record surfaces; non-eligible records never do', () => {

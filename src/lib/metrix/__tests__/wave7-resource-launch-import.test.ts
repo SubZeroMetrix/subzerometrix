@@ -71,24 +71,21 @@ test('name-only matches are held for review, not auto-merged', () => {
   }
 })
 
-test('publication gating: nothing is public-eligible (no healthy-link confirmation)', () => {
+test('publication gating: 88 approved_for_publication, 20 held (link-verified)', () => {
   const s = summarizeLaunchImport()
-  assert.equal(s.publicEligible, 0)
-  assert.equal(s.pendingVerification, 108)
+  assert.equal(s.publicEligible, 88)
+  assert.equal(s.pendingVerification, 20)
+})
+
+test('only link-confirmed records are approved; held records are never approved', () => {
   for (const r of MAP) {
-    assert.notEqual(r.publicationStatus, 'public_eligible')
-    assert.match(r.conflictNotes, /pending_live_link_check/)
+    if (r.publicationStatus === 'approved_for_publication') assert.equal(r.verificationStatus, 'live_link_confirmed')
+    if (r.verificationStatus === 'destination_identified') assert.equal(r.publicationStatus, 'held_for_review')
   }
 })
 
-test('unverified suppression: no record is approved_for_publication', () => {
-  for (const r of MAP) assert.notEqual(r.verificationStatus, 'approved_for_publication')
-  // The only reached state is "destination identified" — not publication-verified.
-  assert.deepEqual(Array.from(new Set(MAP.map(r => r.verificationStatus))), ['destination_identified'])
-})
-
-test('published ecosystem catalog stays EMPTY — the import publishes nothing', () => {
-  assert.equal(getPublishedEcosystemCatalog().length, 0)
+test('published ecosystem catalog holds the 88 approved educational records', () => {
+  assert.equal(getPublishedEcosystemCatalog().length, 88)
 })
 
 test('government / nonprofit / official free alternatives are preserved (held, not excluded)', () => {
@@ -97,11 +94,13 @@ test('government / nonprofit / official free alternatives are preserved (held, n
   for (const r of free) assert.notEqual(r.disposition, 'exclude')
 })
 
-test('commercial neutrality: publication status is independent of commercial status', () => {
-  // Every record — commercial provider or free government resource alike — is held_for_review.
-  const commercial = MAP.filter(r => /provider|supplier|affiliate|partner|referral|reseller/i.test(r.resourceType))
-  const free = MAP.filter(r => /official\/free|government|nonprofit/i.test(r.resourceType))
-  for (const r of [...commercial, ...free]) assert.equal(r.publicationStatus, 'held_for_review')
+test('commercial neutrality: publication tracks link health, not commercial status', () => {
+  // Both commercial providers and free/government resources can be published — commercial status
+  // does not block (or guarantee) publication; only the verified link result does.
+  const approvedCommercial = MAP.filter(r => r.publicationStatus === 'approved_for_publication' && /provider|supplier/i.test(r.resourceType))
+  const approvedFree = MAP.filter(r => r.publicationStatus === 'approved_for_publication' && /official\/free|government|nonprofit/i.test(r.resourceType))
+  assert.ok(approvedCommercial.length > 0, 'commercial providers can be published (commercial status does not block)')
+  assert.ok(approvedFree.length > 0, 'free/government resources are published')
   // The import map carries NO relevance/ranking/score field that commercial status could bias.
   const keys = Object.keys(MAP[0] as ResourceLaunchImportRecord)
   for (const banned of ['relevance', 'ranking', 'score', 'priority', 'rank']) {
@@ -109,9 +108,10 @@ test('commercial neutrality: publication status is independent of commercial sta
   }
 })
 
-test('regulated/commercial records carry a pending disclosure/confirmation note (not public)', () => {
-  const regulated = MAP.filter(r => /bank|insur|bond|lend|loan|financ|legal|formation|payroll/i.test(r.resourceType + ' ' + r.providerName))
-  for (const r of regulated) assert.equal(r.publicationStatus, 'held_for_review')
+test('held records carry a note explaining why they are not published', () => {
+  const held = MAP.filter(r => r.publicationStatus === 'held_for_review')
+  assert.equal(held.length, 20)
+  for (const r of held) assert.ok(r.conflictNotes.length > 0)
 })
 
 test('the 2,063-item Master Catalog backlog was NOT imported', () => {

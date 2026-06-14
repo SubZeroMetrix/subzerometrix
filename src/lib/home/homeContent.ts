@@ -24,6 +24,7 @@ export const PRIMARY_CTA = { label: 'Find My Next Move — Free', href: '/start'
 export const SECONDARY_LINKS: { label: string; href: string }[] = [
   { label: 'See the 10 trades', href: '/trades' },
   { label: 'How it works', href: '/business-readiness' },
+  { label: 'Free Business Resources', href: '/resources' },
 ]
 
 /** The connected product system, in canonical order. */

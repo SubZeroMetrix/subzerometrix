@@ -23,9 +23,12 @@ export const RESOURCE_LINK_AUDIT_SOURCE = {
   activationHeld: true,
 } as const
 
-/** Whether the link audit activated any record. Always false in Build A (held at legal gate). */
-export const ACTIVATION_HELD = true
-export const ACTIVATED_COUNT = 0
+/** Activation status. Build A held activation at the legal gate; the owner subsequently approved
+ * publication with the educational-directory disclosure framework, activating the 88 technically-
+ * verified records (the 20 blocked/failed/mismatch records stay held). */
+export const ACTIVATION_HELD = false
+export const ACTIVATED_COUNT = 88
+export const HELD_COUNT = 20
 
 export type LinkClassification =
   | 'healthy' | 'healthy_with_redirect' | 'temporary_failure' | 'permanent_failure'

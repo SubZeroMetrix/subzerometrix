@@ -24,6 +24,7 @@ export type VerificationBlockReason =
   | 'inactive'
   | 'broken'
   | 'stale'
+  | 'disclosure_unavailable'   // Wave 7: required disclosure cannot render (fail-closed)
 
 export interface PublicEligibility {
   eligible: boolean
@@ -34,8 +35,12 @@ export interface PublicEligibility {
  * Whether a master ecosystem record may appear in public recommendations / directory pages
  * or resolve a tracked redirect. Reads only verification + health — never commercial status.
  */
+// Verification statuses that authorize publication: a full editorial 'verified', OR a Wave 7
+// 'live_link_confirmed' educational listing (live destination confirmed with evidence).
+const PUBLISHABLE_VERIFICATION_STATUSES: ReadonlyArray<string> = ['verified', 'live_link_confirmed']
+
 export function evaluatePublicEligibility(r: EcosystemResource): PublicEligibility {
-  if (r.review.verificationStatus !== 'verified') return { eligible: false, reason: 'not_verified' }
+  if (!PUBLISHABLE_VERIFICATION_STATUSES.includes(r.review.verificationStatus)) return { eligible: false, reason: 'not_verified' }
   if (!r.active) return { eligible: false, reason: 'inactive' }
   if (r.broken) return { eligible: false, reason: 'broken' }
   if (r.stale) return { eligible: false, reason: 'stale' }

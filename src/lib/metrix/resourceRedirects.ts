@@ -23,6 +23,7 @@ import type { ResourcePlacement } from './resourceTypes'
 import type { EcosystemResource } from './resourceEcosystem'
 import {
   evaluatePublicEligibility, isDirectLinkEligible, isRegulatoryAuthority, requiresDisclosure,
+  disclosureRenderable,
   type VerificationBlockReason,
 } from './resourceVerification'
 
@@ -146,6 +147,10 @@ export function resolveRedirect(
   const eligibility = evaluatePublicEligibility(r)
   if (!eligibility.eligible) {
     return { ...empty, status: 'blocked', reason: eligibility.reason }
+  }
+  // Part 8 recheck: fail closed if a required disclosure cannot render at the placement.
+  if (!disclosureRenderable(r)) {
+    return { ...empty, status: 'blocked', reason: 'disclosure_unavailable' }
   }
 
   const destination = r.officialUrl ?? r.destinationPath
