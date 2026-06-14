@@ -38,6 +38,14 @@ export {
 } from './progressSync'
 export { deriveProfileQuality, freshnessCategory } from './quality'
 export { evaluateMetrixProfile } from './snapshot'
+export {
+  REASSESSMENT_SCHEMA_VERSION, reassessProfile, diffSnapshots,
+  type ReassessmentResult, type ReassessmentDiff, type ReassessmentRecord,
+  type ReassessmentStatus, type ReassessmentTrigger, type ReassessOptions,
+} from './reassessment'
+export {
+  REASSESSMENT_HISTORY_KEY, loadReassessmentHistory, saveReassessmentHistory, getLatestReassessment,
+} from './reassessmentStore'
 export { getCanonicalProfile, loadMetrixProfile, persistMetrixProfile, CANONICAL_PROFILE_KEY } from './persist'
 export {
   toMetrixScore,
