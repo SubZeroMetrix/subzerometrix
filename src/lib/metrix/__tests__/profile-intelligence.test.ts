@@ -251,6 +251,22 @@ test('w2: reassessment triggers and outcome definitions derive from canonical pr
   assert.equal(outcomes[0].definition, snap.metrixPriority.requiredOutcome)
 })
 
+// ── 12b. Dashboard summary inputs: limit:1 bounds questions; primary unknown safe ─
+test('w2: dashboard summary intelligence (limit:1) is bounded and safe', () => {
+  const snap = realSnap()
+  const intel = deriveProfileIntelligence(snap, { limit: 1 })
+  assert.ok(intel.nextBestQuestions.length <= 1)                 // quiet summary asks for at most one
+  // The summary picks the single highest-value thing worth confirming (unknown or question).
+  const worth = intel.importantUnknowns[0]?.reason ?? intel.nextBestQuestions[0]?.reason ?? null
+  if (intel.importantUnknowns.length > 0 || intel.nextBestQuestions.length > 0) assert.ok(worth)
+  // Lifecycle + completeness + evidence confidence are always present for routing.
+  assert.ok(intel.lifecycle.stage)
+  assert.equal(typeof intel.completeness.percent, 'number')
+  assert.ok(['high', 'medium', 'low'].includes(intel.evidenceConfidence))
+  // Malformed/legacy snapshot → no throw, no priority → the card renders nothing upstream.
+  assert.doesNotThrow(() => deriveProfileIntelligence({} as MetrixProfileSnapshot, { limit: 1 }))
+})
+
 // ── 13. Identical inputs → identical outputs (determinism) ────────────────────
 test('w2: identical inputs produce identical intelligence', () => {
   const snap = realSnap()
