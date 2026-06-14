@@ -25,6 +25,8 @@ import TradeIntelligenceCard from '@/components/TradeIntelligenceCard'
 import LicensingIntelligenceCard from '@/components/LicensingIntelligenceCard'
 import ResourceRecommendations from '@/components/ResourceRecommendations'
 import SyncStatusBadge from '@/components/SyncStatusBadge'
+import CanonicalSummaryPanel from '@/components/CanonicalSummaryPanel'
+import { isFeatureEnabled } from '@/lib/featureFlags'
 import { getAssessmentSyncReadiness, syncAssessmentHistoryToAccount } from '@/lib/assessmentHistorySync'
 import { getRoadmapKpiSyncReadiness, syncRoadmapKpiProgressToAccount } from '@/lib/roadmapKpiSync'
 import { getCustomerFeedbackSyncReadiness, syncCustomerFeedbackToAccount } from '@/lib/customerFeedbackSync'
@@ -345,6 +347,13 @@ export default function DashboardPage() {
             </div>
           </div>
         </section>
+
+        {/* ── Wave 7 CP4: canonical-adapter summary (subordinate; flag-gated, OFF by default).
+            Unified score/confidence/freshness/sync via buildCanonicalPresentation — no recompute,
+            no competing CTA. ── */}
+        {isFeatureEnabled('presentation_shell') && (
+          <CanonicalSummaryPanel snapshot={profile} syncStatus={syncStatus} syncedAt={syncedAt} />
+        )}
 
         {/* ── Wave 2: quiet lifecycle/profile summary (display-only adapter; subordinate to the CTA) ── */}
         <DashboardIntelligenceSummary snapshot={profile} />

@@ -27,6 +27,8 @@ import ResourceRecommendations from '@/components/ResourceRecommendations'
 import ShareReferralCard from '@/components/ShareReferralCard'
 import GrowthEventTracker from '@/components/GrowthEventTracker'
 import SyncStatusBadge from '@/components/SyncStatusBadge'
+import CanonicalSummaryPanel from '@/components/CanonicalSummaryPanel'
+import { isFeatureEnabled } from '@/lib/featureFlags'
 import { getAssessmentSyncReadiness, syncAssessmentHistoryToAccount } from '@/lib/assessmentHistorySync'
 import type { SyncStatus } from '@/lib/syncContracts'
 
@@ -269,6 +271,13 @@ export default function ResultsPage() {
             </div>
           )}
         </div>
+
+        {/* Wave 7 CP4: canonical-adapter summary (subordinate; flag-gated, OFF by default).
+            Sources score/confidence/freshness/sync from buildCanonicalPresentation — no recompute,
+            no competing priority CTA. */}
+        {isFeatureEnabled('presentation_shell') && (
+          <CanonicalSummaryPanel snapshot={profile} syncStatus={syncStatus} syncedAt={syncedAt} />
+        )}
 
         {/* SZM-2B: interactive Metrix Priority experience (read-only, from the canonical snapshot) */}
         <MetrixPriorityExperience snapshot={profile} />
