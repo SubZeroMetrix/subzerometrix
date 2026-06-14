@@ -23,14 +23,15 @@ const TRADE_LABEL: Record<string, string> = {
   construction: 'Construction', cleaning: 'Cleaning',
 }
 
-function relationshipLabel(e: DirectoryEntry): string {
-  if (e.isOfficialOrFree) return 'Official / free'
-  switch (e.relationshipStatus) {
-    case 'affiliate': return 'Affiliate (disclosed)'
-    case 'sponsored': return 'Sponsored (disclosed)'
-    case 'partner': return 'Partner'
-    case 'editorial': return 'Editorial pick'
-    default: return 'Listed resource'
+// Factual classification of the listed entity (Wave 7 cleanup) — never an endorsement.
+function providerClassLabel(e: DirectoryEntry): string {
+  switch (e.providerClass) {
+    case 'official': return 'Official resource'
+    case 'government': return 'Government resource'
+    case 'nonprofit': return 'Nonprofit'
+    case 'association': return 'Association'
+    case 'commercial': return 'Commercial provider'
+    default: return e.isOfficialOrFree ? 'Official resource' : 'Listed resource'
   }
 }
 
@@ -60,7 +61,8 @@ export default function ResourceCard({
         {/* Category + business need + relationship status (icon/text, not colour-only) */}
         <div className="flex flex-wrap gap-1.5 mt-3">
           <Badge tone="neutral">{humanizeCategory(entry.category)}</Badge>
-          <Badge tone={entry.isOfficialOrFree ? 'positive' : 'info'}>{relationshipLabel(entry)}</Badge>
+          <Badge tone={entry.providerClass === 'commercial' ? 'info' : 'positive'}>{providerClassLabel(entry)}</Badge>
+          <Badge tone="neutral">Third-party website</Badge>
           {entry.reviewedDate ? (
             <span className="inline-flex items-center gap-1 text-[10px] font-mono tracking-wider uppercase text-brand-silver/70">
               <CalendarCheck className="w-3 h-3" aria-hidden="true" /> Reviewed {entry.reviewedDate}

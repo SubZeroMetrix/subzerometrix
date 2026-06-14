@@ -102,14 +102,25 @@ test('redirect fails closed when a required (commercial) disclosure cannot rende
   assert.equal(resolveRedirect(broken.resourceId, [broken], {}, true).status, 'blocked') // fail closed
 })
 
-test('regulated-category notices render only for their categories', () => {
+test('regulated-category notices render only for their categories (short cleanup text)', () => {
   assert.deepEqual(noticesForCategories(['banking']).map(n => n.key), ['financing'])
   assert.deepEqual(noticesForCategories(['insurance_bonding']).map(n => n.key), ['insurance'])
-  assert.deepEqual(noticesForCategories(['accounting_bookkeeping_payroll']).map(n => n.key), ['tax'])
-  assert.deepEqual(noticesForCategories(['legal_formation_licensing_compliance']).map(n => n.key), ['legal'])
+  assert.deepEqual(noticesForCategories(['accounting_bookkeeping_payroll']).map(n => n.key), ['advice'])
+  assert.deepEqual(noticesForCategories(['legal_formation_licensing_compliance']).map(n => n.key), ['advice'])
   assert.deepEqual(noticesForCategories(['marketing_websites_local_search_content']), []) // non-regulated → none
   assert.deepEqual(noticesForCategories([], true).map(n => n.key), ['licensing'])
-  assert.match(REGULATED_NOTICES.financing, /not a lender/i)
+  assert.equal(REGULATED_NOTICES.financing, 'SubZeroMetrix is not a lender or broker.')
+  // notices are concise (cleanup) — not full-paragraph disclaimers
+  for (const v of Object.values(REGULATED_NOTICES)) assert.ok(v.length < 90, 'notice is brief')
+})
+
+test('published records carry a truthful provider class for factual card labels', () => {
+  const view = buildDirectoryView(CATALOG, {})
+  const valid = new Set(['official', 'government', 'nonprofit', 'association', 'commercial'])
+  for (const e of view) assert.ok(e.providerClass && valid.has(e.providerClass), `${e.resourceId} has a provider class`)
+  // commercial listings exist and are labelled factually (not as endorsements)
+  assert.ok(view.some(e => e.providerClass === 'commercial'))
+  assert.ok(view.some(e => e.providerClass === 'official' || e.providerClass === 'government'))
 })
 
 test('licensing-relevant published records carry a renderable disclosure (publication-approved)', () => {

@@ -61,6 +61,7 @@ export interface DirectoryEntry {
   regionApplicability: string[]        // [] = nationwide / all regions
   relationshipStatus: ResourceRelationshipStatus
   isOfficialOrFree: boolean
+  providerClass: 'official' | 'government' | 'nonprofit' | 'association' | 'commercial' | null
   limitations: string | null
 }
 
@@ -86,6 +87,7 @@ function toDirectoryEntry(r: EcosystemResource): DirectoryEntry {
     relationshipStatus: r.relationshipStatus,
     isOfficialOrFree: r.operations.officialAlternativeUrl != null
       || r.ecosystemCategory === 'government_free_resources',
+    providerClass: r.operations.providerClass ?? null,
     limitations: r.operations.limitations,
   }
 }

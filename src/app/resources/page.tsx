@@ -14,7 +14,7 @@ import { ArrowLeft } from 'lucide-react'
 import Link from 'next/link'
 import { isFeatureEnabled } from '@/lib/featureFlags'
 import AppShell from '@/components/shell/AppShell'
-import { Container, Section, Eyebrow, PageHeading, Lead, Alert } from '@/components/ui'
+import { Container, Section, Eyebrow, PageHeading, Lead } from '@/components/ui'
 import LegacyResourcesPage from '@/components/resources/LegacyResourcesPage'
 import ResourceDirectory from '@/components/resources/ResourceDirectory'
 
@@ -45,16 +45,12 @@ export default function ResourcesPage() {
             destinations appear. This is a browse directory; your personalized next steps live on your
             dashboard.
           </Lead>
-          <Alert tone="info" className="mb-6">
-            SubZeroMetrix provides these third-party links for educational and informational purposes.
-            Listings are currently unpaid, and SubZeroMetrix does not receive commissions from them.
-            Inclusion does not constitute endorsement or professional advice and does not guarantee
-            pricing, availability, eligibility, service quality, licensing, compliance, or results.
-            Verify information directly with the provider or appropriate authority.{' '}
-            <Link href="/resource-directory-disclosure" className="text-brand-accent hover:underline whitespace-nowrap">
-              Learn how resources are selected
+          <p className="text-[13px] text-brand-silver leading-relaxed mb-6">
+            Third-party resources are provided for educational reference and are not endorsements.{' '}
+            <Link href="/resource-directory-disclosure" className="text-brand-accent hover:underline">
+              Resource Directory Legal Disclaimer
             </Link>
-          </Alert>
+          </p>
           <ResourceDirectory />
         </Container>
       </Section>

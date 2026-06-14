@@ -9,13 +9,14 @@
 
 import type { EcosystemCategory } from './resourceEcosystem'
 
+// Short, brief notices (Wave 7 cleanup). The fuller explanations live on the linked
+// /resource-directory-disclosure page; these are the concise nearby reminders.
 export const REGULATED_NOTICES = {
-  financing: 'SubZeroMetrix is not a lender, broker, or financial adviser and does not determine eligibility, rates, approval, or suitability. Review terms directly with the provider.',
-  insurance: 'SubZeroMetrix does not sell insurance or determine appropriate coverage. Confirm coverage, licensing, exclusions, and terms directly with the provider.',
-  legal: 'SubZeroMetrix does not provide legal advice or determine whether a service is appropriate for your circumstances.',
-  tax: 'SubZeroMetrix does not provide tax or accounting advice. Consult a qualified professional regarding your circumstances.',
-  licensing: 'Requirements may vary by trade, project, city, county, and state. Confirm current requirements with the responsible licensing authority before acting.',
-  compliance: 'SubZeroMetrix provides educational information only and does not determine whether a business is legally compliant.',
+  financing: 'SubZeroMetrix is not a lender or broker.',
+  insurance: 'SubZeroMetrix does not sell or determine appropriate insurance coverage.',
+  advice: 'Educational information only—not legal, tax, or accounting advice.',
+  licensing: 'Verify current requirements with the responsible authority.',
+  compliance: 'SubZeroMetrix does not determine whether a business is legally compliant.',
 } as const
 
 export type RegulatedNoticeKey = keyof typeof REGULATED_NOTICES
@@ -27,8 +28,8 @@ const CATEGORY_NOTICE: Partial<Record<EcosystemCategory, RegulatedNoticeKey>> = 
   payments_merchant: 'financing',
   business_credit_expense: 'financing',
   insurance_bonding: 'insurance',
-  legal_formation_licensing_compliance: 'legal',
-  accounting_bookkeeping_payroll: 'tax',
+  legal_formation_licensing_compliance: 'advice',
+  accounting_bookkeeping_payroll: 'advice',
 }
 
 /**
@@ -45,6 +46,6 @@ export function noticesForCategories(
     if (k) keys.add(k)
   }
   if (anyLicensingRelevant) keys.add('licensing')
-  const ORDER: RegulatedNoticeKey[] = ['financing', 'insurance', 'legal', 'tax', 'licensing', 'compliance']
+  const ORDER: RegulatedNoticeKey[] = ['financing', 'insurance', 'advice', 'licensing', 'compliance']
   return ORDER.filter(k => keys.has(k)).map(k => ({ key: k, text: REGULATED_NOTICES[k] }))
 }

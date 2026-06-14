@@ -35,7 +35,7 @@ export const PUBLISHED_LAUNCH_CATALOG: EcosystemResource[] = [
     review: { reviewedDate: "2026-06-14", nextReviewDate: null, verificationStatus: 'live_link_confirmed', verificationOwner: 'automated-link-check + editorial', verificationNotes: "Live link confirmed 2026-06-14 — HTTP 200 (healthy). Educational listing; no commercial relationship.", verificationPriority: 1 },
     launch: { launchEligible: true, launchCategory: null, launchSequence: 1 },
     relationship: { referralStatus: 'none', resellerStatus: 'none', integrationStatus: 'none', compensationDisclosure: null },
-    operations: { businessNeed: "Business startup guidance", eligibility: null, limitations: "Eligibility, pricing, service areas, product terms and commercial relationships must be confirmed before publication.", regionsServed: [], lifecycleStagesServed: ["Explore", "Launch", "Grow"], supportContact: null, officialAlternativeUrl: null, useAnotherProviderOption: true },
+    operations: { providerClass: "official", businessNeed: "Business startup guidance", eligibility: null, limitations: "Eligibility, pricing, service areas, product terms and commercial relationships must be confirmed before publication.", regionsServed: [], lifecycleStagesServed: ["Explore", "Launch", "Grow"], supportContact: null, officialAlternativeUrl: null, useAnotherProviderOption: true },
   },
   {
     resourceId: "guide:VER-002", sourceId: "VER-002", vendorId: null, kind: "guide",
@@ -53,7 +53,7 @@ export const PUBLISHED_LAUNCH_CATALOG: EcosystemResource[] = [
     review: { reviewedDate: "2026-06-14", nextReviewDate: null, verificationStatus: 'live_link_confirmed', verificationOwner: 'automated-link-check + editorial', verificationNotes: "Live link confirmed 2026-06-14 — HTTP 200 (healthy). Educational listing; no commercial relationship.", verificationPriority: 2 },
     launch: { launchEligible: true, launchCategory: null, launchSequence: 2 },
     relationship: { referralStatus: 'none', resellerStatus: 'none', integrationStatus: 'none', compensationDisclosure: null },
-    operations: { businessNeed: "Federal tax ID", eligibility: null, limitations: "Eligibility, pricing, service areas, product terms and commercial relationships must be confirmed before publication.", regionsServed: [], lifecycleStagesServed: ["Launch"], supportContact: null, officialAlternativeUrl: null, useAnotherProviderOption: true },
+    operations: { providerClass: "official", businessNeed: "Federal tax ID", eligibility: null, limitations: "Eligibility, pricing, service areas, product terms and commercial relationships must be confirmed before publication.", regionsServed: [], lifecycleStagesServed: ["Launch"], supportContact: null, officialAlternativeUrl: null, useAnotherProviderOption: true },
   },
   {
     resourceId: "guide:VER-004", sourceId: "VER-004", vendorId: null, kind: "guide",
@@ -71,7 +71,7 @@ export const PUBLISHED_LAUNCH_CATALOG: EcosystemResource[] = [
     review: { reviewedDate: "2026-06-14", nextReviewDate: null, verificationStatus: 'live_link_confirmed', verificationOwner: 'automated-link-check + editorial', verificationNotes: "Live link confirmed 2026-06-14 — HTTP 200 (healthy). Educational listing; no commercial relationship.", verificationPriority: 3 },
     launch: { launchEligible: true, launchCategory: null, launchSequence: 3 },
     relationship: { referralStatus: 'none', resellerStatus: 'none', integrationStatus: 'none', compensationDisclosure: null },
-    operations: { businessNeed: "Federal contracting registration", eligibility: null, limitations: "Eligibility, pricing, service areas, product terms and commercial relationships must be confirmed before publication.", regionsServed: [], lifecycleStagesServed: ["Stabilize", "Grow"], supportContact: null, officialAlternativeUrl: null, useAnotherProviderOption: true },
+    operations: { providerClass: "official", businessNeed: "Federal contracting registration", eligibility: null, limitations: "Eligibility, pricing, service areas, product terms and commercial relationships must be confirmed before publication.", regionsServed: [], lifecycleStagesServed: ["Stabilize", "Grow"], supportContact: null, officialAlternativeUrl: null, useAnotherProviderOption: true },
   },
   {
     resourceId: "guide:VER-006", sourceId: "VER-006", vendorId: null, kind: "guide",
@@ -89,7 +89,7 @@ export const PUBLISHED_LAUNCH_CATALOG: EcosystemResource[] = [
     review: { reviewedDate: "2026-06-14", nextReviewDate: null, verificationStatus: 'live_link_confirmed', verificationOwner: 'automated-link-check + editorial', verificationNotes: "Live link confirmed 2026-06-14 — HTTP 200 (healthy). Educational listing; no commercial relationship.", verificationPriority: 4 },
     launch: { launchEligible: true, launchCategory: null, launchSequence: 4 },
     relationship: { referralStatus: 'none', resellerStatus: 'none', integrationStatus: 'none', compensationDisclosure: null },
-    operations: { businessNeed: "Local small-business development assistance", eligibility: null, limitations: "Eligibility, pricing, service areas, product terms and commercial relationships must be confirmed before publication.", regionsServed: [], lifecycleStagesServed: ["Explore", "Launch", "Grow"], supportContact: null, officialAlternativeUrl: null, useAnotherProviderOption: true },
+    operations: { providerClass: "nonprofit", businessNeed: "Local small-business development assistance", eligibility: null, limitations: "Eligibility, pricing, service areas, product terms and commercial relationships must be confirmed before publication.", regionsServed: [], lifecycleStagesServed: ["Explore", "Launch", "Grow"], supportContact: null, officialAlternativeUrl: null, useAnotherProviderOption: true },
   },
   {
     resourceId: "guide:VER-007", sourceId: "VER-007", vendorId: null, kind: "guide",
@@ -107,7 +107,7 @@ export const PUBLISHED_LAUNCH_CATALOG: EcosystemResource[] = [
     review: { reviewedDate: "2026-06-14", nextReviewDate: null, verificationStatus: 'live_link_confirmed', verificationOwner: 'automated-link-check + editorial', verificationNotes: "Live link confirmed 2026-06-14 — HTTP 200 (healthy). Educational listing; no commercial relationship.", verificationPriority: 5 },
     launch: { launchEligible: true, launchCategory: null, launchSequence: 5 },
     relationship: { referralStatus: 'none', resellerStatus: 'none', integrationStatus: 'none', compensationDisclosure: null },
-    operations: { businessNeed: "Government contracting assistance", eligibility: null, limitations: "Eligibility, pricing, service areas, product terms and commercial relationships must be confirmed before publication.", regionsServed: [], lifecycleStagesServed: ["Stabilize", "Grow"], supportContact: null, officialAlternativeUrl: null, useAnotherProviderOption: true },
+    operations: { providerClass: "government", businessNeed: "Government contracting assistance", eligibility: null, limitations: "Eligibility, pricing, service areas, product terms and commercial relationships must be confirmed before publication.", regionsServed: [], lifecycleStagesServed: ["Stabilize", "Grow"], supportContact: null, officialAlternativeUrl: null, useAnotherProviderOption: true },
   },
   {
     resourceId: "guide:VER-010", sourceId: "VER-010", vendorId: null, kind: "guide",
@@ -125,7 +125,7 @@ export const PUBLISHED_LAUNCH_CATALOG: EcosystemResource[] = [
     review: { reviewedDate: "2026-06-14", nextReviewDate: null, verificationStatus: 'live_link_confirmed', verificationOwner: 'automated-link-check + editorial', verificationNotes: "Live link confirmed 2026-06-14 — HTTP 200 (healthy). Educational listing; no commercial relationship.", verificationPriority: 6 },
     launch: { launchEligible: true, launchCategory: null, launchSequence: 6 },
     relationship: { referralStatus: 'none', resellerStatus: 'none', integrationStatus: 'none', compensationDisclosure: null },
-    operations: { businessNeed: "Contractor licensing", eligibility: null, limitations: "Eligibility, pricing, service areas, product terms and commercial relationships must be confirmed before publication.", regionsServed: ["FL"], lifecycleStagesServed: ["Launch", "Stabilize"], supportContact: null, officialAlternativeUrl: null, useAnotherProviderOption: true },
+    operations: { providerClass: "official", businessNeed: "Contractor licensing", eligibility: null, limitations: "Eligibility, pricing, service areas, product terms and commercial relationships must be confirmed before publication.", regionsServed: ["FL"], lifecycleStagesServed: ["Launch", "Stabilize"], supportContact: null, officialAlternativeUrl: null, useAnotherProviderOption: true },
   },
   {
     resourceId: "guide:VER-012", sourceId: "VER-012", vendorId: null, kind: "guide",
@@ -143,7 +143,7 @@ export const PUBLISHED_LAUNCH_CATALOG: EcosystemResource[] = [
     review: { reviewedDate: "2026-06-14", nextReviewDate: null, verificationStatus: 'live_link_confirmed', verificationOwner: 'automated-link-check + editorial', verificationNotes: "Live link confirmed 2026-06-14 — HTTP 200 (healthy). Educational listing; no commercial relationship.", verificationPriority: 7 },
     launch: { launchEligible: true, launchCategory: null, launchSequence: 7 },
     relationship: { referralStatus: 'none', resellerStatus: 'none', integrationStatus: 'none', compensationDisclosure: null },
-    operations: { businessNeed: "General contractor licensing", eligibility: null, limitations: "Eligibility, pricing, service areas, product terms and commercial relationships must be confirmed before publication.", regionsServed: ["NC"], lifecycleStagesServed: ["Launch", "Stabilize"], supportContact: null, officialAlternativeUrl: null, useAnotherProviderOption: true },
+    operations: { providerClass: "official", businessNeed: "General contractor licensing", eligibility: null, limitations: "Eligibility, pricing, service areas, product terms and commercial relationships must be confirmed before publication.", regionsServed: ["NC"], lifecycleStagesServed: ["Launch", "Stabilize"], supportContact: null, officialAlternativeUrl: null, useAnotherProviderOption: true },
   },
   {
     resourceId: "guide:VER-014", sourceId: "VER-014", vendorId: null, kind: "guide",
@@ -161,7 +161,7 @@ export const PUBLISHED_LAUNCH_CATALOG: EcosystemResource[] = [
     review: { reviewedDate: "2026-06-14", nextReviewDate: null, verificationStatus: 'live_link_confirmed', verificationOwner: 'automated-link-check + editorial', verificationNotes: "Live link confirmed 2026-06-14 — HTTP 200 (healthy). Educational listing; no commercial relationship.", verificationPriority: 8 },
     launch: { launchEligible: true, launchCategory: null, launchSequence: 8 },
     relationship: { referralStatus: 'none', resellerStatus: 'none', integrationStatus: 'none', compensationDisclosure: null },
-    operations: { businessNeed: "Trade licensing and regulation", eligibility: null, limitations: "Eligibility, pricing, service areas, product terms and commercial relationships must be confirmed before publication.", regionsServed: ["TX"], lifecycleStagesServed: ["Launch", "Stabilize"], supportContact: null, officialAlternativeUrl: null, useAnotherProviderOption: true },
+    operations: { providerClass: "official", businessNeed: "Trade licensing and regulation", eligibility: null, limitations: "Eligibility, pricing, service areas, product terms and commercial relationships must be confirmed before publication.", regionsServed: ["TX"], lifecycleStagesServed: ["Launch", "Stabilize"], supportContact: null, officialAlternativeUrl: null, useAnotherProviderOption: true },
   },
   {
     resourceId: "vendor:legalzoom", sourceId: "VER-015", vendorId: "legalzoom", kind: "vendor",
@@ -179,7 +179,7 @@ export const PUBLISHED_LAUNCH_CATALOG: EcosystemResource[] = [
     review: { reviewedDate: "2026-06-14", nextReviewDate: null, verificationStatus: 'live_link_confirmed', verificationOwner: 'automated-link-check + editorial', verificationNotes: "Live link confirmed 2026-06-14 — HTTP 200 (healthy). Educational listing; no commercial relationship.", verificationPriority: 9 },
     launch: { launchEligible: true, launchCategory: null, launchSequence: 9 },
     relationship: { referralStatus: 'none', resellerStatus: 'none', integrationStatus: 'none', compensationDisclosure: null },
-    operations: { businessNeed: "Formation, registered agent, legal services", eligibility: null, limitations: "Eligibility, pricing, service areas, product terms and commercial relationships must be confirmed before publication.", regionsServed: [], lifecycleStagesServed: ["Launch", "Stabilize"], supportContact: null, officialAlternativeUrl: null, useAnotherProviderOption: true },
+    operations: { providerClass: "commercial", businessNeed: "Formation, registered agent, legal services", eligibility: null, limitations: "Eligibility, pricing, service areas, product terms and commercial relationships must be confirmed before publication.", regionsServed: [], lifecycleStagesServed: ["Launch", "Stabilize"], supportContact: null, officialAlternativeUrl: null, useAnotherProviderOption: true },
   },
   {
     resourceId: "guide:VER-017", sourceId: "VER-017", vendorId: null, kind: "guide",
@@ -197,7 +197,7 @@ export const PUBLISHED_LAUNCH_CATALOG: EcosystemResource[] = [
     review: { reviewedDate: "2026-06-14", nextReviewDate: null, verificationStatus: 'live_link_confirmed', verificationOwner: 'automated-link-check + editorial', verificationNotes: "Live link confirmed 2026-06-14 — HTTP 200 (healthy). Educational listing; no commercial relationship.", verificationPriority: 10 },
     launch: { launchEligible: true, launchCategory: null, launchSequence: 10 },
     relationship: { referralStatus: 'none', resellerStatus: 'none', integrationStatus: 'none', compensationDisclosure: null },
-    operations: { businessNeed: "Formation and compliance", eligibility: null, limitations: "Eligibility, pricing, service areas, product terms and commercial relationships must be confirmed before publication.", regionsServed: [], lifecycleStagesServed: ["Launch"], supportContact: null, officialAlternativeUrl: null, useAnotherProviderOption: true },
+    operations: { providerClass: "commercial", businessNeed: "Formation and compliance", eligibility: null, limitations: "Eligibility, pricing, service areas, product terms and commercial relationships must be confirmed before publication.", regionsServed: [], lifecycleStagesServed: ["Launch"], supportContact: null, officialAlternativeUrl: null, useAnotherProviderOption: true },
   },
   {
     resourceId: "vendor:zenbusiness", sourceId: "VER-018", vendorId: "zenbusiness", kind: "vendor",
@@ -215,7 +215,7 @@ export const PUBLISHED_LAUNCH_CATALOG: EcosystemResource[] = [
     review: { reviewedDate: "2026-06-14", nextReviewDate: null, verificationStatus: 'live_link_confirmed', verificationOwner: 'automated-link-check + editorial', verificationNotes: "Live link confirmed 2026-06-14 — HTTP 200 (healthy). Educational listing; no commercial relationship.", verificationPriority: 11 },
     launch: { launchEligible: true, launchCategory: null, launchSequence: 11 },
     relationship: { referralStatus: 'none', resellerStatus: 'none', integrationStatus: 'none', compensationDisclosure: null },
-    operations: { businessNeed: "Formation and compliance", eligibility: null, limitations: "Eligibility, pricing, service areas, product terms and commercial relationships must be confirmed before publication.", regionsServed: [], lifecycleStagesServed: ["Launch"], supportContact: null, officialAlternativeUrl: null, useAnotherProviderOption: true },
+    operations: { providerClass: "commercial", businessNeed: "Formation and compliance", eligibility: null, limitations: "Eligibility, pricing, service areas, product terms and commercial relationships must be confirmed before publication.", regionsServed: [], lifecycleStagesServed: ["Launch"], supportContact: null, officialAlternativeUrl: null, useAnotherProviderOption: true },
   },
   {
     resourceId: "guide:VER-019", sourceId: "VER-019", vendorId: null, kind: "guide",
@@ -233,7 +233,7 @@ export const PUBLISHED_LAUNCH_CATALOG: EcosystemResource[] = [
     review: { reviewedDate: "2026-06-14", nextReviewDate: null, verificationStatus: 'live_link_confirmed', verificationOwner: 'automated-link-check + editorial', verificationNotes: "Live link confirmed 2026-06-14 — HTTP 200 (healthy). Educational listing; no commercial relationship.", verificationPriority: 12 },
     launch: { launchEligible: true, launchCategory: null, launchSequence: 12 },
     relationship: { referralStatus: 'none', resellerStatus: 'none', integrationStatus: 'none', compensationDisclosure: null },
-    operations: { businessNeed: "Licensing and entity compliance", eligibility: null, limitations: "Eligibility, pricing, service areas, product terms and commercial relationships must be confirmed before publication.", regionsServed: [], lifecycleStagesServed: ["Launch", "Stabilize", "Grow"], supportContact: null, officialAlternativeUrl: null, useAnotherProviderOption: true },
+    operations: { providerClass: "commercial", businessNeed: "Licensing and entity compliance", eligibility: null, limitations: "Eligibility, pricing, service areas, product terms and commercial relationships must be confirmed before publication.", regionsServed: [], lifecycleStagesServed: ["Launch", "Stabilize", "Grow"], supportContact: null, officialAlternativeUrl: null, useAnotherProviderOption: true },
   },
   {
     resourceId: "guide:VER-020", sourceId: "VER-020", vendorId: null, kind: "guide",
@@ -251,7 +251,7 @@ export const PUBLISHED_LAUNCH_CATALOG: EcosystemResource[] = [
     review: { reviewedDate: "2026-06-14", nextReviewDate: null, verificationStatus: 'live_link_confirmed', verificationOwner: 'automated-link-check + editorial', verificationNotes: "Live link confirmed 2026-06-14 — HTTP 200 (healthy). Educational listing; no commercial relationship.", verificationPriority: 13 },
     launch: { launchEligible: true, launchCategory: null, launchSequence: 13 },
     relationship: { referralStatus: 'none', resellerStatus: 'none', integrationStatus: 'none', compensationDisclosure: null },
-    operations: { businessNeed: "Legal documents and attorney access", eligibility: null, limitations: "Eligibility, pricing, service areas, product terms and commercial relationships must be confirmed before publication.", regionsServed: [], lifecycleStagesServed: ["Launch", "Stabilize"], supportContact: null, officialAlternativeUrl: null, useAnotherProviderOption: true },
+    operations: { providerClass: "commercial", businessNeed: "Legal documents and attorney access", eligibility: null, limitations: "Eligibility, pricing, service areas, product terms and commercial relationships must be confirmed before publication.", regionsServed: [], lifecycleStagesServed: ["Launch", "Stabilize"], supportContact: null, officialAlternativeUrl: null, useAnotherProviderOption: true },
   },
   {
     resourceId: "vendor:chase-business", sourceId: "VER-021", vendorId: "chase-business", kind: "vendor",
@@ -269,7 +269,7 @@ export const PUBLISHED_LAUNCH_CATALOG: EcosystemResource[] = [
     review: { reviewedDate: "2026-06-14", nextReviewDate: null, verificationStatus: 'live_link_confirmed', verificationOwner: 'automated-link-check + editorial', verificationNotes: "Live link confirmed 2026-06-14 — HTTP 200 (healthy). Educational listing; no commercial relationship.", verificationPriority: 14 },
     launch: { launchEligible: true, launchCategory: null, launchSequence: 14 },
     relationship: { referralStatus: 'none', resellerStatus: 'none', integrationStatus: 'none', compensationDisclosure: null },
-    operations: { businessNeed: "Checking, cards, payments and lending", eligibility: null, limitations: "Eligibility, pricing, service areas, product terms and commercial relationships must be confirmed before publication.", regionsServed: [], lifecycleStagesServed: ["Launch", "Stabilize", "Grow"], supportContact: null, officialAlternativeUrl: null, useAnotherProviderOption: true },
+    operations: { providerClass: "commercial", businessNeed: "Checking, cards, payments and lending", eligibility: null, limitations: "Eligibility, pricing, service areas, product terms and commercial relationships must be confirmed before publication.", regionsServed: [], lifecycleStagesServed: ["Launch", "Stabilize", "Grow"], supportContact: null, officialAlternativeUrl: null, useAnotherProviderOption: true },
   },
   {
     resourceId: "guide:VER-022", sourceId: "VER-022", vendorId: null, kind: "guide",
@@ -287,7 +287,7 @@ export const PUBLISHED_LAUNCH_CATALOG: EcosystemResource[] = [
     review: { reviewedDate: "2026-06-14", nextReviewDate: null, verificationStatus: 'live_link_confirmed', verificationOwner: 'automated-link-check + editorial', verificationNotes: "Live link confirmed 2026-06-14 — HTTP 200 (healthy_with_redirect). Educational listing; no commercial relationship.", verificationPriority: 15 },
     launch: { launchEligible: true, launchCategory: null, launchSequence: 15 },
     relationship: { referralStatus: 'none', resellerStatus: 'none', integrationStatus: 'none', compensationDisclosure: null },
-    operations: { businessNeed: "Banking, cards, merchant services and lending", eligibility: null, limitations: "Eligibility, pricing, service areas, product terms and commercial relationships must be confirmed before publication.", regionsServed: [], lifecycleStagesServed: ["Launch", "Stabilize", "Grow"], supportContact: null, officialAlternativeUrl: null, useAnotherProviderOption: true },
+    operations: { providerClass: "commercial", businessNeed: "Banking, cards, merchant services and lending", eligibility: null, limitations: "Eligibility, pricing, service areas, product terms and commercial relationships must be confirmed before publication.", regionsServed: [], lifecycleStagesServed: ["Launch", "Stabilize", "Grow"], supportContact: null, officialAlternativeUrl: null, useAnotherProviderOption: true },
   },
   {
     resourceId: "guide:VER-023", sourceId: "VER-023", vendorId: null, kind: "guide",
@@ -305,7 +305,7 @@ export const PUBLISHED_LAUNCH_CATALOG: EcosystemResource[] = [
     review: { reviewedDate: "2026-06-14", nextReviewDate: null, verificationStatus: 'live_link_confirmed', verificationOwner: 'automated-link-check + editorial', verificationNotes: "Live link confirmed 2026-06-14 — HTTP 200 (healthy). Educational listing; no commercial relationship.", verificationPriority: 16 },
     launch: { launchEligible: true, launchCategory: null, launchSequence: 16 },
     relationship: { referralStatus: 'none', resellerStatus: 'none', integrationStatus: 'none', compensationDisclosure: null },
-    operations: { businessNeed: "Banking, cards, merchant services and lending", eligibility: null, limitations: "Eligibility, pricing, service areas, product terms and commercial relationships must be confirmed before publication.", regionsServed: [], lifecycleStagesServed: ["Launch", "Stabilize", "Grow"], supportContact: null, officialAlternativeUrl: null, useAnotherProviderOption: true },
+    operations: { providerClass: "commercial", businessNeed: "Banking, cards, merchant services and lending", eligibility: null, limitations: "Eligibility, pricing, service areas, product terms and commercial relationships must be confirmed before publication.", regionsServed: [], lifecycleStagesServed: ["Launch", "Stabilize", "Grow"], supportContact: null, officialAlternativeUrl: null, useAnotherProviderOption: true },
   },
   {
     resourceId: "guide:VER-024", sourceId: "VER-024", vendorId: null, kind: "guide",
@@ -323,7 +323,7 @@ export const PUBLISHED_LAUNCH_CATALOG: EcosystemResource[] = [
     review: { reviewedDate: "2026-06-14", nextReviewDate: null, verificationStatus: 'live_link_confirmed', verificationOwner: 'automated-link-check + editorial', verificationNotes: "Live link confirmed 2026-06-14 — HTTP 200 (healthy). Educational listing; no commercial relationship.", verificationPriority: 17 },
     launch: { launchEligible: true, launchCategory: null, launchSequence: 17 },
     relationship: { referralStatus: 'none', resellerStatus: 'none', integrationStatus: 'none', compensationDisclosure: null },
-    operations: { businessNeed: "Banking, payments, cards and lending", eligibility: null, limitations: "Eligibility, pricing, service areas, product terms and commercial relationships must be confirmed before publication.", regionsServed: [], lifecycleStagesServed: ["Launch", "Stabilize", "Grow"], supportContact: null, officialAlternativeUrl: null, useAnotherProviderOption: true },
+    operations: { providerClass: "commercial", businessNeed: "Banking, payments, cards and lending", eligibility: null, limitations: "Eligibility, pricing, service areas, product terms and commercial relationships must be confirmed before publication.", regionsServed: [], lifecycleStagesServed: ["Launch", "Stabilize", "Grow"], supportContact: null, officialAlternativeUrl: null, useAnotherProviderOption: true },
   },
   {
     resourceId: "guide:VER-025", sourceId: "VER-025", vendorId: null, kind: "guide",
@@ -341,7 +341,7 @@ export const PUBLISHED_LAUNCH_CATALOG: EcosystemResource[] = [
     review: { reviewedDate: "2026-06-14", nextReviewDate: null, verificationStatus: 'live_link_confirmed', verificationOwner: 'automated-link-check + editorial', verificationNotes: "Live link confirmed 2026-06-14 — HTTP 200 (healthy). Educational listing; no commercial relationship.", verificationPriority: 18 },
     launch: { launchEligible: true, launchCategory: null, launchSequence: 18 },
     relationship: { referralStatus: 'none', resellerStatus: 'none', integrationStatus: 'none', compensationDisclosure: null },
-    operations: { businessNeed: "Banking, cash management and lending", eligibility: null, limitations: "Eligibility, pricing, service areas, product terms and commercial relationships must be confirmed before publication.", regionsServed: [], lifecycleStagesServed: ["Launch", "Stabilize", "Grow"], supportContact: null, officialAlternativeUrl: null, useAnotherProviderOption: true },
+    operations: { providerClass: "commercial", businessNeed: "Banking, cash management and lending", eligibility: null, limitations: "Eligibility, pricing, service areas, product terms and commercial relationships must be confirmed before publication.", regionsServed: [], lifecycleStagesServed: ["Launch", "Stabilize", "Grow"], supportContact: null, officialAlternativeUrl: null, useAnotherProviderOption: true },
   },
   {
     resourceId: "guide:VER-026", sourceId: "VER-026", vendorId: null, kind: "guide",
@@ -359,7 +359,7 @@ export const PUBLISHED_LAUNCH_CATALOG: EcosystemResource[] = [
     review: { reviewedDate: "2026-06-14", nextReviewDate: null, verificationStatus: 'live_link_confirmed', verificationOwner: 'automated-link-check + editorial', verificationNotes: "Live link confirmed 2026-06-14 — HTTP 200 (healthy). Educational listing; no commercial relationship.", verificationPriority: 19 },
     launch: { launchEligible: true, launchCategory: null, launchSequence: 19 },
     relationship: { referralStatus: 'none', resellerStatus: 'none', integrationStatus: 'none', compensationDisclosure: null },
-    operations: { businessNeed: "Banking, cards and lending", eligibility: null, limitations: "Eligibility, pricing, service areas, product terms and commercial relationships must be confirmed before publication.", regionsServed: [], lifecycleStagesServed: ["Launch", "Stabilize", "Grow"], supportContact: null, officialAlternativeUrl: null, useAnotherProviderOption: true },
+    operations: { providerClass: "commercial", businessNeed: "Banking, cards and lending", eligibility: null, limitations: "Eligibility, pricing, service areas, product terms and commercial relationships must be confirmed before publication.", regionsServed: [], lifecycleStagesServed: ["Launch", "Stabilize", "Grow"], supportContact: null, officialAlternativeUrl: null, useAnotherProviderOption: true },
   },
   {
     resourceId: "vendor:capital-one-spark", sourceId: "VER-027", vendorId: "capital-one-spark", kind: "vendor",
@@ -377,7 +377,7 @@ export const PUBLISHED_LAUNCH_CATALOG: EcosystemResource[] = [
     review: { reviewedDate: "2026-06-14", nextReviewDate: null, verificationStatus: 'live_link_confirmed', verificationOwner: 'automated-link-check + editorial', verificationNotes: "Live link confirmed 2026-06-14 — HTTP 200 (healthy_with_redirect). Educational listing; no commercial relationship.", verificationPriority: 20 },
     launch: { launchEligible: true, launchCategory: null, launchSequence: 20 },
     relationship: { referralStatus: 'none', resellerStatus: 'none', integrationStatus: 'none', compensationDisclosure: null },
-    operations: { businessNeed: "Banking, cards and merchant services", eligibility: null, limitations: "Eligibility, pricing, service areas, product terms and commercial relationships must be confirmed before publication.", regionsServed: [], lifecycleStagesServed: ["Launch", "Stabilize", "Grow"], supportContact: null, officialAlternativeUrl: null, useAnotherProviderOption: true },
+    operations: { providerClass: "commercial", businessNeed: "Banking, cards and merchant services", eligibility: null, limitations: "Eligibility, pricing, service areas, product terms and commercial relationships must be confirmed before publication.", regionsServed: [], lifecycleStagesServed: ["Launch", "Stabilize", "Grow"], supportContact: null, officialAlternativeUrl: null, useAnotherProviderOption: true },
   },
   {
     resourceId: "guide:VER-028", sourceId: "VER-028", vendorId: null, kind: "guide",
@@ -395,7 +395,7 @@ export const PUBLISHED_LAUNCH_CATALOG: EcosystemResource[] = [
     review: { reviewedDate: "2026-06-14", nextReviewDate: null, verificationStatus: 'live_link_confirmed', verificationOwner: 'automated-link-check + editorial', verificationNotes: "Live link confirmed 2026-06-14 — HTTP 200 (healthy). Educational listing; no commercial relationship.", verificationPriority: 21 },
     launch: { launchEligible: true, launchCategory: null, launchSequence: 21 },
     relationship: { referralStatus: 'none', resellerStatus: 'none', integrationStatus: 'none', compensationDisclosure: null },
-    operations: { businessNeed: "Checking, lending and merchant services", eligibility: null, limitations: "Eligibility, pricing, service areas, product terms and commercial relationships must be confirmed before publication.", regionsServed: [], lifecycleStagesServed: ["Launch", "Stabilize", "Grow"], supportContact: null, officialAlternativeUrl: null, useAnotherProviderOption: true },
+    operations: { providerClass: "commercial", businessNeed: "Checking, lending and merchant services", eligibility: null, limitations: "Eligibility, pricing, service areas, product terms and commercial relationships must be confirmed before publication.", regionsServed: [], lifecycleStagesServed: ["Launch", "Stabilize", "Grow"], supportContact: null, officialAlternativeUrl: null, useAnotherProviderOption: true },
   },
   {
     resourceId: "guide:VER-029", sourceId: "VER-029", vendorId: null, kind: "guide",
@@ -413,7 +413,7 @@ export const PUBLISHED_LAUNCH_CATALOG: EcosystemResource[] = [
     review: { reviewedDate: "2026-06-14", nextReviewDate: null, verificationStatus: 'live_link_confirmed', verificationOwner: 'automated-link-check + editorial', verificationNotes: "Live link confirmed 2026-06-14 — HTTP 200 (healthy). Educational listing; no commercial relationship.", verificationPriority: 22 },
     launch: { launchEligible: true, launchCategory: null, launchSequence: 22 },
     relationship: { referralStatus: 'none', resellerStatus: 'none', integrationStatus: 'none', compensationDisclosure: null },
-    operations: { businessNeed: "Banking and financial tools for self-employed businesses", eligibility: null, limitations: "Eligibility, pricing, service areas, product terms and commercial relationships must be confirmed before publication.", regionsServed: [], lifecycleStagesServed: ["Side Hustle", "Launch", "Stabilize"], supportContact: null, officialAlternativeUrl: null, useAnotherProviderOption: true },
+    operations: { providerClass: "commercial", businessNeed: "Banking and financial tools for self-employed businesses", eligibility: null, limitations: "Eligibility, pricing, service areas, product terms and commercial relationships must be confirmed before publication.", regionsServed: [], lifecycleStagesServed: ["Side Hustle", "Launch", "Stabilize"], supportContact: null, officialAlternativeUrl: null, useAnotherProviderOption: true },
   },
   {
     resourceId: "vendor:relay", sourceId: "VER-030", vendorId: "relay", kind: "vendor",
@@ -431,7 +431,7 @@ export const PUBLISHED_LAUNCH_CATALOG: EcosystemResource[] = [
     review: { reviewedDate: "2026-06-14", nextReviewDate: null, verificationStatus: 'live_link_confirmed', verificationOwner: 'automated-link-check + editorial', verificationNotes: "Live link confirmed 2026-06-14 — HTTP 200 (healthy). Educational listing; no commercial relationship.", verificationPriority: 23 },
     launch: { launchEligible: true, launchCategory: null, launchSequence: 23 },
     relationship: { referralStatus: 'none', resellerStatus: 'none', integrationStatus: 'none', compensationDisclosure: null },
-    operations: { businessNeed: "Multi-account cash management", eligibility: null, limitations: "Eligibility, pricing, service areas, product terms and commercial relationships must be confirmed before publication.", regionsServed: [], lifecycleStagesServed: ["Launch", "Stabilize", "Grow"], supportContact: null, officialAlternativeUrl: null, useAnotherProviderOption: true },
+    operations: { providerClass: "commercial", businessNeed: "Multi-account cash management", eligibility: null, limitations: "Eligibility, pricing, service areas, product terms and commercial relationships must be confirmed before publication.", regionsServed: [], lifecycleStagesServed: ["Launch", "Stabilize", "Grow"], supportContact: null, officialAlternativeUrl: null, useAnotherProviderOption: true },
   },
   {
     resourceId: "vendor:bluevine", sourceId: "VER-031", vendorId: "bluevine", kind: "vendor",
@@ -449,7 +449,7 @@ export const PUBLISHED_LAUNCH_CATALOG: EcosystemResource[] = [
     review: { reviewedDate: "2026-06-14", nextReviewDate: null, verificationStatus: 'live_link_confirmed', verificationOwner: 'automated-link-check + editorial', verificationNotes: "Live link confirmed 2026-06-14 — HTTP 200 (healthy). Educational listing; no commercial relationship.", verificationPriority: 24 },
     launch: { launchEligible: true, launchCategory: null, launchSequence: 24 },
     relationship: { referralStatus: 'none', resellerStatus: 'none', integrationStatus: 'none', compensationDisclosure: null },
-    operations: { businessNeed: "Business checking and credit", eligibility: null, limitations: "Eligibility, pricing, service areas, product terms and commercial relationships must be confirmed before publication.", regionsServed: [], lifecycleStagesServed: ["Launch", "Stabilize"], supportContact: null, officialAlternativeUrl: null, useAnotherProviderOption: true },
+    operations: { providerClass: "commercial", businessNeed: "Business checking and credit", eligibility: null, limitations: "Eligibility, pricing, service areas, product terms and commercial relationships must be confirmed before publication.", regionsServed: [], lifecycleStagesServed: ["Launch", "Stabilize"], supportContact: null, officialAlternativeUrl: null, useAnotherProviderOption: true },
   },
   {
     resourceId: "guide:VER-032", sourceId: "VER-032", vendorId: null, kind: "guide",
@@ -467,7 +467,7 @@ export const PUBLISHED_LAUNCH_CATALOG: EcosystemResource[] = [
     review: { reviewedDate: "2026-06-14", nextReviewDate: null, verificationStatus: 'live_link_confirmed', verificationOwner: 'automated-link-check + editorial', verificationNotes: "Live link confirmed 2026-06-14 — HTTP 200 (healthy). Educational listing; no commercial relationship.", verificationPriority: 25 },
     launch: { launchEligible: true, launchCategory: null, launchSequence: 25 },
     relationship: { referralStatus: 'none', resellerStatus: 'none', integrationStatus: 'none', compensationDisclosure: null },
-    operations: { businessNeed: "Business checking and integrations", eligibility: null, limitations: "Eligibility, pricing, service areas, product terms and commercial relationships must be confirmed before publication.", regionsServed: [], lifecycleStagesServed: ["Launch", "Stabilize"], supportContact: null, officialAlternativeUrl: null, useAnotherProviderOption: true },
+    operations: { providerClass: "commercial", businessNeed: "Business checking and integrations", eligibility: null, limitations: "Eligibility, pricing, service areas, product terms and commercial relationships must be confirmed before publication.", regionsServed: [], lifecycleStagesServed: ["Launch", "Stabilize"], supportContact: null, officialAlternativeUrl: null, useAnotherProviderOption: true },
   },
   {
     resourceId: "vendor:mercury", sourceId: "VER-033", vendorId: "mercury", kind: "vendor",
@@ -485,7 +485,7 @@ export const PUBLISHED_LAUNCH_CATALOG: EcosystemResource[] = [
     review: { reviewedDate: "2026-06-14", nextReviewDate: null, verificationStatus: 'live_link_confirmed', verificationOwner: 'automated-link-check + editorial', verificationNotes: "Live link confirmed 2026-06-14 — HTTP 200 (healthy). Educational listing; no commercial relationship.", verificationPriority: 26 },
     launch: { launchEligible: true, launchCategory: null, launchSequence: 26 },
     relationship: { referralStatus: 'none', resellerStatus: 'none', integrationStatus: 'none', compensationDisclosure: null },
-    operations: { businessNeed: "Banking and financial workflows", eligibility: null, limitations: "Eligibility, pricing, service areas, product terms and commercial relationships must be confirmed before publication.", regionsServed: [], lifecycleStagesServed: ["Launch", "Stabilize", "Grow"], supportContact: null, officialAlternativeUrl: null, useAnotherProviderOption: true },
+    operations: { providerClass: "commercial", businessNeed: "Banking and financial workflows", eligibility: null, limitations: "Eligibility, pricing, service areas, product terms and commercial relationships must be confirmed before publication.", regionsServed: [], lifecycleStagesServed: ["Launch", "Stabilize", "Grow"], supportContact: null, officialAlternativeUrl: null, useAnotherProviderOption: true },
   },
   {
     resourceId: "guide:VER-034", sourceId: "VER-034", vendorId: null, kind: "guide",
@@ -503,7 +503,7 @@ export const PUBLISHED_LAUNCH_CATALOG: EcosystemResource[] = [
     review: { reviewedDate: "2026-06-14", nextReviewDate: null, verificationStatus: 'live_link_confirmed', verificationOwner: 'automated-link-check + editorial', verificationNotes: "Live link confirmed 2026-06-14 — HTTP 200 (healthy). Educational listing; no commercial relationship.", verificationPriority: 27 },
     launch: { launchEligible: true, launchCategory: null, launchSequence: 27 },
     relationship: { referralStatus: 'none', resellerStatus: 'none', integrationStatus: 'none', compensationDisclosure: null },
-    operations: { businessNeed: "Business deposits and SBA lending", eligibility: null, limitations: "Eligibility, pricing, service areas, product terms and commercial relationships must be confirmed before publication.", regionsServed: [], lifecycleStagesServed: ["Stabilize", "Grow", "Scale"], supportContact: null, officialAlternativeUrl: null, useAnotherProviderOption: true },
+    operations: { providerClass: "commercial", businessNeed: "Business deposits and SBA lending", eligibility: null, limitations: "Eligibility, pricing, service areas, product terms and commercial relationships must be confirmed before publication.", regionsServed: [], lifecycleStagesServed: ["Stabilize", "Grow", "Scale"], supportContact: null, officialAlternativeUrl: null, useAnotherProviderOption: true },
   },
   {
     resourceId: "guide:VER-036", sourceId: "VER-036", vendorId: null, kind: "guide",
@@ -521,7 +521,7 @@ export const PUBLISHED_LAUNCH_CATALOG: EcosystemResource[] = [
     review: { reviewedDate: "2026-06-14", nextReviewDate: null, verificationStatus: 'live_link_confirmed', verificationOwner: 'automated-link-check + editorial', verificationNotes: "Live link confirmed 2026-06-14 — HTTP 200 (healthy). Educational listing; no commercial relationship.", verificationPriority: 28 },
     launch: { launchEligible: true, launchCategory: null, launchSequence: 28 },
     relationship: { referralStatus: 'none', resellerStatus: 'none', integrationStatus: 'none', compensationDisclosure: null },
-    operations: { businessNeed: "Commercial property, casualty, auto and surety", eligibility: null, limitations: "Eligibility, pricing, service areas, product terms and commercial relationships must be confirmed before publication.", regionsServed: [], lifecycleStagesServed: ["Stabilize", "Grow"], supportContact: null, officialAlternativeUrl: null, useAnotherProviderOption: true },
+    operations: { providerClass: "commercial", businessNeed: "Commercial property, casualty, auto and surety", eligibility: null, limitations: "Eligibility, pricing, service areas, product terms and commercial relationships must be confirmed before publication.", regionsServed: [], lifecycleStagesServed: ["Stabilize", "Grow"], supportContact: null, officialAlternativeUrl: null, useAnotherProviderOption: true },
   },
   {
     resourceId: "guide:VER-037", sourceId: "VER-037", vendorId: null, kind: "guide",
@@ -539,7 +539,7 @@ export const PUBLISHED_LAUNCH_CATALOG: EcosystemResource[] = [
     review: { reviewedDate: "2026-06-14", nextReviewDate: null, verificationStatus: 'live_link_confirmed', verificationOwner: 'automated-link-check + editorial', verificationNotes: "Live link confirmed 2026-06-14 — HTTP 200 (healthy). Educational listing; no commercial relationship.", verificationPriority: 29 },
     launch: { launchEligible: true, launchCategory: null, launchSequence: 29 },
     relationship: { referralStatus: 'none', resellerStatus: 'none', integrationStatus: 'none', compensationDisclosure: null },
-    operations: { businessNeed: "Commercial insurance and risk solutions", eligibility: null, limitations: "Eligibility, pricing, service areas, product terms and commercial relationships must be confirmed before publication.", regionsServed: [], lifecycleStagesServed: ["Stabilize", "Grow"], supportContact: null, officialAlternativeUrl: null, useAnotherProviderOption: true },
+    operations: { providerClass: "commercial", businessNeed: "Commercial insurance and risk solutions", eligibility: null, limitations: "Eligibility, pricing, service areas, product terms and commercial relationships must be confirmed before publication.", regionsServed: [], lifecycleStagesServed: ["Stabilize", "Grow"], supportContact: null, officialAlternativeUrl: null, useAnotherProviderOption: true },
   },
   {
     resourceId: "guide:VER-038", sourceId: "VER-038", vendorId: null, kind: "guide",
@@ -557,7 +557,7 @@ export const PUBLISHED_LAUNCH_CATALOG: EcosystemResource[] = [
     review: { reviewedDate: "2026-06-14", nextReviewDate: null, verificationStatus: 'live_link_confirmed', verificationOwner: 'automated-link-check + editorial', verificationNotes: "Live link confirmed 2026-06-14 — HTTP 200 (healthy). Educational listing; no commercial relationship.", verificationPriority: 30 },
     launch: { launchEligible: true, launchCategory: null, launchSequence: 30 },
     relationship: { referralStatus: 'none', resellerStatus: 'none', integrationStatus: 'none', compensationDisclosure: null },
-    operations: { businessNeed: "Small-business and commercial coverage", eligibility: null, limitations: "Eligibility, pricing, service areas, product terms and commercial relationships must be confirmed before publication.", regionsServed: [], lifecycleStagesServed: ["Launch", "Stabilize", "Grow"], supportContact: null, officialAlternativeUrl: null, useAnotherProviderOption: true },
+    operations: { providerClass: "commercial", businessNeed: "Small-business and commercial coverage", eligibility: null, limitations: "Eligibility, pricing, service areas, product terms and commercial relationships must be confirmed before publication.", regionsServed: [], lifecycleStagesServed: ["Launch", "Stabilize", "Grow"], supportContact: null, officialAlternativeUrl: null, useAnotherProviderOption: true },
   },
   {
     resourceId: "guide:VER-039", sourceId: "VER-039", vendorId: null, kind: "guide",
@@ -575,7 +575,7 @@ export const PUBLISHED_LAUNCH_CATALOG: EcosystemResource[] = [
     review: { reviewedDate: "2026-06-14", nextReviewDate: null, verificationStatus: 'live_link_confirmed', verificationOwner: 'automated-link-check + editorial', verificationNotes: "Live link confirmed 2026-06-14 — HTTP 200 (healthy). Educational listing; no commercial relationship.", verificationPriority: 31 },
     launch: { launchEligible: true, launchCategory: null, launchSequence: 31 },
     relationship: { referralStatus: 'none', resellerStatus: 'none', integrationStatus: 'none', compensationDisclosure: null },
-    operations: { businessNeed: "Commercial auto and contractor-related coverage", eligibility: null, limitations: "Eligibility, pricing, service areas, product terms and commercial relationships must be confirmed before publication.", regionsServed: [], lifecycleStagesServed: ["Launch", "Stabilize", "Grow"], supportContact: null, officialAlternativeUrl: null, useAnotherProviderOption: true },
+    operations: { providerClass: "commercial", businessNeed: "Commercial auto and contractor-related coverage", eligibility: null, limitations: "Eligibility, pricing, service areas, product terms and commercial relationships must be confirmed before publication.", regionsServed: [], lifecycleStagesServed: ["Launch", "Stabilize", "Grow"], supportContact: null, officialAlternativeUrl: null, useAnotherProviderOption: true },
   },
   {
     resourceId: "guide:VER-040", sourceId: "VER-040", vendorId: null, kind: "guide",
@@ -593,7 +593,7 @@ export const PUBLISHED_LAUNCH_CATALOG: EcosystemResource[] = [
     review: { reviewedDate: "2026-06-14", nextReviewDate: null, verificationStatus: 'live_link_confirmed', verificationOwner: 'automated-link-check + editorial', verificationNotes: "Live link confirmed 2026-06-14 — HTTP 200 (healthy_with_redirect). Educational listing; no commercial relationship.", verificationPriority: 32 },
     launch: { launchEligible: true, launchCategory: null, launchSequence: 32 },
     relationship: { referralStatus: 'none', resellerStatus: 'none', integrationStatus: 'none', compensationDisclosure: null },
-    operations: { businessNeed: "Small-business coverage through agents", eligibility: null, limitations: "Eligibility, pricing, service areas, product terms and commercial relationships must be confirmed before publication.", regionsServed: [], lifecycleStagesServed: ["Launch", "Stabilize"], supportContact: null, officialAlternativeUrl: null, useAnotherProviderOption: true },
+    operations: { providerClass: "commercial", businessNeed: "Small-business coverage through agents", eligibility: null, limitations: "Eligibility, pricing, service areas, product terms and commercial relationships must be confirmed before publication.", regionsServed: [], lifecycleStagesServed: ["Launch", "Stabilize"], supportContact: null, officialAlternativeUrl: null, useAnotherProviderOption: true },
   },
   {
     resourceId: "guide:VER-042", sourceId: "VER-042", vendorId: null, kind: "guide",
@@ -611,7 +611,7 @@ export const PUBLISHED_LAUNCH_CATALOG: EcosystemResource[] = [
     review: { reviewedDate: "2026-06-14", nextReviewDate: null, verificationStatus: 'live_link_confirmed', verificationOwner: 'automated-link-check + editorial', verificationNotes: "Live link confirmed 2026-06-14 — HTTP 200 (healthy_with_redirect). Educational listing; no commercial relationship.", verificationPriority: 33 },
     launch: { launchEligible: true, launchCategory: null, launchSequence: 33 },
     relationship: { referralStatus: 'none', resellerStatus: 'none', integrationStatus: 'none', compensationDisclosure: null },
-    operations: { businessNeed: "Commercial property and casualty products", eligibility: null, limitations: "Eligibility, pricing, service areas, product terms and commercial relationships must be confirmed before publication.", regionsServed: [], lifecycleStagesServed: ["Stabilize", "Grow"], supportContact: null, officialAlternativeUrl: null, useAnotherProviderOption: true },
+    operations: { providerClass: "commercial", businessNeed: "Commercial property and casualty products", eligibility: null, limitations: "Eligibility, pricing, service areas, product terms and commercial relationships must be confirmed before publication.", regionsServed: [], lifecycleStagesServed: ["Stabilize", "Grow"], supportContact: null, officialAlternativeUrl: null, useAnotherProviderOption: true },
   },
   {
     resourceId: "guide:VER-043", sourceId: "VER-043", vendorId: null, kind: "guide",
@@ -629,7 +629,7 @@ export const PUBLISHED_LAUNCH_CATALOG: EcosystemResource[] = [
     review: { reviewedDate: "2026-06-14", nextReviewDate: null, verificationStatus: 'live_link_confirmed', verificationOwner: 'automated-link-check + editorial', verificationNotes: "Live link confirmed 2026-06-14 — HTTP 200 (healthy). Educational listing; no commercial relationship.", verificationPriority: 34 },
     launch: { launchEligible: true, launchCategory: null, launchSequence: 34 },
     relationship: { referralStatus: 'none', resellerStatus: 'none', integrationStatus: 'none', compensationDisclosure: null },
-    operations: { businessNeed: "Commercial insurance and risk services", eligibility: null, limitations: "Eligibility, pricing, service areas, product terms and commercial relationships must be confirmed before publication.", regionsServed: [], lifecycleStagesServed: ["Stabilize", "Grow"], supportContact: null, officialAlternativeUrl: null, useAnotherProviderOption: true },
+    operations: { providerClass: "commercial", businessNeed: "Commercial insurance and risk services", eligibility: null, limitations: "Eligibility, pricing, service areas, product terms and commercial relationships must be confirmed before publication.", regionsServed: [], lifecycleStagesServed: ["Stabilize", "Grow"], supportContact: null, officialAlternativeUrl: null, useAnotherProviderOption: true },
   },
   {
     resourceId: "vendor:next-insurance", sourceId: "VER-044", vendorId: "next-insurance", kind: "vendor",
@@ -647,7 +647,7 @@ export const PUBLISHED_LAUNCH_CATALOG: EcosystemResource[] = [
     review: { reviewedDate: "2026-06-14", nextReviewDate: null, verificationStatus: 'live_link_confirmed', verificationOwner: 'automated-link-check + editorial', verificationNotes: "Live link confirmed 2026-06-14 — HTTP 200 (healthy). Educational listing; no commercial relationship.", verificationPriority: 35 },
     launch: { launchEligible: true, launchCategory: null, launchSequence: 35 },
     relationship: { referralStatus: 'none', resellerStatus: 'none', integrationStatus: 'none', compensationDisclosure: null },
-    operations: { businessNeed: "Small-business insurance and digital certificates", eligibility: null, limitations: "Eligibility, pricing, service areas, product terms and commercial relationships must be confirmed before publication.", regionsServed: [], lifecycleStagesServed: ["Launch", "Stabilize"], supportContact: null, officialAlternativeUrl: null, useAnotherProviderOption: true },
+    operations: { providerClass: "commercial", businessNeed: "Small-business insurance and digital certificates", eligibility: null, limitations: "Eligibility, pricing, service areas, product terms and commercial relationships must be confirmed before publication.", regionsServed: [], lifecycleStagesServed: ["Launch", "Stabilize"], supportContact: null, officialAlternativeUrl: null, useAnotherProviderOption: true },
   },
   {
     resourceId: "vendor:simply-business", sourceId: "VER-045", vendorId: "simply-business", kind: "vendor",
@@ -665,7 +665,7 @@ export const PUBLISHED_LAUNCH_CATALOG: EcosystemResource[] = [
     review: { reviewedDate: "2026-06-14", nextReviewDate: null, verificationStatus: 'live_link_confirmed', verificationOwner: 'automated-link-check + editorial', verificationNotes: "Live link confirmed 2026-06-14 — HTTP 200 (healthy). Educational listing; no commercial relationship.", verificationPriority: 36 },
     launch: { launchEligible: true, launchCategory: null, launchSequence: 36 },
     relationship: { referralStatus: 'none', resellerStatus: 'none', integrationStatus: 'none', compensationDisclosure: null },
-    operations: { businessNeed: "Small-business insurance comparison", eligibility: null, limitations: "Eligibility, pricing, service areas, product terms and commercial relationships must be confirmed before publication.", regionsServed: [], lifecycleStagesServed: ["Launch", "Stabilize"], supportContact: null, officialAlternativeUrl: null, useAnotherProviderOption: true },
+    operations: { providerClass: "commercial", businessNeed: "Small-business insurance comparison", eligibility: null, limitations: "Eligibility, pricing, service areas, product terms and commercial relationships must be confirmed before publication.", regionsServed: [], lifecycleStagesServed: ["Launch", "Stabilize"], supportContact: null, officialAlternativeUrl: null, useAnotherProviderOption: true },
   },
   {
     resourceId: "guide:VER-046", sourceId: "VER-046", vendorId: null, kind: "guide",
@@ -683,7 +683,7 @@ export const PUBLISHED_LAUNCH_CATALOG: EcosystemResource[] = [
     review: { reviewedDate: "2026-06-14", nextReviewDate: null, verificationStatus: 'live_link_confirmed', verificationOwner: 'automated-link-check + editorial', verificationNotes: "Live link confirmed 2026-06-14 — HTTP 200 (healthy). Educational listing; no commercial relationship.", verificationPriority: 37 },
     launch: { launchEligible: true, launchCategory: null, launchSequence: 37 },
     relationship: { referralStatus: 'none', resellerStatus: 'none', integrationStatus: 'none', compensationDisclosure: null },
-    operations: { businessNeed: "Flexible small-business liability coverage", eligibility: null, limitations: "Eligibility, pricing, service areas, product terms and commercial relationships must be confirmed before publication.", regionsServed: [], lifecycleStagesServed: ["Side Hustle", "Launch", "Stabilize"], supportContact: null, officialAlternativeUrl: null, useAnotherProviderOption: true },
+    operations: { providerClass: "commercial", businessNeed: "Flexible small-business liability coverage", eligibility: null, limitations: "Eligibility, pricing, service areas, product terms and commercial relationships must be confirmed before publication.", regionsServed: [], lifecycleStagesServed: ["Side Hustle", "Launch", "Stabilize"], supportContact: null, officialAlternativeUrl: null, useAnotherProviderOption: true },
   },
   {
     resourceId: "guide:VER-047", sourceId: "VER-047", vendorId: null, kind: "guide",
@@ -701,7 +701,7 @@ export const PUBLISHED_LAUNCH_CATALOG: EcosystemResource[] = [
     review: { reviewedDate: "2026-06-14", nextReviewDate: null, verificationStatus: 'live_link_confirmed', verificationOwner: 'automated-link-check + editorial', verificationNotes: "Live link confirmed 2026-06-14 — HTTP 200 (healthy_with_redirect). Educational listing; no commercial relationship.", verificationPriority: 38 },
     launch: { launchEligible: true, launchCategory: null, launchSequence: 38 },
     relationship: { referralStatus: 'none', resellerStatus: 'none', integrationStatus: 'none', compensationDisclosure: null },
-    operations: { businessNeed: "Workers compensation for small business", eligibility: null, limitations: "Eligibility, pricing, service areas, product terms and commercial relationships must be confirmed before publication.", regionsServed: [], lifecycleStagesServed: ["Stabilize", "Grow"], supportContact: null, officialAlternativeUrl: null, useAnotherProviderOption: true },
+    operations: { providerClass: "commercial", businessNeed: "Workers compensation for small business", eligibility: null, limitations: "Eligibility, pricing, service areas, product terms and commercial relationships must be confirmed before publication.", regionsServed: [], lifecycleStagesServed: ["Stabilize", "Grow"], supportContact: null, officialAlternativeUrl: null, useAnotherProviderOption: true },
   },
   {
     resourceId: "vendor:biberk", sourceId: "VER-049", vendorId: "biberk", kind: "vendor",
@@ -719,7 +719,7 @@ export const PUBLISHED_LAUNCH_CATALOG: EcosystemResource[] = [
     review: { reviewedDate: "2026-06-14", nextReviewDate: null, verificationStatus: 'live_link_confirmed', verificationOwner: 'automated-link-check + editorial', verificationNotes: "Live link confirmed 2026-06-14 — HTTP 200 (healthy). Educational listing; no commercial relationship.", verificationPriority: 39 },
     launch: { launchEligible: true, launchCategory: null, launchSequence: 39 },
     relationship: { referralStatus: 'none', resellerStatus: 'none', integrationStatus: 'none', compensationDisclosure: null },
-    operations: { businessNeed: "Direct small-business insurance", eligibility: null, limitations: "Eligibility, pricing, service areas, product terms and commercial relationships must be confirmed before publication.", regionsServed: [], lifecycleStagesServed: ["Launch", "Stabilize"], supportContact: null, officialAlternativeUrl: null, useAnotherProviderOption: true },
+    operations: { providerClass: "commercial", businessNeed: "Direct small-business insurance", eligibility: null, limitations: "Eligibility, pricing, service areas, product terms and commercial relationships must be confirmed before publication.", regionsServed: [], lifecycleStagesServed: ["Launch", "Stabilize"], supportContact: null, officialAlternativeUrl: null, useAnotherProviderOption: true },
   },
   {
     resourceId: "guide:VER-050", sourceId: "VER-050", vendorId: null, kind: "guide",
@@ -737,7 +737,7 @@ export const PUBLISHED_LAUNCH_CATALOG: EcosystemResource[] = [
     review: { reviewedDate: "2026-06-14", nextReviewDate: null, verificationStatus: 'live_link_confirmed', verificationOwner: 'automated-link-check + editorial', verificationNotes: "Live link confirmed 2026-06-14 — HTTP 200 (healthy). Educational listing; no commercial relationship.", verificationPriority: 40 },
     launch: { launchEligible: true, launchCategory: null, launchSequence: 40 },
     relationship: { referralStatus: 'none', resellerStatus: 'none', integrationStatus: 'none', compensationDisclosure: null },
-    operations: { businessNeed: "Small-business insurance marketplace", eligibility: null, limitations: "Eligibility, pricing, service areas, product terms and commercial relationships must be confirmed before publication.", regionsServed: [], lifecycleStagesServed: ["Launch", "Stabilize"], supportContact: null, officialAlternativeUrl: null, useAnotherProviderOption: true },
+    operations: { providerClass: "commercial", businessNeed: "Small-business insurance marketplace", eligibility: null, limitations: "Eligibility, pricing, service areas, product terms and commercial relationships must be confirmed before publication.", regionsServed: [], lifecycleStagesServed: ["Launch", "Stabilize"], supportContact: null, officialAlternativeUrl: null, useAnotherProviderOption: true },
   },
   {
     resourceId: "guide:VER-051", sourceId: "VER-051", vendorId: null, kind: "guide",
@@ -755,7 +755,7 @@ export const PUBLISHED_LAUNCH_CATALOG: EcosystemResource[] = [
     review: { reviewedDate: "2026-06-14", nextReviewDate: null, verificationStatus: 'live_link_confirmed', verificationOwner: 'automated-link-check + editorial', verificationNotes: "Live link confirmed 2026-06-14 — HTTP 200 (healthy). Educational listing; no commercial relationship.", verificationPriority: 41 },
     launch: { launchEligible: true, launchCategory: null, launchSequence: 41 },
     relationship: { referralStatus: 'none', resellerStatus: 'none', integrationStatus: 'none', compensationDisclosure: null },
-    operations: { businessNeed: "License, permit and contract bond marketplace", eligibility: null, limitations: "Eligibility, pricing, service areas, product terms and commercial relationships must be confirmed before publication.", regionsServed: [], lifecycleStagesServed: ["Launch", "Stabilize", "Grow"], supportContact: null, officialAlternativeUrl: null, useAnotherProviderOption: true },
+    operations: { providerClass: "commercial", businessNeed: "License, permit and contract bond marketplace", eligibility: null, limitations: "Eligibility, pricing, service areas, product terms and commercial relationships must be confirmed before publication.", regionsServed: [], lifecycleStagesServed: ["Launch", "Stabilize", "Grow"], supportContact: null, officialAlternativeUrl: null, useAnotherProviderOption: true },
   },
   {
     resourceId: "vendor:servicetitan", sourceId: "VER-052", vendorId: "servicetitan", kind: "vendor",
@@ -773,7 +773,7 @@ export const PUBLISHED_LAUNCH_CATALOG: EcosystemResource[] = [
     review: { reviewedDate: "2026-06-14", nextReviewDate: null, verificationStatus: 'live_link_confirmed', verificationOwner: 'automated-link-check + editorial', verificationNotes: "Live link confirmed 2026-06-14 — HTTP 200 (healthy). Educational listing; no commercial relationship.", verificationPriority: 42 },
     launch: { launchEligible: true, launchCategory: null, launchSequence: 42 },
     relationship: { referralStatus: 'none', resellerStatus: 'none', integrationStatus: 'none', compensationDisclosure: null },
-    operations: { businessNeed: "Dispatch, CRM, pricebook, payments and operations", eligibility: null, limitations: "Eligibility, pricing, service areas, product terms and commercial relationships must be confirmed before publication.", regionsServed: [], lifecycleStagesServed: ["Stabilize", "Grow", "Scale"], supportContact: null, officialAlternativeUrl: null, useAnotherProviderOption: true },
+    operations: { providerClass: "commercial", businessNeed: "Dispatch, CRM, pricebook, payments and operations", eligibility: null, limitations: "Eligibility, pricing, service areas, product terms and commercial relationships must be confirmed before publication.", regionsServed: [], lifecycleStagesServed: ["Stabilize", "Grow", "Scale"], supportContact: null, officialAlternativeUrl: null, useAnotherProviderOption: true },
   },
   {
     resourceId: "vendor:housecall-pro", sourceId: "VER-053", vendorId: "housecall-pro", kind: "vendor",
@@ -791,7 +791,7 @@ export const PUBLISHED_LAUNCH_CATALOG: EcosystemResource[] = [
     review: { reviewedDate: "2026-06-14", nextReviewDate: null, verificationStatus: 'live_link_confirmed', verificationOwner: 'automated-link-check + editorial', verificationNotes: "Live link confirmed 2026-06-14 — HTTP 200 (healthy). Educational listing; no commercial relationship.", verificationPriority: 43 },
     launch: { launchEligible: true, launchCategory: null, launchSequence: 43 },
     relationship: { referralStatus: 'none', resellerStatus: 'none', integrationStatus: 'none', compensationDisclosure: null },
-    operations: { businessNeed: "Scheduling, dispatch, estimates, payments and marketing", eligibility: null, limitations: "Eligibility, pricing, service areas, product terms and commercial relationships must be confirmed before publication.", regionsServed: [], lifecycleStagesServed: ["Launch", "Stabilize", "Grow"], supportContact: null, officialAlternativeUrl: null, useAnotherProviderOption: true },
+    operations: { providerClass: "commercial", businessNeed: "Scheduling, dispatch, estimates, payments and marketing", eligibility: null, limitations: "Eligibility, pricing, service areas, product terms and commercial relationships must be confirmed before publication.", regionsServed: [], lifecycleStagesServed: ["Launch", "Stabilize", "Grow"], supportContact: null, officialAlternativeUrl: null, useAnotherProviderOption: true },
   },
   {
     resourceId: "vendor:jobber", sourceId: "VER-054", vendorId: "jobber", kind: "vendor",
@@ -809,7 +809,7 @@ export const PUBLISHED_LAUNCH_CATALOG: EcosystemResource[] = [
     review: { reviewedDate: "2026-06-14", nextReviewDate: null, verificationStatus: 'live_link_confirmed', verificationOwner: 'automated-link-check + editorial', verificationNotes: "Live link confirmed 2026-06-14 — HTTP 200 (healthy). Educational listing; no commercial relationship.", verificationPriority: 44 },
     launch: { launchEligible: true, launchCategory: null, launchSequence: 44 },
     relationship: { referralStatus: 'none', resellerStatus: 'none', integrationStatus: 'none', compensationDisclosure: null },
-    operations: { businessNeed: "Scheduling, quoting, invoicing and customer management", eligibility: null, limitations: "Eligibility, pricing, service areas, product terms and commercial relationships must be confirmed before publication.", regionsServed: [], lifecycleStagesServed: ["Launch", "Stabilize", "Grow"], supportContact: null, officialAlternativeUrl: null, useAnotherProviderOption: true },
+    operations: { providerClass: "commercial", businessNeed: "Scheduling, quoting, invoicing and customer management", eligibility: null, limitations: "Eligibility, pricing, service areas, product terms and commercial relationships must be confirmed before publication.", regionsServed: [], lifecycleStagesServed: ["Launch", "Stabilize", "Grow"], supportContact: null, officialAlternativeUrl: null, useAnotherProviderOption: true },
   },
   {
     resourceId: "vendor:fieldedge", sourceId: "VER-055", vendorId: "fieldedge", kind: "vendor",
@@ -827,7 +827,7 @@ export const PUBLISHED_LAUNCH_CATALOG: EcosystemResource[] = [
     review: { reviewedDate: "2026-06-14", nextReviewDate: null, verificationStatus: 'live_link_confirmed', verificationOwner: 'automated-link-check + editorial', verificationNotes: "Live link confirmed 2026-06-14 — HTTP 200 (healthy). Educational listing; no commercial relationship.", verificationPriority: 45 },
     launch: { launchEligible: true, launchCategory: null, launchSequence: 45 },
     relationship: { referralStatus: 'none', resellerStatus: 'none', integrationStatus: 'none', compensationDisclosure: null },
-    operations: { businessNeed: "Dispatch, pricebook and service operations", eligibility: null, limitations: "Eligibility, pricing, service areas, product terms and commercial relationships must be confirmed before publication.", regionsServed: [], lifecycleStagesServed: ["Stabilize", "Grow"], supportContact: null, officialAlternativeUrl: null, useAnotherProviderOption: true },
+    operations: { providerClass: "commercial", businessNeed: "Dispatch, pricebook and service operations", eligibility: null, limitations: "Eligibility, pricing, service areas, product terms and commercial relationships must be confirmed before publication.", regionsServed: [], lifecycleStagesServed: ["Stabilize", "Grow"], supportContact: null, officialAlternativeUrl: null, useAnotherProviderOption: true },
   },
   {
     resourceId: "vendor:workiz", sourceId: "VER-056", vendorId: "workiz", kind: "vendor",
@@ -845,7 +845,7 @@ export const PUBLISHED_LAUNCH_CATALOG: EcosystemResource[] = [
     review: { reviewedDate: "2026-06-14", nextReviewDate: null, verificationStatus: 'live_link_confirmed', verificationOwner: 'automated-link-check + editorial', verificationNotes: "Live link confirmed 2026-06-14 — HTTP 200 (healthy). Educational listing; no commercial relationship.", verificationPriority: 46 },
     launch: { launchEligible: true, launchCategory: null, launchSequence: 46 },
     relationship: { referralStatus: 'none', resellerStatus: 'none', integrationStatus: 'none', compensationDisclosure: null },
-    operations: { businessNeed: "Scheduling, dispatch, communications and payments", eligibility: null, limitations: "Eligibility, pricing, service areas, product terms and commercial relationships must be confirmed before publication.", regionsServed: [], lifecycleStagesServed: ["Launch", "Stabilize", "Grow"], supportContact: null, officialAlternativeUrl: null, useAnotherProviderOption: true },
+    operations: { providerClass: "commercial", businessNeed: "Scheduling, dispatch, communications and payments", eligibility: null, limitations: "Eligibility, pricing, service areas, product terms and commercial relationships must be confirmed before publication.", regionsServed: [], lifecycleStagesServed: ["Launch", "Stabilize", "Grow"], supportContact: null, officialAlternativeUrl: null, useAnotherProviderOption: true },
   },
   {
     resourceId: "vendor:service-fusion", sourceId: "VER-057", vendorId: "service-fusion", kind: "vendor",
@@ -863,7 +863,7 @@ export const PUBLISHED_LAUNCH_CATALOG: EcosystemResource[] = [
     review: { reviewedDate: "2026-06-14", nextReviewDate: null, verificationStatus: 'live_link_confirmed', verificationOwner: 'automated-link-check + editorial', verificationNotes: "Live link confirmed 2026-06-14 — HTTP 200 (healthy). Educational listing; no commercial relationship.", verificationPriority: 47 },
     launch: { launchEligible: true, launchCategory: null, launchSequence: 47 },
     relationship: { referralStatus: 'none', resellerStatus: 'none', integrationStatus: 'none', compensationDisclosure: null },
-    operations: { businessNeed: "Scheduling, dispatch, invoicing and GPS", eligibility: null, limitations: "Eligibility, pricing, service areas, product terms and commercial relationships must be confirmed before publication.", regionsServed: [], lifecycleStagesServed: ["Launch", "Stabilize", "Grow"], supportContact: null, officialAlternativeUrl: null, useAnotherProviderOption: true },
+    operations: { providerClass: "commercial", businessNeed: "Scheduling, dispatch, invoicing and GPS", eligibility: null, limitations: "Eligibility, pricing, service areas, product terms and commercial relationships must be confirmed before publication.", regionsServed: [], lifecycleStagesServed: ["Launch", "Stabilize", "Grow"], supportContact: null, officialAlternativeUrl: null, useAnotherProviderOption: true },
   },
   {
     resourceId: "vendor:fieldpulse", sourceId: "VER-058", vendorId: "fieldpulse", kind: "vendor",
@@ -881,7 +881,7 @@ export const PUBLISHED_LAUNCH_CATALOG: EcosystemResource[] = [
     review: { reviewedDate: "2026-06-14", nextReviewDate: null, verificationStatus: 'live_link_confirmed', verificationOwner: 'automated-link-check + editorial', verificationNotes: "Live link confirmed 2026-06-14 — HTTP 200 (healthy). Educational listing; no commercial relationship.", verificationPriority: 48 },
     launch: { launchEligible: true, launchCategory: null, launchSequence: 48 },
     relationship: { referralStatus: 'none', resellerStatus: 'none', integrationStatus: 'none', compensationDisclosure: null },
-    operations: { businessNeed: "CRM, scheduling, estimates and pricebook", eligibility: null, limitations: "Eligibility, pricing, service areas, product terms and commercial relationships must be confirmed before publication.", regionsServed: [], lifecycleStagesServed: ["Launch", "Stabilize", "Grow"], supportContact: null, officialAlternativeUrl: null, useAnotherProviderOption: true },
+    operations: { providerClass: "commercial", businessNeed: "CRM, scheduling, estimates and pricebook", eligibility: null, limitations: "Eligibility, pricing, service areas, product terms and commercial relationships must be confirmed before publication.", regionsServed: [], lifecycleStagesServed: ["Launch", "Stabilize", "Grow"], supportContact: null, officialAlternativeUrl: null, useAnotherProviderOption: true },
   },
   {
     resourceId: "vendor:buildops", sourceId: "VER-059", vendorId: "buildops", kind: "vendor",
@@ -899,7 +899,7 @@ export const PUBLISHED_LAUNCH_CATALOG: EcosystemResource[] = [
     review: { reviewedDate: "2026-06-14", nextReviewDate: null, verificationStatus: 'live_link_confirmed', verificationOwner: 'automated-link-check + editorial', verificationNotes: "Live link confirmed 2026-06-14 — HTTP 200 (healthy). Educational listing; no commercial relationship.", verificationPriority: 49 },
     launch: { launchEligible: true, launchCategory: null, launchSequence: 49 },
     relationship: { referralStatus: 'none', resellerStatus: 'none', integrationStatus: 'none', compensationDisclosure: null },
-    operations: { businessNeed: "Commercial service and project operations", eligibility: null, limitations: "Eligibility, pricing, service areas, product terms and commercial relationships must be confirmed before publication.", regionsServed: [], lifecycleStagesServed: ["Grow", "Scale"], supportContact: null, officialAlternativeUrl: null, useAnotherProviderOption: true },
+    operations: { providerClass: "commercial", businessNeed: "Commercial service and project operations", eligibility: null, limitations: "Eligibility, pricing, service areas, product terms and commercial relationships must be confirmed before publication.", regionsServed: [], lifecycleStagesServed: ["Grow", "Scale"], supportContact: null, officialAlternativeUrl: null, useAnotherProviderOption: true },
   },
   {
     resourceId: "vendor:simprogroup", sourceId: "VER-060", vendorId: "simprogroup", kind: "vendor",
@@ -917,7 +917,7 @@ export const PUBLISHED_LAUNCH_CATALOG: EcosystemResource[] = [
     review: { reviewedDate: "2026-06-14", nextReviewDate: null, verificationStatus: 'live_link_confirmed', verificationOwner: 'automated-link-check + editorial', verificationNotes: "Live link confirmed 2026-06-14 — HTTP 200 (healthy). Educational listing; no commercial relationship.", verificationPriority: 50 },
     launch: { launchEligible: true, launchCategory: null, launchSequence: 50 },
     relationship: { referralStatus: 'none', resellerStatus: 'none', integrationStatus: 'none', compensationDisclosure: null },
-    operations: { businessNeed: "Service, projects, inventory and maintenance", eligibility: null, limitations: "Eligibility, pricing, service areas, product terms and commercial relationships must be confirmed before publication.", regionsServed: [], lifecycleStagesServed: ["Stabilize", "Grow", "Scale"], supportContact: null, officialAlternativeUrl: null, useAnotherProviderOption: true },
+    operations: { providerClass: "commercial", businessNeed: "Service, projects, inventory and maintenance", eligibility: null, limitations: "Eligibility, pricing, service areas, product terms and commercial relationships must be confirmed before publication.", regionsServed: [], lifecycleStagesServed: ["Stabilize", "Grow", "Scale"], supportContact: null, officialAlternativeUrl: null, useAnotherProviderOption: true },
   },
   {
     resourceId: "vendor:profit-rhino", sourceId: "VER-061", vendorId: "profit-rhino", kind: "vendor",
@@ -935,7 +935,7 @@ export const PUBLISHED_LAUNCH_CATALOG: EcosystemResource[] = [
     review: { reviewedDate: "2026-06-14", nextReviewDate: null, verificationStatus: 'live_link_confirmed', verificationOwner: 'automated-link-check + editorial', verificationNotes: "Live link confirmed 2026-06-14 — HTTP 200 (healthy). Educational listing; no commercial relationship.", verificationPriority: 51 },
     launch: { launchEligible: true, launchCategory: null, launchSequence: 51 },
     relationship: { referralStatus: 'none', resellerStatus: 'none', integrationStatus: 'none', compensationDisclosure: null },
-    operations: { businessNeed: "Digital price books and integrations", eligibility: null, limitations: "Eligibility, pricing, service areas, product terms and commercial relationships must be confirmed before publication.", regionsServed: [], lifecycleStagesServed: ["Launch", "Stabilize", "Grow"], supportContact: null, officialAlternativeUrl: null, useAnotherProviderOption: true },
+    operations: { providerClass: "commercial", businessNeed: "Digital price books and integrations", eligibility: null, limitations: "Eligibility, pricing, service areas, product terms and commercial relationships must be confirmed before publication.", regionsServed: [], lifecycleStagesServed: ["Launch", "Stabilize", "Grow"], supportContact: null, officialAlternativeUrl: null, useAnotherProviderOption: true },
   },
   {
     resourceId: "guide:VER-062", sourceId: "VER-062", vendorId: null, kind: "guide",
@@ -953,7 +953,7 @@ export const PUBLISHED_LAUNCH_CATALOG: EcosystemResource[] = [
     review: { reviewedDate: "2026-06-14", nextReviewDate: null, verificationStatus: 'live_link_confirmed', verificationOwner: 'automated-link-check + editorial', verificationNotes: "Live link confirmed 2026-06-14 — HTTP 200 (healthy). Educational listing; no commercial relationship.", verificationPriority: 52 },
     launch: { launchEligible: true, launchCategory: null, launchSequence: 52 },
     relationship: { referralStatus: 'none', resellerStatus: 'none', integrationStatus: 'none', compensationDisclosure: null },
-    operations: { businessNeed: "Menu pricing and presentation tools", eligibility: null, limitations: "Eligibility, pricing, service areas, product terms and commercial relationships must be confirmed before publication.", regionsServed: [], lifecycleStagesServed: ["Launch", "Stabilize", "Grow"], supportContact: null, officialAlternativeUrl: null, useAnotherProviderOption: true },
+    operations: { providerClass: "commercial", businessNeed: "Menu pricing and presentation tools", eligibility: null, limitations: "Eligibility, pricing, service areas, product terms and commercial relationships must be confirmed before publication.", regionsServed: [], lifecycleStagesServed: ["Launch", "Stabilize", "Grow"], supportContact: null, officialAlternativeUrl: null, useAnotherProviderOption: true },
   },
   {
     resourceId: "guide:VER-064", sourceId: "VER-064", vendorId: null, kind: "guide",
@@ -971,7 +971,7 @@ export const PUBLISHED_LAUNCH_CATALOG: EcosystemResource[] = [
     review: { reviewedDate: "2026-06-14", nextReviewDate: null, verificationStatus: 'live_link_confirmed', verificationOwner: 'automated-link-check + editorial', verificationNotes: "Live link confirmed 2026-06-14 — HTTP 200 (healthy). Educational listing; no commercial relationship.", verificationPriority: 53 },
     launch: { launchEligible: true, launchCategory: null, launchSequence: 53 },
     relationship: { referralStatus: 'none', resellerStatus: 'none', integrationStatus: 'none', compensationDisclosure: null },
-    operations: { businessNeed: "Cloud takeoff and estimating", eligibility: null, limitations: "Eligibility, pricing, service areas, product terms and commercial relationships must be confirmed before publication.", regionsServed: [], lifecycleStagesServed: ["Launch", "Stabilize", "Grow"], supportContact: null, officialAlternativeUrl: null, useAnotherProviderOption: true },
+    operations: { providerClass: "commercial", businessNeed: "Cloud takeoff and estimating", eligibility: null, limitations: "Eligibility, pricing, service areas, product terms and commercial relationships must be confirmed before publication.", regionsServed: [], lifecycleStagesServed: ["Launch", "Stabilize", "Grow"], supportContact: null, officialAlternativeUrl: null, useAnotherProviderOption: true },
   },
   {
     resourceId: "guide:VER-065", sourceId: "VER-065", vendorId: null, kind: "guide",
@@ -989,7 +989,7 @@ export const PUBLISHED_LAUNCH_CATALOG: EcosystemResource[] = [
     review: { reviewedDate: "2026-06-14", nextReviewDate: null, verificationStatus: 'live_link_confirmed', verificationOwner: 'automated-link-check + editorial', verificationNotes: "Live link confirmed 2026-06-14 — HTTP 200 (healthy). Educational listing; no commercial relationship.", verificationPriority: 54 },
     launch: { launchEligible: true, launchCategory: null, launchSequence: 54 },
     relationship: { referralStatus: 'none', resellerStatus: 'none', integrationStatus: 'none', compensationDisclosure: null },
-    operations: { businessNeed: "PDF markup, takeoff and collaboration", eligibility: null, limitations: "Eligibility, pricing, service areas, product terms and commercial relationships must be confirmed before publication.", regionsServed: [], lifecycleStagesServed: ["Stabilize", "Grow", "Scale"], supportContact: null, officialAlternativeUrl: null, useAnotherProviderOption: true },
+    operations: { providerClass: "commercial", businessNeed: "PDF markup, takeoff and collaboration", eligibility: null, limitations: "Eligibility, pricing, service areas, product terms and commercial relationships must be confirmed before publication.", regionsServed: [], lifecycleStagesServed: ["Stabilize", "Grow", "Scale"], supportContact: null, officialAlternativeUrl: null, useAnotherProviderOption: true },
   },
   {
     resourceId: "guide:VER-066", sourceId: "VER-066", vendorId: null, kind: "guide",
@@ -1007,7 +1007,7 @@ export const PUBLISHED_LAUNCH_CATALOG: EcosystemResource[] = [
     review: { reviewedDate: "2026-06-14", nextReviewDate: null, verificationStatus: 'live_link_confirmed', verificationOwner: 'automated-link-check + editorial', verificationNotes: "Live link confirmed 2026-06-14 — HTTP 200 (healthy). Educational listing; no commercial relationship.", verificationPriority: 55 },
     launch: { launchEligible: true, launchCategory: null, launchSequence: 55 },
     relationship: { referralStatus: 'none', resellerStatus: 'none', integrationStatus: 'none', compensationDisclosure: null },
-    operations: { businessNeed: "Cost estimating data", eligibility: null, limitations: "Eligibility, pricing, service areas, product terms and commercial relationships must be confirmed before publication.", regionsServed: [], lifecycleStagesServed: ["Launch", "Stabilize", "Grow"], supportContact: null, officialAlternativeUrl: null, useAnotherProviderOption: true },
+    operations: { providerClass: "commercial", businessNeed: "Cost estimating data", eligibility: null, limitations: "Eligibility, pricing, service areas, product terms and commercial relationships must be confirmed before publication.", regionsServed: [], lifecycleStagesServed: ["Launch", "Stabilize", "Grow"], supportContact: null, officialAlternativeUrl: null, useAnotherProviderOption: true },
   },
   {
     resourceId: "guide:VER-067", sourceId: "VER-067", vendorId: null, kind: "guide",
@@ -1025,7 +1025,7 @@ export const PUBLISHED_LAUNCH_CATALOG: EcosystemResource[] = [
     review: { reviewedDate: "2026-06-14", nextReviewDate: null, verificationStatus: 'live_link_confirmed', verificationOwner: 'automated-link-check + editorial', verificationNotes: "Live link confirmed 2026-06-14 — HTTP 200 (healthy). Educational listing; no commercial relationship.", verificationPriority: 56 },
     launch: { launchEligible: true, launchCategory: null, launchSequence: 56 },
     relationship: { referralStatus: 'none', resellerStatus: 'none', integrationStatus: 'none', compensationDisclosure: null },
-    operations: { businessNeed: "HVACR equipment, parts and supplies", eligibility: null, limitations: "Eligibility, pricing, service areas, product terms and commercial relationships must be confirmed before publication.", regionsServed: [], lifecycleStagesServed: ["Launch", "Stabilize", "Grow"], supportContact: null, officialAlternativeUrl: null, useAnotherProviderOption: true },
+    operations: { providerClass: "commercial", businessNeed: "HVACR equipment, parts and supplies", eligibility: null, limitations: "Eligibility, pricing, service areas, product terms and commercial relationships must be confirmed before publication.", regionsServed: [], lifecycleStagesServed: ["Launch", "Stabilize", "Grow"], supportContact: null, officialAlternativeUrl: null, useAnotherProviderOption: true },
   },
   {
     resourceId: "guide:VER-068", sourceId: "VER-068", vendorId: null, kind: "guide",
@@ -1043,7 +1043,7 @@ export const PUBLISHED_LAUNCH_CATALOG: EcosystemResource[] = [
     review: { reviewedDate: "2026-06-14", nextReviewDate: null, verificationStatus: 'live_link_confirmed', verificationOwner: 'automated-link-check + editorial', verificationNotes: "Live link confirmed 2026-06-14 — HTTP 200 (healthy_with_redirect). Educational listing; no commercial relationship.", verificationPriority: 57 },
     launch: { launchEligible: true, launchCategory: null, launchSequence: 57 },
     relationship: { referralStatus: 'none', resellerStatus: 'none', integrationStatus: 'none', compensationDisclosure: null },
-    operations: { businessNeed: "HVACR equipment, parts and supplies", eligibility: null, limitations: "Eligibility, pricing, service areas, product terms and commercial relationships must be confirmed before publication.", regionsServed: [], lifecycleStagesServed: ["Launch", "Stabilize", "Grow"], supportContact: null, officialAlternativeUrl: null, useAnotherProviderOption: true },
+    operations: { providerClass: "commercial", businessNeed: "HVACR equipment, parts and supplies", eligibility: null, limitations: "Eligibility, pricing, service areas, product terms and commercial relationships must be confirmed before publication.", regionsServed: [], lifecycleStagesServed: ["Launch", "Stabilize", "Grow"], supportContact: null, officialAlternativeUrl: null, useAnotherProviderOption: true },
   },
   {
     resourceId: "guide:VER-069", sourceId: "VER-069", vendorId: null, kind: "guide",
@@ -1061,7 +1061,7 @@ export const PUBLISHED_LAUNCH_CATALOG: EcosystemResource[] = [
     review: { reviewedDate: "2026-06-14", nextReviewDate: null, verificationStatus: 'live_link_confirmed', verificationOwner: 'automated-link-check + editorial', verificationNotes: "Live link confirmed 2026-06-14 — HTTP 200 (healthy). Educational listing; no commercial relationship.", verificationPriority: 58 },
     launch: { launchEligible: true, launchCategory: null, launchSequence: 58 },
     relationship: { referralStatus: 'none', resellerStatus: 'none', integrationStatus: 'none', compensationDisclosure: null },
-    operations: { businessNeed: "Refrigeration and HVAC equipment and parts", eligibility: null, limitations: "Eligibility, pricing, service areas, product terms and commercial relationships must be confirmed before publication.", regionsServed: [], lifecycleStagesServed: ["Launch", "Stabilize", "Grow"], supportContact: null, officialAlternativeUrl: null, useAnotherProviderOption: true },
+    operations: { providerClass: "commercial", businessNeed: "Refrigeration and HVAC equipment and parts", eligibility: null, limitations: "Eligibility, pricing, service areas, product terms and commercial relationships must be confirmed before publication.", regionsServed: [], lifecycleStagesServed: ["Launch", "Stabilize", "Grow"], supportContact: null, officialAlternativeUrl: null, useAnotherProviderOption: true },
   },
   {
     resourceId: "guide:VER-070", sourceId: "VER-070", vendorId: null, kind: "guide",
@@ -1079,7 +1079,7 @@ export const PUBLISHED_LAUNCH_CATALOG: EcosystemResource[] = [
     review: { reviewedDate: "2026-06-14", nextReviewDate: null, verificationStatus: 'live_link_confirmed', verificationOwner: 'automated-link-check + editorial', verificationNotes: "Live link confirmed 2026-06-14 — HTTP 200 (healthy). Educational listing; no commercial relationship.", verificationPriority: 59 },
     launch: { launchEligible: true, launchCategory: null, launchSequence: 59 },
     relationship: { referralStatus: 'none', resellerStatus: 'none', integrationStatus: 'none', compensationDisclosure: null },
-    operations: { businessNeed: "Trade supplies and equipment", eligibility: null, limitations: "Eligibility, pricing, service areas, product terms and commercial relationships must be confirmed before publication.", regionsServed: [], lifecycleStagesServed: ["Launch", "Stabilize", "Grow"], supportContact: null, officialAlternativeUrl: null, useAnotherProviderOption: true },
+    operations: { providerClass: "commercial", businessNeed: "Trade supplies and equipment", eligibility: null, limitations: "Eligibility, pricing, service areas, product terms and commercial relationships must be confirmed before publication.", regionsServed: [], lifecycleStagesServed: ["Launch", "Stabilize", "Grow"], supportContact: null, officialAlternativeUrl: null, useAnotherProviderOption: true },
   },
   {
     resourceId: "guide:VER-071", sourceId: "VER-071", vendorId: null, kind: "guide",
@@ -1097,7 +1097,7 @@ export const PUBLISHED_LAUNCH_CATALOG: EcosystemResource[] = [
     review: { reviewedDate: "2026-06-14", nextReviewDate: null, verificationStatus: 'live_link_confirmed', verificationOwner: 'automated-link-check + editorial', verificationNotes: "Live link confirmed 2026-06-14 — HTTP 200 (healthy). Educational listing; no commercial relationship.", verificationPriority: 60 },
     launch: { launchEligible: true, launchCategory: null, launchSequence: 60 },
     relationship: { referralStatus: 'none', resellerStatus: 'none', integrationStatus: 'none', compensationDisclosure: null },
-    operations: { businessNeed: "Plumbing, HVAC, electrical and industrial supplies", eligibility: null, limitations: "Eligibility, pricing, service areas, product terms and commercial relationships must be confirmed before publication.", regionsServed: [], lifecycleStagesServed: ["Launch", "Stabilize", "Grow"], supportContact: null, officialAlternativeUrl: null, useAnotherProviderOption: true },
+    operations: { providerClass: "commercial", businessNeed: "Plumbing, HVAC, electrical and industrial supplies", eligibility: null, limitations: "Eligibility, pricing, service areas, product terms and commercial relationships must be confirmed before publication.", regionsServed: [], lifecycleStagesServed: ["Launch", "Stabilize", "Grow"], supportContact: null, officialAlternativeUrl: null, useAnotherProviderOption: true },
   },
   {
     resourceId: "guide:VER-072", sourceId: "VER-072", vendorId: null, kind: "guide",
@@ -1115,7 +1115,7 @@ export const PUBLISHED_LAUNCH_CATALOG: EcosystemResource[] = [
     review: { reviewedDate: "2026-06-14", nextReviewDate: null, verificationStatus: 'live_link_confirmed', verificationOwner: 'automated-link-check + editorial', verificationNotes: "Live link confirmed 2026-06-14 — HTTP 200 (healthy). Educational listing; no commercial relationship.", verificationPriority: 61 },
     launch: { launchEligible: true, launchCategory: null, launchSequence: 61 },
     relationship: { referralStatus: 'none', resellerStatus: 'none', integrationStatus: 'none', compensationDisclosure: null },
-    operations: { businessNeed: "Locally managed wholesale locations", eligibility: null, limitations: "Eligibility, pricing, service areas, product terms and commercial relationships must be confirmed before publication.", regionsServed: [], lifecycleStagesServed: ["Launch", "Stabilize", "Grow"], supportContact: null, officialAlternativeUrl: null, useAnotherProviderOption: true },
+    operations: { providerClass: "commercial", businessNeed: "Locally managed wholesale locations", eligibility: null, limitations: "Eligibility, pricing, service areas, product terms and commercial relationships must be confirmed before publication.", regionsServed: [], lifecycleStagesServed: ["Launch", "Stabilize", "Grow"], supportContact: null, officialAlternativeUrl: null, useAnotherProviderOption: true },
   },
   {
     resourceId: "guide:VER-073", sourceId: "VER-073", vendorId: null, kind: "guide",
@@ -1133,7 +1133,7 @@ export const PUBLISHED_LAUNCH_CATALOG: EcosystemResource[] = [
     review: { reviewedDate: "2026-06-14", nextReviewDate: null, verificationStatus: 'live_link_confirmed', verificationOwner: 'automated-link-check + editorial', verificationNotes: "Live link confirmed 2026-06-14 — HTTP 200 (healthy). Educational listing; no commercial relationship.", verificationPriority: 62 },
     launch: { launchEligible: true, launchCategory: null, launchSequence: 62 },
     relationship: { referralStatus: 'none', resellerStatus: 'none', integrationStatus: 'none', compensationDisclosure: null },
-    operations: { businessNeed: "Electrical, communications and data products", eligibility: null, limitations: "Eligibility, pricing, service areas, product terms and commercial relationships must be confirmed before publication.", regionsServed: [], lifecycleStagesServed: ["Stabilize", "Grow", "Scale"], supportContact: null, officialAlternativeUrl: null, useAnotherProviderOption: true },
+    operations: { providerClass: "commercial", businessNeed: "Electrical, communications and data products", eligibility: null, limitations: "Eligibility, pricing, service areas, product terms and commercial relationships must be confirmed before publication.", regionsServed: [], lifecycleStagesServed: ["Stabilize", "Grow", "Scale"], supportContact: null, officialAlternativeUrl: null, useAnotherProviderOption: true },
   },
   {
     resourceId: "guide:VER-075", sourceId: "VER-075", vendorId: null, kind: "guide",
@@ -1151,7 +1151,7 @@ export const PUBLISHED_LAUNCH_CATALOG: EcosystemResource[] = [
     review: { reviewedDate: "2026-06-14", nextReviewDate: null, verificationStatus: 'live_link_confirmed', verificationOwner: 'automated-link-check + editorial', verificationNotes: "Live link confirmed 2026-06-14 — HTTP 200 (healthy). Educational listing; no commercial relationship.", verificationPriority: 63 },
     launch: { launchEligible: true, launchCategory: null, launchSequence: 63 },
     relationship: { referralStatus: 'none', resellerStatus: 'none', integrationStatus: 'none', compensationDisclosure: null },
-    operations: { businessNeed: "Electrical products through operating companies", eligibility: null, limitations: "Eligibility, pricing, service areas, product terms and commercial relationships must be confirmed before publication.", regionsServed: [], lifecycleStagesServed: ["Stabilize", "Grow", "Scale"], supportContact: null, officialAlternativeUrl: null, useAnotherProviderOption: true },
+    operations: { providerClass: "commercial", businessNeed: "Electrical products through operating companies", eligibility: null, limitations: "Eligibility, pricing, service areas, product terms and commercial relationships must be confirmed before publication.", regionsServed: [], lifecycleStagesServed: ["Stabilize", "Grow", "Scale"], supportContact: null, officialAlternativeUrl: null, useAnotherProviderOption: true },
   },
   {
     resourceId: "guide:VER-078", sourceId: "VER-078", vendorId: null, kind: "guide",
@@ -1169,7 +1169,7 @@ export const PUBLISHED_LAUNCH_CATALOG: EcosystemResource[] = [
     review: { reviewedDate: "2026-06-14", nextReviewDate: null, verificationStatus: 'live_link_confirmed', verificationOwner: 'automated-link-check + editorial', verificationNotes: "Live link confirmed 2026-06-14 — HTTP 200 (healthy). Educational listing; no commercial relationship.", verificationPriority: 64 },
     launch: { launchEligible: true, launchCategory: null, launchSequence: 64 },
     relationship: { referralStatus: 'none', resellerStatus: 'none', integrationStatus: 'none', compensationDisclosure: null },
-    operations: { businessNeed: "Roofing, siding, windows and exterior products", eligibility: null, limitations: "Eligibility, pricing, service areas, product terms and commercial relationships must be confirmed before publication.", regionsServed: [], lifecycleStagesServed: ["Launch", "Stabilize", "Grow"], supportContact: null, officialAlternativeUrl: null, useAnotherProviderOption: true },
+    operations: { providerClass: "commercial", businessNeed: "Roofing, siding, windows and exterior products", eligibility: null, limitations: "Eligibility, pricing, service areas, product terms and commercial relationships must be confirmed before publication.", regionsServed: [], lifecycleStagesServed: ["Launch", "Stabilize", "Grow"], supportContact: null, officialAlternativeUrl: null, useAnotherProviderOption: true },
   },
   {
     resourceId: "guide:VER-079", sourceId: "VER-079", vendorId: null, kind: "guide",
@@ -1187,7 +1187,7 @@ export const PUBLISHED_LAUNCH_CATALOG: EcosystemResource[] = [
     review: { reviewedDate: "2026-06-14", nextReviewDate: null, verificationStatus: 'live_link_confirmed', verificationOwner: 'automated-link-check + editorial', verificationNotes: "Live link confirmed 2026-06-14 — HTTP 200 (healthy). Educational listing; no commercial relationship.", verificationPriority: 65 },
     launch: { launchEligible: true, launchCategory: null, launchSequence: 65 },
     relationship: { referralStatus: 'none', resellerStatus: 'none', integrationStatus: 'none', compensationDisclosure: null },
-    operations: { businessNeed: "Roofing and building products through local brands", eligibility: null, limitations: "Eligibility, pricing, service areas, product terms and commercial relationships must be confirmed before publication.", regionsServed: [], lifecycleStagesServed: ["Stabilize", "Grow"], supportContact: null, officialAlternativeUrl: null, useAnotherProviderOption: true },
+    operations: { providerClass: "commercial", businessNeed: "Roofing and building products through local brands", eligibility: null, limitations: "Eligibility, pricing, service areas, product terms and commercial relationships must be confirmed before publication.", regionsServed: [], lifecycleStagesServed: ["Stabilize", "Grow"], supportContact: null, officialAlternativeUrl: null, useAnotherProviderOption: true },
   },
   {
     resourceId: "guide:VER-080", sourceId: "VER-080", vendorId: null, kind: "guide",
@@ -1205,7 +1205,7 @@ export const PUBLISHED_LAUNCH_CATALOG: EcosystemResource[] = [
     review: { reviewedDate: "2026-06-14", nextReviewDate: null, verificationStatus: 'live_link_confirmed', verificationOwner: 'automated-link-check + editorial', verificationNotes: "Live link confirmed 2026-06-14 — HTTP 200 (healthy). Educational listing; no commercial relationship.", verificationPriority: 66 },
     launch: { launchEligible: true, launchCategory: null, launchSequence: 66 },
     relationship: { referralStatus: 'none', resellerStatus: 'none', integrationStatus: 'none', compensationDisclosure: null },
-    operations: { businessNeed: "Lumber, components and construction materials", eligibility: null, limitations: "Eligibility, pricing, service areas, product terms and commercial relationships must be confirmed before publication.", regionsServed: [], lifecycleStagesServed: ["Stabilize", "Grow", "Scale"], supportContact: null, officialAlternativeUrl: null, useAnotherProviderOption: true },
+    operations: { providerClass: "commercial", businessNeed: "Lumber, components and construction materials", eligibility: null, limitations: "Eligibility, pricing, service areas, product terms and commercial relationships must be confirmed before publication.", regionsServed: [], lifecycleStagesServed: ["Stabilize", "Grow", "Scale"], supportContact: null, officialAlternativeUrl: null, useAnotherProviderOption: true },
   },
   {
     resourceId: "guide:VER-082", sourceId: "VER-082", vendorId: null, kind: "guide",
@@ -1223,7 +1223,7 @@ export const PUBLISHED_LAUNCH_CATALOG: EcosystemResource[] = [
     review: { reviewedDate: "2026-06-14", nextReviewDate: null, verificationStatus: 'live_link_confirmed', verificationOwner: 'automated-link-check + editorial', verificationNotes: "Live link confirmed 2026-06-14 — HTTP 200 (healthy). Educational listing; no commercial relationship.", verificationPriority: 67 },
     launch: { launchEligible: true, launchCategory: null, launchSequence: 67 },
     relationship: { referralStatus: 'none', resellerStatus: 'none', integrationStatus: 'none', compensationDisclosure: null },
-    operations: { businessNeed: "Tools, safety, MRO and facility supplies", eligibility: null, limitations: "Eligibility, pricing, service areas, product terms and commercial relationships must be confirmed before publication.", regionsServed: [], lifecycleStagesServed: ["Launch", "Stabilize", "Grow"], supportContact: null, officialAlternativeUrl: null, useAnotherProviderOption: true },
+    operations: { providerClass: "commercial", businessNeed: "Tools, safety, MRO and facility supplies", eligibility: null, limitations: "Eligibility, pricing, service areas, product terms and commercial relationships must be confirmed before publication.", regionsServed: [], lifecycleStagesServed: ["Launch", "Stabilize", "Grow"], supportContact: null, officialAlternativeUrl: null, useAnotherProviderOption: true },
   },
   {
     resourceId: "guide:VER-083", sourceId: "VER-083", vendorId: null, kind: "guide",
@@ -1241,7 +1241,7 @@ export const PUBLISHED_LAUNCH_CATALOG: EcosystemResource[] = [
     review: { reviewedDate: "2026-06-14", nextReviewDate: null, verificationStatus: 'live_link_confirmed', verificationOwner: 'automated-link-check + editorial', verificationNotes: "Live link confirmed 2026-06-14 — HTTP 200 (healthy). Educational listing; no commercial relationship.", verificationPriority: 68 },
     launch: { launchEligible: true, launchCategory: null, launchSequence: 68 },
     relationship: { referralStatus: 'none', resellerStatus: 'none', integrationStatus: 'none', compensationDisclosure: null },
-    operations: { businessNeed: "Fasteners, tools, safety and supply-chain services", eligibility: null, limitations: "Eligibility, pricing, service areas, product terms and commercial relationships must be confirmed before publication.", regionsServed: [], lifecycleStagesServed: ["Stabilize", "Grow", "Scale"], supportContact: null, officialAlternativeUrl: null, useAnotherProviderOption: true },
+    operations: { providerClass: "commercial", businessNeed: "Fasteners, tools, safety and supply-chain services", eligibility: null, limitations: "Eligibility, pricing, service areas, product terms and commercial relationships must be confirmed before publication.", regionsServed: [], lifecycleStagesServed: ["Stabilize", "Grow", "Scale"], supportContact: null, officialAlternativeUrl: null, useAnotherProviderOption: true },
   },
   {
     resourceId: "vendor:quickbooks", sourceId: "VER-085", vendorId: "quickbooks", kind: "vendor",
@@ -1259,7 +1259,7 @@ export const PUBLISHED_LAUNCH_CATALOG: EcosystemResource[] = [
     review: { reviewedDate: "2026-06-14", nextReviewDate: null, verificationStatus: 'live_link_confirmed', verificationOwner: 'automated-link-check + editorial', verificationNotes: "Live link confirmed 2026-06-14 — HTTP 200 (healthy). Educational listing; no commercial relationship.", verificationPriority: 69 },
     launch: { launchEligible: true, launchCategory: null, launchSequence: 69 },
     relationship: { referralStatus: 'none', resellerStatus: 'none', integrationStatus: 'none', compensationDisclosure: null },
-    operations: { businessNeed: "Accounting, invoicing, payroll and payments", eligibility: null, limitations: "Eligibility, pricing, service areas, product terms and commercial relationships must be confirmed before publication.", regionsServed: [], lifecycleStagesServed: ["Launch", "Stabilize", "Grow"], supportContact: null, officialAlternativeUrl: null, useAnotherProviderOption: true },
+    operations: { providerClass: "commercial", businessNeed: "Accounting, invoicing, payroll and payments", eligibility: null, limitations: "Eligibility, pricing, service areas, product terms and commercial relationships must be confirmed before publication.", regionsServed: [], lifecycleStagesServed: ["Launch", "Stabilize", "Grow"], supportContact: null, officialAlternativeUrl: null, useAnotherProviderOption: true },
   },
   {
     resourceId: "vendor:xero", sourceId: "VER-086", vendorId: "xero", kind: "vendor",
@@ -1277,7 +1277,7 @@ export const PUBLISHED_LAUNCH_CATALOG: EcosystemResource[] = [
     review: { reviewedDate: "2026-06-14", nextReviewDate: null, verificationStatus: 'live_link_confirmed', verificationOwner: 'automated-link-check + editorial', verificationNotes: "Live link confirmed 2026-06-14 — HTTP 200 (healthy). Educational listing; no commercial relationship.", verificationPriority: 70 },
     launch: { launchEligible: true, launchCategory: null, launchSequence: 70 },
     relationship: { referralStatus: 'none', resellerStatus: 'none', integrationStatus: 'none', compensationDisclosure: null },
-    operations: { businessNeed: "Cloud accounting and integrations", eligibility: null, limitations: "Eligibility, pricing, service areas, product terms and commercial relationships must be confirmed before publication.", regionsServed: [], lifecycleStagesServed: ["Launch", "Stabilize", "Grow"], supportContact: null, officialAlternativeUrl: null, useAnotherProviderOption: true },
+    operations: { providerClass: "commercial", businessNeed: "Cloud accounting and integrations", eligibility: null, limitations: "Eligibility, pricing, service areas, product terms and commercial relationships must be confirmed before publication.", regionsServed: [], lifecycleStagesServed: ["Launch", "Stabilize", "Grow"], supportContact: null, officialAlternativeUrl: null, useAnotherProviderOption: true },
   },
   {
     resourceId: "vendor:adp", sourceId: "VER-088", vendorId: "adp", kind: "vendor",
@@ -1295,7 +1295,7 @@ export const PUBLISHED_LAUNCH_CATALOG: EcosystemResource[] = [
     review: { reviewedDate: "2026-06-14", nextReviewDate: null, verificationStatus: 'live_link_confirmed', verificationOwner: 'automated-link-check + editorial', verificationNotes: "Live link confirmed 2026-06-14 — HTTP 200 (healthy). Educational listing; no commercial relationship.", verificationPriority: 71 },
     launch: { launchEligible: true, launchCategory: null, launchSequence: 71 },
     relationship: { referralStatus: 'none', resellerStatus: 'none', integrationStatus: 'none', compensationDisclosure: null },
-    operations: { businessNeed: "Payroll, HR, benefits and workforce management", eligibility: null, limitations: "Eligibility, pricing, service areas, product terms and commercial relationships must be confirmed before publication.", regionsServed: [], lifecycleStagesServed: ["Launch", "Stabilize", "Grow", "Scale"], supportContact: null, officialAlternativeUrl: null, useAnotherProviderOption: true },
+    operations: { providerClass: "commercial", businessNeed: "Payroll, HR, benefits and workforce management", eligibility: null, limitations: "Eligibility, pricing, service areas, product terms and commercial relationships must be confirmed before publication.", regionsServed: [], lifecycleStagesServed: ["Launch", "Stabilize", "Grow", "Scale"], supportContact: null, officialAlternativeUrl: null, useAnotherProviderOption: true },
   },
   {
     resourceId: "vendor:paychex", sourceId: "VER-089", vendorId: "paychex", kind: "vendor",
@@ -1313,7 +1313,7 @@ export const PUBLISHED_LAUNCH_CATALOG: EcosystemResource[] = [
     review: { reviewedDate: "2026-06-14", nextReviewDate: null, verificationStatus: 'live_link_confirmed', verificationOwner: 'automated-link-check + editorial', verificationNotes: "Live link confirmed 2026-06-14 — HTTP 200 (healthy). Educational listing; no commercial relationship.", verificationPriority: 72 },
     launch: { launchEligible: true, launchCategory: null, launchSequence: 72 },
     relationship: { referralStatus: 'none', resellerStatus: 'none', integrationStatus: 'none', compensationDisclosure: null },
-    operations: { businessNeed: "Payroll, HR, benefits and compliance", eligibility: null, limitations: "Eligibility, pricing, service areas, product terms and commercial relationships must be confirmed before publication.", regionsServed: [], lifecycleStagesServed: ["Launch", "Stabilize", "Grow"], supportContact: null, officialAlternativeUrl: null, useAnotherProviderOption: true },
+    operations: { providerClass: "commercial", businessNeed: "Payroll, HR, benefits and compliance", eligibility: null, limitations: "Eligibility, pricing, service areas, product terms and commercial relationships must be confirmed before publication.", regionsServed: [], lifecycleStagesServed: ["Launch", "Stabilize", "Grow"], supportContact: null, officialAlternativeUrl: null, useAnotherProviderOption: true },
   },
   {
     resourceId: "vendor:clockshark", sourceId: "VER-090", vendorId: "clockshark", kind: "vendor",
@@ -1331,7 +1331,7 @@ export const PUBLISHED_LAUNCH_CATALOG: EcosystemResource[] = [
     review: { reviewedDate: "2026-06-14", nextReviewDate: null, verificationStatus: 'live_link_confirmed', verificationOwner: 'automated-link-check + editorial', verificationNotes: "Live link confirmed 2026-06-14 — HTTP 200 (healthy). Educational listing; no commercial relationship.", verificationPriority: 73 },
     launch: { launchEligible: true, launchCategory: null, launchSequence: 73 },
     relationship: { referralStatus: 'none', resellerStatus: 'none', integrationStatus: 'none', compensationDisclosure: null },
-    operations: { businessNeed: "Mobile time tracking and scheduling", eligibility: null, limitations: "Eligibility, pricing, service areas, product terms and commercial relationships must be confirmed before publication.", regionsServed: [], lifecycleStagesServed: ["Launch", "Stabilize", "Grow"], supportContact: null, officialAlternativeUrl: null, useAnotherProviderOption: true },
+    operations: { providerClass: "commercial", businessNeed: "Mobile time tracking and scheduling", eligibility: null, limitations: "Eligibility, pricing, service areas, product terms and commercial relationships must be confirmed before publication.", regionsServed: [], lifecycleStagesServed: ["Launch", "Stabilize", "Grow"], supportContact: null, officialAlternativeUrl: null, useAnotherProviderOption: true },
   },
   {
     resourceId: "guide:VER-091", sourceId: "VER-091", vendorId: null, kind: "guide",
@@ -1349,7 +1349,7 @@ export const PUBLISHED_LAUNCH_CATALOG: EcosystemResource[] = [
     review: { reviewedDate: "2026-06-14", nextReviewDate: null, verificationStatus: 'live_link_confirmed', verificationOwner: 'automated-link-check + editorial', verificationNotes: "Live link confirmed 2026-06-14 — HTTP 200 (healthy). Educational listing; no commercial relationship.", verificationPriority: 74 },
     launch: { launchEligible: true, launchCategory: null, launchSequence: 74 },
     relationship: { referralStatus: 'none', resellerStatus: 'none', integrationStatus: 'none', compensationDisclosure: null },
-    operations: { businessNeed: "GPS time tracking and labor data", eligibility: null, limitations: "Eligibility, pricing, service areas, product terms and commercial relationships must be confirmed before publication.", regionsServed: [], lifecycleStagesServed: ["Stabilize", "Grow"], supportContact: null, officialAlternativeUrl: null, useAnotherProviderOption: true },
+    operations: { providerClass: "commercial", businessNeed: "GPS time tracking and labor data", eligibility: null, limitations: "Eligibility, pricing, service areas, product terms and commercial relationships must be confirmed before publication.", regionsServed: [], lifecycleStagesServed: ["Stabilize", "Grow"], supportContact: null, officialAlternativeUrl: null, useAnotherProviderOption: true },
   },
   {
     resourceId: "guide:VER-092", sourceId: "VER-092", vendorId: null, kind: "guide",
@@ -1367,7 +1367,7 @@ export const PUBLISHED_LAUNCH_CATALOG: EcosystemResource[] = [
     review: { reviewedDate: "2026-06-14", nextReviewDate: null, verificationStatus: 'live_link_confirmed', verificationOwner: 'automated-link-check + editorial', verificationNotes: "Live link confirmed 2026-06-14 — HTTP 200 (healthy). Educational listing; no commercial relationship.", verificationPriority: 75 },
     launch: { launchEligible: true, launchCategory: null, launchSequence: 75 },
     relationship: { referralStatus: 'none', resellerStatus: 'none', integrationStatus: 'none', compensationDisclosure: null },
-    operations: { businessNeed: "Payments and spend management", eligibility: null, limitations: "Eligibility, pricing, service areas, product terms and commercial relationships must be confirmed before publication.", regionsServed: [], lifecycleStagesServed: ["Stabilize", "Grow"], supportContact: null, officialAlternativeUrl: null, useAnotherProviderOption: true },
+    operations: { providerClass: "commercial", businessNeed: "Payments and spend management", eligibility: null, limitations: "Eligibility, pricing, service areas, product terms and commercial relationships must be confirmed before publication.", regionsServed: [], lifecycleStagesServed: ["Stabilize", "Grow"], supportContact: null, officialAlternativeUrl: null, useAnotherProviderOption: true },
   },
   {
     resourceId: "guide:VER-093", sourceId: "VER-093", vendorId: null, kind: "guide",
@@ -1385,7 +1385,7 @@ export const PUBLISHED_LAUNCH_CATALOG: EcosystemResource[] = [
     review: { reviewedDate: "2026-06-14", nextReviewDate: null, verificationStatus: 'live_link_confirmed', verificationOwner: 'automated-link-check + editorial', verificationNotes: "Live link confirmed 2026-06-14 — HTTP 200 (healthy_with_redirect). Educational listing; no commercial relationship.", verificationPriority: 76 },
     launch: { launchEligible: true, launchCategory: null, launchSequence: 76 },
     relationship: { referralStatus: 'none', resellerStatus: 'none', integrationStatus: 'none', compensationDisclosure: null },
-    operations: { businessNeed: "Search and Maps business listing", eligibility: null, limitations: "Eligibility, pricing, service areas, product terms and commercial relationships must be confirmed before publication.", regionsServed: [], lifecycleStagesServed: ["Launch", "Stabilize", "Grow"], supportContact: null, officialAlternativeUrl: null, useAnotherProviderOption: true },
+    operations: { providerClass: "official", businessNeed: "Search and Maps business listing", eligibility: null, limitations: "Eligibility, pricing, service areas, product terms and commercial relationships must be confirmed before publication.", regionsServed: [], lifecycleStagesServed: ["Launch", "Stabilize", "Grow"], supportContact: null, officialAlternativeUrl: null, useAnotherProviderOption: true },
   },
   {
     resourceId: "vendor:mailchimp", sourceId: "VER-095", vendorId: "mailchimp", kind: "vendor",
@@ -1403,7 +1403,7 @@ export const PUBLISHED_LAUNCH_CATALOG: EcosystemResource[] = [
     review: { reviewedDate: "2026-06-14", nextReviewDate: null, verificationStatus: 'live_link_confirmed', verificationOwner: 'automated-link-check + editorial', verificationNotes: "Live link confirmed 2026-06-14 — HTTP 200 (healthy). Educational listing; no commercial relationship.", verificationPriority: 77 },
     launch: { launchEligible: true, launchCategory: null, launchSequence: 77 },
     relationship: { referralStatus: 'none', resellerStatus: 'none', integrationStatus: 'none', compensationDisclosure: null },
-    operations: { businessNeed: "Email automation and customer marketing", eligibility: null, limitations: "Eligibility, pricing, service areas, product terms and commercial relationships must be confirmed before publication.", regionsServed: [], lifecycleStagesServed: ["Launch", "Stabilize", "Grow"], supportContact: null, officialAlternativeUrl: null, useAnotherProviderOption: true },
+    operations: { providerClass: "commercial", businessNeed: "Email automation and customer marketing", eligibility: null, limitations: "Eligibility, pricing, service areas, product terms and commercial relationships must be confirmed before publication.", regionsServed: [], lifecycleStagesServed: ["Launch", "Stabilize", "Grow"], supportContact: null, officialAlternativeUrl: null, useAnotherProviderOption: true },
   },
   {
     resourceId: "vendor:podium", sourceId: "VER-096", vendorId: "podium", kind: "vendor",
@@ -1421,7 +1421,7 @@ export const PUBLISHED_LAUNCH_CATALOG: EcosystemResource[] = [
     review: { reviewedDate: "2026-06-14", nextReviewDate: null, verificationStatus: 'live_link_confirmed', verificationOwner: 'automated-link-check + editorial', verificationNotes: "Live link confirmed 2026-06-14 — HTTP 200 (healthy). Educational listing; no commercial relationship.", verificationPriority: 78 },
     launch: { launchEligible: true, launchCategory: null, launchSequence: 78 },
     relationship: { referralStatus: 'none', resellerStatus: 'none', integrationStatus: 'none', compensationDisclosure: null },
-    operations: { businessNeed: "Messaging, reviews and lead conversion", eligibility: null, limitations: "Eligibility, pricing, service areas, product terms and commercial relationships must be confirmed before publication.", regionsServed: [], lifecycleStagesServed: ["Stabilize", "Grow"], supportContact: null, officialAlternativeUrl: null, useAnotherProviderOption: true },
+    operations: { providerClass: "commercial", businessNeed: "Messaging, reviews and lead conversion", eligibility: null, limitations: "Eligibility, pricing, service areas, product terms and commercial relationships must be confirmed before publication.", regionsServed: [], lifecycleStagesServed: ["Stabilize", "Grow"], supportContact: null, officialAlternativeUrl: null, useAnotherProviderOption: true },
   },
   {
     resourceId: "vendor:birdeye", sourceId: "VER-097", vendorId: "birdeye", kind: "vendor",
@@ -1439,7 +1439,7 @@ export const PUBLISHED_LAUNCH_CATALOG: EcosystemResource[] = [
     review: { reviewedDate: "2026-06-14", nextReviewDate: null, verificationStatus: 'live_link_confirmed', verificationOwner: 'automated-link-check + editorial', verificationNotes: "Live link confirmed 2026-06-14 — HTTP 200 (healthy). Educational listing; no commercial relationship.", verificationPriority: 79 },
     launch: { launchEligible: true, launchCategory: null, launchSequence: 79 },
     relationship: { referralStatus: 'none', resellerStatus: 'none', integrationStatus: 'none', compensationDisclosure: null },
-    operations: { businessNeed: "Reviews, listings, messaging and surveys", eligibility: null, limitations: "Eligibility, pricing, service areas, product terms and commercial relationships must be confirmed before publication.", regionsServed: [], lifecycleStagesServed: ["Stabilize", "Grow", "Scale"], supportContact: null, officialAlternativeUrl: null, useAnotherProviderOption: true },
+    operations: { providerClass: "commercial", businessNeed: "Reviews, listings, messaging and surveys", eligibility: null, limitations: "Eligibility, pricing, service areas, product terms and commercial relationships must be confirmed before publication.", regionsServed: [], lifecycleStagesServed: ["Stabilize", "Grow", "Scale"], supportContact: null, officialAlternativeUrl: null, useAnotherProviderOption: true },
   },
   {
     resourceId: "vendor:nicejob", sourceId: "VER-098", vendorId: "nicejob", kind: "vendor",
@@ -1457,7 +1457,7 @@ export const PUBLISHED_LAUNCH_CATALOG: EcosystemResource[] = [
     review: { reviewedDate: "2026-06-14", nextReviewDate: null, verificationStatus: 'live_link_confirmed', verificationOwner: 'automated-link-check + editorial', verificationNotes: "Live link confirmed 2026-06-14 — HTTP 200 (healthy_with_redirect). Educational listing; no commercial relationship.", verificationPriority: 80 },
     launch: { launchEligible: true, launchCategory: null, launchSequence: 80 },
     relationship: { referralStatus: 'none', resellerStatus: 'none', integrationStatus: 'none', compensationDisclosure: null },
-    operations: { businessNeed: "Review requests and social proof", eligibility: null, limitations: "Eligibility, pricing, service areas, product terms and commercial relationships must be confirmed before publication.", regionsServed: [], lifecycleStagesServed: ["Launch", "Stabilize", "Grow"], supportContact: null, officialAlternativeUrl: null, useAnotherProviderOption: true },
+    operations: { providerClass: "commercial", businessNeed: "Review requests and social proof", eligibility: null, limitations: "Eligibility, pricing, service areas, product terms and commercial relationships must be confirmed before publication.", regionsServed: [], lifecycleStagesServed: ["Launch", "Stabilize", "Grow"], supportContact: null, officialAlternativeUrl: null, useAnotherProviderOption: true },
   },
   {
     resourceId: "vendor:callrail", sourceId: "VER-099", vendorId: "callrail", kind: "vendor",
@@ -1475,7 +1475,7 @@ export const PUBLISHED_LAUNCH_CATALOG: EcosystemResource[] = [
     review: { reviewedDate: "2026-06-14", nextReviewDate: null, verificationStatus: 'live_link_confirmed', verificationOwner: 'automated-link-check + editorial', verificationNotes: "Live link confirmed 2026-06-14 — HTTP 200 (healthy). Educational listing; no commercial relationship.", verificationPriority: 81 },
     launch: { launchEligible: true, launchCategory: null, launchSequence: 81 },
     relationship: { referralStatus: 'none', resellerStatus: 'none', integrationStatus: 'none', compensationDisclosure: null },
-    operations: { businessNeed: "Call tracking, forms and lead intelligence", eligibility: null, limitations: "Eligibility, pricing, service areas, product terms and commercial relationships must be confirmed before publication.", regionsServed: [], lifecycleStagesServed: ["Stabilize", "Grow"], supportContact: null, officialAlternativeUrl: null, useAnotherProviderOption: true },
+    operations: { providerClass: "commercial", businessNeed: "Call tracking, forms and lead intelligence", eligibility: null, limitations: "Eligibility, pricing, service areas, product terms and commercial relationships must be confirmed before publication.", regionsServed: [], lifecycleStagesServed: ["Stabilize", "Grow"], supportContact: null, officialAlternativeUrl: null, useAnotherProviderOption: true },
   },
   {
     resourceId: "guide:VER-101", sourceId: "VER-101", vendorId: null, kind: "guide",
@@ -1493,7 +1493,7 @@ export const PUBLISHED_LAUNCH_CATALOG: EcosystemResource[] = [
     review: { reviewedDate: "2026-06-14", nextReviewDate: null, verificationStatus: 'live_link_confirmed', verificationOwner: 'automated-link-check + editorial', verificationNotes: "Live link confirmed 2026-06-14 — HTTP 200 (healthy_with_redirect). Educational listing; no commercial relationship.", verificationPriority: 82 },
     launch: { launchEligible: true, launchCategory: null, launchSequence: 82 },
     relationship: { referralStatus: 'none', resellerStatus: 'none', integrationStatus: 'none', compensationDisclosure: null },
-    operations: { businessNeed: "HVAC contractor standards, education and resources", eligibility: null, limitations: "Eligibility, pricing, service areas, product terms and commercial relationships must be confirmed before publication.", regionsServed: [], lifecycleStagesServed: ["Launch", "Stabilize", "Grow"], supportContact: null, officialAlternativeUrl: null, useAnotherProviderOption: true },
+    operations: { providerClass: "association", businessNeed: "HVAC contractor standards, education and resources", eligibility: null, limitations: "Eligibility, pricing, service areas, product terms and commercial relationships must be confirmed before publication.", regionsServed: [], lifecycleStagesServed: ["Launch", "Stabilize", "Grow"], supportContact: null, officialAlternativeUrl: null, useAnotherProviderOption: true },
   },
   {
     resourceId: "guide:VER-102", sourceId: "VER-102", vendorId: null, kind: "guide",
@@ -1511,7 +1511,7 @@ export const PUBLISHED_LAUNCH_CATALOG: EcosystemResource[] = [
     review: { reviewedDate: "2026-06-14", nextReviewDate: null, verificationStatus: 'live_link_confirmed', verificationOwner: 'automated-link-check + editorial', verificationNotes: "Live link confirmed 2026-06-14 — HTTP 200 (healthy_with_redirect). Educational listing; no commercial relationship.", verificationPriority: 83 },
     launch: { launchEligible: true, launchCategory: null, launchSequence: 83 },
     relationship: { referralStatus: 'none', resellerStatus: 'none', integrationStatus: 'none', compensationDisclosure: null },
-    operations: { businessNeed: "HVAC technician certification", eligibility: null, limitations: "Eligibility, pricing, service areas, product terms and commercial relationships must be confirmed before publication.", regionsServed: [], lifecycleStagesServed: ["Stabilize", "Grow"], supportContact: null, officialAlternativeUrl: null, useAnotherProviderOption: true },
+    operations: { providerClass: "nonprofit", businessNeed: "HVAC technician certification", eligibility: null, limitations: "Eligibility, pricing, service areas, product terms and commercial relationships must be confirmed before publication.", regionsServed: [], lifecycleStagesServed: ["Stabilize", "Grow"], supportContact: null, officialAlternativeUrl: null, useAnotherProviderOption: true },
   },
   {
     resourceId: "guide:VER-104", sourceId: "VER-104", vendorId: null, kind: "guide",
@@ -1529,7 +1529,7 @@ export const PUBLISHED_LAUNCH_CATALOG: EcosystemResource[] = [
     review: { reviewedDate: "2026-06-14", nextReviewDate: null, verificationStatus: 'live_link_confirmed', verificationOwner: 'automated-link-check + editorial', verificationNotes: "Live link confirmed 2026-06-14 — HTTP 200 (healthy). Educational listing; no commercial relationship.", verificationPriority: 84 },
     launch: { launchEligible: true, launchCategory: null, launchSequence: 84 },
     relationship: { referralStatus: 'none', resellerStatus: 'none', integrationStatus: 'none', compensationDisclosure: null },
-    operations: { businessNeed: "Electrical and life-safety codes and training", eligibility: null, limitations: "Eligibility, pricing, service areas, product terms and commercial relationships must be confirmed before publication.", regionsServed: [], lifecycleStagesServed: ["Launch", "Stabilize", "Grow"], supportContact: null, officialAlternativeUrl: null, useAnotherProviderOption: true },
+    operations: { providerClass: "nonprofit", businessNeed: "Electrical and life-safety codes and training", eligibility: null, limitations: "Eligibility, pricing, service areas, product terms and commercial relationships must be confirmed before publication.", regionsServed: [], lifecycleStagesServed: ["Launch", "Stabilize", "Grow"], supportContact: null, officialAlternativeUrl: null, useAnotherProviderOption: true },
   },
   {
     resourceId: "guide:VER-105", sourceId: "VER-105", vendorId: null, kind: "guide",
@@ -1547,7 +1547,7 @@ export const PUBLISHED_LAUNCH_CATALOG: EcosystemResource[] = [
     review: { reviewedDate: "2026-06-14", nextReviewDate: null, verificationStatus: 'live_link_confirmed', verificationOwner: 'automated-link-check + editorial', verificationNotes: "Live link confirmed 2026-06-14 — HTTP 200 (healthy). Educational listing; no commercial relationship.", verificationPriority: 85 },
     launch: { launchEligible: true, launchCategory: null, launchSequence: 85 },
     relationship: { referralStatus: 'none', resellerStatus: 'none', integrationStatus: 'none', compensationDisclosure: null },
-    operations: { businessNeed: "Electrical education, apprenticeship and contractor resources", eligibility: null, limitations: "Eligibility, pricing, service areas, product terms and commercial relationships must be confirmed before publication.", regionsServed: [], lifecycleStagesServed: ["Launch", "Stabilize", "Grow"], supportContact: null, officialAlternativeUrl: null, useAnotherProviderOption: true },
+    operations: { providerClass: "association", businessNeed: "Electrical education, apprenticeship and contractor resources", eligibility: null, limitations: "Eligibility, pricing, service areas, product terms and commercial relationships must be confirmed before publication.", regionsServed: [], lifecycleStagesServed: ["Launch", "Stabilize", "Grow"], supportContact: null, officialAlternativeUrl: null, useAnotherProviderOption: true },
   },
   {
     resourceId: "guide:VER-106", sourceId: "VER-106", vendorId: null, kind: "guide",
@@ -1565,7 +1565,7 @@ export const PUBLISHED_LAUNCH_CATALOG: EcosystemResource[] = [
     review: { reviewedDate: "2026-06-14", nextReviewDate: null, verificationStatus: 'live_link_confirmed', verificationOwner: 'automated-link-check + editorial', verificationNotes: "Live link confirmed 2026-06-14 — HTTP 200 (healthy). Educational listing; no commercial relationship.", verificationPriority: 86 },
     launch: { launchEligible: true, launchCategory: null, launchSequence: 86 },
     relationship: { referralStatus: 'none', resellerStatus: 'none', integrationStatus: 'none', compensationDisclosure: null },
-    operations: { businessNeed: "Plumbing, heating and cooling contractor resources", eligibility: null, limitations: "Eligibility, pricing, service areas, product terms and commercial relationships must be confirmed before publication.", regionsServed: [], lifecycleStagesServed: ["Launch", "Stabilize", "Grow"], supportContact: null, officialAlternativeUrl: null, useAnotherProviderOption: true },
+    operations: { providerClass: "association", businessNeed: "Plumbing, heating and cooling contractor resources", eligibility: null, limitations: "Eligibility, pricing, service areas, product terms and commercial relationships must be confirmed before publication.", regionsServed: [], lifecycleStagesServed: ["Launch", "Stabilize", "Grow"], supportContact: null, officialAlternativeUrl: null, useAnotherProviderOption: true },
   },
   {
     resourceId: "guide:VER-107", sourceId: "VER-107", vendorId: null, kind: "guide",
@@ -1583,7 +1583,7 @@ export const PUBLISHED_LAUNCH_CATALOG: EcosystemResource[] = [
     review: { reviewedDate: "2026-06-14", nextReviewDate: null, verificationStatus: 'live_link_confirmed', verificationOwner: 'automated-link-check + editorial', verificationNotes: "Live link confirmed 2026-06-14 — HTTP 200 (healthy_with_redirect). Educational listing; no commercial relationship.", verificationPriority: 87 },
     launch: { launchEligible: true, launchCategory: null, launchSequence: 87 },
     relationship: { referralStatus: 'none', resellerStatus: 'none', integrationStatus: 'none', compensationDisclosure: null },
-    operations: { businessNeed: "Plumbing and mechanical codes and training", eligibility: null, limitations: "Eligibility, pricing, service areas, product terms and commercial relationships must be confirmed before publication.", regionsServed: [], lifecycleStagesServed: ["Stabilize", "Grow"], supportContact: null, officialAlternativeUrl: null, useAnotherProviderOption: true },
+    operations: { providerClass: "nonprofit", businessNeed: "Plumbing and mechanical codes and training", eligibility: null, limitations: "Eligibility, pricing, service areas, product terms and commercial relationships must be confirmed before publication.", regionsServed: [], lifecycleStagesServed: ["Stabilize", "Grow"], supportContact: null, officialAlternativeUrl: null, useAnotherProviderOption: true },
   },
   {
     resourceId: "guide:VER-108", sourceId: "VER-108", vendorId: null, kind: "guide",
@@ -1601,6 +1601,6 @@ export const PUBLISHED_LAUNCH_CATALOG: EcosystemResource[] = [
     review: { reviewedDate: "2026-06-14", nextReviewDate: null, verificationStatus: 'live_link_confirmed', verificationOwner: 'automated-link-check + editorial', verificationNotes: "Live link confirmed 2026-06-14 — HTTP 200 (healthy). Educational listing; no commercial relationship.", verificationPriority: 88 },
     launch: { launchEligible: true, launchCategory: null, launchSequence: 88 },
     relationship: { referralStatus: 'none', resellerStatus: 'none', integrationStatus: 'none', compensationDisclosure: null },
-    operations: { businessNeed: "Craft training and workforce credentials", eligibility: null, limitations: "Eligibility, pricing, service areas, product terms and commercial relationships must be confirmed before publication.", regionsServed: [], lifecycleStagesServed: ["Launch", "Stabilize", "Grow"], supportContact: null, officialAlternativeUrl: null, useAnotherProviderOption: true },
+    operations: { providerClass: "nonprofit", businessNeed: "Craft training and workforce credentials", eligibility: null, limitations: "Eligibility, pricing, service areas, product terms and commercial relationships must be confirmed before publication.", regionsServed: [], lifecycleStagesServed: ["Launch", "Stabilize", "Grow"], supportContact: null, officialAlternativeUrl: null, useAnotherProviderOption: true },
   },
 ]

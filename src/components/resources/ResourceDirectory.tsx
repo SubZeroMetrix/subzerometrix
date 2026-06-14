@@ -23,8 +23,9 @@ import {
   DIRECTORY_CATEGORY_OPTIONS, DIRECTORY_TRADE_OPTIONS, DIRECTORY_STATE_OPTIONS,
   DIRECTORY_LIFECYCLE_OPTIONS, DIRECTORY_RELATIONSHIP_OPTIONS,
 } from '@/lib/metrix/directoryOptions'
+import Link from 'next/link'
 import { noticesForCategories } from '@/lib/metrix/categoryNotices'
-import { EmptyState, Alert } from '@/components/ui'
+import { EmptyState } from '@/components/ui'
 import ResourceCard from './ResourceCard'
 
 const SELECT_CLASS =
@@ -132,14 +133,17 @@ export default function ResourceDirectory() {
         </div>
       </form>
 
-      {/* Part 6: regulated-category notices for visible categories */}
+      {/* Part 6: brief regulated-category notices for visible categories + disclaimer link */}
       {notices.length > 0 ? (
-        <div className="space-y-2 mb-4">
-          {notices.map(n => (
-            <Alert key={n.key} tone="caution" className="py-2">
-              <span className="text-[12px]">{n.text}</span>
-            </Alert>
-          ))}
+        <div className="rounded-sm steel-border bg-[rgba(13,43,92,0.2)] p-3 mb-4">
+          <ul className="space-y-1">
+            {notices.map(n => (
+              <li key={n.key} className="text-[12px] text-brand-silver leading-relaxed">{n.text}</li>
+            ))}
+          </ul>
+          <Link href="/resource-directory-disclosure" className="inline-block mt-1.5 text-[12px] text-brand-accent hover:underline">
+            Legal Disclaimer
+          </Link>
         </div>
       ) : null}
 
