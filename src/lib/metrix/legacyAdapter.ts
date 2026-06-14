@@ -150,6 +150,23 @@ export function adaptLegacyHistorySnapshot(snap: MetrixScoreSnapshot): MetrixPro
     secondaryPriorities: [],
     blockedRecommendations: [],
     nextBestQuestions: [],
+    // SZM-2A fields — not derivable from a history snapshot; truthful empties.
+    completionPaths: [],
+    recommendedCompletionPathId: null,
+    primaryActionSteps: [],
+    nextUpPriorities: [],
+    priorityProgress: {
+      priorityId: 'priority_unknown',
+      status: 'not_started',
+      selectedPathId: null,
+      completedStepIds: [],
+      totalRequiredSteps: 0,
+      completionPercent: 0,
+      evidenceStatus: 'no_evidence',
+      startedAt: null,
+      completedAt: null,
+      reassessmentEligible: false,
+    },
     legacySource: {
       engine: 'engine2',
       originalOverall: snap.overall,

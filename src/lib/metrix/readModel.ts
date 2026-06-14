@@ -12,6 +12,7 @@ import type { MetrixScore } from '../metrixEngine'
 import type {
   MetrixProfileSnapshot, MetrixPriority, CriticalGate,
   BlockedRecommendation, NextBestQuestion, ProfileQuality,
+  CompletionPath, ActionStep, NextUpItem, PriorityProgress,
 } from './profileTypes'
 
 // ── SZM-2: canonical read accessors (pure passthroughs — NO recomputation) ─────
@@ -65,6 +66,33 @@ export function getPriorityExplanation(s: MetrixProfileSnapshot): PriorityExplan
     reasonCodes: p.reasonCodes,
     evidenceStatus: p.evidenceStatus,
   }
+}
+
+// ── SZM-2A: completion-path / action-step / next-up / progress accessors ───────
+/** All valid completion paths for the primary priority. */
+export function getCompletionPaths(s: MetrixProfileSnapshot): CompletionPath[] {
+  return s.completionPaths ?? []
+}
+/** The single recommended completion path (null if none defensible). */
+export function getRecommendedCompletionPath(s: MetrixProfileSnapshot): CompletionPath | null {
+  const id = s.recommendedCompletionPathId
+  return id ? (s.completionPaths ?? []).find(p => p.pathId === id) ?? null : null
+}
+/** Ordered action steps for the primary priority (the recommended path's steps). */
+export function getPrimaryActionSteps(s: MetrixProfileSnapshot): ActionStep[] {
+  return s.primaryActionSteps ?? []
+}
+/** The immediate first action step. */
+export function getFirstActionStep(s: MetrixProfileSnapshot): ActionStep | null {
+  return (s.primaryActionSteps ?? [])[0] ?? null
+}
+/** Bounded (≤3) ranked next-up priorities (non-active). */
+export function getNextUpPriorities(s: MetrixProfileSnapshot): NextUpItem[] {
+  return s.nextUpPriorities ?? []
+}
+/** Safe initial action-progress for the primary priority. */
+export function getPriorityProgress(s: MetrixProfileSnapshot): PriorityProgress {
+  return s.priorityProgress
 }
 
 export function toMetrixScore(snapshot: MetrixProfileSnapshot): MetrixScore {

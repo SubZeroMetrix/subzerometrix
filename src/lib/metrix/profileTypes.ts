@@ -20,9 +20,9 @@ import type {
 } from '../metrixEngine'
 
 // ── Version constants (bump deliberately; adapters key off these) ──────────────
-export const PROFILE_SCHEMA_VERSION = 2  // SZM-2: added critical gates + Metrix Priority + questions
+export const PROFILE_SCHEMA_VERSION = 3  // SZM-2A: added completion paths, action steps, next-up, progress
 export const SCORING_VERSION = 1         // scoring math unchanged
-export const RULESET_VERSION = 2         // SZM-2: critical-gate + priority policy
+export const RULESET_VERSION = 3         // SZM-2A: completion-path + action-step policy
 
 export type StageGroup = 'early' | 'establishing' | 'growth' | 'reset'
 
@@ -182,6 +182,85 @@ export interface MetrixPriority {
   rank: number
 }
 
+// ── SZM-2A: Completion paths + ordered action steps ───────────────────────────
+export type PathType =
+  | 'guided_diy' | 'tool_assisted' | 'specialist_assisted'
+  | 'official_authority' | 'prerequisite_first' | 'not_ready'
+export type CostBand = 'free' | 'low' | 'moderate' | 'high' | 'varies' | 'unknown'
+export type EffortBand = 'quick' | 'short' | 'moderate' | 'extended' | 'unknown'
+export type PathRiskLevel = 'low' | 'moderate' | 'high' | 'unknown'
+export type ProviderCategory = 'self' | 'tool' | 'specialist' | 'official' | 'none'
+export type AuthorityType =
+  | 'state_licensing' | 'secretary_of_state' | 'tax_authority' | 'insurance_regulator' | 'none'
+
+export interface ActionStep {
+  stepId: string
+  order: number
+  title: string
+  instruction: string
+  purpose: string
+  prerequisites: string[]
+  completionCriteria: string
+  evidenceRequested: string[]
+  optional: boolean
+  blocking: boolean
+  estimatedEffort: EffortBand
+  rulesetVersion: number
+}
+
+export interface CompletionPath {
+  pathId: string
+  priorityId: string
+  pathType: PathType
+  title: string
+  description: string
+  bestFor: string
+  prerequisites: string[]
+  estimatedEffort: EffortBand
+  estimatedCostBand: CostBand
+  riskLevel: PathRiskLevel
+  expectedOutcome: string
+  actionSteps: ActionStep[]
+  completionCriteria: string
+  evidenceRequested: string[]
+  providerCategory: ProviderCategory
+  authorityType: AuthorityType
+  externalResourceIds: string[]   // intentionally empty — no real providers in this phase
+  tradeApplicability: string[]    // [] = all trades
+  stateApplicability: string[]    // [] = all states
+  stageApplicability: string[]    // [] = all stages
+  recommended: boolean
+  recommendationReason: string
+  notRecommendedWhen: string
+  rulesetVersion: number
+}
+
+// ── SZM-2A: Bounded next-up queue (ranked, non-active) ─────────────────────────
+export interface NextUpItem {
+  priorityId: string
+  title: string
+  requiredOutcome: string
+  activationCondition: string
+  blockedBy: string | null
+  rank: number
+  reason: string
+}
+
+// ── SZM-2A: Action-progress structure (derive-only this phase; no mutation/sync) ─
+export type ProgressStatus = 'not_started' | 'in_progress' | 'blocked' | 'ready_for_review' | 'completed'
+export interface PriorityProgress {
+  priorityId: string
+  status: ProgressStatus
+  selectedPathId: string | null
+  completedStepIds: string[]
+  totalRequiredSteps: number
+  completionPercent: number
+  evidenceStatus: EvidenceStatus
+  startedAt: string | null
+  completedAt: string | null
+  reassessmentEligible: boolean
+}
+
 // ── SZM-2: Next-best-question candidates (progressive profiling) ───────────────
 export type QuestionUrgency = 'now' | 'soon' | 'later'
 export type QuestionImpact = 'changes_priority' | 'confirms_gate' | 'refines_roadmap' | 'improves_confidence'
@@ -245,6 +324,12 @@ export interface MetrixProfileSnapshot {
   secondaryPriorities: MetrixPriority[] // ranked; never compete with the primary in the read model
   blockedRecommendations: BlockedRecommendation[]
   nextBestQuestions: NextBestQuestion[]
+  // ── SZM-2A additions ─────────────────────────────────────────────────────────
+  completionPaths: CompletionPath[]
+  recommendedCompletionPathId: string | null
+  primaryActionSteps: ActionStep[]
+  nextUpPriorities: NextUpItem[]
+  priorityProgress: PriorityProgress
   legacySource?: LegacySourceMeta
 }
 
