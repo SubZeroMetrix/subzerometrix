@@ -38,6 +38,9 @@ export interface DirectoryFilter {
 }
 
 // A presentation-safe directory row. Carries no private user data and no ranking score.
+// Wave 7 (CP6) extends this with additional PRESENTATION-SAFE card fields. It deliberately
+// excludes internal verification notes/owner, raw compensation terms, eligibility internals,
+// and support contacts — those stay internal to EcosystemResource.
 export interface DirectoryEntry {
   resourceId: string
   title: string
@@ -50,6 +53,14 @@ export interface DirectoryEntry {
   disclosureText: string | null
   officialAlternativeUrl: string | null
   useAnotherProviderOption: true
+  // ── Wave 7 CP6: presentation-safe card fields ──
+  businessNeed: string
+  tradeApplicability: string[]         // [] = all trades
+  lifecycleApplicability: LifecycleStage[] // [] = all stages
+  regionApplicability: string[]        // [] = nationwide / all regions
+  relationshipStatus: ResourceRelationshipStatus
+  isOfficialOrFree: boolean
+  limitations: string | null
 }
 
 function toDirectoryEntry(r: EcosystemResource): DirectoryEntry {
@@ -66,6 +77,14 @@ function toDirectoryEntry(r: EcosystemResource): DirectoryEntry {
     disclosureText: disclose ? r.disclosureText : null,
     officialAlternativeUrl: r.operations.officialAlternativeUrl,
     useAnotherProviderOption: true,
+    businessNeed: r.operations.businessNeed,
+    tradeApplicability: r.tradeApplicability,
+    lifecycleApplicability: r.operations.lifecycleStagesServed,
+    regionApplicability: r.operations.regionsServed,
+    relationshipStatus: r.relationshipStatus,
+    isOfficialOrFree: r.operations.officialAlternativeUrl != null
+      || r.ecosystemCategory === 'government_free_resources',
+    limitations: r.operations.limitations,
   }
 }
 
