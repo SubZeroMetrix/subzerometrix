@@ -24,6 +24,18 @@ export {
   type PriorityView, type PriorityViewState, type PathView, type StepView,
   type NextUpView, type QuestionView, type PriorityHeadView,
 } from './priorityView'
+export {
+  PROGRESS_SCHEMA_VERSION, createProgressRecord, recompute, selectPath, toggleStep,
+  setEvidence, resetIfPriorityChanged, canCompleteStep,
+  type PersistedPriorityProgress, type EvidenceState, type PriorityChangeResult,
+} from './progressRecord'
+export {
+  PRIORITY_PROGRESS_KEY, getActiveProgress, persistProgress, getProgressArchive, loadProgressBlob,
+} from './progressStore'
+export {
+  PRIORITY_PROGRESS_CLOUD_WIRED, getPriorityProgressSyncReadiness, reconcilePriorityProgress,
+  type PriorityProgressSyncReadiness, type ProgressReconcileResult, type ProgressReconcileAction,
+} from './progressSync'
 export { deriveProfileQuality, freshnessCategory } from './quality'
 export { evaluateMetrixProfile } from './snapshot'
 export { getCanonicalProfile, loadMetrixProfile, persistMetrixProfile, CANONICAL_PROFILE_KEY } from './persist'
