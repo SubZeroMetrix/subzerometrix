@@ -2,8 +2,10 @@
 
 ## Status
 
-- Wave 6 complete on branch `feature/metrix-wave6-preservation-migration-architecture`.
-- Branch pushed. **PR NOT opened** (await merge instruction).
+- Wave 6 complete, merged, and synchronized to `main`.
+- **PR #12** — merge commit `a4c825a`. Feature commit `24ec473`.
+- Feature branch `feature/metrix-wave6-preservation-migration-architecture` deleted remotely (pruned locally).
+- `main` == `origin/main` at `a4c825a`. Working tree clean before this documentation edit.
 - Additive, deterministic, non-destructive. No existing engine, route, storage, schema,
   analytics, consent, export, or Stripe surface was replaced or removed.
 
@@ -59,7 +61,8 @@ reassessment/recommendation-ranking engine was created.
 
 ## Inventory coverage
 
-- **Routes:** 39 inventoried (+1 new gated redirect), all `preserve: true`, dynamic params mapped.
+- **Routes:** 39 inventoried in `ROUTE_INVENTORY` (all `preserve: true`, dynamic params mapped). The
+  new gated `/resources/go/[resourceId]` redirect is a separate app route, not counted among the 39.
 - **Canonical IDs:** 17 kinds, unique + stable, originals preserved verbatim.
 - **Storage:** 23 `szm_*` local keys; **12** `cloud_sync_*` tables (migrations 002 + 004), all
   `owner_only` RLS, all export/delete-covered.
@@ -122,8 +125,11 @@ fallback + rollback + validation method. Full preview/rollback procedure in
 
 ## Known limitations / future work (Wave 7)
 
-- The published ecosystem catalog is empty; curating the verified launch set (~50–100 records,
-  with evidence) is a Wave 7 data task. **Do not auto-mark `verified`.**
+- The published ecosystem catalog is empty; **no provider was publicly activated in Wave 6.**
+- The curated **108 launch candidates remain deferred to Wave 7** for deduplicated,
+  verification-gated integration (with evidence). **Do not auto-mark `verified`.** They are not
+  integrated in Wave 6.
+- The **2,063-item catalog remains an unpublished internal backlog** (not imported in Wave 6).
 - The public Directory UI and the wiring of `RecommendationCardView` into live surfaces are Wave 7.
 - The tracked-redirect outbound event should be wired through the existing `/api/track-click`
   sink when records are verified (Wave 7).
