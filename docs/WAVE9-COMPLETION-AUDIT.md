@@ -18,16 +18,16 @@ runtime defaults — without absorbing Wave 10A/10B manual work.
 
 - Readiness branch merge into main (Phase 0): `679a93a` (PR #16).
 - Wave 9 branch: `feature/metrix-wave9-launch-system-completion` from `679a93a`.
-- Ending commit: _(filled at CP6)_.
+- Ending commit: the CP6 commit (preservation gate + this audit + risk register).
 
 ## 3. Internal checkpoint commits
 
-- CP1 — dependency map & acceptance criteria _(this commit)_
-- CP2 — canonical trade/profile integrity (single source + regression) _(filled at CP6)_
-- CP3 — execution / progress / foundation + cloud-sync truthfulness _(…)_
-- CP4 — growth / discovery / resource completion _(…)_
-- CP5 — accessibility / performance / quality _(…)_
-- CP6 — preservation, red-team, Wave 9 completion audit + risk register _(…)_
+- CP1 `a0ec35c` — dependency map & acceptance criteria
+- CP2 `f85f487` — single canonical trade/state source reader + profile-integrity regression
+- CP3 `0f3d13e` — foundation completion + cloud-sync truthfulness lock
+- CP4 `1477ee0` — resource accounting, neutrality, SEO/structured-data integrity lock
+- CP5 `3004483` — accessibility, contrast token, build-health lock
+- CP6 _(this commit)_ — consolidated launch-readiness gate + completion audit + risk register
 
 ## 4. Dependency map — current status of the 12 mandated systems
 
@@ -63,4 +63,96 @@ runtime defaults — without absorbing Wave 10A/10B manual work.
 10. No preservation breach (canonical IDs, routes, storage keys, migrations, RLS, resource accounting,
     consent, analytics, no human coaching, no duplicate engine).
 
-_Sections 6–17 are completed at CP6 after implementation and final validation._
+## 4b. Files changed by checkpoint
+
+- CP1: `docs/WAVE9-COMPLETION-AUDIT.md` (new)
+- CP2: `src/lib/metrix/profileSources.ts` (new), `src/lib/metrix/licensingIntelligence.ts`,
+  `src/lib/metrix/tradeIntelligence.ts`, `src/lib/metrix/__tests__/wave9-canonical-trade-integrity.test.ts` (new)
+- CP3: `src/lib/metrix/__tests__/wave9-execution-cloudsync.test.ts` (new)
+- CP4: `src/lib/metrix/__tests__/wave9-growth-discovery-resource.test.ts` (new)
+- CP5: `src/lib/metrix/__tests__/wave9-quality-accessibility.test.ts` (new)
+- CP6: `src/lib/metrix/__tests__/wave9-launch-readiness-gate.test.ts` (new),
+  `docs/WAVE9-COMPLETION-AUDIT.md`, `docs/LAUNCH-RISK-REGISTER.md`
+
+## 6. Tests & validation
+
+Full suite green at CP6: **`npm test` 462/462 pass**, `tsc --noEmit` clean, `next lint` clean,
+`next build` compiled, `git diff --check` clean, working tree clean. Targeted suites run after each
+checkpoint. New Wave 9 suites: canonical-trade-integrity, execution-cloudsync, growth-discovery-
+resource, quality-accessibility, launch-readiness-gate.
+
+## 7. Preservation results
+
+No preservation breach. Canonical IDs, routes, storage keys, migrations 001–005, owner-scoped RLS,
+resource accounting, consent model, analytics allow-list, and the single Metrix engine are intact.
+The only source change (CP2) extracted a duplicated reader into one shared module — behavior-
+preserving (all prior licensing/trade tests still pass).
+
+## 8. Runtime-default results
+
+Approved homepage default; legacy rollback-only (`NEXT_PUBLIC_USE_LEGACY_HOMEPAGE`); missing env
+selects no outdated experience; held systems fail closed; no umbrella flag activates unrelated
+systems. Locked by `wave8-runtime-defaults` + `wave9-launch-readiness-gate`.
+
+## 9. Trade / state coverage
+
+All **10** trades first-class (`hvac, electrical, plumbing, handyman, landscaping, painting,
+roofing, solar, construction, cleaning`) — each resolves + has a registry entry. All **6** state
+routes (`FL, CO, TX, AZ, OH, NC`) default-live with provenance/verify-before-action framing.
+
+## 10. Cloud-sync implementation status
+
+Contracts + migrations present; sync state truthful (`isSupabaseConfigured()` false without env; no
+fabricated "synced"); export/delete governance via entity contracts. **Hosted cross-session/cross-
+device success is NOT claimed — reserved for Wave 10A validation.**
+
+## 11. Resource accounting
+
+88 published / 20 held = 108 tested. Published catalog is verification-eligible only (held isolated);
+ordering commercial-neutral; outbound analytics consent-gated; regulated-category notices retained.
+
+## 12. Commercial activation status
+
+All commercial systems remain **default-OFF / fail-closed**: approved pricing presentation,
+approved checkout, live Stripe provisioning, and Founding offer/counter are disabled. Legacy
+`/unlock` tiers unchanged; Stripe returns 503 without config; founding availability `unknown`; no
+fake scarcity. Entitlements canonical and server-authoritative (client flags cannot grant access).
+
+## 13. Legal / compliance holds
+
+- Payment/subscription/refund/cancellation/scarcity wording — **QUALIFIED LEGAL REVIEW REQUIRED**.
+- Founding scarcity + "lifetime" representation — **QUALIFIED LEGAL REVIEW REQUIRED**; counter
+  **SAFE TO KEEP DISABLED** until a verified completed-purchase source exists.
+- Commercial/regulated resource listings (R2) & licensing-authority listings (R3) — **HELD**.
+- Non-consented aggregate click measurement (R1) — **BLOCKED**.
+- All other Wave 9 work is **TECHNICAL IMPLEMENTATION READY** and does not implicate the above.
+
+## 14. Saved final-audit issues (non-blocking; for Wave 10A/10B)
+
+- Optional sections populate real canonical answers / honest incomplete states — verified clean and
+  locked (CP2/CP3); kept on the watchlist for qualitative review.
+- General visual/usability refinements found during review — recorded for the final visual audit.
+- Recommended cleanup (non-blocking): remove dormant DEPRECATED-REMOVE feature flags
+  (`expanded_resource_catalog`, `verified_launch_resources`, `new_content_surfaces`,
+  `general_business_starter`, `spanish_discovery`, `partner_vendor_pages`, `referral_sharing`,
+  `customer_proof_feedback`) — they gate nothing and default OFF.
+
+## 15. Wave 10A blockers (manual / hosted)
+
+Hosted cross-device cloud-sync validation; manual assistive-technology + real-device a11y review;
+manual source-to-claim review for state licensing; manual review of the 20 held resources; live
+Stripe + approved-checkout activation (apply migration 005, wire `account_user_id`); verified
+Founding completed-purchase source; real-person usability + contractor qualitative review.
+
+## 16. Wave 10B blockers (final)
+
+Final qualified legal go/no-go on payment/subscription/refund/scarcity wording and regulated
+listings; final production launch decision.
+
+## 17. Go/no-go recommendation for entering Wave 10A
+
+**GO.** Wave 9 completes and regression-locks the automated, implementation-level launch-critical
+systems. No data-integrity defect remains (the flagged Electrical-default concern was verified
+absent and locked). All held commercial/compliance systems remain disabled and fail-closed;
+preservation and runtime defaults are intact; validation is fully green. Remaining work is
+explicitly manual/hosted/legal and belongs to Wave 10A/10B.

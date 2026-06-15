@@ -28,3 +28,17 @@ architecturally-gated behavior remains blocked/disabled pending the resolutions 
 **Build C outcome:** pricing presented truthfully behind default-OFF flags with no live-payment
 change; a11y/perf/responsive automated quality completed; the automated Wave 7 audit passed. All
 hosted, manual, and qualified-review items above remain launch blockers (Wave 10A).
+
+## Wave 8 + Wave 9 addendum
+
+| # | Item | Area | Status | Fail-safe in effect | Resolution needed before enabling |
+| --- | --- | --- | --- | --- | --- |
+| R8 | Live checkout vs approved pricing divergence | Payments / consumer protection | **HELD** | `approved_pricing_presentation` + `live_approved_checkout` default OFF; `/pricing` 404s; legacy `/unlock` tiers unchanged; Stripe 503 without config | Wave 10A: apply migration 005, wire `account_user_id`, activate approved checkout; qualified legal review of payment wording |
+| R9 | Founding Lifetime live availability counter | Scarcity / consumer protection | **INACTIVE (truthful unknown)** | Counter derives only from completed verified purchases; no reliable source → `unknown` | Wave 10A: wire a verified completed-purchase source before any live count |
+| R10 | Hosted cross-device cloud-sync success | Data integrity / truthfulness | **NOT CLAIMED** | `isSupabaseConfigured()` truthful; no fabricated "synced" state | Wave 10A: hosted cross-session/cross-device validation |
+| R11 | Canonical trade source consistency | Recommendation integrity | **RESOLVED (Wave 9 CP2)** | Single shared `profileSources` reader; no silent Electrical default; regression-locked | None — locked by tests |
+
+**Wave 9 outcome:** canonical Metrix data/profile integrity, ten trades, six states, foundation +
+cloud-sync truthfulness, resource accounting (88/20), growth/discovery/SEO, commercial preservation,
+accessibility, and runtime defaults are completed and regression-locked. No data-integrity defect
+remains. All hosted, manual, and qualified-legal items above remain Wave 10A/10B blockers.
