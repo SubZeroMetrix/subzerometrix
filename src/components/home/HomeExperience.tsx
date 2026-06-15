@@ -37,7 +37,11 @@ export default function HomeExperience() {
           <div className="flex justify-center mb-6">
             <IceCrystal size={60} accent="#C8D4E0" title="SubZeroMetrix" />
           </div>
-          <Eyebrow className="text-center">{POSITIONING.tagline}</Eyebrow>
+          {/* Hero tagline — strengthened hierarchy (homepage hero only; brand styling preserved).
+              Larger, heavier, slightly wider tracking; wraps naturally on small screens. */}
+          <p className="font-mono uppercase text-brand-accent text-center font-semibold text-base sm:text-lg tracking-[0.3em]">
+            {POSITIONING.tagline}
+          </p>
           <PageHeading className="mt-4 text-center">
             FIND THE NEXT BUSINESS MOVE THAT MATTERS MOST.
           </PageHeading>
@@ -50,10 +54,12 @@ export default function HomeExperience() {
             </div>
           </div>
 
-          <Lead className="text-center">
+          {/* Descriptive paragraph — reduced visual weight (smaller, lighter, tighter, narrower)
+              so it reads as secondary to the headline. Wording unchanged; not bold. */}
+          <p className="text-center text-brand-silver text-[13px] font-light leading-snug max-w-md mx-auto">
             A MetrixScore™ reading and a personalized roadmap for contractors, tradespeople, and
             service businesses — so you always know the one move to make next.
-          </Lead>
+          </p>
 
           <div className="mt-8">
             <PrimaryCta />
