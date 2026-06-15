@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import Stripe from 'stripe'
+import { summarizeCheckoutSession } from '@/lib/entitlements/session'
 
 function getStripe(): Stripe {
   if (!process.env.STRIPE_SECRET_KEY) {
@@ -50,10 +51,17 @@ export async function GET(req: NextRequest) {
       return NextResponse.json({ paid: false, error: 'Payment not completed' }, { status: 402 })
     }
 
+    // Wave 8 CP4: privacy-safe entitlement summary (plan/product/capabilities only — no PII).
+    // Additive fields; legacy consumers continue to read paid/assessmentId/band unchanged.
+    const summary = summarizeCheckoutSession(session)
+
     return NextResponse.json({
       paid: true,
       assessmentId: session.metadata?.assessment_id ?? null,
       band:         session.metadata?.band ?? null,
+      planId:       summary.planId,
+      productKey:   summary.productKey,
+      capabilities: summary.capabilities,
     })
   } catch (err: unknown) {
     // Log the message server-side only (no secrets/tokens/payment details/full objects);

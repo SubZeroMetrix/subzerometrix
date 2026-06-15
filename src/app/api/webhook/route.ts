@@ -1,6 +1,14 @@
 import { NextRequest, NextResponse } from 'next/server'
 import Stripe from 'stripe'
 import { createClient } from '@supabase/supabase-js'
+import { isFeatureEnabled } from '@/lib/featureFlags'
+import {
+  classifyWebhookEvent,
+  deriveEntitlementsFromCheckout,
+  entitlementToRow,
+  webhookEventIdempotencyKey,
+} from '@/lib/entitlements/provisioning'
+import type { PlanId } from '@/lib/pricing/pricingPlans'
 
 function getStripe(): Stripe {
   if (!process.env.STRIPE_SECRET_KEY) {
@@ -85,6 +93,92 @@ export async function POST(req: NextRequest) {
       } catch (dbErr) {
         console.error('Supabase error (non-fatal):', dbErr)
       }
+    }
+  }
+
+  // ── Wave 8 CP3: webhook idempotency + entitlement integrity (additive, non-fatal) ──────
+  // Runs ONLY when the approved-checkout world is enabled AND Supabase is configured. With the flag
+  // OFF or Supabase unset (production default), this block no-ops and the legacy handling above is
+  // unchanged. Every DB call is wrapped so a not-yet-applied migration 005 can never fail the
+  // webhook. Entitlement ids are deterministic (derived from the session id), so even without the
+  // ledger a duplicate delivery cannot double-grant (upsert on conflict).
+  if (
+    isFeatureEnabled('live_approved_checkout') &&
+    process.env.NEXT_PUBLIC_SUPABASE_URL &&
+    process.env.SUPABASE_SERVICE_ROLE_KEY
+  ) {
+    try {
+      const supabase = createClient(
+        process.env.NEXT_PUBLIC_SUPABASE_URL,
+        process.env.SUPABASE_SERVICE_ROLE_KEY,
+      )
+      const eventKey = webhookEventIdempotencyKey(event.id)
+
+      let alreadyProcessed = false
+      if (eventKey) {
+        const { data: seen } = await supabase
+          .from('processed_webhook_events')
+          .select('event_id')
+          .eq('event_id', eventKey)
+          .maybeSingle()
+        alreadyProcessed = !!seen
+      }
+
+      if (!alreadyProcessed) {
+        const intent = classifyWebhookEvent(event.type)
+        const nowIso = new Date().toISOString()
+
+        if (intent === 'provision' && event.type === 'checkout.session.completed') {
+          const session = event.data.object as Stripe.Checkout.Session
+          const planId = session.metadata?.plan_id as PlanId | undefined
+          const ownerId = session.metadata?.account_user_id ?? null
+          // Provision only for the approved model AND when an account identity is present. Without
+          // an owner id we cannot attribute an entitlement, so we safely skip (no orphan rows).
+          if (planId && ownerId) {
+            const records = deriveEntitlementsFromCheckout({
+              planId,
+              ownerId,
+              activatedAt: nowIso,
+              idBase: session.id,
+              periodEnd: null,
+              externalProvider: 'stripe',
+              externalCustomerRef: typeof session.customer === 'string' ? session.customer : null,
+              externalTransactionRef:
+                typeof session.payment_intent === 'string' ? session.payment_intent : null,
+              externalSubscriptionRef:
+                typeof session.subscription === 'string' ? session.subscription : null,
+            })
+            for (const rec of records) {
+              await supabase
+                .from('commercial_entitlements')
+                .upsert(entitlementToRow(rec), { onConflict: 'id', ignoreDuplicates: true })
+            }
+          }
+        } else if (intent === 'expire') {
+          const sub = event.data.object as Stripe.Subscription
+          await supabase
+            .from('commercial_entitlements')
+            .update({ status: 'expired', updated_at: nowIso })
+            .eq('external_subscription_ref', sub.id)
+        } else if (intent === 'refund' || intent === 'dispute') {
+          const charge = event.data.object as Stripe.Charge
+          const pi = typeof charge.payment_intent === 'string' ? charge.payment_intent : null
+          if (pi) {
+            await supabase
+              .from('commercial_entitlements')
+              .update({ status: intent === 'refund' ? 'refunded' : 'disputed', updated_at: nowIso })
+              .eq('external_transaction_ref', pi)
+          }
+        }
+
+        if (eventKey) {
+          await supabase
+            .from('processed_webhook_events')
+            .insert({ event_id: eventKey, event_type: event.type })
+        }
+      }
+    } catch (entErr) {
+      console.error('Entitlement integrity (non-fatal):', entErr)
     }
   }
 
