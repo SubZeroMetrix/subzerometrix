@@ -22,6 +22,7 @@ import type { TradeIntelligence } from './tradeIntelligenceTypes'
 import { deriveEvidenceConfidence } from './profileCompleteness'
 import { resolveTrade, type CanonicalTradeId } from './trades'
 import { resolveState, STATE_REGISTRY } from './states'
+import { readTradeSource, readStateSource } from './profileSources'
 import { getPathway } from './licensingPathways'
 import { getPathwaySources } from './licensingSources'
 import { evaluateFreshness, isSourceStale, rollupFreshness } from './sourceFreshness'
@@ -52,28 +53,8 @@ export interface LicensingIntelligenceOptions {
 
 const STANDING_DISCLAIMER = 'This is general, non-legal information to help you verify with the right authority — not legal advice and not a guarantee that requirements are complete or current.'
 
-// Best available trade source off the snapshot (mirrors the Wave 3 reader; defensive about shape).
-function readTradeSource(s: MetrixProfileSnapshot): string | null {
-  const ctx = s?.businessContext?.trade
-  if (typeof ctx === 'string' && ctx.trim() !== '') return ctx
-  const norm = s?.normalizedAnswers?.trade
-  if (typeof norm === 'string' && norm.trim() !== '') return norm
-  const raw = (s?.normalizedAnswers?.rawAnswers ?? {}) as { business_type?: unknown }
-  if (typeof raw.business_type === 'string' && raw.business_type.trim() !== '') return raw.business_type
-  return null
-}
-
-// Best available state source off the snapshot (region, then location.state).
-function readStateSource(s: MetrixProfileSnapshot): string | null {
-  const ctx = s?.businessContext?.region
-  if (typeof ctx === 'string' && ctx.trim() !== '') return ctx
-  const norm = s?.normalizedAnswers?.region
-  if (typeof norm === 'string' && norm.trim() !== '') return norm
-  const raw = (s?.normalizedAnswers?.rawAnswers ?? {}) as { location?: { state?: unknown } }
-  const st = raw.location?.state
-  if (typeof st === 'string' && st.trim() !== '') return st
-  return null
-}
+// Trade/state readers now come from the single canonical source (Wave 9 CP2) so licensing and
+// trade intelligence can never diverge.
 
 const req = (id: string, label: string, detail: string, confirmed: boolean): LicensingRequirementItem =>
   ({ id, label, detail, confirmed })
