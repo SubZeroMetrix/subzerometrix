@@ -14,7 +14,7 @@ export const BRAND = {
   navy: '#0A1628',
   blue: '#0D2B5C',
   mid: '#1A4080',
-  silver: '#A8B8CC',
+  silver: '#C2CEDE',
   light: '#D4E0EE',
   white: '#F4F7FB',
   accent: '#4A90D9',
