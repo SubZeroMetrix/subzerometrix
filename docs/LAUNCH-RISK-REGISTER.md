@@ -42,3 +42,20 @@ hosted, manual, and qualified-review items above remain launch blockers (Wave 10
 cloud-sync truthfulness, resource accounting (88/20), growth/discovery/SEO, commercial preservation,
 accessibility, and runtime defaults are completed and regression-locked. No data-integrity defect
 remains. All hosted, manual, and qualified-legal items above remain Wave 10A/10B blockers.
+
+## Business Brand Foundation planning addendum (audit only — not built)
+
+> Surfaced by `docs/BUSINESS-BRAND-FOUNDATION-SYSTEM-AUDIT.md`. These remain HELD/disabled until
+> reviewed; nothing is implemented or activated. Educational, verify-before-act framing applies.
+
+| # | Item | Area | Status | Resolution needed before enabling |
+| --- | --- | --- | --- | --- |
+| B1 | Business-name legal clearance / trademark availability | Legal | **NEEDS-AUTH-SOURCE + QUALIFIED LEGAL** | Route to official state/USPTO search; never assert "clear/available" |
+| B2 | Review incentives / gating / fake or employee reviews | Platform/consumer | **SAFE TO KEEP DISABLED + PLATFORM-TERMS** | Google/Nextdoor/Angi terms + FTC review rules |
+| B3 | SMS/email marketing, call recording | Privacy/consumer | **QUALIFIED LEGAL** | TCPA/consent/state recording law before any automation |
+| B4 | Customer/employee photo + job-detail usage | Privacy | **QUALIFIED LEGAL** | Explicit consent + privacy controls |
+| B5 | "Best/#1/guaranteed" superiority claims | Advertising | **SAFE TO KEEP DISABLED** | No unsupported claims; disclaimers do not cure |
+| B6 | Paid-lead / financing / platform profitability claims | Platform/consumer | **PLATFORM-TERMS + QUALIFIED LEGAL** | User-input calculators only; no asserted outcomes |
+
+**Brand Foundation audit outcome:** ~25% present / ~20% user-facing / ~15% canonical-connected;
+recommend a shared-framework, non-competing-score domain build, default-OFF, with B1–B6 held.
