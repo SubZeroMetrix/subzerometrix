@@ -21,6 +21,7 @@ import type { EvidenceConfidence, ProfileIntelligence } from './intelligenceType
 import { deriveEvidenceConfidence } from './profileCompleteness'
 import { filterQuestionCandidates } from './progressiveQuestions'
 import { resolveTrade, type ResolvedTrade } from './trades'
+import { readTradeSource } from './profileSources'
 import { TRADE_MODIFIERS, type TradeModifier, type TradeQuestionTemplate } from './tradeModifiers'
 import {
   TRADE_INTELLIGENCE_VERSION,
@@ -34,17 +35,6 @@ export interface TradeIntelligenceOptions {
   dismissed?: string[]
   /** Wave 2 intelligence (reused for evidence confidence where provided — single source). */
   intelligence?: ProfileIntelligence
-}
-
-// Pick the best available trade source off the snapshot (defensive about shape).
-function readTradeSource(s: MetrixProfileSnapshot): string | null {
-  const ctx = s?.businessContext?.trade
-  if (typeof ctx === 'string' && ctx.trim() !== '') return ctx
-  const norm = s?.normalizedAnswers?.trade
-  if (typeof norm === 'string' && norm.trim() !== '') return norm
-  const raw = (s?.normalizedAnswers?.rawAnswers ?? {}) as { business_type?: unknown }
-  if (typeof raw.business_type === 'string' && raw.business_type.trim() !== '') return raw.business_type
-  return null
 }
 
 function toRef(r: ResolvedTrade): CanonicalTradeRef {
