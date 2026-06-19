@@ -1,9 +1,10 @@
 # Major Build 2 Report
 
 ## Branch and Commit
-- Branch: major-build-1
+- Branch: major-build-1 at 3063b22
 - Previous commit: a3b8cd6 (Major Build 1)
 - Rollback tag: pre-major-build-1 at 6cf8b4a
+- 142 source files, 70 pages built
 
 ## Supabase
 - Project: SubZeroMetrix's Project (vzbcunnrkexnmspeiwiu)
@@ -73,12 +74,29 @@
 - Project linked: sub-zero-metrix/subzerometrix
 - Framework: Next.js
 - vercel.json with caching headers
-- Preview deployment available after push
+- Preview deployment: https://subzerometrix-5p48q0dzr-sub-zero-metrix.vercel.app (status: Ready)
+- Preview protected by Vercel deployment protection (401 for unauthenticated access — expected)
+- Production deployment: NOT promoted yet
 
 ## Domain
 - Provisional: subzerometric.com
-- DNS change requires owner verification of exact domain spelling
+- NOT currently connected to Vercel project
+- Only domain on the Vercel org is themetrixscore.com (belongs to metrix-score — do NOT touch)
+- DNS change requires: (1) owner to add subzerometric.com domain in Vercel dashboard, (2) configure DNS at registrar
 - Do not change until preview validation passes
+
+## Validation Results
+| Check | Result |
+|-------|--------|
+| npm install | Pass |
+| TypeScript (tsc --noEmit) | Pass (0 errors) |
+| ESLint | Pass (0 warnings) |
+| Production build | Pass (70 pages) |
+| Secret scan | Pass (no secrets in source) |
+| .env.local gitignored | Pass |
+| Supabase migrations applied | Pass (2 migrations) |
+| Vercel preview deploy | Pass (status: Ready) |
+| Git working tree | Clean |
 
 ## Legal/Compliance
 - FTC disclosures: complete
