@@ -1,11 +1,16 @@
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import './globals.css'
+import { AnnouncementBar } from '@/components/AnnouncementBar'
 import { Header } from '@/components/Header'
 import { Footer } from '@/components/Footer'
 import { ConsentBanner } from '@/components/ConsentBanner'
 
-const inter = Inter({ subsets: ['latin'], display: 'swap' })
+const inter = Inter({
+  subsets: ['latin'],
+  display: 'swap',
+  weight: ['400', '500', '600', '700', '800'],
+})
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://subzerometric.com'
 
@@ -27,7 +32,8 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" className={inter.className}>
-      <body className="flex flex-col min-h-screen">
+      <body className="antialiased">
+        <AnnouncementBar />
         <Header />
         <main className="flex-1">{children}</main>
         <Footer />

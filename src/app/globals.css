@@ -8,56 +8,160 @@
   }
 
   body {
-    @apply bg-brand-navy text-gray-100 antialiased;
+    @apply bg-surface-light text-gray-900 antialiased;
   }
 
   ::selection {
-    @apply bg-brand-electric/30 text-white;
+    @apply bg-brand-electric/20 text-brand-navy;
   }
 
   :focus-visible {
-    @apply outline-2 outline-offset-2 outline-brand-cyan;
+    @apply outline-2 outline-offset-2 outline-brand-electric;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
   }
 }
 
 @layer components {
+  /* ── Buttons ─────────────────────────────────────────── */
   .btn-primary {
-    @apply inline-flex items-center justify-center px-6 py-3 rounded-lg font-semibold text-white bg-brand-electric hover:bg-blue-600 transition-colors focus-visible:outline-brand-cyan;
+    @apply inline-flex items-center justify-center px-8 py-3.5 rounded-full font-semibold text-white bg-brand-electric hover:bg-blue-700 shadow-lg hover:shadow-xl transition-all duration-200 focus-visible:outline-brand-electric;
   }
 
   .btn-secondary {
-    @apply inline-flex items-center justify-center px-6 py-3 rounded-lg font-semibold text-brand-cyan border border-brand-cyan/40 hover:bg-brand-cyan/10 transition-colors;
+    @apply inline-flex items-center justify-center px-8 py-3.5 rounded-full font-semibold text-brand-navy border border-gray-200 hover:border-brand-electric hover:text-brand-electric transition-all duration-200;
   }
 
+  .btn-ghost {
+    @apply text-sm text-gray-600 hover:text-brand-electric transition-colors;
+  }
+
+  /* ── Panels ──────────────────────────────────────────── */
+  .card-panel {
+    @apply bg-white rounded-2xl border border-surface-border shadow-panel p-6;
+  }
+
+  .card-panel-dark {
+    @apply bg-brand-navy-light rounded-2xl border border-white/10 p-6;
+  }
+
+  /* legacy alias — admin pages still use .card */
   .card {
-    @apply bg-brand-navy-light border border-gray-800 rounded-xl p-6;
+    @apply bg-white rounded-2xl border border-surface-border shadow-panel p-6;
   }
 
+  /* ── Layout ──────────────────────────────────────────── */
   .section-container {
-    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+    @apply max-w-7xl mx-auto px-5 sm:px-8 lg:px-12;
   }
 
+  .section-wide {
+    @apply max-w-screen-2xl mx-auto px-5 sm:px-8 lg:px-12;
+  }
+
+  /* ── Typography ──────────────────────────────────────── */
+  .text-display {
+    @apply text-5xl sm:text-6xl lg:text-7xl font-bold tracking-tight;
+    line-height: 1.08;
+  }
+
+  .text-headline {
+    @apply text-3xl sm:text-4xl font-bold tracking-tight;
+  }
+
+  .text-subhead {
+    @apply text-xl sm:text-2xl font-semibold tracking-tight;
+  }
+
+  .text-body-lg {
+    @apply text-lg leading-relaxed text-gray-600;
+  }
+
+  .text-label {
+    @apply text-xs font-semibold uppercase tracking-wider text-gray-400;
+  }
+
+  /* ── Prose (light theme) ─────────────────────────────── */
   .prose-content {
-    @apply text-gray-300 leading-relaxed;
+    @apply text-gray-700 leading-relaxed;
   }
 
   .prose-content h2 {
-    @apply text-xl font-bold text-white mt-8 mb-4;
+    @apply text-2xl font-bold text-gray-900 mt-10 mb-5;
   }
 
   .prose-content h3 {
-    @apply text-lg font-semibold text-gray-100 mt-6 mb-3;
+    @apply text-xl font-semibold text-gray-800 mt-8 mb-3;
   }
 
   .prose-content p {
-    @apply mb-4;
+    @apply mb-5 text-gray-600;
   }
 
   .prose-content ul {
-    @apply list-disc pl-6 mb-4 space-y-1;
+    @apply list-disc pl-6 mb-5 space-y-2 text-gray-600;
   }
 
   .prose-content a {
-    @apply text-brand-cyan hover:text-brand-cyan-light underline;
+    @apply text-brand-electric hover:text-blue-700 underline decoration-brand-electric/30 hover:decoration-brand-electric;
+  }
+
+  /* ── Dark sections ───────────────────────────────────── */
+  .dark-section {
+    @apply bg-brand-navy text-white;
+  }
+
+  .dark-section .card-panel {
+    @apply bg-brand-navy-light border-white/10;
+  }
+
+  .dark-section .card {
+    @apply bg-brand-navy-light border-white/10 text-white;
+  }
+
+  .dark-section .text-body-lg {
+    @apply text-gray-300;
+  }
+
+  .dark-section .prose-content {
+    @apply text-gray-300;
+  }
+
+  .dark-section .prose-content h2 {
+    @apply text-white;
+  }
+
+  .dark-section .prose-content h3 {
+    @apply text-gray-100;
+  }
+
+  .dark-section .prose-content p {
+    @apply text-gray-300;
+  }
+
+  .dark-section .prose-content ul {
+    @apply text-gray-300;
+  }
+
+  .dark-section .prose-content a {
+    @apply text-brand-cyan hover:text-brand-cyan-light;
+  }
+
+  /* ── Announcement bar ────────────────────────────────── */
+  .announcement-bar {
+    @apply bg-brand-navy text-gray-300 text-sm py-2.5 text-center;
+  }
+
+  /* ── Mega menu ───────────────────────────────────────── */
+  .mega-menu {
+    @apply bg-white shadow-panel-xl rounded-2xl border border-surface-border;
   }
 }

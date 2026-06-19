@@ -11,34 +11,39 @@ export const metadata = buildMetadata({
 
 export default function ComparePage() {
   return (
-    <div className="py-16">
+    <div className="py-20">
       <div className="section-container">
-        <h1 className="text-3xl font-bold text-white mb-4">Compare Software</h1>
-        <p className="text-gray-400 mb-10 max-w-2xl">
-          Side-by-side comparisons to help you pick the right tool for your
-          situation. Each comparison covers use-case fit, features, pricing,
-          and limitations.
-        </p>
+        <div className="max-w-2xl mb-12">
+          <p className="text-label text-brand-electric mb-3">Comparisons</p>
+          <h1 className="text-headline text-gray-900 mb-4">Side-by-Side Software Comparisons</h1>
+          <p className="text-body-lg">
+            Pick the right tool for your situation. Each comparison covers use-case fit, features, pricing,
+            and honest limitations.
+          </p>
+        </div>
 
         <div className="grid sm:grid-cols-2 gap-6">
           {comparisons.map((comp) => (
             <Link
               key={comp.slug}
               href={`/compare/${comp.slug}`}
-              className="card hover:border-brand-electric/40 transition-colors group"
+              className="card-panel group hover:shadow-panel-lg hover:border-brand-electric/20 transition-all duration-200"
             >
-              <h2 className="text-lg font-bold text-white group-hover:text-brand-cyan transition-colors">
+              <h2 className="text-lg font-bold text-gray-900 group-hover:text-brand-electric transition-colors mb-4">
                 {comp.title}
               </h2>
-              <div className="grid grid-cols-2 gap-4 mt-4">
+              <div className="grid grid-cols-2 gap-4">
                 <div>
-                  <p className="text-xs text-gray-500 uppercase">Best for A</p>
-                  <p className="text-sm text-gray-300 mt-1">{comp.bestForA}</p>
+                  <p className="text-label mb-1">Choose A if</p>
+                  <p className="text-sm text-gray-600">{comp.bestForA}</p>
                 </div>
                 <div>
-                  <p className="text-xs text-gray-500 uppercase">Best for B</p>
-                  <p className="text-sm text-gray-300 mt-1">{comp.bestForB}</p>
+                  <p className="text-label mb-1">Choose B if</p>
+                  <p className="text-sm text-gray-600">{comp.bestForB}</p>
                 </div>
+              </div>
+              <div className="mt-4 pt-3 border-t border-surface-border">
+                <span className="text-sm text-brand-electric font-medium">View comparison &rarr;</span>
               </div>
             </Link>
           ))}

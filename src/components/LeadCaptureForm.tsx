@@ -51,24 +51,27 @@ export function LeadCaptureForm({ source = 'homepage' }: { source?: string }) {
 
   if (status === 'success') {
     return (
-      <div className="card text-center py-8">
-        <p className="text-lg font-semibold text-brand-cyan">You&apos;re in.</p>
-        <p className="text-gray-400 mt-2">
-          Check your inbox for the Online Business Software Buying Guide.
+      <div className="card-panel text-center py-10">
+        <div className="w-12 h-12 rounded-full bg-emerald-50 text-emerald-600 flex items-center justify-center mx-auto mb-4 text-xl font-bold">&#10003;</div>
+        <p className="text-xl font-bold text-gray-900 mb-2">You&apos;re on the list.</p>
+        <p className="text-gray-500">
+          Your submission has been saved. Email delivery is not yet active &mdash; we&apos;ll
+          send the guide as soon as our email system is connected.
         </p>
       </div>
     )
   }
 
   return (
-    <form onSubmit={handleSubmit} className="card space-y-4">
-      <h3 className="text-lg font-bold text-white">
-        Get the Free Software Buying Guide
-      </h3>
-      <p className="text-sm text-gray-400">
-        What to buy now, later, or never — so you stop wasting money on tools you
-        don&apos;t need yet.
-      </p>
+    <form onSubmit={handleSubmit} className="card-panel space-y-5">
+      <div>
+        <h3 className="text-xl font-bold text-gray-900">
+          The Online Business Software Buying Guide
+        </h3>
+        <p className="text-sm text-gray-500 mt-1">
+          What to Buy Now, Later, or Never
+        </p>
+      </div>
 
       <div>
         <label htmlFor="lead-email" className="sr-only">Email address</label>
@@ -80,7 +83,7 @@ export function LeadCaptureForm({ source = 'homepage' }: { source?: string }) {
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           placeholder="you@example.com"
-          className="w-full px-4 py-3 rounded-lg bg-brand-navy border border-gray-700 text-white placeholder-gray-500 focus:border-brand-cyan focus:outline-none"
+          className="w-full px-5 py-3 rounded-full bg-surface-light-muted border border-surface-border text-gray-900 placeholder-gray-400 focus:border-brand-electric focus:ring-1 focus:ring-brand-electric focus:outline-none transition-colors"
         />
       </div>
 
@@ -91,7 +94,7 @@ export function LeadCaptureForm({ source = 'homepage' }: { source?: string }) {
           required
           value={useCase}
           onChange={(e) => setUseCase(e.target.value)}
-          className="w-full px-4 py-3 rounded-lg bg-brand-navy border border-gray-700 text-white focus:border-brand-cyan focus:outline-none"
+          className="w-full px-5 py-3 rounded-full bg-surface-light-muted border border-surface-border text-gray-900 focus:border-brand-electric focus:ring-1 focus:ring-brand-electric focus:outline-none transition-colors appearance-none"
         >
           <option value="">What are you working on?</option>
           {useCaseOptions.map((opt) => (
@@ -100,21 +103,25 @@ export function LeadCaptureForm({ source = 'homepage' }: { source?: string }) {
         </select>
       </div>
 
-      <label className="flex items-start gap-3 text-sm text-gray-400 cursor-pointer">
+      <label className="flex items-start gap-3 text-sm text-gray-500 cursor-pointer">
         <input
           type="checkbox"
           checked={consent}
           onChange={(e) => setConsent(e.target.checked)}
-          className="mt-0.5 rounded border-gray-600 bg-brand-navy text-brand-electric focus:ring-brand-cyan"
+          className="mt-0.5 rounded border-gray-300 text-brand-electric focus:ring-brand-electric"
         />
         <span>
           I agree to receive emails from SubZero Metrix. Unsubscribe anytime.
           See our{' '}
-          <Link href="/privacy" className="text-brand-cyan underline">privacy policy</Link>.
+          <Link href="/privacy" className="text-brand-electric underline">privacy policy</Link>.
         </span>
       </label>
 
-      {errorMsg && <p className="text-sm text-red-400">{errorMsg}</p>}
+      <p className="text-xs text-gray-400">
+        Email delivery is not yet active. Your submission will be saved securely.
+      </p>
+
+      {errorMsg && <p className="text-sm text-red-600">{errorMsg}</p>}
 
       <button
         type="submit"

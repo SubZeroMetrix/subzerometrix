@@ -10,7 +10,7 @@ export const metadata = buildMetadata({
 
 export default function AboutPage() {
   return (
-    <div className="py-16">
+    <div className="py-20">
       <div className="section-container max-w-3xl">
         <Image
           src="/brand/subzero-metrix-logo.png"
@@ -20,7 +20,8 @@ export default function AboutPage() {
           className="rounded-xl mb-8"
         />
 
-        <h1 className="text-3xl font-bold text-white mb-6">About SubZero Metrix</h1>
+        <p className="text-label text-brand-electric mb-3">About</p>
+        <h1 className="text-headline text-gray-900 mb-8">About SubZero Metrix</h1>
 
         <div className="prose-content">
           <p>
@@ -55,6 +56,9 @@ export default function AboutPage() {
             SubZero Metrix is operated by SubZero Metrix LLC. We are a small,
             independent team focused on providing clear, honest, and practical
             software guidance for people building online businesses.
+          </p>
+          <p>
+            <Link href="/about/richard-fritzke">Meet Richard Fritzke</Link>, our founder and editor-in-chief.
           </p>
 
           <h2>Contact Us</h2>

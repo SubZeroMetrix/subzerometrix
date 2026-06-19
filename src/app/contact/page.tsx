@@ -33,12 +33,11 @@ export default function ContactPage() {
 
   if (status === 'success') {
     return (
-      <div className="py-16">
+      <div className="py-20">
         <div className="section-container max-w-lg text-center">
-          <h1 className="text-3xl font-bold text-white mb-4">Message Sent</h1>
-          <p className="text-gray-400">
-            Thank you for reaching out. We&apos;ll get back to you as soon as
-            possible.
+          <h1 className="text-headline text-gray-900 mb-4">Message Sent</h1>
+          <p className="text-body-lg">
+            Thank you for reaching out. We&apos;ll get back to you as soon as possible.
           </p>
         </div>
       </div>
@@ -46,17 +45,17 @@ export default function ContactPage() {
   }
 
   return (
-    <div className="py-16">
+    <div className="py-20">
       <div className="section-container max-w-lg">
-        <h1 className="text-3xl font-bold text-white mb-4">Contact Us</h1>
-        <p className="text-gray-400 mb-8">
-          Questions, corrections, feedback, or partnership inquiries — we&apos;d
-          like to hear from you.
+        <p className="text-label text-brand-electric mb-3">Contact</p>
+        <h1 className="text-headline text-gray-900 mb-4">Contact Us</h1>
+        <p className="text-body-lg mb-10">
+          Questions, corrections, feedback, or partnership inquiries.
         </p>
 
-        <form onSubmit={handleSubmit} className="space-y-4">
+        <form onSubmit={handleSubmit} className="space-y-5">
           <div>
-            <label htmlFor="name" className="block text-sm text-gray-300 mb-1">Name</label>
+            <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1.5">Name</label>
             <input
               id="name"
               type="text"
@@ -65,11 +64,11 @@ export default function ContactPage() {
               maxLength={100}
               value={form.name}
               onChange={(e) => setForm({ ...form, name: e.target.value })}
-              className="w-full px-4 py-3 rounded-lg bg-brand-navy border border-gray-700 text-white placeholder-gray-500 focus:border-brand-cyan focus:outline-none"
+              className="w-full px-4 py-3 rounded-xl bg-white border border-surface-border text-gray-900 placeholder-gray-400 focus:border-brand-electric focus:ring-1 focus:ring-brand-electric focus:outline-none transition-colors"
             />
           </div>
           <div>
-            <label htmlFor="email" className="block text-sm text-gray-300 mb-1">Email</label>
+            <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1.5">Email</label>
             <input
               id="email"
               type="email"
@@ -77,11 +76,11 @@ export default function ContactPage() {
               maxLength={254}
               value={form.email}
               onChange={(e) => setForm({ ...form, email: e.target.value })}
-              className="w-full px-4 py-3 rounded-lg bg-brand-navy border border-gray-700 text-white placeholder-gray-500 focus:border-brand-cyan focus:outline-none"
+              className="w-full px-4 py-3 rounded-xl bg-white border border-surface-border text-gray-900 placeholder-gray-400 focus:border-brand-electric focus:ring-1 focus:ring-brand-electric focus:outline-none transition-colors"
             />
           </div>
           <div>
-            <label htmlFor="subject" className="block text-sm text-gray-300 mb-1">Subject</label>
+            <label htmlFor="subject" className="block text-sm font-medium text-gray-700 mb-1.5">Subject</label>
             <input
               id="subject"
               type="text"
@@ -90,11 +89,11 @@ export default function ContactPage() {
               maxLength={200}
               value={form.subject}
               onChange={(e) => setForm({ ...form, subject: e.target.value })}
-              className="w-full px-4 py-3 rounded-lg bg-brand-navy border border-gray-700 text-white placeholder-gray-500 focus:border-brand-cyan focus:outline-none"
+              className="w-full px-4 py-3 rounded-xl bg-white border border-surface-border text-gray-900 placeholder-gray-400 focus:border-brand-electric focus:ring-1 focus:ring-brand-electric focus:outline-none transition-colors"
             />
           </div>
           <div>
-            <label htmlFor="message" className="block text-sm text-gray-300 mb-1">Message</label>
+            <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-1.5">Message</label>
             <textarea
               id="message"
               required
@@ -103,17 +102,13 @@ export default function ContactPage() {
               rows={5}
               value={form.message}
               onChange={(e) => setForm({ ...form, message: e.target.value })}
-              className="w-full px-4 py-3 rounded-lg bg-brand-navy border border-gray-700 text-white placeholder-gray-500 focus:border-brand-cyan focus:outline-none resize-y"
+              className="w-full px-4 py-3 rounded-xl bg-white border border-surface-border text-gray-900 placeholder-gray-400 focus:border-brand-electric focus:ring-1 focus:ring-brand-electric focus:outline-none transition-colors resize-y"
             />
           </div>
 
-          {errorMsg && <p className="text-sm text-red-400">{errorMsg}</p>}
+          {errorMsg && <p className="text-sm text-red-600">{errorMsg}</p>}
 
-          <button
-            type="submit"
-            disabled={status === 'submitting'}
-            className="btn-primary w-full disabled:opacity-50"
-          >
+          <button type="submit" disabled={status === 'submitting'} className="btn-primary w-full disabled:opacity-50">
             {status === 'submitting' ? 'Sending...' : 'Send Message'}
           </button>
         </form>

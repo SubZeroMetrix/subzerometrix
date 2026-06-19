@@ -23,25 +23,27 @@ export default function ToolsPage({
   const activeCategory = categories.find((c) => c.slug === categoryFilter)
 
   return (
-    <div className="py-16">
+    <div className="py-20">
       <div className="section-container">
-        <h1 className="text-3xl font-bold text-white mb-4">
-          {activeCategory ? activeCategory.name : 'Software Tools'}
-        </h1>
-        <p className="text-gray-400 mb-8 max-w-2xl">
-          {activeCategory
-            ? activeCategory.description
-            : 'Explore software tools compared by SubZero Metrix. Each tool is evaluated for use-case fit, strengths, limitations, and pricing.'}
-        </p>
+        <div className="max-w-2xl mb-12">
+          <p className="text-label text-brand-electric mb-3">Software Tools</p>
+          <h1 className="text-headline text-gray-900 mb-4">
+            {activeCategory ? activeCategory.name : 'Every Tool, Compared'}
+          </h1>
+          <p className="text-body-lg">
+            {activeCategory
+              ? activeCategory.description
+              : 'Each tool is evaluated for use-case fit, strengths, limitations, and pricing. No tool is ranked by commission rate.'}
+          </p>
+        </div>
 
-        {/* Category filters */}
         <div className="flex flex-wrap gap-2 mb-10">
           <Link
             href="/tools"
-            className={`text-xs px-3 py-1.5 rounded-full border transition-colors ${
+            className={`text-sm px-4 py-2 rounded-full border transition-all ${
               !categoryFilter
-                ? 'bg-brand-electric text-white border-brand-electric'
-                : 'text-gray-400 border-gray-700 hover:border-brand-cyan'
+                ? 'bg-brand-electric text-white border-brand-electric shadow-sm'
+                : 'text-gray-600 border-surface-border hover:border-brand-electric hover:text-brand-electric'
             }`}
           >
             All
@@ -50,10 +52,10 @@ export default function ToolsPage({
             <Link
               key={cat.slug}
               href={`/tools?category=${cat.slug}`}
-              className={`text-xs px-3 py-1.5 rounded-full border transition-colors ${
+              className={`text-sm px-4 py-2 rounded-full border transition-all ${
                 categoryFilter === cat.slug
-                  ? 'bg-brand-electric text-white border-brand-electric'
-                  : 'text-gray-400 border-gray-700 hover:border-brand-cyan'
+                  ? 'bg-brand-electric text-white border-brand-electric shadow-sm'
+                  : 'text-gray-600 border-surface-border hover:border-brand-electric hover:text-brand-electric'
               }`}
             >
               {cat.name}
@@ -68,7 +70,7 @@ export default function ToolsPage({
         </div>
 
         {filtered.length === 0 && (
-          <p className="text-gray-500 text-center py-12">
+          <p className="text-gray-400 text-center py-16">
             No tools found for this category yet.
           </p>
         )}
