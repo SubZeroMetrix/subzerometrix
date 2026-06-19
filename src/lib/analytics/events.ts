@@ -1,16 +1,18 @@
+import { classifySource, type TrafficSource } from './attribution'
+
 export type AnalyticsEvent =
   | 'page_view'
-  | 'category_viewed'
   | 'product_viewed'
   | 'comparison_viewed'
+  | 'guide_viewed'
   | 'tool_finder_started'
   | 'tool_finder_completed'
   | 'recommendation_viewed'
   | 'affiliate_link_clicked'
   | 'lead_form_started'
   | 'lead_form_submitted'
-  | 'outbound_link_clicked'
-  | 'contact_form_submitted'
+  | 'contact_submitted'
+  | 'outbound_resource_clicked'
 
 type ConsentState = {
   necessary: boolean
@@ -43,11 +45,30 @@ export function getConsent(): ConsentState {
   return consentState
 }
 
-export function trackEvent(event: AnalyticsEvent, properties?: Record<string, string | number | boolean>) {
+export function getTrafficSource(): TrafficSource {
+  if (typeof window === 'undefined') return 'unknown'
+  const referrer = document.referrer || null
+  const params = new URLSearchParams(window.location.search)
+  const utmSource = params.get('utm_source')
+  return classifySource(referrer, utmSource)
+}
+
+export function trackEvent(
+  event: AnalyticsEvent,
+  properties?: Record<string, string | number | boolean>
+) {
   const consent = getConsent()
   if (!consent.analytics) return
 
+  const source = getTrafficSource()
+  const enriched = {
+    ...properties,
+    traffic_source: source,
+    timestamp: new Date().toISOString(),
+    path: typeof window !== 'undefined' ? window.location.pathname : '',
+  }
+
   if (typeof window !== 'undefined' && process.env.NODE_ENV === 'development') {
-    console.debug('[analytics]', event, properties)
+    console.debug('[analytics]', event, enriched)
   }
 }

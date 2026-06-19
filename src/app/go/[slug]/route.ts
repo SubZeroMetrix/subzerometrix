@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { seedProducts } from '@/../../content/products'
+import { createAdminClient } from '@/lib/supabase/admin'
 
 const ALLOWED_DOMAINS = [
   'systeme.io',
@@ -48,17 +49,31 @@ export async function GET(
     const src = request.nextUrl.searchParams.get('src') || null
     const campaign = request.nextUrl.searchParams.get('utm_campaign') || null
     const fromToolFinder = src === 'tool-finder'
+    const referer = request.headers.get('referer') || null
+    const sourcePage = referer ? new URL(referer).pathname : null
 
-    // Privacy-safe logging: no PII stored, just aggregate click data
-    // In production this would write to Supabase affiliate_click_events
-    if (process.env.NODE_ENV === 'development') {
-      console.log('[affiliate-click]', {
-        slug: params.slug,
-        source: request.nextUrl.searchParams.get('ref') || request.headers.get('referer'),
-        campaign,
-        fromToolFinder,
-        timestamp: new Date().toISOString(),
-      })
+    try {
+      const supabase = createAdminClient()
+
+      const dedupeKey = `${params.slug}-${sourcePage}-${Date.now().toString().slice(0, -4)}`
+      const { data: existing } = await supabase
+        .from('affiliate_click_events')
+        .select('id')
+        .eq('ip_hash', dedupeKey)
+        .limit(1)
+        .single()
+
+      if (!existing) {
+        await supabase.from('affiliate_click_events').insert({
+          click_timestamp: new Date().toISOString(),
+          source_page: sourcePage,
+          campaign,
+          tool_finder_result: fromToolFinder,
+          ip_hash: dedupeKey,
+        })
+      }
+    } catch {
+      // Click logging should not block the redirect
     }
   }
 

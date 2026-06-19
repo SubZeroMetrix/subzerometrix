@@ -13,20 +13,29 @@ export default function sitemap(): MetadataRoute.Sitemap {
     '/reviews',
     '/guides',
     '/about',
+    '/about/richard-fritzke',
     '/contact',
     '/affiliate-disclosure',
     '/privacy',
     '/terms',
     '/editorial-policy',
+    '/editorial-methodology',
   ]
 
   const productRoutes = seedProducts.map((p) => `/tools/${p.slug}`)
   const comparisonRoutes = comparisons.map((c) => `/compare/${c.slug}`)
   const reviewRoutes = seedProducts.map((p) => `/reviews/${p.slug}`)
+
   const guideRoutes = [
     '/guides/best-email-marketing-tools',
     '/guides/all-in-one-vs-best-of-breed',
     '/guides/newsletter-platforms-compared',
+  ]
+
+  const launchContentRoutes = [
+    '/tools/best-online-business-software',
+    '/tools/best-email-marketing-software',
+    '/tools/best-website-platform',
   ]
 
   const allRoutes = [
@@ -35,12 +44,17 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...comparisonRoutes,
     ...reviewRoutes,
     ...guideRoutes,
+    ...launchContentRoutes,
   ]
 
   return allRoutes.map((route) => ({
     url: `${siteUrl}${route}`,
     lastModified: now,
-    changeFrequency: route === '' ? 'weekly' : 'monthly',
-    priority: route === '' ? 1 : route.includes('/tools/') || route.includes('/compare/') ? 0.8 : 0.6,
+    changeFrequency: route === '' ? 'weekly' as const : 'monthly' as const,
+    priority: route === ''
+      ? 1
+      : route.includes('/tools/') || route.includes('/compare/')
+        ? 0.8
+        : 0.6,
   }))
 }
