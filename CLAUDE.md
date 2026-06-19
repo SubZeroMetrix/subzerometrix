@@ -1,58 +1,50 @@
-# Claude Instructions for SubZeroMetrix
+# Claude Instructions for SubZero Metrix
 
-## Important
+## Project
 
-Before doing any work, read:
+SubZero Metrix is an affiliate software comparison platform at subzerometric.com (provisional domain). It compares software for websites, email, automation, ecommerce, newsletters, SEO, and online business growth.
 
-1. PROJECT_BRIEF.md
-2. CLAUDE.md
+## Brand Rules
 
-Treat PROJECT_BRIEF.md as the project source of truth.
+- Use the exact supplied logo at public/brand/subzero-metrix-logo.png without modification
+- Legal entity: SubZero Metrix LLC
+- Trademark: SubZero Metrix™
+- Colors: midnight navy, electric blue, icy cyan, metallic silver, white
+- Never fabricate reviews, user counts, discounts, or rankings
 
-## Role
+## Tech Stack
 
-You are working on the SubZeroMetrix web app as the developer inside the codebase.
-
-## Before Making Changes
-
-Always:
-- Review the current file structure.
-- Identify the files related to the task.
-- Explain your plan before making major changes.
-- Ask for approval before large rewrites.
-
-## Development Rules
-
-Always:
-- Preserve existing working features.
-- Make small, testable changes.
-- Do not rewrite the whole app unless explicitly asked.
-- Do not expose or hardcode secret keys.
-- Keep the project compatible with Vercel.
-- After meaningful edits, run npm.cmd run build.
-- If the build fails, explain the error and suggest the fix.
-- Summarize every file changed.
-
-## Tech Assumptions
-
-- Next.js app
+- Next.js 14 (App Router, TypeScript, React 18)
+- Tailwind CSS
+- Supabase (auth, database, RLS)
+- Stripe (future products only — not for affiliate commissions)
 - Vercel deployment
-- Supabase may be used for auth/database
-- Stripe may be used for payments
-- Use the existing project structure unless there is a clear reason to change it.
 
-## Business Rules
+## Key Directories
 
-- This app serves tradespeople who want to start and grow contracting businesses.
-- Copy should sound practical, direct, field-tested, and trustworthy.
-- Avoid hype, vague startup language, or corporate filler.
-- Rich is the final decision maker.
+- src/app/ — routes
+- src/components/ — shared components
+- src/lib/ — utilities (supabase/, affiliate/, analytics/, email/, stripe/, validation/)
+- content/ — seed data for products, comparisons, tool-finder rules
+- types/ — TypeScript interfaces
+- database/ — Supabase migrations
+- docs/ — project documentation
+- public/brand/ — logo and brand assets
 
-## Current Priorities
+## Development
 
-1. Stability
-2. Clean UI
-3. Contractor-readiness scoring
-4. Roadmap/dashboard experience
-5. Supabase and Stripe integration
-6. Future vendor/affiliate marketplace
+```
+npm install
+npm run dev
+npm run build
+npm run lint
+npm run typecheck
+```
+
+## Rules
+
+- Never commit real environment values
+- Never expose SUPABASE_SERVICE_ROLE_KEY to the browser
+- Affiliate disclosures must appear near commercial content
+- Do not make unsubstantiated income or results claims
+- All editorial recommendations must be based on use-case fit, not commission rates

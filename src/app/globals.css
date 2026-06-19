@@ -1,210 +1,63 @@
-@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&family=DM+Mono:wght@400;500&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --font-display: 'Bebas Neue';
-  --font-body: 'DM Sans';
-  --font-mono: 'DM Mono';
-
-  --navy:   #0A1628;
-  --blue:   #0D2B5C;
-  --mid:    #1A4080;
-  --silver: #C2CEDE;
-  --light:  #D4E0EE;
-  --white:  #F4F7FB;
-  --accent: #4A90D9;
-  --ice:    #E8F0F9;
-}
-
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-
-html {
-  scroll-behavior: smooth;
-  -webkit-tap-highlight-color: transparent;
-}
-
-body {
-  font-family: var(--font-body), 'DM Sans', sans-serif;
-  background-color: var(--navy);
-  color: var(--white);
-  min-height: 100dvh;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-/* Utility classes */
-.font-display { font-family: var(--font-display), 'Bebas Neue', serif; }
-.font-body    { font-family: var(--font-body), 'DM Sans', sans-serif; }
-.font-mono    { font-family: var(--font-mono), 'DM Mono', monospace; }
-
-/* Score ring animation */
-@keyframes score-ring {
-  from { stroke-dashoffset: 440; }
-  to   { stroke-dashoffset: var(--target-offset); }
-}
-
-.score-ring {
-  animation: score-ring 1.4s cubic-bezier(0.4, 0, 0.2, 1) forwards;
-}
-
-/* Shimmer effect */
-@keyframes shimmer {
-  0%   { background-position: -200% center; }
-  100% { background-position: 200% center; }
-}
-
-.shimmer {
-  background: linear-gradient(
-    90deg,
-    var(--silver) 0%,
-    #fff 40%,
-    var(--silver) 60%,
-    var(--light) 100%
-  );
-  background-size: 200% auto;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  animation: shimmer 3s linear infinite;
-}
-
-/* Noise texture overlay */
-.noise::after {
-  content: '';
-  position: fixed;
-  inset: 0;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
-  pointer-events: none;
-  z-index: 999;
-  opacity: 0.4;
-}
-
-/* Mobile-first touch targets */
-.touch-target {
-  min-height: 44px;
-  min-width: 44px;
-}
-
-/* Progress bar */
-.progress-track {
-  background: rgba(168, 184, 204, 0.15);
-  border-radius: 999px;
-  overflow: hidden;
-}
-
-.progress-fill {
-  background: linear-gradient(90deg, var(--accent), var(--light));
-  border-radius: 999px;
-  transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-/* Card glass effect */
-.glass {
-  background: rgba(13, 43, 92, 0.4);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(168, 184, 204, 0.15);
-}
-
-.glass-light {
-  background: rgba(232, 240, 249, 0.08);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-  border: 1px solid rgba(168, 184, 204, 0.12);
-}
-
-/* Scrollbar */
-::-webkit-scrollbar { width: 4px; }
-::-webkit-scrollbar-track { background: var(--navy); }
-::-webkit-scrollbar-thumb { background: var(--mid); border-radius: 2px; }
-
-/* Focus styles */
-:focus-visible {
-  outline: 2px solid var(--accent);
-  outline-offset: 2px;
-  border-radius: 4px;
-}
-
-/* Fade-up animation */
-.animate-fade-up {
-  opacity: 0;
-  transform: translateY(16px);
-  animation: fadeUp 0.6s ease-out forwards;
-}
-
-@keyframes fadeUp {
-  to { opacity: 1; transform: translateY(0); }
-}
-
-.delay-100 { animation-delay: 0.1s; }
-.delay-200 { animation-delay: 0.2s; }
-.delay-300 { animation-delay: 0.3s; }
-.delay-400 { animation-delay: 0.4s; }
-.delay-500 { animation-delay: 0.5s; }
-
-/* ── Homepage utility classes (moved from inline <style> to fix hydration mismatch) ── */
-.reveal-block {
-  opacity: 0;
-  transform: translateY(22px);
-  transition: opacity 0.65s ease, transform 0.65s ease;
-}
-.reveal-block.revealed {
-  opacity: 1;
-  transform: none;
-}
-.grid-lines {
-  background-image:
-    linear-gradient(rgba(168,184,204,0.04) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(168,184,204,0.04) 1px, transparent 1px);
-  background-size: 40px 40px;
-}
-.slash-divider  { clip-path: polygon(0 0, 100% 0, 100% 88%, 0 100%); }
-.slash-divider-up { clip-path: polygon(0 12%, 100% 0, 100% 100%, 0 100%); }
-.stat-number    { font-family: 'Bebas Neue', serif; letter-spacing: 0.05em; }
-.steel-border   { border: 1px solid rgba(168,184,204,0.15); }
-.accent-line    { border-left: 2px solid #4A90D9; }
-.temp-bar {
-  height: 4px;
-  border-radius: 2px;
-  background: linear-gradient(90deg, #4A90D9 0%, #85B7EB 25%, #EF9F27 55%, #E8593C 80%, #E24B4A 100%);
-}
-
-@keyframes blink {
-  0%, 100% { opacity: 1; }
-  50%       { opacity: 0.3; }
-}
-@keyframes crystalPulse {
-  0%, 100% { opacity: 0.6; }
-  50%      { opacity: 1; }
-}
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(16px); }
-  to   { opacity: 1; transform: none; }
-}
-
-.blink          { animation: blink 2.4s ease-in-out infinite; }
-.crystal-pulse  { animation: crystalPulse 3s ease-in-out infinite; }
-
-/* ── Reduced motion (WCAG 2.3.3 / 2.2.2) ──────────────────────────────────────
-   Respect the OS "reduce motion" setting: neutralize non-essential animation,
-   transition, and auto-scroll. Reveal/fade utilities are forced to their final
-   visible state so content is never left hidden when motion is suppressed. */
-@media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-    scroll-behavior: auto !important;
+@layer base {
+  html {
+    scroll-behavior: smooth;
   }
-  .reveal-block,
-  .animate-fade-up {
-    opacity: 1 !important;
-    transform: none !important;
+
+  body {
+    @apply bg-brand-navy text-gray-100 antialiased;
+  }
+
+  ::selection {
+    @apply bg-brand-electric/30 text-white;
+  }
+
+  :focus-visible {
+    @apply outline-2 outline-offset-2 outline-brand-cyan;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply inline-flex items-center justify-center px-6 py-3 rounded-lg font-semibold text-white bg-brand-electric hover:bg-blue-600 transition-colors focus-visible:outline-brand-cyan;
+  }
+
+  .btn-secondary {
+    @apply inline-flex items-center justify-center px-6 py-3 rounded-lg font-semibold text-brand-cyan border border-brand-cyan/40 hover:bg-brand-cyan/10 transition-colors;
+  }
+
+  .card {
+    @apply bg-brand-navy-light border border-gray-800 rounded-xl p-6;
+  }
+
+  .section-container {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+
+  .prose-content {
+    @apply text-gray-300 leading-relaxed;
+  }
+
+  .prose-content h2 {
+    @apply text-xl font-bold text-white mt-8 mb-4;
+  }
+
+  .prose-content h3 {
+    @apply text-lg font-semibold text-gray-100 mt-6 mb-3;
+  }
+
+  .prose-content p {
+    @apply mb-4;
+  }
+
+  .prose-content ul {
+    @apply list-disc pl-6 mb-4 space-y-1;
+  }
+
+  .prose-content a {
+    @apply text-brand-cyan hover:text-brand-cyan-light underline;
   }
 }
