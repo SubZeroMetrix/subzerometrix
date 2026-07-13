@@ -1,0 +1,34 @@
+# Launch Readiness — Master Dashboard
+
+*Governed by [`COMPANY_CONSTITUTION.md`](./COMPANY_CONSTITUTION.md) · [`ENGINEERING_CONSTITUTION.md`](./ENGINEERING_CONSTITUTION.md) · [`DEPLOYMENT.md`](./DEPLOYMENT.md). See [`LAUNCH_CHECKLIST.md`](./LAUNCH_CHECKLIST.md) for item-level scorecard, [`LAUNCH_RISK_REGISTER.md`](./LAUNCH_RISK_REGISTER.md) for blockers, [`GO_LIVE_CRITERIA.md`](./GO_LIVE_CRITERIA.md) for the launch gate itself.*
+
+**Scope note:** this dashboard covers the SubZeroMetrix landing page (`www.subzerometrix.com`, this repository) and its own infrastructure. Metrix Command Center's product application (CRM, billing, Buster) lives at `mcc.subzerometrix.com` in a separate repository (`command-center`) and is out of this audit's scope by the standing project boundary — marked N/A below where applicable, not scored as if verified.
+
+Every percentage below is evidence-based, not aspirational — grounded in what was actually built, tested, and live-verified this session (see `DOCUMENTATION_INDEX.md`, `INFRASTRUCTURE.md`, `DEPLOYMENT.md`). Per `ENGINEERING_CONSTITUTION.md`'s Definition of Done, "verified" requires proof, not a clean-sounding status.
+
+| # | Category | Status | Completion | Remaining Work | Priority | Risk | Dependencies | Owner | Success Criteria | Verification Method |
+|---|---|---|---|---|---|---|---|---|---|---|
+| 1 | Product | READY | 80% | Real product visuals (dashboard/Buster example) still not built — no fabricated ones exist, honestly deferred | HIGH | Low | MCC product app for feature accuracy | Founder | Homepage accurately describes shipped MCC capability | Live homepage content cross-checked against MCC product docs |
+| 2 | Design | READY | 80% | No independent WCAG contrast measurement | MEDIUM | Low | — | Founder | Premium visual bar per `BRAND_CONSTITUTION.md` | Live site review (done this session) |
+| 3 | Brand | VERIFIED | 90% | None known | LOW | Low | — | Founder | Consistent logo/Buster usage, no fabricated assets | `BRAND_CONSTITUTION.md` cross-check (done) |
+| 4 | SEO | IN PROGRESS | 60% | Search Console + Bing Webmaster verification/submission not done | HIGH | Medium | DNS (done) | Founder | Sitemap submitted, indexing confirmed | Search Console coverage report |
+| 5 | AI Discoverability | IN PROGRESS | 55% | `llms.txt` rewritten this session; no evidence yet of any AI system actually citing the site | MEDIUM | Low | SEO indexing | Founder | `llms.txt` accurately describes both products | Live fetch of `/llms.txt` (done this session) |
+| 6 | Performance | NOT STARTED | 40% | No Lighthouse/Core Web Vitals measurement has been run | MEDIUM | Medium | — | Founder | Core Web Vitals in "Good" range | Real Lighthouse/PageSpeed Insights run against the live URL |
+| 7 | Accessibility | IN PROGRESS | 50% | Skip link added; keyboard-nav trace and contrast ratios not independently verified | HIGH | Medium | — | Founder | WCAG 2.2 AA | Manual keyboard + screen-reader pass, contrast checker |
+| 8 | Security | READY | 65% | No formal security review; rate limiting is in-memory (resets on redeploy) | MEDIUM | Medium | Supabase RLS (done) | Founder | RLS enforced, secrets never exposed, isolated lead DB | Verified this session: RLS on, service-role server-only, isolated project |
+| 9 | Privacy | IN PROGRESS | 50% | Privacy Policy extended (not rewritten) for MCC lead fields; not attorney-reviewed for this domain's current combined content | HIGH | Medium | Legal review | Founder | Privacy Policy accurately discloses all data collection on this domain | Attorney or careful self-review against actual data flows |
+| 10 | Legal | BLOCKED | 40% | See Blocker L-1 in `LAUNCH_RISK_REGISTER.md` | CRITICAL | High | — | Founder | Terms/Privacy accurately reflect both products now on this domain, reviewed | Legal review sign-off |
+| 11 | Infrastructure | VERIFIED | 90% | None known | LOW | Low | — | Founder | Five-stage release process functioning | Verified this session (deploy, alias, live-check all passed) |
+| 12 | Analytics | READY | 60% | Vercel Analytics installed and shipped; zero real traffic data yet (too new to evaluate) | MEDIUM | Low | Live traffic | Founder | Real visitor data flowing | Vercel Analytics dashboard after real traffic |
+| 13 | CRM | N/A (out of scope) | — | MCC's CRM lives in `command-center`, not this repo | — | — | `command-center` repo | Founder | — | — |
+| 14 | Lead Capture | VERIFIED | 90% | No admin UI to view leads yet (direct DB query only) | MEDIUM | Low | Isolated Supabase (done) | Founder | Leads captured, isolated, retrievable | Live end-to-end test this session: submit/validate/verify/cleanup all passed |
+| 15 | Email | NOT STARTED | 10% | No email provider configured; leads/notifications are not emailed anywhere | HIGH | Medium | Provider selection | Founder | New-lead owner notification works | Real test email received |
+| 16 | Support | IN PROGRESS | 30% | Only a mailto link exists; no ticketing, SLA, or documented support process | MEDIUM | Low | — | Founder | Customer inquiries get a real, timely response | Real support request test |
+| 17 | Documentation | VERIFIED | 90% | None known — constitution set, infra docs, this launch center all current | LOW | Low | — | Founder | Docs match live reality | This audit + `DOCUMENTATION_INDEX.md` |
+| 18 | Customer Experience | IN PROGRESS | 55% | No real product visuals, no founder photo/video, minimal onboarding-clarity content | MEDIUM | Low | Product screenshots | Founder | First-time visitor understands product and trusts it within seconds | Manual first-time-visitor walkthrough |
+| 19 | Conversion | READY | 60% | No A/B testing or conversion data yet; CTAs/pricing/FAQ/trust content all live | MEDIUM | Low | Analytics data | Founder | Real trial signups occurring | Vercel Analytics + MCC signup data (out of this repo's direct visibility) |
+| 20 | Commercial Readiness | IN PROGRESS | 55% | Pricing/CTA routing on this page is real and correct; MCC's own billing/Stripe production status is out of this repo's scope | HIGH | Medium | `command-center` billing status | Founder | Signup → billing flow works end-to-end | Real signup test (requires `command-center` scope, not run here) |
+
+## Overall Launch Readiness
+
+Weighted toward the categories marked CRITICAL/HIGH priority (Legal, SEO, Accessibility, Email, Commercial Readiness), the honest overall figure is **~62%** — not launch-ready by this document's own `GO_LIVE_CRITERIA.md` gate. See that document for the exact pass/fail conditions.

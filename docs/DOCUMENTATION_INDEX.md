@@ -21,6 +21,17 @@
 | `AI_COLLABORATION_GUIDE.md` | Operating discipline for AI collaborators (TruthMode, scope discipline) | SubZero Metrix LLC | ACTIVE | 2026-07-13 | — |
 | `DOCUMENTATION_INDEX.md` (this file) | Master map of every doc | SubZero Metrix LLC | ACTIVE | 2026-07-13 | — |
 
+## Launch readiness documents (Gen 3, current)
+
+| Document | Purpose | Owner | Status | Last relevance | Superseded by |
+|---|---|---|---|---|---|
+| `LAUNCH_READINESS.md` | Master 20-category launch dashboard | SubZero Metrix LLC | ACTIVE | 2026-07-13 | — |
+| `LAUNCH_CHECKLIST.md` | Item-level scorecard with objective acceptance criteria | SubZero Metrix LLC | ACTIVE | 2026-07-13 | — |
+| `LAUNCH_RISK_REGISTER.md` | Blocker register (L-1 through L-10) | SubZero Metrix LLC | ACTIVE | 2026-07-13 | — |
+| `GO_LIVE_CRITERIA.md` | Formal launch gate (Must/Should/Nice to Have) | SubZero Metrix LLC | ACTIVE | 2026-07-13 | — |
+| `POST_LAUNCH_PLAN.md` | Immediate post-launch monitoring plan | SubZero Metrix LLC | ACTIVE | 2026-07-13 | — |
+| `30-60-90_DAY_PLAN.md` | Timed roadmap, 30 days through 12 months | SubZero Metrix LLC | ACTIVE | 2026-07-13 | — |
+
 ## Operational documents (Gen 3, current)
 
 | Document | Purpose | Owner | Status | Last relevance | Notes |
