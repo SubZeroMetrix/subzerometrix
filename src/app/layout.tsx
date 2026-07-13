@@ -13,7 +13,7 @@ const inter = Inter({
   weight: ['400', '500', '600', '700', '800'],
 })
 
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://subzerometrix.com'
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.subzerometrix.com'
 
 export const metadata: Metadata = {
   title: {
@@ -40,9 +40,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en" className={inter.className}>
       <body className="antialiased">
+        <a href="#main-content" className="skip-link">Skip to main content</a>
         <AnnouncementBar />
         <Header />
-        <main className="flex-1">{children}</main>
+        <main id="main-content" className="flex-1">{children}</main>
         <Footer />
         <ConsentBanner />
         <Analytics />

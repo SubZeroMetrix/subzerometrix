@@ -28,12 +28,6 @@ const VALUE_SECTIONS = [
       'Customers and properties as first-class records. Leads, estimates, jobs, and follow-ups, organized in one place.',
   },
   {
-    title: 'Buster — AI Chief of Staff',
-    description:
-      'A morning brief, an end-of-day summary, and a live business health score. Ask Buster questions and get answers grounded in your real data.',
-    image: '/brand/buster-icon.png',
-  },
-  {
     title: 'Follow-Ups & Communications',
     description: 'Governed email communications keep customers in the loop without anything going out unreviewed.',
   },
@@ -126,6 +120,14 @@ const FAQS = [
     a: 'Your account is workspace-isolated with secure authentication. See our Privacy Policy for full detail on how your data is collected, used, and protected.',
   },
   {
+    q: 'How is this different from other AI business tools?',
+    a: 'Most "autonomous AI" tools act first and explain later, if at all. Metrix Command Center never does — every AI recommendation waits for your explicit approval, with a full permanent audit trail and an instant kill switch on every automation.',
+  },
+  {
+    q: 'Who builds Metrix Command Center?',
+    a: 'Metrix Command Center is built by SubZero Metrix LLC, a small, independent team.',
+  },
+  {
     q: 'How do I get support?',
     a: 'Email info@subzerometrix.com and we will get back to you.',
   },
@@ -169,28 +171,40 @@ export default function HomePage() {
           aria-hidden="true"
         />
         <div className="section-container relative z-10 pt-20 sm:pt-24 pb-16 sm:pb-20">
-          <div className="text-center max-w-3xl mx-auto">
-            <p className="text-label text-brand-cyan mb-4">Governed AI Business Operating System</p>
-            <h1 className="text-display text-white mb-6">
-              Find missed revenue.<br className="hidden sm:block" /> Know what to do next.
-            </h1>
-            <p className="text-lg sm:text-xl text-gray-300 leading-relaxed max-w-2xl mx-auto mb-10">
-              Metrix Command Center organizes your customer operations and gives you a governed AI
-              team that recommends next actions — nothing reaches a customer or your business until
-              you approve it.
-            </p>
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-4">
-              <a href={MCC_SIGNUP_URL} className="btn-primary text-lg px-10 py-4">
-                Start Free Trial — {MCC_PLANS.command_center.priceDisplay}
-              </a>
-              <a href="#pricing" className="btn-outline-visible text-lg px-10 py-4">
-                See Pricing
-              </a>
+          <div className="grid lg:grid-cols-[1.2fr_0.8fr] gap-12 items-center">
+            <div className="text-center lg:text-left">
+              <p className="text-label text-brand-cyan mb-4">Governed AI Business Operating System for Contractors</p>
+              <h1 className="text-display text-white mb-6">
+                Find missed revenue.<br className="hidden sm:block" /> Know what to do next.
+              </h1>
+              <p className="text-lg sm:text-xl text-gray-300 leading-relaxed max-w-2xl mx-auto lg:mx-0 mb-10">
+                Metrix Command Center organizes your customer operations and gives you a governed AI
+                team that recommends next actions — nothing reaches a customer or your business until
+                you approve it.
+              </p>
+              <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 mb-4">
+                <a href={MCC_SIGNUP_URL} className="btn-primary text-lg px-10 py-4">
+                  Start Free Trial — {MCC_PLANS.command_center.priceDisplay}
+                </a>
+                <a href="#buster" className="btn-outline-visible text-lg px-10 py-4">
+                  Meet Buster
+                </a>
+              </div>
+              <p className="text-sm text-gray-400">
+                {MCC_PLANS.command_center.trialDays}-day free trial &middot; monthly, cancel anytime &middot; no fake
+                guarantees, just a real trial
+              </p>
             </div>
-            <p className="text-sm text-gray-400">
-              {MCC_PLANS.command_center.trialDays}-day free trial &middot; monthly, cancel anytime &middot; no fake
-              guarantees, just a real trial
-            </p>
+            <div className="hidden lg:flex justify-center">
+              <Image
+                src="/brand/buster-ai-chief-of-staff-badge.png"
+                alt="Buster, the Metrix Command Center AI Chief of Staff"
+                width={360}
+                height={360}
+                className="w-full max-w-xs xl:max-w-sm h-auto drop-shadow-2xl"
+                priority
+              />
+            </div>
           </div>
         </div>
       </section>
@@ -208,13 +222,58 @@ export default function HomePage() {
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {VALUE_SECTIONS.map((v) => (
               <div key={v.title} className="card-panel">
-                {v.image ? (
-                  <Image src={v.image} alt="" width={40} height={40} className="mb-4 rounded-lg" />
-                ) : null}
                 <h3 className="text-base font-bold text-gray-900 mb-2">{v.title}</h3>
                 <p className="text-sm text-gray-500 leading-relaxed">{v.description}</p>
               </div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ─── MEET BUSTER ─── */}
+      <section id="buster" className="py-24 sm:py-32 bg-white overflow-hidden">
+        <div className="section-container">
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            <div className="flex justify-center lg:justify-start order-2 lg:order-1">
+              <Image
+                src="/brand/buster-ai-chief-of-staff-badge.png"
+                alt="Buster, the Metrix Command Center AI Chief of Staff"
+                width={420}
+                height={420}
+                className="w-full max-w-sm lg:max-w-md h-auto"
+                priority
+              />
+            </div>
+            <div className="text-center lg:text-left order-1 lg:order-2">
+              <p className="text-xs font-semibold uppercase tracking-wider text-brand-electric mb-3">Meet Your AI Chief of Staff</p>
+              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-6">Buster runs the morning brief, so you don&apos;t have to.</h2>
+              <p className="text-lg text-gray-500 leading-relaxed mb-6 max-w-xl mx-auto lg:mx-0">
+                Every day, Buster reviews what actually happened in your business — new leads, stalled
+                follow-ups, overdue estimates, at-risk customers — and tells you what needs attention
+                first. Ask Buster a question and get an answer grounded in your real data, not a guess.
+              </p>
+              <ul className="space-y-3 mb-8 text-left max-w-xl mx-auto lg:mx-0">
+                <li className="flex gap-3 items-start">
+                  <span className="text-brand-electric mt-0.5" aria-hidden="true">&#10003;</span>
+                  <span className="text-gray-700"><strong>Morning brief</strong> — what changed overnight and what to do about it.</span>
+                </li>
+                <li className="flex gap-3 items-start">
+                  <span className="text-brand-electric mt-0.5" aria-hidden="true">&#10003;</span>
+                  <span className="text-gray-700"><strong>End-of-day summary</strong> — a real accounting of what got done.</span>
+                </li>
+                <li className="flex gap-3 items-start">
+                  <span className="text-brand-electric mt-0.5" aria-hidden="true">&#10003;</span>
+                  <span className="text-gray-700"><strong>Live business health score</strong> — grounded in real records, not vibes.</span>
+                </li>
+                <li className="flex gap-3 items-start">
+                  <span className="text-brand-electric mt-0.5" aria-hidden="true">&#10003;</span>
+                  <span className="text-gray-700"><strong>Nothing happens without you</strong> — every recommendation waits for your approval before it reaches a customer.</span>
+                </li>
+              </ul>
+              <a href={MCC_SIGNUP_URL} className="btn-primary text-lg px-10 py-4 inline-block">
+                Meet Buster — Start Free Trial
+              </a>
+            </div>
           </div>
         </div>
       </section>
@@ -234,6 +293,73 @@ export default function HomePage() {
                 <p className="text-xs text-gray-400 leading-relaxed">{item.desc}</p>
               </div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ─── TRUST & SECURITY ─── */}
+      <section id="trust" className="py-24 sm:py-32 bg-gray-50">
+        <div className="section-container">
+          <div className="text-center mb-14">
+            <p className="text-xs font-semibold uppercase tracking-wider text-brand-electric mb-3">Trust &amp; Security</p>
+            <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">Your business, your data, your call</h2>
+            <p className="text-lg text-gray-500 max-w-2xl mx-auto">
+              Governed AI is not a slogan here — it is how every account is built.
+            </p>
+          </div>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div className="card-panel">
+              <h3 className="text-base font-bold text-gray-900 mb-2">Human approval, always</h3>
+              <p className="text-sm text-gray-500 leading-relaxed">No AI action reaches a customer or changes a record without your explicit sign-off. There is no autonomous mode.</p>
+            </div>
+            <div className="card-panel">
+              <h3 className="text-base font-bold text-gray-900 mb-2">Workspace isolation</h3>
+              <p className="text-sm text-gray-500 leading-relaxed">Your account and data are isolated to your workspace, secured with Google login.</p>
+            </div>
+            <div className="card-panel">
+              <h3 className="text-base font-bold text-gray-900 mb-2">Full audit trail</h3>
+              <p className="text-sm text-gray-500 leading-relaxed">Every AI recommendation and every decision you make is logged permanently and is searchable.</p>
+            </div>
+            <div className="card-panel">
+              <h3 className="text-base font-bold text-gray-900 mb-2">You own your data</h3>
+              <p className="text-sm text-gray-500 leading-relaxed">Your customer and business records are yours. See our Privacy Policy for exactly what we collect and why.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ─── COMPARISON ─── */}
+      <section className="py-24 sm:py-32 bg-white">
+        <div className="section-container max-w-4xl">
+          <div className="text-center mb-14">
+            <p className="text-xs font-semibold uppercase tracking-wider text-brand-electric mb-3">Why It&apos;s Different</p>
+            <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">Not another AI tool that acts on its own</h2>
+          </div>
+          <div className="overflow-x-auto">
+            <table className="w-full border-collapse text-sm">
+              <thead>
+                <tr className="border-b-2 border-gray-200">
+                  <th className="text-left py-4 pr-4 font-semibold text-gray-500">&nbsp;</th>
+                  <th className="text-left py-4 px-4 font-bold text-brand-electric">Metrix Command Center</th>
+                  <th className="text-left py-4 px-4 font-semibold text-gray-500">Typical &quot;autonomous AI&quot; tools</th>
+                </tr>
+              </thead>
+              <tbody>
+                {[
+                  ['AI actions', 'Every action requires your approval', 'Often acts automatically, after the fact'],
+                  ['Audit trail', 'Full, permanent, searchable log', 'Inconsistent or absent'],
+                  ['Data model', 'Customer/property-first CRM built in', 'Bolt-on AI over a generic tool'],
+                  ['Kill switch', 'Stop any automation instantly', 'Rarely available'],
+                  ['Pricing', 'Flat, transparent, monthly', 'Often usage-based and unpredictable'],
+                ].map((row) => (
+                  <tr key={row[0]} className="border-b border-gray-100">
+                    <td className="py-4 pr-4 font-semibold text-gray-700">{row[0]}</td>
+                    <td className="py-4 px-4 text-gray-900">{row[1]}</td>
+                    <td className="py-4 px-4 text-gray-400">{row[2]}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
           </div>
         </div>
       </section>
@@ -283,6 +409,39 @@ export default function HomePage() {
           </div>
 
           <p className="text-center text-xs text-gray-400 max-w-xl mx-auto">{MCC_BILLING_TERMS.refunds}</p>
+        </div>
+      </section>
+
+      {/* ─── COMPANY & ROADMAP ─── */}
+      <section className="py-24 sm:py-32 bg-gray-50">
+        <div className="section-container grid lg:grid-cols-2 gap-12">
+          <div>
+            <p className="text-xs font-semibold uppercase tracking-wider text-brand-electric mb-3">Built by an Operator</p>
+            <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-4">Why Metrix Command Center exists</h2>
+            <p className="text-gray-600 leading-relaxed mb-4">
+              Metrix Command Center is built by SubZero Metrix LLC, a small, independent team. We built
+              it because service businesses lose revenue quietly — a follow-up that never happens, an
+              estimate that goes cold, a customer nobody checked on — and most software either buries
+              that signal in noise or hands total control to an AI with no oversight. We wanted neither.
+            </p>
+            <p className="text-gray-600 leading-relaxed">
+              Every part of this platform is built on one rule: the AI can recommend, but you decide.
+            </p>
+          </div>
+          <div>
+            <p className="text-xs font-semibold uppercase tracking-wider text-brand-electric mb-3">What&apos;s Coming Next</p>
+            <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-4">Roadmap</h2>
+            <ul className="space-y-3">
+              <li className="flex gap-3 items-start">
+                <span className="text-xs font-semibold uppercase tracking-wider text-amber-600 bg-amber-50 px-2 py-0.5 rounded-full shrink-0 mt-0.5">In progress</span>
+                <span className="text-gray-700 text-sm">A unified Communications Center — SMS and social messaging alongside governed email.</span>
+              </li>
+              <li className="flex gap-3 items-start">
+                <span className="text-xs font-semibold uppercase tracking-wider text-gray-500 bg-gray-200 px-2 py-0.5 rounded-full shrink-0 mt-0.5">Planned</span>
+                <span className="text-gray-700 text-sm">Additional integrations beyond Google login and secure workspace access.</span>
+              </li>
+            </ul>
+          </div>
         </div>
       </section>
 

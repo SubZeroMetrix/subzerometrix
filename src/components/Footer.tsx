@@ -3,7 +3,9 @@ import Image from 'next/image'
 
 const productLinks = [
   { href: '#features', label: 'Features' },
+  { href: '#buster', label: 'Meet Buster' },
   { href: '#how-it-works', label: 'How It Works' },
+  { href: '#trust', label: 'Trust & Security' },
   { href: '#pricing', label: 'Pricing' },
   { href: '#faq', label: 'FAQ' },
 ]

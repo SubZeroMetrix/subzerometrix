@@ -1,12 +1,18 @@
 import { NextResponse } from 'next/server'
 
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://subzerometrix.com'
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.subzerometrix.com'
 
-const LLMS_TXT = `# SubZero Metrix
+const LLMS_TXT = `# SubZero Metrix LLC
 
-> SubZero Metrix is an independent affiliate software comparison platform operated by SubZero Metrix LLC. We compare software for websites, email marketing, automation, ecommerce, newsletters, SEO, and online-business growth.
+> www.subzerometrix.com is operated by SubZero Metrix LLC and hosts two distinct offerings: Metrix Command Center (the homepage, a governed AI business operating system for service companies) and an independent affiliate software comparison platform (under /tools, /compare, /reviews, /guides).
 
-## Content Areas
+## Metrix Command Center (homepage, /)
+
+Metrix Command Center is a governed AI business operating system for service/contractor businesses. It organizes customers, properties, leads, estimates, and jobs into one CRM, and provides a supervised AI team (led by "Buster," an AI Chief of Staff) that recommends next actions. Every AI recommendation requires explicit human approval before it reaches a customer or takes any action — there is no autonomous mode. Pricing: Command Center at $99/month, Founder CRM at $39/month (founder-code required, limited availability), both with a 7-day free trial, billed monthly, cancel anytime. The product itself (login, signup, CRM) is hosted at mcc.subzerometrix.com; this domain (subzerometrix.com) hosts only the public marketing/lead-capture page.
+
+## Affiliate Software Comparison Platform
+
+An independent software comparison platform. We compare software for websites, email marketing, automation, ecommerce, newsletters, SEO, and online-business growth.
 
 - **Tools**: Individual product pages covering strengths, limitations, pricing, best-fit users, and setup complexity. Path: /tools/[slug]
 - **Comparisons**: Side-by-side software comparisons with feature tables, pricing, and use-case recommendations. Path: /compare/[slug]
@@ -14,7 +20,7 @@ const LLMS_TXT = `# SubZero Metrix
 - **Guides**: Practical buying guides for selecting software tools. Path: /guides/[slug]
 - **Tool Finder**: Interactive questionnaire that recommends software based on goals, budget, and experience. Path: /tool-finder
 
-## Products Covered
+## Products Covered (affiliate platform)
 
 Systeme.io, MailerLite, Kinsta, GetResponse, Kit (formerly ConvertKit), beehiiv, ActiveCampaign, Shopify, Semrush, Instantly
 

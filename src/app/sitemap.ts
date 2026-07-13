@@ -2,7 +2,7 @@ import type { MetadataRoute } from 'next'
 import { seedProducts, comparisons } from '@/../../content/products'
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://subzerometrix.com'
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.subzerometrix.com'
   const now = new Date().toISOString()
 
   // '' (the homepage) is now the Metrix Command Center landing page and

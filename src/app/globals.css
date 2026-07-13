@@ -31,6 +31,11 @@
 }
 
 @layer components {
+  /* ── Accessibility ───────────────────────────────────── */
+  .skip-link {
+    @apply sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:px-4 focus:py-2 focus:rounded-lg focus:bg-brand-electric focus:text-white focus:font-semibold;
+  }
+
   /* ── Buttons ─────────────────────────────────────────── */
   .btn-primary {
     @apply inline-flex items-center justify-center px-8 py-3.5 rounded-full font-semibold text-white bg-brand-electric hover:bg-blue-700 shadow-lg hover:shadow-xl transition-all duration-200 focus-visible:outline-brand-electric;

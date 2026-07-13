@@ -1,7 +1,10 @@
 import type { Metadata } from 'next'
 
 const SITE_NAME = 'SubZero Metrix'
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://subzerometrix.com'
+// www is the canonical host -- the apex (subzerometrix.com) 308-redirects
+// to it, so canonical/OG URLs must point at the URL that actually serves
+// 200, not the one that redirects.
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.subzerometrix.com'
 
 export function buildMetadata(opts: {
   title: string

@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server'
 import { seedProducts, comparisons, categories } from '@/../../content/products'
 
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://subzerometrix.com'
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.subzerometrix.com'
 
 export async function GET() {
   const lines: string[] = [
@@ -9,7 +9,15 @@ export async function GET() {
     '',
     `> Generated: ${new Date().toISOString().split('T')[0]}`,
     '',
-    '## Categories',
+    '## Metrix Command Center',
+    '',
+    `- URL: ${SITE_URL}/`,
+    '- Governed AI business operating system for service/contractor businesses.',
+    '- Pricing: Command Center $99/month, Founder CRM $39/month (founder code required), both 7-day free trial, monthly, cancel anytime.',
+    '- AI Chief of Staff "Buster" recommends next actions; every recommendation requires human approval before any action is taken.',
+    `- Product app (login/signup/CRM): https://mcc.subzerometrix.com`,
+    '',
+    '## Affiliate Software Comparison Platform — Categories',
     '',
   ]
 
