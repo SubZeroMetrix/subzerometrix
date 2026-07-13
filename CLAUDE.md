@@ -2,11 +2,15 @@
 
 ## Project
 
-SubZero Metrix is an affiliate software comparison platform at subzerometric.com (provisional domain). It compares software for websites, email, automation, ecommerce, newsletters, SEO, and online business growth.
+SubZero Metrix is an affiliate software comparison platform, live at www.subzerometrix.com. It compares software for websites, email, automation, ecommerce, newsletters, SEO, and online business growth. The homepage (`/`) is now the public Metrix Command Center landing page (a separate product, same legal entity) — see `docs/INFRASTRUCTURE.md` for the full identity/architecture history. Default/production branch is `major-build-1`, not `main` (deleted from the remote).
+
+## Release process
+
+Every release must pass all five stages before being called "done": COMMITTED, PUSHED, VERCEL DEPLOYED, PRODUCTION ALIASED, LIVE VERIFIED. A successful GitHub commit-status check is not proof the live site serves that commit. Full process and the stale-alias safeguard: `docs/DEPLOYMENT.md`.
 
 ## Brand Rules
 
-- Use the exact supplied logo at public/brand/subzero-metrix-logo.png without modification
+- Use the exact supplied logo assets in `public/brand/` (`metrix-command-center-logo.png`, `buster-icon.png`) without modification
 - Legal entity: SubZero Metrix LLC
 - Trademark: SubZero Metrix™
 - Colors: midnight navy, electric blue, icy cyan, metallic silver, white
@@ -27,7 +31,7 @@ SubZero Metrix is an affiliate software comparison platform at subzerometric.com
 - src/lib/ — utilities (supabase/, affiliate/, analytics/, email/, stripe/, validation/)
 - content/ — seed data for products, comparisons, tool-finder rules
 - types/ — TypeScript interfaces
-- database/ — Supabase migrations
+- supabase/migrations/ — Supabase migrations (this repo's linked project, `vzbcunnrkexnmspeiwiu` — landing-lead data uses a separate isolated project, see docs/INFRASTRUCTURE.md)
 - docs/ — project documentation
 - public/brand/ — logo and brand assets
 

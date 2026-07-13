@@ -17,14 +17,17 @@
 - **Default/production branch (verified 2026-07-13 via `gh api repos/.../subzerometrix` and `git ls-remote --symref origin HEAD`): `major-build-1`.** `main` was deleted from the remote at some point after commit `6cf8b4a` (merge-base of the two branches) — it survives only as a stale local ref. This was a deliberate branch-model change (a full platform pivot: trades platform -> affiliate comparison site -> Metrix Command Center landing page, all built as commits on `major-build-1`), not an accident.
 - Recommended release flow given this reality: short-lived feature branches -> Vercel preview -> owner review -> PR merged into `major-build-1` (the de facto production branch). Do not recreate `main` unless there's a concrete reason to split release management from the default branch — none has surfaced.
 - Rollback tag: pre-major-build-1
+- **Full release process, including the mandatory five-stage verification (COMMITTED / PUSHED / VERCEL DEPLOYED / PRODUCTION ALIASED / LIVE VERIFIED) and the stale-alias safeguard: see `docs/DEPLOYMENT.md`.** A GitHub commit-status "success" is stage 3 only — it does not prove the production domain is serving that commit (a real 2026-07-13 incident: `4c4297a` showed deployed-successfully on GitHub while `www.subzerometrix.com` still served an older build).
 
 ## Vercel
 
-- Linked project: subzerometrix
+- Linked project: `sub-zero-metrix/subzerometrix`
+- Production domain: `www.subzerometrix.com` (apex `subzerometrix.com` 308-redirects to it), DNS configured and verified live 2026-07-13
 - Framework: Next.js
 - Build command: `next build`
 - Output directory: `.next`
-- Environment variables set in Vercel dashboard
+- Environment variables set in Vercel dashboard (Production + Preview) — see `.env.example`
+- `.vercel/` (local project-link metadata) is gitignored, never committed
 
 ## Supabase
 
