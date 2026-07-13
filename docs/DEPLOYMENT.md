@@ -1,5 +1,7 @@
 # Deployment
 
+Governed by the [Engineering Constitution](./ENGINEERING_CONSTITUTION.md). See [`DOCUMENTATION_INDEX.md`](./DOCUMENTATION_INDEX.md) for the full documentation map.
+
 Live domain: **https://www.subzerometrix.com** (apex `subzerometrix.com` 308-redirects to `www`). Default/production branch: **`major-build-1`** (`main` was deleted from the remote — do not recreate it or target it in a PR; see `docs/INFRASTRUCTURE.md`). Vercel project: `sub-zero-metrix/subzerometrix`.
 
 ## The five release stages — do not conflate them

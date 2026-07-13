@@ -1,5 +1,7 @@
 # Brand Constitution
 
+*See also: [`COMPANY_CONSTITUTION.md`](./COMPANY_CONSTITUTION.md) · [`PRODUCT_PHILOSOPHY.md`](./PRODUCT_PHILOSOPHY.md) · [`ENGINEERING_CONSTITUTION.md`](./ENGINEERING_CONSTITUTION.md) · [`CUSTOMER_PROMISE.md`](./CUSTOMER_PROMISE.md) · [`FOUNDER_PROFILE.md`](./FOUNDER_PROFILE.md) · [`AI_COLLABORATION_GUIDE.md`](./AI_COLLABORATION_GUIDE.md)*
+
 **Status: Permanent governing document.** Subordinate to `COMPANY_CONSTITUTION.md`. Supersedes any conflicting statement in `docs/BRAND-RULES.md` (a legacy, partially stale file describing the earlier affiliate-platform-only brand — kept as historical reference, not authoritative where it conflicts with this document).
 
 ## Brand Identity

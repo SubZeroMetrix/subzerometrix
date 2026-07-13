@@ -12,7 +12,9 @@
 
 | Variable | Description | Where |
 |----------|-------------|-------|
-| SUPABASE_SERVICE_ROLE_KEY | Supabase admin key | Vercel only (server) |
+| SUPABASE_SERVICE_ROLE_KEY | Supabase admin key (shared affiliate-site project) | Vercel only (server) |
+| MCC_LEADS_SUPABASE_URL | Isolated Metrix Command Center landing-lead Supabase project URL — never the same project as NEXT_PUBLIC_SUPABASE_URL above; see docs/INFRASTRUCTURE.md | Vercel + .env.local |
+| MCC_LEADS_SUPABASE_SERVICE_ROLE_KEY | Admin key for the isolated MCC-leads project, used only by src/app/api/mcc-lead/route.ts | Vercel only (server) |
 | STRIPE_SECRET_KEY | Stripe secret key | Vercel only (server) |
 | STRIPE_WEBHOOK_SECRET | Stripe webhook signing | Vercel only (server) |
 

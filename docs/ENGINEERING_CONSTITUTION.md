@@ -1,5 +1,7 @@
 # Engineering Constitution
 
+*See also: [`COMPANY_CONSTITUTION.md`](./COMPANY_CONSTITUTION.md) · [`BRAND_CONSTITUTION.md`](./BRAND_CONSTITUTION.md) · [`PRODUCT_PHILOSOPHY.md`](./PRODUCT_PHILOSOPHY.md) · [`CUSTOMER_PROMISE.md`](./CUSTOMER_PROMISE.md) · [`FOUNDER_PROFILE.md`](./FOUNDER_PROFILE.md) · [`AI_COLLABORATION_GUIDE.md`](./AI_COLLABORATION_GUIDE.md)*
+
 **Status: Permanent governing document.** Subordinate to `COMPANY_CONSTITUTION.md`. Operational detail lives in `docs/DEPLOYMENT.md` (release process) and `docs/INFRASTRUCTURE.md` (system architecture) — this document sets the non-negotiable principles those operational docs must follow.
 
 ## No Shell Builds

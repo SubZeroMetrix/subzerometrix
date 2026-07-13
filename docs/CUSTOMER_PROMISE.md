@@ -1,5 +1,7 @@
 # Customer Promise
 
+*See also: [`COMPANY_CONSTITUTION.md`](./COMPANY_CONSTITUTION.md) · [`BRAND_CONSTITUTION.md`](./BRAND_CONSTITUTION.md) · [`PRODUCT_PHILOSOPHY.md`](./PRODUCT_PHILOSOPHY.md) · [`ENGINEERING_CONSTITUTION.md`](./ENGINEERING_CONSTITUTION.md) · [`FOUNDER_PROFILE.md`](./FOUNDER_PROFILE.md) · [`AI_COLLABORATION_GUIDE.md`](./AI_COLLABORATION_GUIDE.md)*
+
 **Status: Permanent governing document.** Subordinate to `COMPANY_CONSTITUTION.md`. This document describes what any customer of any Metrix ecosystem product can rely on.
 
 ## What Customers Can Expect

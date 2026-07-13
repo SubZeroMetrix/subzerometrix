@@ -1,5 +1,7 @@
 # Company Constitution
 
+*See also: [`BRAND_CONSTITUTION.md`](./BRAND_CONSTITUTION.md) · [`PRODUCT_PHILOSOPHY.md`](./PRODUCT_PHILOSOPHY.md) · [`ENGINEERING_CONSTITUTION.md`](./ENGINEERING_CONSTITUTION.md) · [`CUSTOMER_PROMISE.md`](./CUSTOMER_PROMISE.md) · [`FOUNDER_PROFILE.md`](./FOUNDER_PROFILE.md) · [`AI_COLLABORATION_GUIDE.md`](./AI_COLLABORATION_GUIDE.md) · [`DOCUMENTATION_INDEX.md`](./DOCUMENTATION_INDEX.md)*
+
 **Status: Permanent governing document.** This is the constitutional source of truth for every future build, AI agent, employee, contractor, partner, investor, and customer-facing decision across the Metrix ecosystem (Metrix Command Center, SubZeroMetrix, The Modern Trades Mentor / Metrix Score). Where this document and any other document disagree, this document wins unless explicitly and formally amended.
 
 Grounded only in verified fact: the founder profile, this repository's existing governing docs (`CLAUDE.md`, `docs/INFRASTRUCTURE.md`, `docs/DEPLOYMENT.md`), shipped product behavior, and build history. Nothing in this document is aspirational marketing language presented as settled fact — where something is a goal rather than a proven reality, it is labeled as such.

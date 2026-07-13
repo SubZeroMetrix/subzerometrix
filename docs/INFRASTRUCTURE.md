@@ -1,5 +1,7 @@
 # Infrastructure
 
+Governed by the [Engineering Constitution](./ENGINEERING_CONSTITUTION.md). See [`DOCUMENTATION_INDEX.md`](./DOCUMENTATION_INDEX.md) for the full documentation map.
+
 ## Services
 
 | Service | Role | Status |
