@@ -28,6 +28,7 @@
 | `LAUNCH_READINESS.md` | Master 20-category launch dashboard | SubZero Metrix LLC | ACTIVE | 2026-07-13 | — |
 | `LAUNCH_CHECKLIST.md` | Item-level scorecard with objective acceptance criteria | SubZero Metrix LLC | ACTIVE | 2026-07-13 | — |
 | `LAUNCH_RISK_REGISTER.md` | Blocker register (L-1 through L-10) | SubZero Metrix LLC | ACTIVE | 2026-07-13 | — |
+| `LEGAL_REVIEW_PACKAGE.md` | L-1 attorney review package — inventory, data flows, checklist, sign-off | SubZero Metrix LLC | ACTIVE, ATTORNEY REVIEW REQUIRED | 2026-07-13 | — |
 | `GO_LIVE_CRITERIA.md` | Formal launch gate (Must/Should/Nice to Have) | SubZero Metrix LLC | ACTIVE | 2026-07-13 | — |
 | `POST_LAUNCH_PLAN.md` | Immediate post-launch monitoring plan | SubZero Metrix LLC | ACTIVE | 2026-07-13 | — |
 | `30-60-90_DAY_PLAN.md` | Timed roadmap, 30 days through 12 months | SubZero Metrix LLC | ACTIVE | 2026-07-13 | — |

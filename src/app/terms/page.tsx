@@ -20,6 +20,15 @@ export default function TermsPage() {
           <p>Product features, pricing, and availability may change at any time. We encourage you to verify current details directly with vendors before making purchase decisions.</p>
           <h2>Affiliate Links</h2>
           <p>This Site contains affiliate links. When you click on these links and make a purchase, SubZero Metrix LLC may earn a commission at no additional cost to you. See our <Link href="/affiliate-disclosure">affiliate disclosure</Link> for details.</p>
+          <h2>Metrix Command Center</h2>
+          <p><em>[DRAFT — ATTORNEY REVIEW REQUIRED]</em> This Site also markets Metrix Command Center, a separate software application operated by SubZero Metrix LLC at mcc.subzerometrix.com, governed by its own separate terms of service upon signup. The following pricing facts are accurate as displayed on this Site as of the date of this policy and are provided here for reference; the authoritative, binding terms are those presented during signup and checkout on mcc.subzerometrix.com:</p>
+          <ul>
+            <li>Command Center: $99/month; Founder CRM: $39/month (requires an approved founder code, limited availability)</li>
+            <li>Both plans include a 7-day free trial</li>
+            <li>Billing is monthly only — no annual plans</li>
+            <li>You may cancel at any time; access continues through the end of your current billing period</li>
+            <li>No prorated or discretionary refunds are issued; refunds are provided only where legally required or to correct a genuine billing error</li>
+          </ul>
           <h2>No Guarantees</h2>
           <p>SubZero Metrix does not guarantee any specific income, result, or outcome from using the tools or following the recommendations on this Site. Your results depend on your own efforts, decisions, and circumstances.</p>
           <h2>Intellectual Property</h2>

@@ -11,6 +11,7 @@
 - **Owner:** Founder.
 - **Resolution:** Full legal review (attorney preferred) of `/privacy`, `/terms`, `/affiliate-disclosure` against the actual current combined content and data flows of this domain.
 - **Verification:** Written sign-off or explicit founder acceptance of risk, recorded in this document.
+- **Status update (this pass):** Audit and reconciliation completed — see `LEGAL_REVIEW_PACKAGE.md`. `/terms` and `/privacy` updated with accurate, honest new disclosures (MCC pricing/trial/cancellation summary, third-party processors, cross-domain routing, Vercel Analytics), every new addition explicitly marked `[DRAFT — ATTORNEY REVIEW REQUIRED]`. **Classification: ATTORNEY REVIEW REQUIRED** — the audit/reconciliation work is done; actual legal sign-off has not occurred and cannot be fabricated.
 
 ## High
 
@@ -45,6 +46,7 @@
 - **Owner:** Founder (cross-repo coordination).
 - **Resolution:** A real signup test run against `command-center`'s current state, not addressable from this repository.
 - **Verification:** Out of scope for this document — should be tracked in `command-center`'s own launch documentation.
+- **Status update (this pass):** A scoped, read-only audit of `command-center` was authorized and performed for this task. Confirmed via direct code review: `createCheckoutAction` implements a real Stripe Checkout session (`mode: "subscription"`, `trial_period_days: 7` — matches the advertised 7-day trial), Founder CRM requires an atomically-redeemed founder code with 100-seat cap enforcement *before* any Stripe session is created, `allow_promotion_codes: false` (promo codes are not supported — not advertised anywhere either, so not a contradiction), checkout requires an authenticated session. The webhook handler (`app/api/webhooks/stripe/route.ts`) verifies Stripe's signature, is idempotent (keyed on `event.id`), rate-limited, and writes via a service-role-only RPC. Cancellation runs through Stripe's own hosted Billing Portal, gated by a real `get_my_entitlement_v0` entitlement check. **All of this is real, coherent, and well-built code — not a shell.** However: `STRIPE_SECRET_KEY` is **not set** in `command-center`'s local `.env.local` (checked existence only, no value read), so neither a local nor a live checkout could be executed or tested this pass, and production Vercel environment-variable state for that project was not checked (out of this repo's access). **Classification: TECHNICALLY VERIFIED (code-level) / OWNER ACTION REQUIRED (live end-to-end test + confirm production Stripe mode, both must happen inside `command-center`, not this repo).**
 
 ## Medium
 

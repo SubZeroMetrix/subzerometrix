@@ -37,8 +37,19 @@ Status values: **NOT STARTED · IN PROGRESS · READY · VERIFIED · BLOCKED**. E
 | Service-role key never exposed client-side | VERIFIED | Confirmed via code review; server-only usage throughout |
 | Lead data isolated from MCC production and legacy schema | VERIFIED | Live end-to-end test this session: write landed only in the dedicated project |
 | Rate limiting on lead form | VERIFIED | In-memory, 5 req/min/IP (known limitation: resets on redeploy — see Risk Register) |
-| Privacy Policy discloses all current data collection | IN PROGRESS | Extended for MCC lead fields; needs a full re-read against actual current data flows |
-| Formal legal review of combined Terms/Privacy for this domain | BLOCKED | Attorney or thorough self-review sign-off — see `LAUNCH_RISK_REGISTER.md` L-1 |
+| Privacy Policy discloses all current data collection | READY | Reconciled this session against real data flows (third-party processors, cross-domain routing, Vercel Analytics) — see `LEGAL_REVIEW_PACKAGE.md` |
+| Terms of Use covers MCC pricing/trial/cancellation/refund | READY | New section added, sourced from real live pricing constants, marked `[DRAFT — ATTORNEY REVIEW REQUIRED]` |
+| Formal legal review of combined Terms/Privacy for this domain | BLOCKED (ATTORNEY REVIEW REQUIRED) | Audit/reconciliation done; actual attorney sign-off still required — see `LAUNCH_RISK_REGISTER.md` L-1 and `LEGAL_REVIEW_PACKAGE.md` |
+
+## Commercial Funnel (L-5)
+| Item | Status | Acceptance Criteria |
+|---|---|---|
+| Stripe checkout session creation (code-level) | VERIFIED | Real `mode: "subscription"`, `trial_period_days: 7`, confirmed via read-only audit of `command-center` |
+| Founder-code eligibility + 100-seat cap enforcement | VERIFIED | Atomic RPC redemption before any Stripe session created, confirmed via code review |
+| Webhook signature verification + idempotency | VERIFIED | Confirmed via code review: signature-checked, keyed on `event.id`, rate-limited |
+| Entitlement-gated billing portal (cancellation) | VERIFIED | Real `get_my_entitlement_v0` check before Stripe Billing Portal session, confirmed via code review |
+| Live end-to-end checkout test | BLOCKED (OWNER ACTION REQUIRED) | `STRIPE_SECRET_KEY` not set locally in `command-center`; no confirmed test-mode credential; must be run inside that repo |
+| Production Stripe mode (test vs. live) confirmed | BLOCKED (OWNER ACTION REQUIRED) | Not checkable from this repo's access level |
 
 ## Infrastructure & Deployment
 | Item | Status | Acceptance Criteria |
