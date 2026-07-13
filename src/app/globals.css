@@ -155,6 +155,19 @@
     @apply text-brand-cyan hover:text-brand-cyan-light;
   }
 
+  .dark-section .btn-secondary {
+    @apply text-white border-white/30 hover:border-brand-cyan hover:text-brand-cyan bg-white/5;
+  }
+
+  /* ── Visible outline button ──────────────────────────── */
+  .btn-outline-visible {
+    @apply inline-flex items-center justify-center px-8 py-3.5 rounded-full font-semibold text-gray-700 border-2 border-gray-300 hover:border-brand-electric hover:text-brand-electric bg-white/80 backdrop-blur-sm transition-all duration-200;
+  }
+
+  .dark-section .btn-outline-visible {
+    @apply text-white border-white/40 hover:border-brand-cyan hover:text-brand-cyan bg-white/10;
+  }
+
   /* ── Announcement bar ────────────────────────────────── */
   .announcement-bar {
     @apply bg-brand-navy text-gray-300 text-sm py-2.5 text-center;

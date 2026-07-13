@@ -1,7 +1,7 @@
 export function AnnouncementBar() {
   return (
     <div className="announcement-bar">
-      <p>Independent software intelligence for building and growing online businesses.</p>
+      <p>Metrix Command Center — governed AI for service businesses. 7-day free trial.</p>
     </div>
   )
 }

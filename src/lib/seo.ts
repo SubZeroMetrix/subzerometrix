@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 
 const SITE_NAME = 'SubZero Metrix'
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://subzerometric.com'
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://subzerometrix.com'
 
 export function buildMetadata(opts: {
   title: string

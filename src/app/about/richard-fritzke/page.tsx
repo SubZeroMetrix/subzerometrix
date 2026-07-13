@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import { buildMetadata, breadcrumbSchema } from '@/lib/seo'
 
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://subzerometric.com'
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://subzerometrix.com'
 
 export const metadata = buildMetadata({
   title: 'Richard Fritzke — Founder & Editor-in-Chief',

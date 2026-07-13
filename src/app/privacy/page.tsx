@@ -14,16 +14,16 @@ export default function PrivacyPage() {
         <p className="text-label text-brand-electric mb-3">Legal</p>
         <h1 className="text-headline text-gray-900 mb-8">Privacy Policy</h1>
         <div className="prose-content">
-          <p>SubZero Metrix LLC (&quot;SubZero Metrix,&quot; &quot;we,&quot; &quot;us&quot;) operates the website at subzerometric.com. This policy explains how we collect, use, and protect your information.</p>
+          <p>SubZero Metrix LLC (&quot;SubZero Metrix,&quot; &quot;we,&quot; &quot;us&quot;) operates the website at subzerometrix.com. This policy explains how we collect, use, and protect your information.</p>
           <h2>Information We Collect</h2>
           <p><strong>Information you provide:</strong></p>
-          <ul><li>Email address and use-case information when you sign up for our mailing list</li><li>Name, email, and message content when you use our contact form</li></ul>
+          <ul><li>Email address and use-case information when you sign up for our mailing list</li><li>Name, email, and message content when you use our contact form</li><li>Name, email, phone number (optional), company (optional), and message content when you submit the Metrix Command Center interest form</li></ul>
           <p><strong>Information collected automatically (with consent):</strong></p>
           <ul><li>Page views and navigation patterns</li><li>Aggregate click data on affiliate links</li><li>Device type and browser information</li></ul>
           <p><strong>Information we do not collect:</strong></p>
           <ul><li>Payment card information (handled by third-party processors)</li><li>Passwords</li><li>Fingerprinting data</li><li>Session recordings or screen captures</li><li>Advertising pixels or invasive tracking</li></ul>
           <h2>How We Use Your Information</h2>
-          <ul><li>To send you the content you requested (e.g., buying guides)</li><li>To respond to your contact form submissions</li><li>To improve our website and recommendations (aggregate analytics only)</li><li>To measure affiliate link performance in aggregate</li></ul>
+          <ul><li>To send you the content you requested (e.g., buying guides)</li><li>To respond to your contact form submissions</li><li>To follow up on interest submitted through the Metrix Command Center form</li><li>To improve our website and recommendations (aggregate analytics only)</li><li>To measure affiliate link performance in aggregate</li></ul>
           <h2>Cookies and Consent</h2>
           <p>We use essential cookies for basic website functionality. Optional analytics cookies are only used with your explicit consent. You can change your consent preferences at any time through the consent banner.</p>
           <p>Essential website functionality (including affiliate link redirects) works without optional consent.</p>

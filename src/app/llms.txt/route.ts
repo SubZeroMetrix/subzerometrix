@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server'
 
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://subzerometric.com'
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://subzerometrix.com'
 
 const LLMS_TXT = `# SubZero Metrix
 

@@ -14,7 +14,7 @@ export default function TermsPage() {
         <p className="text-label text-brand-electric mb-3">Legal</p>
         <h1 className="text-headline text-gray-900 mb-8">Terms of Use</h1>
         <div className="prose-content">
-          <p>By accessing and using subzerometric.com (the &quot;Site&quot;), operated by SubZero Metrix LLC, you agree to these terms.</p>
+          <p>By accessing and using subzerometrix.com (the &quot;Site&quot;), operated by SubZero Metrix LLC, you agree to these terms.</p>
           <h2>Content and Recommendations</h2>
           <p>The information on this Site is provided for general informational purposes. Software recommendations, reviews, and comparisons are based on our editorial evaluation process and are not guarantees of any specific outcome or result.</p>
           <p>Product features, pricing, and availability may change at any time. We encourage you to verify current details directly with vendors before making purchase decisions.</p>

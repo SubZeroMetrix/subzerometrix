@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server'
 import { seedProducts, comparisons, categories } from '@/../../content/products'
 
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://subzerometric.com'
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://subzerometrix.com'
 
 export async function GET() {
   const lines: string[] = [

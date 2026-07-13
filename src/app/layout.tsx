@@ -12,20 +12,26 @@ const inter = Inter({
   weight: ['400', '500', '600', '700', '800'],
 })
 
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://subzerometric.com'
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://subzerometrix.com'
 
 export const metadata: Metadata = {
   title: {
-    default: 'SubZero Metrix — Compare Software for Online Business Growth',
-    template: '%s | SubZero Metrix',
+    default: 'Metrix Command Center — Governed AI Business Operating System',
+    template: '%s | Metrix Command Center',
   },
   description:
-    'SubZero Metrix compares software for websites, email, automation, ecommerce, newsletters, SEO, and online-business growth. Find the right tools before wasting money on the wrong ones.',
+    'Metrix Command Center helps service businesses find missed revenue, organize customer operations, and know what to do next — with a governed AI team where every recommendation requires your approval.',
   metadataBase: new URL(SITE_URL),
   openGraph: {
     type: 'website',
-    siteName: 'SubZero Metrix',
-    images: [{ url: '/brand/subzero-metrix-logo.png', width: 1024, height: 1024, alt: 'SubZero Metrix' }],
+    siteName: 'Metrix Command Center',
+    images: [{ url: '/brand/metrix-command-center-logo.png', width: 1200, height: 420, alt: 'Metrix Command Center' }],
+  },
+  twitter: {
+    card: 'summary_large_image',
+  },
+  icons: {
+    icon: '/brand/metrix-command-center-logo.png',
   },
 }
 

@@ -2,22 +2,25 @@ import type { MetadataRoute } from 'next'
 import { seedProducts, comparisons } from '@/../../content/products'
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://subzerometric.com'
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://subzerometrix.com'
   const now = new Date().toISOString()
 
+  // '' (the homepage) is now the Metrix Command Center landing page and
+  // is the primary indexed route. The remaining affiliate-platform routes
+  // stay reachable but are de-prioritized rather than removed outright.
   const staticRoutes = [
     '',
+    '/about',
+    '/contact',
+    '/privacy',
+    '/terms',
     '/tools',
     '/compare',
     '/tool-finder',
     '/reviews',
     '/guides',
-    '/about',
     '/about/richard-fritzke',
-    '/contact',
     '/affiliate-disclosure',
-    '/privacy',
-    '/terms',
     '/editorial-policy',
     '/editorial-methodology',
   ]
