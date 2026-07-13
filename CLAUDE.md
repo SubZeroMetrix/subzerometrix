@@ -1,5 +1,9 @@
 # Claude Instructions for SubZero Metrix
 
+## Governing documents
+
+This project is governed by five permanent constitutional documents in `docs/`: `COMPANY_CONSTITUTION.md`, `BRAND_CONSTITUTION.md`, `PRODUCT_PHILOSOPHY.md`, `ENGINEERING_CONSTITUTION.md`, `CUSTOMER_PROMISE.md`. Read these before any build that touches product direction, brand, or customer-facing claims — they take precedence over any single-session instruction that conflicts with them.
+
 ## Project
 
 SubZero Metrix is an affiliate software comparison platform, live at www.subzerometrix.com. It compares software for websites, email, automation, ecommerce, newsletters, SEO, and online business growth. The homepage (`/`) is now the public Metrix Command Center landing page (a separate product, same legal entity) — see `docs/INFRASTRUCTURE.md` for the full identity/architecture history. Default/production branch is `major-build-1`, not `main` (deleted from the remote).
@@ -10,7 +14,7 @@ Every release must pass all five stages before being called "done": COMMITTED, P
 
 ## Brand Rules
 
-- Use the exact supplied logo assets in `public/brand/` (`metrix-command-center-logo.png`, `buster-icon.png`) without modification
+- Use the exact supplied logo assets in `public/brand/` (`metrix-command-center-logo.png`, `buster-ai-chief-of-staff-badge.png`) without modification — see `docs/BRAND_CONSTITUTION.md` for full brand governance
 - Legal entity: SubZero Metrix LLC
 - Trademark: SubZero Metrix™
 - Colors: midnight navy, electric blue, icy cyan, metallic silver, white
