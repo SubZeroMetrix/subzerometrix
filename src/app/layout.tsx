@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
+import { Analytics } from '@vercel/analytics/next'
 import './globals.css'
 import { AnnouncementBar } from '@/components/AnnouncementBar'
 import { Header } from '@/components/Header'
@@ -44,6 +45,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <main className="flex-1">{children}</main>
         <Footer />
         <ConsentBanner />
+        <Analytics />
       </body>
     </html>
   )
