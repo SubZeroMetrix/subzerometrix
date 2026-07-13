@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { validateMccLeadForm } from '@/lib/validation/mcc-lead'
-import { createAdminClient } from '@/lib/supabase/admin'
+import { createMccLeadsAdminClient } from '@/lib/supabase/admin'
 
 const RATE_LIMIT_MAP = new Map<string, number[]>()
 
@@ -50,7 +50,7 @@ export async function POST(request: NextRequest) {
   }
 
   try {
-    const supabase = createAdminClient()
+    const supabase = createMccLeadsAdminClient()
 
     const { data: existing } = await supabase
       .from('mcc_leads')

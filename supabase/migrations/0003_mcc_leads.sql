@@ -1,9 +1,17 @@
 -- Lead capture for the Metrix Command Center marketing sections of the
 -- public SubZero Metrix landing page. Deliberately a separate table from
 -- lead_signups (the affiliate email-list signup) -- different schema,
--- different funnel, different downstream handling. Lives in this
--- project's own Supabase (ref vzbcunnrkexnmspeiwiu) -- never MCC
--- production (ref lnfokebqcdlzgnvcxmub).
+-- different funnel, different downstream handling.
+--
+-- APPLIED (2026-07-13) to the dedicated, isolated Supabase project
+-- "SubZeroMetrixLandingPage" (ref sskgceffpkiuxjhlyjjr) -- NOT the
+-- shared affiliate-site project (vzbcunnrkexnmspeiwiu, which turned out
+-- to hold unrelated legacy MCC-pattern schema, see
+-- docs/INFRASTRUCTURE.md), and NEVER MCC production (lnfokebqcdlzgnvcxmub).
+-- This file is kept in this repo's migrations directory for history/
+-- reference, but this repo's own linked CLI project remains
+-- vzbcunnrkexnmspeiwiu (the affiliate site's real database) -- do not
+-- `supabase db push` this file against that project.
 
 create table if not exists public.mcc_leads (
   id uuid primary key default gen_random_uuid(),

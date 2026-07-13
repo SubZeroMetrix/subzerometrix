@@ -28,13 +28,14 @@
 
 ## Supabase
 
-- Migration files: `0001_affiliate_platform_init.sql`, `0002_affiliate_program_extensions.sql`. A third, `0003_mcc_leads.sql` (Metrix Command Center landing-page lead capture), exists in the repo but is **NOT yet applied** — see identity audit below.
+- Migration files: `0001_affiliate_platform_init.sql`, `0002_affiliate_program_extensions.sql` — applied to this repo's shared affiliate-site project (`vzbcunnrkexnmspeiwiu`), which remains this repo's linked CLI project and continues to serve `lead_signups`, `contact_submissions`, `affiliate_links`/`affiliate_click_events` (`/go/[slug]`), and the admin CMS.
+- `0003_mcc_leads.sql` — **RESOLVED 2026-07-13.** Applied instead to a brand-new, dedicated, isolated project, **`SubZeroMetrixLandingPage`** (ref `sskgceffpkiuxjhlyjjr`, created 2026-07-13), owner-provisioned specifically to close the identity gap below. Verified clean before and after apply (`supabase migration list --linked` showed zero prior migrations; post-apply shows exactly `0001` local==remote, no drift). `src/app/api/mcc-lead/route.ts` now uses a second, dedicated client (`createMccLeadsAdminClient()` in `src/lib/supabase/admin.ts`), reading new env vars `MCC_LEADS_SUPABASE_URL`/`MCC_LEADS_SUPABASE_SERVICE_ROLE_KEY` — the app's primary `NEXT_PUBLIC_SUPABASE_URL`/keys are untouched, so `/go/[slug]` and the admin CMS pages (which depend on the shared project) are unaffected.
 - RLS enabled on all tables
 - Public read policies on product/category/comparison tables
 - No public write access to editorial data
 - Service-role key used server-side only
 
-### ⚠️ Unresolved database identity — verified 2026-07-13 (read-only audit, OWNER DECISION NEEDED)
+### Resolved: landing-page database identity — 2026-07-13
 
 This repo's `.env.local` (`NEXT_PUBLIC_SUPABASE_URL`) and the linked Supabase CLI project both point at project ref **`vzbcunnrkexnmspeiwiu`** ("SubZeroMetrix's Project", org `kleijfslsmvgghomqvox`, created 2026-06-13 — the *earliest* of the four projects in this org). This is confirmed to be a **different, distinct project** from MCC production (`lnfokebqcdlzgnvcxmub`, "command-center", created 2026-06-30) — no MCC ref appears anywhere in this repo, and MCC's own `.env` points only at its own ref.
 
@@ -44,16 +45,9 @@ However, a read-only introspection (Supabase REST OpenAPI spec, service role, no
 - Spot-checked row counts confirm this is **not dead/empty legacy schema** — `agent_registry` has 9 rows, `crm_customer_timeline` has 20 rows (both real data, checked read-only via `count=exact`, no rows fetched or modified). This repo's own `lead_signups` table (the real affiliate lead table) has 0 rows, confirming no leads have been captured on this site yet either way.
 - Given `vzbcunnrkexnmspeiwiu` predates MCC's dedicated project (`lnfokebqcdlzgnvcxmub`) by 17 days, the most likely explanation is that it briefly served as MCC's shared/default database during early development before MCC was given its own dedicated project on 2026-06-30, and the legacy schema/data were never cleaned out afterward.
 
-**Classification: (c) shared legacy infrastructure — not proven safe for new landing-page lead data as-is.**
+**Resolution:** owner provisioned a new, dedicated Supabase project (`SubZeroMetrixLandingPage`, `sskgceffpkiuxjhlyjjr`) rather than cleaning up or reusing `vzbcunnrkexnmspeiwiu`. `0003_mcc_leads.sql` applied there only. `vzbcunnrkexnmspeiwiu`'s legacy MCC-pattern schema (561 tables/views, 1,047 RPCs, live rows in some tables per the 2026-07-13 forensic audit) was left completely untouched — its origin remains only LIKELY-explained (see the forensic audit session notes), not fully proven, and it is out of scope for this repo to clean up unilaterally.
 
-**Recommended path (not yet implemented):** provision a dedicated, purpose-built Supabase project for the SubZeroMetrix landing site (new, empty project — cleanest option), or at minimum prove `vzbcunnrkexnmspeiwiu`'s legacy MCC-pattern tables are safely inert/archived before writing new PII (lead names/emails/phone numbers) into the same project. Do not treat shared infrastructure as acceptable without an explicit owner decision — mixing landing-page lead PII with a database that has held real MCC-pattern customer/agent data is a data-governance risk, not just a naming inconvenience.
-
-**OWNER NEEDED:**
-1. Confirm what `vzbcunnrkexnmspeiwiu` actually is / was, and whether the 561 MCC-pattern tables with live rows can be safely archived or must be preserved.
-2. Decide: new dedicated Supabase project for the landing site, or continue using `vzbcunnrkexnmspeiwiu` after cleanup/isolation is proven.
-3. Only after that decision: apply `supabase/migrations/0003_mcc_leads.sql` to the approved destination.
-
-Migration `0003_mcc_leads.sql` is additive-only (new table, new indexes, RLS enabled, no public policies -- service-role/API-route access only, matching the existing `lead_signups` pattern) and does not touch or reference any existing table. It has not been applied anywhere.
+**Still open, not urgent:** no admin view exists yet for the new `mcc_leads` table (leads are retrievable via direct Supabase query/dashboard on `sskgceffpkiuxjhlyjjr` only, no `/admin/mcc-leads` UI built). No owner-notification email is wired for new submissions.
 
 ## Stripe
 
