@@ -22,7 +22,7 @@ export function buildMetadata(opts: {
       url,
       siteName: SITE_NAME,
       type: 'website',
-      images: [{ url: `${SITE_URL}/brand/subzero-metrix-logo.png`, width: 1024, height: 1024, alt: 'SubZero Metrix' }],
+      images: [{ url: `${SITE_URL}/brand/metrix-command-center-logo.png`, width: 600, height: 400, alt: 'Metrix Command Center' }],
     },
     twitter: {
       card: 'summary_large_image',
@@ -39,7 +39,7 @@ export function organizationSchema() {
     '@type': 'Organization',
     name: 'SubZero Metrix LLC',
     url: SITE_URL,
-    logo: `${SITE_URL}/brand/subzero-metrix-logo.png`,
+    logo: `${SITE_URL}/brand/metrix-command-center-logo.png`,
   }
 }
 

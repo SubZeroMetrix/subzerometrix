@@ -25,7 +25,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: 'website',
     siteName: 'Metrix Command Center',
-    images: [{ url: '/brand/metrix-command-center-logo.png', width: 1200, height: 420, alt: 'Metrix Command Center' }],
+    images: [{ url: '/brand/metrix-command-center-logo.png', width: 600, height: 400, alt: 'Metrix Command Center' }],
   },
   twitter: {
     card: 'summary_large_image',
