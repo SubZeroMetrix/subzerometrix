@@ -288,7 +288,7 @@ export default function HomePage() {
           <div className="grid sm:grid-cols-2 lg:grid-cols-5 gap-6 max-w-6xl mx-auto">
             {HOW_IT_WORKS.map((item) => (
               <div key={item.step} className="bg-white/[0.04] border border-white/10 rounded-2xl p-6 text-center">
-                <span className="text-4xl font-bold text-white/10 block mb-3">{item.step}</span>
+                <span className="text-4xl font-bold text-white/40 block mb-3">{item.step}</span>
                 <h3 className="text-sm font-bold text-white mb-2">{item.title}</h3>
                 <p className="text-xs text-gray-400 leading-relaxed">{item.desc}</p>
               </div>
@@ -339,9 +339,9 @@ export default function HomePage() {
             <table className="w-full border-collapse text-sm">
               <thead>
                 <tr className="border-b-2 border-gray-200">
-                  <th className="text-left py-4 pr-4 font-semibold text-gray-500">&nbsp;</th>
-                  <th className="text-left py-4 px-4 font-bold text-brand-electric">Metrix Command Center</th>
-                  <th className="text-left py-4 px-4 font-semibold text-gray-500">Typical &quot;autonomous AI&quot; tools</th>
+                  <th scope="col" className="text-left py-4 pr-4 font-semibold text-gray-600">&nbsp;</th>
+                  <th scope="col" className="text-left py-4 px-4 font-bold text-brand-electric">Metrix Command Center</th>
+                  <th scope="col" className="text-left py-4 px-4 font-semibold text-gray-600">Typical &quot;autonomous AI&quot; tools</th>
                 </tr>
               </thead>
               <tbody>
@@ -353,9 +353,9 @@ export default function HomePage() {
                   ['Pricing', 'Flat, transparent, monthly', 'Often usage-based and unpredictable'],
                 ].map((row) => (
                   <tr key={row[0]} className="border-b border-gray-100">
-                    <td className="py-4 pr-4 font-semibold text-gray-700">{row[0]}</td>
+                    <th scope="row" className="text-left py-4 pr-4 font-semibold text-gray-700">{row[0]}</th>
                     <td className="py-4 px-4 text-gray-900">{row[1]}</td>
-                    <td className="py-4 px-4 text-gray-400">{row[2]}</td>
+                    <td className="py-4 px-4 text-gray-600">{row[2]}</td>
                   </tr>
                 ))}
               </tbody>
@@ -392,7 +392,7 @@ export default function HomePage() {
             </div>
 
             <div className="card-panel">
-              <p className="text-xs font-semibold uppercase tracking-wider text-gray-400 mb-2">Founder Code Required</p>
+              <p className="text-xs font-semibold uppercase tracking-wider text-gray-600 mb-2">Founder Code Required</p>
               <h3 className="text-xl font-bold text-gray-900 mb-1">{MCC_PLANS.founder_crm.name}</h3>
               <p className="text-3xl font-bold text-gray-900 mb-4">{MCC_PLANS.founder_crm.priceDisplay}</p>
               <ul className="space-y-2 mb-4 text-sm text-gray-600">
@@ -403,12 +403,12 @@ export default function HomePage() {
                   </li>
                 ))}
               </ul>
-              <p className="text-xs text-gray-400 mb-4">{MCC_FOUNDER_PRICING_NOTICE}</p>
+              <p className="text-xs text-gray-600 mb-4">{MCC_FOUNDER_PRICING_NOTICE}</p>
               <a href={MCC_SIGNUP_URL} className="btn-secondary w-full text-center block">I Have a Founder Code</a>
             </div>
           </div>
 
-          <p className="text-center text-xs text-gray-400 max-w-xl mx-auto">{MCC_BILLING_TERMS.refunds}</p>
+          <p className="text-center text-xs text-gray-600 max-w-xl mx-auto">{MCC_BILLING_TERMS.refunds}</p>
         </div>
       </section>
 
@@ -433,11 +433,11 @@ export default function HomePage() {
             <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-4">Roadmap</h2>
             <ul className="space-y-3">
               <li className="flex gap-3 items-start">
-                <span className="text-xs font-semibold uppercase tracking-wider text-amber-600 bg-amber-50 px-2 py-0.5 rounded-full shrink-0 mt-0.5">In progress</span>
+                <span className="text-xs font-semibold uppercase tracking-wider text-amber-800 bg-amber-50 px-2 py-0.5 rounded-full shrink-0 mt-0.5">In progress</span>
                 <span className="text-gray-700 text-sm">A unified Communications Center — SMS and social messaging alongside governed email.</span>
               </li>
               <li className="flex gap-3 items-start">
-                <span className="text-xs font-semibold uppercase tracking-wider text-gray-500 bg-gray-200 px-2 py-0.5 rounded-full shrink-0 mt-0.5">Planned</span>
+                <span className="text-xs font-semibold uppercase tracking-wider text-gray-700 bg-gray-200 px-2 py-0.5 rounded-full shrink-0 mt-0.5">Planned</span>
                 <span className="text-gray-700 text-sm">Additional integrations beyond Google login and secure workspace access.</span>
               </li>
             </ul>

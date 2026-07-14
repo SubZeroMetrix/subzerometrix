@@ -41,7 +41,7 @@ export function Footer() {
           </div>
 
           <div>
-            <p className="text-xs font-semibold uppercase tracking-wider text-gray-500 mb-4">Product</p>
+            <p className="text-xs font-semibold uppercase tracking-wider text-gray-400 mb-4">Product</p>
             <nav className="space-y-2.5" aria-label="Product">
               {productLinks.map((link) => (
                 <a key={link.href} href={link.href} className="block text-sm text-gray-400 hover:text-white transition-colors">
@@ -52,7 +52,7 @@ export function Footer() {
           </div>
 
           <div>
-            <p className="text-xs font-semibold uppercase tracking-wider text-gray-500 mb-4">Company</p>
+            <p className="text-xs font-semibold uppercase tracking-wider text-gray-400 mb-4">Company</p>
             <nav className="space-y-2.5" aria-label="Company">
               {companyLinks.map((link) => (
                 <Link key={link.href} href={link.href} className="block text-sm text-gray-400 hover:text-white transition-colors">
@@ -66,7 +66,7 @@ export function Footer() {
           </div>
 
           <div>
-            <p className="text-xs font-semibold uppercase tracking-wider text-gray-500 mb-4">Legal</p>
+            <p className="text-xs font-semibold uppercase tracking-wider text-gray-400 mb-4">Legal</p>
             <nav className="space-y-2.5" aria-label="Legal">
               {legalLinks.map((link) => (
                 <Link key={link.href} href={link.href} className="block text-sm text-gray-400 hover:text-white transition-colors">
@@ -78,7 +78,7 @@ export function Footer() {
         </div>
 
         <div className="mt-14 pt-8 border-t border-white/10">
-          <p className="text-xs text-gray-500">
+          <p className="text-xs text-gray-400">
             &copy; {new Date().getFullYear()} SubZero Metrix LLC. All rights reserved. Metrix Command Center&trade; is a product of SubZero Metrix LLC.
           </p>
         </div>
