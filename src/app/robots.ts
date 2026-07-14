@@ -13,6 +13,7 @@ export default function robots(): MetadataRoute.Robots {
     '/editorial-policy',
     '/editorial-methodology',
     '/llms.txt',
+    '/llms-full.txt',
   ]
 
   return {
@@ -44,6 +45,16 @@ export default function robots(): MetadataRoute.Robots {
       },
       {
         userAgent: 'PerplexityBot',
+        allow: aiAllowPaths,
+        disallow: ['/api/', '/admin/', '/go/'],
+      },
+      {
+        userAgent: 'ClaudeBot',
+        allow: aiAllowPaths,
+        disallow: ['/api/', '/admin/', '/go/'],
+      },
+      {
+        userAgent: 'Claude-User',
         allow: aiAllowPaths,
         disallow: ['/api/', '/admin/', '/go/'],
       },

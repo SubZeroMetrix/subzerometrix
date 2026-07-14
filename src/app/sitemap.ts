@@ -27,7 +27,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   const productRoutes = seedProducts.map((p) => `/tools/${p.slug}`)
   const comparisonRoutes = comparisons.map((c) => `/compare/${c.slug}`)
-  const reviewRoutes = seedProducts.map((p) => `/reviews/${p.slug}`)
+  // /reviews/[slug] intentionally 307-redirects to /tools/[slug] (see
+  // src/app/reviews/[slug]/page.tsx) -- it is not itself a 200 page, so
+  // it must not be listed in the sitemap as if it were one. The
+  // canonical destination is already covered by productRoutes above.
 
   const guideRoutes = [
     '/guides/best-email-marketing-tools',
@@ -45,7 +48,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...staticRoutes,
     ...productRoutes,
     ...comparisonRoutes,
-    ...reviewRoutes,
     ...guideRoutes,
     ...launchContentRoutes,
   ]

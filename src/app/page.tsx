@@ -1,5 +1,5 @@
 import Image from 'next/image'
-import { buildMetadata, organizationSchema } from '@/lib/seo'
+import { buildMetadata, organizationSchema, websiteSchema } from '@/lib/seo'
 import { MccLeadCaptureForm } from '@/components/MccLeadCaptureForm'
 import {
   MCC_PLANS,
@@ -159,6 +159,7 @@ export default function HomePage() {
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema()) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema()) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(softwareSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
 
