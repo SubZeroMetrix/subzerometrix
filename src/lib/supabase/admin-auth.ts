@@ -8,11 +8,19 @@ import { cookies } from 'next/headers'
 // requests itself, since the client-side gate alone only hides UI, it
 // does not stop a direct request to the API route.
 export async function getAdminUser() {
+  const url = process.env.NEXT_PUBLIC_SUPABASE_URL
+  const anonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
+
+  if (!url || !anonKey) {
+    console.error('[admin-auth] Missing NEXT_PUBLIC_SUPABASE_URL or NEXT_PUBLIC_SUPABASE_ANON_KEY at runtime')
+    return null
+  }
+
   const cookieStore = await cookies()
 
   const supabase = createServerClient(
-    process.env.NEXT_PUBLIC_SUPABASE_URL!,
-    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
+    url,
+    anonKey,
     {
       cookies: {
         getAll() {

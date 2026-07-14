@@ -14,7 +14,13 @@ export interface SubmissionRow {
 }
 
 export async function GET(request: NextRequest) {
-  const user = await getAdminUser()
+  let user
+  try {
+    user = await getAdminUser()
+  } catch (err) {
+    console.error('[admin-submissions] Auth check error:', err instanceof Error ? err.message : 'unknown error')
+    return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
+  }
   if (!user) {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
   }
@@ -71,7 +77,13 @@ const TABLE_BY_TYPE: Record<string, string> = {
 const VALID_STATUSES = ['new', 'NEW', 'reviewed', 'REVIEWED', 'contacted', 'converted', 'archived', 'ACTIONABLE', 'PLANNED', 'COMPLETED', 'DECLINED', 'DUPLICATE', 'SPAM', 'QUALIFIED', 'NOT_QUALIFIED', 'HANDED_OFF', 'APPROVED']
 
 export async function PATCH(request: NextRequest) {
-  const user = await getAdminUser()
+  let user
+  try {
+    user = await getAdminUser()
+  } catch (err) {
+    console.error('[admin-submissions] Auth check error:', err instanceof Error ? err.message : 'unknown error')
+    return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
+  }
   if (!user) {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
   }
