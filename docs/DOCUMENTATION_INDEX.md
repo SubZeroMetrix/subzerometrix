@@ -21,6 +21,16 @@
 | `AI_COLLABORATION_GUIDE.md` | Operating discipline for AI collaborators (TruthMode, scope discipline) | SubZero Metrix LLC | ACTIVE | 2026-07-13 | — |
 | `DOCUMENTATION_INDEX.md` (this file) | Master map of every doc | SubZero Metrix LLC | ACTIVE | 2026-07-13 | — |
 
+## Traffic engine documents (Gen 3, current, planning only — no pages built)
+
+| Document | Purpose | Owner | Status | Last relevance | Superseded by |
+|---|---|---|---|---|---|
+| `SEO_CONTENT_ARCHITECTURE.md` | Pillar/cluster structure, URL hierarchy, internal linking map, keyword intent, search funnel | SubZero Metrix LLC | ACTIVE | 2026-07-13 | — |
+| `CONTENT_CALENDAR.md` | 12-month publishing roadmap, launch/90-day/first-year | SubZero Metrix LLC | ACTIVE | 2026-07-13 | — |
+| `AI_DISCOVERABILITY_AUDIT.md` | Schema/llms.txt/crawler-policy audit and roadmap | SubZero Metrix LLC | ACTIVE | 2026-07-13 | — |
+| `LINK_AND_DISTRIBUTION_STRATEGY.md` | Partnership/backlink/social distribution categories | SubZero Metrix LLC | ACTIVE | 2026-07-13 | — |
+| `TRAFFIC_ENGINE_ROADMAP.md` | Master execution plan tying the above together, Phase 1-4 | SubZero Metrix LLC | ACTIVE | 2026-07-13 | — |
+
 ## Launch readiness documents (Gen 3, current)
 
 | Document | Purpose | Owner | Status | Last relevance | Superseded by |
