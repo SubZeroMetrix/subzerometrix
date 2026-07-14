@@ -14,6 +14,9 @@ const resourceLinks = [
   { href: '/resources', label: 'All Resources' },
   { href: '/resources/hvac', label: 'HVAC' },
   { href: '/resources/facility-management', label: 'Facility Management' },
+  { href: '/resources/electrical', label: 'Electrical' },
+  { href: '/resources/plumbing', label: 'Plumbing' },
+  { href: '/resources/business-operations', label: 'Business Operations' },
   { href: '/resources/ai-for-contractors', label: 'AI for Contractors' },
 ]
 

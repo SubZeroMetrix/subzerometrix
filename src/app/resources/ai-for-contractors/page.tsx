@@ -114,7 +114,10 @@ export default function AiForContractorsPillarPage() {
 
         <p className="text-sm text-gray-500 mt-8">
           Related: <Link href="/resources/hvac" className="text-brand-electric underline">HVAC</Link>{' '}
-          &middot; <Link href="/resources/facility-management" className="text-brand-electric underline">Facility Management</Link>
+          &middot; <Link href="/resources/facility-management" className="text-brand-electric underline">Facility Management</Link>{' '}
+          &middot; <Link href="/resources/electrical" className="text-brand-electric underline">Electrical</Link>{' '}
+          &middot; <Link href="/resources/plumbing" className="text-brand-electric underline">Plumbing</Link>{' '}
+          &middot; <Link href="/resources/business-operations" className="text-brand-electric underline">Business Operations</Link>
         </p>
       </div>
     </div>

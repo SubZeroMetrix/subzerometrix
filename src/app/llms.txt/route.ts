@@ -12,7 +12,7 @@ Metrix Command Center is a governed AI business operating system for service/con
 
 ## Resources for Contractors & Facility Operators
 
-Practical guides grounded in the founder's own 24+ years of HVAC/R, facilities, and mechanical operations experience -- not generic AI-written content. Path: /resources, with pillar pages at /resources/hvac, /resources/facility-management, and /resources/ai-for-contractors, plus a free interactive tool at /resources/tools/follow-up-revenue-calculator.
+Practical guides grounded in the founder's own 24+ years of HVAC/R, facilities, and mechanical operations experience where personally attributed, and honest organization-authored operational guides for adjacent trades. Path: /resources, with pillar pages at /resources/hvac, /resources/facility-management, /resources/electrical, /resources/plumbing, /resources/business-operations, and /resources/ai-for-contractors, plus free interactive tools at /resources/tools/follow-up-revenue-calculator and /resources/tools/estimate-follow-up-priority-calculator.
 
 ## Affiliate Software Comparison Platform
 

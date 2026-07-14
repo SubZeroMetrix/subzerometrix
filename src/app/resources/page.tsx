@@ -22,23 +22,51 @@ const CATEGORIES = [
     populated: true,
   },
   {
-    slug: 'ai-for-contractors',
-    name: 'AI for Contractors',
-    description: 'What governed AI actually does today, what it doesn’t, and how to adopt it without losing control.',
+    slug: 'electrical',
+    name: 'Electrical',
+    description: 'Lead follow-up, estimate management, scheduling, and service agreements for electrical contracting businesses.',
+    populated: true,
+  },
+  {
+    slug: 'plumbing',
+    name: 'Plumbing',
+    description: 'Emergency vs. planned work, dispatch, callbacks, and the follow-up gap in plumbing businesses.',
     populated: true,
   },
   {
     slug: 'business-operations',
     name: 'Business Operations',
-    description: 'CRM fundamentals, revenue recovery, and follow-up process design for service businesses.',
-    populated: false,
+    description: 'Lead response, pipeline discipline, follow-up, scheduling, and the daily operating rhythm for any service business.',
+    populated: true,
+  },
+  {
+    slug: 'ai-for-contractors',
+    name: 'AI for Contractors',
+    description: 'What governed AI actually does today, what it doesn’t, and how to adopt it without losing control.',
+    populated: true,
   },
 ]
 
 const FEATURED_GUIDES = [
   { href: '/resources/hvac', title: 'Where HVAC Businesses Lose Revenue Without Noticing', category: 'HVAC' },
   { href: '/resources/facility-management', title: 'Facility Management: Reliability, Planning, and What AI Can and Can’t Do', category: 'Facility Management' },
+  { href: '/resources/electrical', title: 'Running an Electrical Contracting Business: Where Operations Break Down', category: 'Electrical' },
+  { href: '/resources/plumbing', title: 'Running a Plumbing Business: Emergency Work, Scheduling, and the Follow-Up Gap', category: 'Plumbing' },
+  { href: '/resources/business-operations', title: 'Running a Service Business as an Operating System', category: 'Business Operations' },
   { href: '/resources/ai-for-contractors', title: 'AI for Contractors: What’s Real, What’s Roadmap, and How to Stay in Control', category: 'AI for Contractors' },
+]
+
+const FREE_TOOLS = [
+  {
+    href: '/resources/tools/follow-up-revenue-calculator',
+    title: 'Follow-Up Revenue Calculator',
+    description: 'Estimate how much revenue is sitting in open estimates and overdue follow-ups right now.',
+  },
+  {
+    href: '/resources/tools/estimate-follow-up-priority-calculator',
+    title: 'Estimate Follow-Up Priority Calculator',
+    description: 'Score which open estimates need follow-up first based on age, customer response, urgency, and value.',
+  },
 ]
 
 export default function ResourcesHubPage() {
@@ -102,15 +130,17 @@ export default function ResourcesHubPage() {
           ))}
         </div>
 
-        <h2 className="text-2xl font-bold text-gray-900 mb-6">Free Tool</h2>
-        <div className="card-panel mb-16">
-          <h3 className="text-lg font-bold text-gray-900 mb-2">Follow-Up Revenue Calculator</h3>
-          <p className="text-sm text-gray-500 leading-relaxed mb-4">
-            Estimate how much revenue is sitting in open estimates and overdue follow-ups right now.
-          </p>
-          <Link href="/resources/tools/follow-up-revenue-calculator" className="btn-secondary inline-block">
-            Try the Calculator
-          </Link>
+        <h2 className="text-2xl font-bold text-gray-900 mb-6">Free Tools</h2>
+        <div className="grid sm:grid-cols-2 gap-6 mb-16">
+          {FREE_TOOLS.map((tool) => (
+            <div key={tool.href} className="card-panel">
+              <h3 className="text-lg font-bold text-gray-900 mb-2">{tool.title}</h3>
+              <p className="text-sm text-gray-500 leading-relaxed mb-4">{tool.description}</p>
+              <Link href={tool.href} className="btn-secondary inline-block">
+                Try the Calculator
+              </Link>
+            </div>
+          ))}
         </div>
 
         <div className="card-panel bg-gray-50 border-brand-electric/20 text-center">
