@@ -1,15 +1,32 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { updateConsent, getConsent } from '@/lib/analytics/events'
 
 export function ConsentBanner() {
   const [visible, setVisible] = useState(false)
+  const bannerRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
     const hasDecided = typeof window !== 'undefined' && localStorage.getItem('szm_consent')
     if (!hasDecided) setVisible(true)
   }, [])
+
+  // The banner is fixed to the bottom of the viewport and can otherwise
+  // cover interactive content (e.g. the hero CTA) on short mobile
+  // viewports before a consent decision is made. Reserve real space for
+  // it so nothing sits underneath, unreachable, while it's visible.
+  useEffect(() => {
+    if (typeof document === 'undefined') return
+    if (visible && bannerRef.current) {
+      document.body.style.paddingBottom = `${bannerRef.current.offsetHeight}px`
+    } else {
+      document.body.style.paddingBottom = ''
+    }
+    return () => {
+      document.body.style.paddingBottom = ''
+    }
+  }, [visible])
 
   function accept() {
     updateConsent({ analytics: true, marketing: false })
@@ -24,7 +41,7 @@ export function ConsentBanner() {
   if (!visible) return null
 
   return (
-    <div className="fixed bottom-0 inset-x-0 z-50 bg-brand-navy text-white p-4 shadow-panel-xl" role="dialog" aria-label="Cookie consent">
+    <div ref={bannerRef} className="fixed bottom-0 inset-x-0 z-50 bg-brand-navy text-white p-4 shadow-panel-xl" role="dialog" aria-label="Cookie consent">
       <div className="section-container flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
         <p className="text-sm text-gray-300">
           We use cookies for essential functionality and optional analytics.
