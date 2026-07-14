@@ -10,6 +10,10 @@ const LLMS_TXT = `# SubZero Metrix LLC
 
 Metrix Command Center is a governed AI business operating system for service/contractor businesses. It organizes customers, properties, leads, estimates, and jobs into one CRM, and provides a supervised AI team (led by "Buster," an AI Chief of Staff) that recommends next actions. Every AI recommendation requires explicit human approval before it reaches a customer or takes any action — there is no autonomous mode. Pricing: Command Center at $99/month, Founder CRM at $39/month (founder-code required, limited availability), both with a 7-day free trial, billed monthly, cancel anytime. The product itself (login, signup, CRM) is hosted at mcc.subzerometrix.com; this domain (subzerometrix.com) hosts only the public marketing/lead-capture page.
 
+## Resources for Contractors & Facility Operators
+
+Practical guides grounded in the founder's own 24+ years of HVAC/R, facilities, and mechanical operations experience -- not generic AI-written content. Path: /resources, with pillar pages at /resources/hvac, /resources/facility-management, and /resources/ai-for-contractors, plus a free interactive tool at /resources/tools/follow-up-revenue-calculator.
+
 ## Affiliate Software Comparison Platform
 
 An independent software comparison platform. We compare software for websites, email marketing, automation, ecommerce, newsletters, SEO, and online-business growth.

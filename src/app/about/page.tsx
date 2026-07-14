@@ -13,11 +13,11 @@ export default function AboutPage() {
     <div className="py-20">
       <div className="section-container max-w-3xl">
         <Image
-          src="/brand/subzero-metrix-logo.png"
-          alt="SubZero Metrix"
-          width={80}
-          height={80}
-          className="rounded-xl mb-8"
+          src="/brand/metrix-command-center-logo.png"
+          alt="Metrix Command Center"
+          width={120}
+          height={42}
+          className="mb-8"
         />
 
         <p className="text-label text-brand-electric mb-3">About</p>

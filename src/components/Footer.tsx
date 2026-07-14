@@ -2,12 +2,19 @@ import Link from 'next/link'
 import Image from 'next/image'
 
 const productLinks = [
-  { href: '#features', label: 'Features' },
-  { href: '#buster', label: 'Meet Buster' },
-  { href: '#how-it-works', label: 'How It Works' },
-  { href: '#trust', label: 'Trust & Security' },
-  { href: '#pricing', label: 'Pricing' },
-  { href: '#faq', label: 'FAQ' },
+  { href: '/#features', label: 'Features' },
+  { href: '/#buster', label: 'Meet Buster' },
+  { href: '/#how-it-works', label: 'How It Works' },
+  { href: '/#trust', label: 'Trust & Security' },
+  { href: '/#pricing', label: 'Pricing' },
+  { href: '/#faq', label: 'FAQ' },
+]
+
+const resourceLinks = [
+  { href: '/resources', label: 'All Resources' },
+  { href: '/resources/hvac', label: 'HVAC' },
+  { href: '/resources/facility-management', label: 'Facility Management' },
+  { href: '/resources/ai-for-contractors', label: 'AI for Contractors' },
 ]
 
 const companyLinks = [
@@ -24,7 +31,7 @@ export function Footer() {
   return (
     <footer className="dark-section border-t border-white/5 mt-0">
       <div className="section-container py-16">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-10 lg:gap-12">
+        <div className="grid grid-cols-2 md:grid-cols-5 gap-10 lg:gap-12">
           <div className="col-span-2 md:col-span-1">
             <Link href="/" className="inline-block mb-5 bg-white rounded-lg p-2">
               <Image
@@ -47,6 +54,17 @@ export function Footer() {
                 <a key={link.href} href={link.href} className="block text-sm text-gray-400 hover:text-white transition-colors">
                   {link.label}
                 </a>
+              ))}
+            </nav>
+          </div>
+
+          <div>
+            <p className="text-xs font-semibold uppercase tracking-wider text-gray-400 mb-4">Resources</p>
+            <nav className="space-y-2.5" aria-label="Resources">
+              {resourceLinks.map((link) => (
+                <Link key={link.href} href={link.href} className="block text-sm text-gray-400 hover:text-white transition-colors">
+                  {link.label}
+                </Link>
               ))}
             </nav>
           </div>

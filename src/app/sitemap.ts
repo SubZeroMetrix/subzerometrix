@@ -14,6 +14,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
     '/contact',
     '/privacy',
     '/terms',
+    '/resources',
+    '/resources/hvac',
+    '/resources/facility-management',
+    '/resources/ai-for-contractors',
+    '/resources/tools/follow-up-revenue-calculator',
     '/tools',
     '/compare',
     '/tool-finder',
@@ -58,7 +63,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     changeFrequency: route === '' ? 'weekly' as const : 'monthly' as const,
     priority: route === ''
       ? 1
-      : route.includes('/tools/') || route.includes('/compare/')
+      : route.includes('/tools/') || route.includes('/compare/') || route.startsWith('/resources')
         ? 0.8
         : 0.6,
   }))

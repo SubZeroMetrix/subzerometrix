@@ -5,6 +5,7 @@ export default function robots(): MetadataRoute.Robots {
 
   const aiAllowPaths = [
     '/',
+    '/resources/',
     '/tools/',
     '/compare/',
     '/guides/',

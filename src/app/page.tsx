@@ -1,4 +1,5 @@
 import Image from 'next/image'
+import Link from 'next/link'
 import { buildMetadata, organizationSchema, websiteSchema } from '@/lib/seo'
 import { MccLeadCaptureForm } from '@/components/MccLeadCaptureForm'
 import {
@@ -425,9 +426,12 @@ export default function HomePage() {
               estimate that goes cold, a customer nobody checked on — and most software either buries
               that signal in noise or hands total control to an AI with no oversight. We wanted neither.
             </p>
-            <p className="text-gray-600 leading-relaxed">
+            <p className="text-gray-600 leading-relaxed mb-4">
               Every part of this platform is built on one rule: the AI can recommend, but you decide.
             </p>
+            <Link href="/resources" className="text-sm font-semibold text-brand-electric hover:underline">
+              Read our HVAC &amp; facility management guides &rarr;
+            </Link>
           </div>
           <div>
             <p className="text-xs font-semibold uppercase tracking-wider text-brand-electric mb-3">What&apos;s Coming Next</p>

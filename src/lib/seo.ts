@@ -67,3 +67,46 @@ export function breadcrumbSchema(items: { name: string; url: string }[]) {
     })),
   }
 }
+
+// Only for pages genuinely grounded in Richard Fritzke's own verified
+// career history -- never attached to generic or AI-drafted content.
+export function personSchema() {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'Person',
+    name: 'Richard Fritzke',
+    url: `${SITE_URL}/about/richard-fritzke`,
+    jobTitle: 'Founder, SubZero Metrix LLC',
+    worksFor: { '@type': 'Organization', name: 'SubZero Metrix LLC' },
+  }
+}
+
+export function articleSchema(opts: {
+  headline: string
+  description: string
+  path: string
+  authorGrounded?: boolean
+}) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    headline: opts.headline,
+    description: opts.description,
+    url: `${SITE_URL}${opts.path}`,
+    ...(opts.authorGrounded
+      ? { author: { '@type': 'Person', name: 'Richard Fritzke' } }
+      : { author: { '@type': 'Organization', name: 'SubZero Metrix LLC' } }),
+    publisher: { '@type': 'Organization', name: 'SubZero Metrix LLC', logo: { '@type': 'ImageObject', url: `${SITE_URL}/brand/metrix-command-center-logo.png` } },
+  }
+}
+
+export function webPageSchema(opts: { name: string; description: string; path: string }) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'WebPage',
+    name: opts.name,
+    description: opts.description,
+    url: `${SITE_URL}${opts.path}`,
+    isPartOf: { '@type': 'WebSite', name: SITE_NAME, url: SITE_URL },
+  }
+}

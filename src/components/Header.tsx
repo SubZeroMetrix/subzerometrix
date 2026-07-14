@@ -8,11 +8,12 @@ const MCC_LOGIN_URL = 'https://mcc.subzerometrix.com/login'
 const MCC_SIGNUP_URL = 'https://mcc.subzerometrix.com/signup'
 
 const navLinks = [
-  { href: '#features', label: 'Features' },
-  { href: '#buster', label: 'Meet Buster' },
-  { href: '#how-it-works', label: 'How It Works' },
-  { href: '#pricing', label: 'Pricing' },
-  { href: '#faq', label: 'FAQ' },
+  { href: '/#features', label: 'Features' },
+  { href: '/#buster', label: 'Meet Buster' },
+  { href: '/#how-it-works', label: 'How It Works' },
+  { href: '/#pricing', label: 'Pricing' },
+  { href: '/#faq', label: 'FAQ' },
+  { href: '/resources', label: 'Resources' },
 ]
 
 export function Header() {
