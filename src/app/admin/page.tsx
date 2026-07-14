@@ -7,6 +7,7 @@ const adminSections = [
   { href: '/admin/comparisons', label: 'Comparisons', desc: 'Manage product comparison pairs and editorial content.' },
   { href: '/admin/tool-finder', label: 'Tool Finder Rules', desc: 'Manage recommendation logic, conditions, and reasoning.' },
   { href: '/admin/leads', label: 'Leads', desc: 'View email signups, use cases, and sources.' },
+  { href: '/admin/submissions', label: 'Submissions', desc: 'MCC leads, customer-care requests, qualification, referral/partner interest, and written help feedback -- all in one place.' },
   { href: '/admin/contacts', label: 'Contact Submissions', desc: 'View and manage contact form submissions.' },
   { href: '/admin/analytics', label: 'Click Analytics', desc: 'View aggregate affiliate click data and attribution.' },
   { href: '/admin/verification', label: 'Verification Records', desc: 'Track product and content verification history.' },
