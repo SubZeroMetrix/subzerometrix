@@ -41,27 +41,27 @@ export default function CustomerCarePage() {
 
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
           <Link href="/help" className="card-panel hover:border-brand-electric/30 transition-colors">
-            <h3 className="text-base font-bold text-gray-900 mb-2">Ask the Help Center</h3>
+            <h2 className="text-base font-bold text-gray-900 mb-2">Ask the Help Center</h2>
             <p className="text-sm text-gray-500 leading-relaxed">Browse curated, verified answers to common questions.</p>
           </Link>
           <Link href="/customer-care/qualify" className="card-panel hover:border-brand-electric/30 transition-colors">
-            <h3 className="text-base font-bold text-gray-900 mb-2">Not sure Metrix is right for you?</h3>
+            <h2 className="text-base font-bold text-gray-900 mb-2">Not sure Metrix is right for you?</h2>
             <p className="text-sm text-gray-500 leading-relaxed">Answer a few quick questions and we&apos;ll help you figure out the right next step.</p>
           </Link>
           <Link href="/customer-care/refer" className="card-panel hover:border-brand-electric/30 transition-colors">
-            <h3 className="text-base font-bold text-gray-900 mb-2">Refer someone or explore a partnership</h3>
+            <h2 className="text-base font-bold text-gray-900 mb-2">Refer someone or explore a partnership</h2>
             <p className="text-sm text-gray-500 leading-relaxed">Let us know you&apos;re interested — no payouts or commissions are set up yet.</p>
           </Link>
           <div className="card-panel">
-            <h3 className="text-base font-bold text-gray-900 mb-2">Billing and cancellation</h3>
+            <h2 className="text-base font-bold text-gray-900 mb-2">Billing and cancellation</h2>
             <p className="text-sm text-gray-500 leading-relaxed">Cancel anytime — access continues through the end of your billing period. See <Link href="/help/refund-policy" className="text-brand-electric underline">refund policy</Link>.</p>
           </div>
           <div className="card-panel">
-            <h3 className="text-base font-bold text-gray-900 mb-2">Privacy and data requests</h3>
+            <h2 className="text-base font-bold text-gray-900 mb-2">Privacy and data requests</h2>
             <p className="text-sm text-gray-500 leading-relaxed">See our <Link href="/privacy" className="text-brand-electric underline">Privacy Policy</Link>, or submit a request using the form below.</p>
           </div>
           <div className="card-panel">
-            <h3 className="text-base font-bold text-gray-900 mb-2">Existing Metrix account?</h3>
+            <h2 className="text-base font-bold text-gray-900 mb-2">Existing Metrix account?</h2>
             <p className="text-sm text-gray-500 leading-relaxed">
               This site does not handle account support. Log in at{' '}
               <a href="https://mcc.subzerometrix.com/login" className="text-brand-electric underline">mcc.subzerometrix.com</a>{' '}

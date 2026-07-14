@@ -97,7 +97,7 @@ export function HelpSearchList({ articles, categories }: { articles: Article[]; 
               className="card-panel hover:border-brand-electric/30 transition-colors"
             >
               <p className="text-xs font-semibold uppercase tracking-wider text-brand-electric mb-2">{a.category}</p>
-              <h3 className="text-base font-bold text-gray-900 mb-2">{a.title}</h3>
+              <h2 className="text-base font-bold text-gray-900 mb-2">{a.title}</h2>
               {a.status !== 'VERIFIED' && (
                 <span className="text-xs font-semibold text-amber-700 bg-amber-50 px-2 py-0.5 rounded-full">
                   {STATUS_LABEL[a.status] || a.status}
