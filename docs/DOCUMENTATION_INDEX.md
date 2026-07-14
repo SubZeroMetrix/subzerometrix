@@ -21,6 +21,14 @@
 | `AI_COLLABORATION_GUIDE.md` | Operating discipline for AI collaborators (TruthMode, scope discipline) | SubZero Metrix LLC | ACTIVE | 2026-07-13 | — |
 | `DOCUMENTATION_INDEX.md` (this file) | Master map of every doc | SubZero Metrix LLC | ACTIVE | 2026-07-13 | — |
 
+## Customer Zero documents (Gen 3, current — cross-repo, documentation only)
+
+| Document | Purpose | Owner | Status | Last relevance | Superseded by |
+|---|---|---|---|---|---|
+| `CUSTOMER_ZERO.md` | The complete internal operating loop, real vs. not-yet-real status per stage | SubZero Metrix LLC | ACTIVE | 2026-07-13 | — |
+| `MORNING_BRIEF_AND_DAILY_WRAPUP.md` | Buster's daily reporting spec, grounded in `command-center`'s real Morning/EOD reports | SubZero Metrix LLC | ACTIVE | 2026-07-13 | — |
+| `CUSTOMER_ZERO_METRICS.md` | KPI framework (measurable vs. not-yet-computable) and Executive Dashboard definition | SubZero Metrix LLC | ACTIVE | 2026-07-13 | — |
+
 ## Traffic engine documents (Gen 3, current, planning only — no pages built)
 
 | Document | Purpose | Owner | Status | Last relevance | Superseded by |
