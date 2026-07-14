@@ -33,7 +33,7 @@ export const MCC_PLANS = {
 } as const
 
 export const MCC_FOUNDER_PRICING_NOTICE =
-  'Founder pricing is reserved for the first 100 approved customers, requires a founder code, and is limited availability. Standard pricing for future customers may change as new capability is added.'
+  'Founder pricing requires an approved founder code and eligibility. Standard pricing for future customers may change as new capability is added.'
 
 export const MCC_BILLING_TERMS = {
   interval: 'Monthly only — no annual plans.',

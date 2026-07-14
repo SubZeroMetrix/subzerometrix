@@ -11,78 +11,119 @@ import {
 } from '@/content/mcc-pricing'
 
 export const metadata = buildMetadata({
-  title: 'Metrix Command Center — Governed AI Business Operating System',
+  title: 'Metrix Command Center | Contractor Lead and Estimate Follow-Up',
   description:
-    'Metrix Command Center helps service businesses find missed revenue, organize customer operations, and know what to do next — with a governed AI team where every recommendation requires your approval. Starting at $39/month with a 7-day free trial.',
+    'Metrix helps contractors find missed follow-ups, stalled estimates, and customer opportunities, then shows what deserves attention next while keeping important actions under owner approval.',
   path: '/',
 })
 
-const VALUE_SECTIONS = [
-  {
-    title: 'Revenue Recovery',
-    description:
-      'Surface the follow-ups, estimates, and jobs that are quietly falling through the cracks, before they turn into lost revenue.',
-  },
-  {
-    title: 'Customer 360 CRM',
-    description:
-      'Customers and properties as first-class records. Leads, estimates, jobs, and follow-ups, organized in one place.',
-  },
-  {
-    title: 'Follow-Ups & Communications',
-    description: 'Governed email communications keep customers in the loop without anything going out unreviewed.',
-  },
-  {
-    title: 'Estimates, Jobs & Reports',
-    description: 'Track estimates through to jobs, with reporting that reflects what actually happened.',
-  },
-  {
-    title: 'Approval-Gated AI',
-    description:
-      'Every AI-drafted recommendation is checked against safety rules and requires your explicit approval before it reaches a customer or takes action.',
-  },
-  {
-    title: 'Audit Trails & Kill Switches',
-    description: 'Every automation is visible, controllable, and logged. You can stop anything, instantly.',
-  },
-  {
-    title: 'Secure Workspace Access',
-    description: 'Google login and a secured, workspace-isolated account keep your business data yours alone.',
-  },
+const PROBLEMS = [
+  { title: 'Leads wait too long', description: 'A new lead comes in, gets a first look, then sits — because nobody has visibility into how long it has actually been waiting.' },
+  { title: 'Estimates never get followed up', description: 'A quote goes out, the customer goes quiet, and the estimate ages out of anyone’s attention without ever being formally lost.' },
+  { title: 'Customers quietly disappear', description: 'A once-regular customer stops calling. Nobody notices until a competitor’s truck is in their driveway.' },
+  { title: 'Reviews and referrals go unasked', description: 'A job goes well and nobody follows up to ask for the review or the referral while the experience is still fresh.' },
+  { title: 'Opportunities live in five different places', description: 'Texts, a notebook, a shared inbox, someone’s memory, a spreadsheet nobody opens — nothing lives in one place long enough to be tracked.' },
+  { title: 'Owners don’t know what deserves attention today', description: 'With everything scattered, the owner is left guessing what’s actually urgent instead of knowing.' },
 ]
 
-const HOW_IT_WORKS = [
+const MECHANISM = [
+  { step: '01', title: 'Metrix finds what is being missed.', desc: 'Overdue follow-ups, aging estimates, and customers who’ve gone quiet, surfaced automatically from your real data.' },
+  { step: '02', title: 'It explains why it matters.', desc: 'Every item comes with the evidence behind it — not just a flag, but the reason it’s worth your attention.' },
+  { step: '03', title: 'It recommends the next action.', desc: 'Buster drafts a specific next step grounded in what actually happened, not a generic suggestion.' },
+  { step: '04', title: 'It prepares the work for owner approval.', desc: 'Nothing reaches a customer or changes a record until you say so.' },
+]
+
+const OUTCOME_AREAS = [
   {
-    step: '01',
-    title: 'Connect or enter your business data',
-    desc: 'Bring in your customers, properties, and jobs — or start entering them directly.',
+    title: 'Lead Follow-Up',
+    problem: 'New leads go days without a response and nobody notices until the lead is gone.',
+    identifies: 'Leads waiting past a reasonable response window.',
+    nextStep: 'Review the recommended follow-up and approve it, or handle it yourself.',
+    approval: 'Approval required before any customer contact.',
   },
   {
-    step: '02',
-    title: 'MCC identifies opportunities and risks',
-    desc: 'The platform surfaces what needs attention: stalled follow-ups, overdue estimates, at-risk customers.',
+    title: 'Estimate Recovery',
+    problem: 'A quote goes out and, without a deliberate decision, quietly becomes a lost sale.',
+    identifies: 'Estimates aging past your typical close window.',
+    nextStep: 'Approve a recommended follow-up on the estimates worth chasing.',
+    approval: 'Approval required before any customer contact.',
   },
   {
-    step: '03',
-    title: 'Buster recommends next actions',
-    desc: 'Your AI Chief of Staff drafts a recommended next step, grounded in your real data.',
+    title: 'Customer Reactivation',
+    problem: 'A previously active customer stops calling and nobody flags the change.',
+    identifies: 'Customers whose activity has gone quiet relative to their history.',
+    nextStep: 'Decide whether a reactivation outreach makes sense, then approve it.',
+    approval: 'Approval required before any customer contact.',
   },
   {
-    step: '04',
-    title: 'You review and approve',
-    desc: 'Nothing reaches a customer or executes until you say so.',
+    title: 'Reviews and Referrals',
+    problem: 'A completed job is a review/referral opportunity that expires the longer it sits unaddressed.',
+    identifies: 'Recently completed jobs that haven’t been asked for a review or referral yet.',
+    nextStep: 'Approve the recommended ask while the experience is still fresh.',
+    approval: 'Approval required before any customer contact.',
   },
   {
-    step: '05',
-    title: 'Results are tracked',
-    desc: 'Every decision and outcome is logged to a permanent, searchable audit trail.',
+    title: 'Daily Priorities',
+    problem: 'Without one place to look, the owner is guessing what’s actually urgent today.',
+    identifies: 'The items across your business that most need attention right now.',
+    nextStep: 'Start the day with a real list, not a guess.',
+    approval: 'No approval needed to view — approval still required for any resulting customer action.',
+  },
+  {
+    title: 'Customer History',
+    problem: 'Context about a customer is scattered across notes, memory, and old messages.',
+    identifies: 'A single record per customer and property, built as the relationship happens.',
+    nextStep: 'Reference real history instead of relying on memory.',
+    approval: 'No approval needed to view.',
+  },
+  {
+    title: 'Team Accountability',
+    problem: 'Without visibility, it’s not fair to hold anyone accountable to numbers nobody can see.',
+    identifies: 'What’s open, what’s overdue, and what’s been completed, visible in one place.',
+    nextStep: 'Use real visibility to manage the team, not memory or guesswork.',
+    approval: 'No approval needed to view.',
+  },
+  {
+    title: 'Business Visibility',
+    problem: 'Most owners can’t see the true state of their pipeline without asking someone.',
+    identifies: 'A real, current picture of leads, estimates, jobs, and follow-ups.',
+    nextStep: 'Check the state of the business without a status meeting.',
+    approval: 'No approval needed to view.',
   },
 ]
 
 const FAQS = [
   {
     q: 'What is Metrix Command Center?',
-    a: 'A governed AI business operating system for service companies — it organizes your customers, jobs, and follow-ups, and uses a supervised AI team to help you find missed revenue and know what to do next.',
+    a: 'Metrix helps contractors find the leads, estimates, follow-ups, reviews, and customer relationships that are slipping through the cracks, and shows you what deserves attention next. A supervised AI team drafts the recommended next step — every one of them waits for your approval before anything reaches a customer.',
+  },
+  {
+    q: 'How long does setup take?',
+    a: 'You can start entering your customers, properties, and jobs directly, or bring in your existing data. There is no lengthy implementation process — the trial starts working from the data you give it.',
+  },
+  {
+    q: 'Does Metrix replace my current CRM or field-service software?',
+    a: 'Metrix is a full CRM on its own — customers, properties, leads, estimates, jobs, and follow-ups are all managed in one governed pipeline. If you’re currently relying on spreadsheets, notes, or a patchwork of tools, Metrix is built to replace that. If you’re on established field-service software, talk to us about your specific workflow before switching.',
+  },
+  {
+    q: 'What happens if a recommendation is wrong?',
+    a: 'Every recommendation shows the evidence behind it so you can judge it before approving. Nothing executes automatically — if a recommendation doesn’t hold up, you simply don’t approve it, and nothing happens.',
+  },
+  {
+    q: 'Will AI contact customers without approval?',
+    a: 'No. This is a hard rule, not a setting. No AI-drafted message, record change, or recommendation reaches a customer or takes effect without your explicit approval first.',
+  },
+  {
+    q: 'Does Metrix guarantee revenue?',
+    a: 'No. Metrix surfaces opportunities that are being missed and helps you act on them faster — the outcome still depends on your business, your market, and your follow-through, the same as it always has.',
+  },
+  {
+    q: 'Can AI assistance be paused?',
+    a: 'Yes. Every automation is visible and controllable, and you can stop it instantly.',
+  },
+  {
+    q: 'Is Metrix fully autonomous?',
+    a: 'No. There is no autonomous mode. Metrix prepares the work; you approve what happens next.',
   },
   {
     q: 'What does the free trial include?',
@@ -90,7 +131,7 @@ const FAQS = [
   },
   {
     q: 'How much does it cost?',
-    a: `Command Center is ${MCC_PLANS.command_center.priceDisplay}. Founder CRM is ${MCC_PLANS.founder_crm.priceDisplay} and requires an approved founder code, with limited availability. ${MCC_BILLING_TERMS.interval}`,
+    a: `Command Center is ${MCC_PLANS.command_center.priceDisplay}. Founder CRM is ${MCC_PLANS.founder_crm.priceDisplay} and requires an approved founder code. ${MCC_BILLING_TERMS.interval}`,
   },
   {
     q: 'Can I cancel anytime?',
@@ -99,14 +140,6 @@ const FAQS = [
   {
     q: 'What happens to my billing if I cancel mid-cycle?',
     a: MCC_BILLING_TERMS.refunds,
-  },
-  {
-    q: 'What does "approval-gated AI" actually mean?',
-    a: 'No AI in Metrix Command Center takes an action — sending a message, changing a record, making a recommendation live — without passing safety checks and getting your explicit approval first.',
-  },
-  {
-    q: 'Is this a full CRM?',
-    a: 'Yes — customers, properties, leads, estimates, jobs, and follow-ups are all managed in one governed pipeline.',
   },
   {
     q: 'What integrations are available?',
@@ -121,12 +154,8 @@ const FAQS = [
     a: 'Your account is workspace-isolated with secure authentication. See our Privacy Policy for full detail on how your data is collected, used, and protected.',
   },
   {
-    q: 'How is this different from other AI business tools?',
-    a: 'Most "autonomous AI" tools act first and explain later, if at all. Metrix Command Center never does — every AI recommendation waits for your explicit approval, with a full permanent audit trail and an instant kill switch on every automation.',
-  },
-  {
     q: 'Who builds Metrix Command Center?',
-    a: 'Metrix Command Center is built by SubZero Metrix LLC, a small, independent team.',
+    a: 'Metrix Command Center is built by SubZero Metrix LLC, a small, independent team led by Richard Fritzke, who spent 24+ years in HVAC/R, facilities, and mechanical operations leadership before building it.',
   },
   {
     q: 'How do I get support?',
@@ -149,6 +178,8 @@ export default function HomePage() {
     '@context': 'https://schema.org',
     '@type': 'SoftwareApplication',
     name: 'Metrix Command Center',
+    description:
+      'Metrix helps contractors find missed follow-ups, stalled estimates, and customer opportunities, then shows what deserves attention next while keeping important actions under owner approval.',
     applicationCategory: 'BusinessApplication',
     operatingSystem: 'Web',
     offers: [
@@ -175,26 +206,25 @@ export default function HomePage() {
         <div className="section-container relative z-10 pt-20 sm:pt-24 pb-16 sm:pb-20">
           <div className="grid lg:grid-cols-[1.2fr_0.8fr] gap-12 items-center">
             <div className="text-center lg:text-left">
-              <p className="text-label text-brand-cyan mb-4">Governed AI Business Operating System for Contractors</p>
+              <p className="text-label text-brand-cyan mb-4">Built for contractor businesses that cannot afford to let good opportunities disappear.</p>
               <h1 className="text-display text-white mb-6">
-                Find missed revenue.<br className="hidden sm:block" /> Know what to do next.
+                Stop Letting Good Leads<br className="hidden sm:block" /> and Estimates Go Cold.
               </h1>
               <p className="text-lg sm:text-xl text-gray-300 leading-relaxed max-w-2xl mx-auto lg:mx-0 mb-10">
-                Metrix Command Center organizes your customer operations and gives you a governed AI
-                team that recommends next actions — nothing reaches a customer or your business until
-                you approve it.
+                Your business is already generating opportunities. Metrix finds the leads, estimates,
+                follow-ups, reviews, and customer relationships slipping through the cracks — and shows
+                you what deserves attention next.
               </p>
               <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 mb-4">
                 <a href={MCC_SIGNUP_URL} className="btn-primary text-lg px-10 py-4">
-                  Start Free Trial — {MCC_PLANS.command_center.priceDisplay}
+                  Find My Revenue Leaks
                 </a>
-                <a href="#buster" className="btn-outline-visible text-lg px-10 py-4">
-                  Meet Buster
+                <a href="#how-it-works" className="btn-outline-visible text-lg px-10 py-4">
+                  See How Metrix Works
                 </a>
               </div>
               <p className="text-sm text-gray-400">
-                {MCC_PLANS.command_center.trialDays}-day free trial &middot; monthly, cancel anytime &middot; no fake
-                guarantees, just a real trial
+                Metrix prepares the work. You approve what happens next.
               </p>
             </div>
             <div className="hidden lg:flex justify-center">
@@ -211,28 +241,87 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ─── VALUE SECTIONS ─── */}
-      <section id="features" className="py-24 sm:py-32 bg-white">
+      {/* ─── PROBLEM ─── */}
+      <section className="py-24 sm:py-32 bg-white">
         <div className="section-container">
           <div className="text-center mb-16">
-            <p className="text-xs font-semibold uppercase tracking-wider text-brand-electric mb-3">What&apos;s Included</p>
-            <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">Everything you need, nothing you don&apos;t</h2>
+            <p className="text-xs font-semibold uppercase tracking-wider text-brand-electric mb-3">The Real Cost</p>
+            <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">Where the revenue actually goes missing</h2>
             <p className="text-lg text-gray-500 max-w-2xl mx-auto">
-              Real, shipped capability — not a roadmap slide.
+              None of this is a training problem. It&apos;s a visibility problem.
             </p>
           </div>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {VALUE_SECTIONS.map((v) => (
-              <div key={v.title} className="card-panel">
-                <h3 className="text-base font-bold text-gray-900 mb-2">{v.title}</h3>
-                <p className="text-sm text-gray-500 leading-relaxed">{v.description}</p>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {PROBLEMS.map((p) => (
+              <div key={p.title} className="card-panel">
+                <h3 className="text-base font-bold text-gray-900 mb-2">{p.title}</h3>
+                <p className="text-sm text-gray-500 leading-relaxed">{p.description}</p>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* ─── MEET BUSTER ─── */}
+      {/* ─── PRODUCT PROOF ─── */}
+      <section className="py-24 sm:py-32 bg-gray-50">
+        <div className="section-container">
+          <div className="text-center mb-14">
+            <p className="text-xs font-semibold uppercase tracking-wider text-brand-electric mb-3">See It In Practice</p>
+            <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">What a recommendation actually looks like</h2>
+            <p className="text-lg text-gray-500 max-w-2xl mx-auto">
+              An illustrative example of the real product flow — every recommendation Metrix generates
+              follows this same evidence-then-approval structure.
+            </p>
+          </div>
+          <div className="max-w-2xl mx-auto">
+            <div className="card-panel border-2 border-brand-electric/20">
+              <p className="text-xs font-semibold uppercase tracking-wider text-gray-500 mb-4">Illustrative example — not live customer data</p>
+              <div className="flex items-start justify-between gap-4 mb-4 pb-4 border-b border-surface-border">
+                <div>
+                  <p className="text-xs font-semibold uppercase tracking-wider text-amber-800 bg-amber-50 px-2 py-0.5 rounded-full inline-block mb-2">Estimate Aging</p>
+                  <h3 className="text-lg font-bold text-gray-900">Follow up with J. Alvarez — kitchen remodel estimate</h3>
+                </div>
+              </div>
+              <p className="text-sm text-gray-600 leading-relaxed mb-4">
+                <strong>Why this matters:</strong> Estimate sent 11 days ago, no response since. Customer
+                has a completed job history with you and a typical response window of 3–4 days on prior
+                estimates — this one is well outside that pattern.
+              </p>
+              <p className="text-sm text-gray-600 leading-relaxed mb-6">
+                <strong>Recommended action:</strong> Send a brief, friendly check-in referencing the
+                original estimate.
+              </p>
+              <div className="flex flex-col sm:flex-row gap-3">
+                <span className="inline-flex items-center justify-center px-5 py-2.5 rounded-full text-sm font-semibold bg-brand-electric text-white">Approve &amp; Send</span>
+                <span className="inline-flex items-center justify-center px-5 py-2.5 rounded-full text-sm font-semibold border border-gray-300 text-gray-600">Edit First</span>
+                <span className="inline-flex items-center justify-center px-5 py-2.5 rounded-full text-sm font-semibold border border-gray-300 text-gray-600">Dismiss</span>
+              </div>
+              <p className="text-xs text-gray-500 mt-6">Nothing is sent until one of these is chosen by you.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ─── SIMPLE MECHANISM ─── */}
+      <section id="how-it-works" className="dark-section py-24 sm:py-32">
+        <div className="section-container">
+          <div className="text-center mb-16">
+            <p className="text-xs font-semibold uppercase tracking-wider text-brand-cyan mb-3">How It Works</p>
+            <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">Four steps. No jargon.</h2>
+          </div>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-5xl mx-auto">
+            {MECHANISM.map((item) => (
+              <div key={item.step} className="bg-white/[0.04] border border-white/10 rounded-2xl p-6 text-center">
+                <span className="text-4xl font-bold text-white/40 block mb-3">{item.step}</span>
+                <h3 className="text-sm font-bold text-white mb-2">{item.title}</h3>
+                <p className="text-xs text-gray-400 leading-relaxed">{item.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ─── DAILY OWNER EXPERIENCE / MEET BUSTER ─── */}
       <section id="buster" className="py-24 sm:py-32 bg-white overflow-hidden">
         <div className="section-container">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
@@ -247,66 +336,67 @@ export default function HomePage() {
               />
             </div>
             <div className="text-center lg:text-left order-1 lg:order-2">
-              <p className="text-xs font-semibold uppercase tracking-wider text-brand-electric mb-3">Meet Your AI Chief of Staff</p>
-              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-6">Buster runs the morning brief, so you don&apos;t have to.</h2>
+              <p className="text-xs font-semibold uppercase tracking-wider text-brand-electric mb-3">Your Daily Starting Point</p>
+              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-6">Know What Needs Attention Before the Day Gets Away From You.</h2>
               <p className="text-lg text-gray-500 leading-relaxed mb-6 max-w-xl mx-auto lg:mx-0">
-                Every day, Buster reviews what actually happened in your business — new leads, stalled
-                follow-ups, overdue estimates, at-risk customers — and tells you what needs attention
-                first. Ask Buster a question and get an answer grounded in your real data, not a guess.
+                Every day, Buster reviews what actually happened in your business and tells you what
+                needs attention first — grounded in your real data, not a guess.
               </p>
               <ul className="space-y-3 mb-8 text-left max-w-xl mx-auto lg:mx-0">
                 <li className="flex gap-3 items-start">
                   <span className="text-brand-electric mt-0.5" aria-hidden="true">&#10003;</span>
-                  <span className="text-gray-700"><strong>Morning brief</strong> — what changed overnight and what to do about it.</span>
+                  <span className="text-gray-700"><strong>What needs attention</strong> — the leads, estimates, and customers worth acting on today.</span>
                 </li>
                 <li className="flex gap-3 items-start">
                   <span className="text-brand-electric mt-0.5" aria-hidden="true">&#10003;</span>
-                  <span className="text-gray-700"><strong>End-of-day summary</strong> — a real accounting of what got done.</span>
+                  <span className="text-gray-700"><strong>What Buster recommends</strong> — a specific next step, with the evidence behind it.</span>
                 </li>
                 <li className="flex gap-3 items-start">
                   <span className="text-brand-electric mt-0.5" aria-hidden="true">&#10003;</span>
-                  <span className="text-gray-700"><strong>Live business health score</strong> — grounded in real records, not vibes.</span>
+                  <span className="text-gray-700"><strong>What awaits your approval</strong> — nothing moves forward without you.</span>
                 </li>
                 <li className="flex gap-3 items-start">
                   <span className="text-brand-electric mt-0.5" aria-hidden="true">&#10003;</span>
-                  <span className="text-gray-700"><strong>Nothing happens without you</strong> — every recommendation waits for your approval before it reaches a customer.</span>
+                  <span className="text-gray-700"><strong>What was completed</strong> — a real accounting of what got done, and why each item was flagged.</span>
                 </li>
               </ul>
               <a href={MCC_SIGNUP_URL} className="btn-primary text-lg px-10 py-4 inline-block">
-                Meet Buster — Start Free Trial
+                Find My Revenue Leaks
               </a>
             </div>
           </div>
         </div>
       </section>
 
-      {/* ─── HOW IT WORKS ─── */}
-      <section id="how-it-works" className="dark-section py-24 sm:py-32">
+      {/* ─── OUTCOME AREAS ─── */}
+      <section id="features" className="py-24 sm:py-32 bg-gray-50">
         <div className="section-container">
           <div className="text-center mb-16">
-            <p className="text-xs font-semibold uppercase tracking-wider text-brand-cyan mb-3">Process</p>
-            <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">How It Works</h2>
+            <p className="text-xs font-semibold uppercase tracking-wider text-brand-electric mb-3">What Metrix Covers</p>
+            <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">Every place revenue quietly leaks</h2>
           </div>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-5 gap-6 max-w-6xl mx-auto">
-            {HOW_IT_WORKS.map((item) => (
-              <div key={item.step} className="bg-white/[0.04] border border-white/10 rounded-2xl p-6 text-center">
-                <span className="text-4xl font-bold text-white/40 block mb-3">{item.step}</span>
-                <h3 className="text-sm font-bold text-white mb-2">{item.title}</h3>
-                <p className="text-xs text-gray-400 leading-relaxed">{item.desc}</p>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {OUTCOME_AREAS.map((o) => (
+              <div key={o.title} className="card-panel">
+                <h3 className="text-base font-bold text-gray-900 mb-2">{o.title}</h3>
+                <p className="text-sm text-gray-500 leading-relaxed mb-3">{o.problem}</p>
+                <p className="text-xs text-gray-600 leading-relaxed mb-1"><strong>Metrix identifies:</strong> {o.identifies}</p>
+                <p className="text-xs text-gray-600 leading-relaxed mb-1"><strong>You:</strong> {o.nextStep}</p>
+                <p className="text-xs font-semibold text-brand-electric mt-2">{o.approval}</p>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* ─── TRUST & SECURITY ─── */}
-      <section id="trust" className="py-24 sm:py-32 bg-gray-50">
+      {/* ─── GOVERNANCE (SINGLE CONSOLIDATED SECTION) ─── */}
+      <section id="trust" className="py-24 sm:py-32 bg-white">
         <div className="section-container">
           <div className="text-center mb-14">
             <p className="text-xs font-semibold uppercase tracking-wider text-brand-electric mb-3">Trust &amp; Security</p>
-            <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">Your business, your data, your call</h2>
+            <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">Metrix prepares the work. You approve what happens next.</h2>
             <p className="text-lg text-gray-500 max-w-2xl mx-auto">
-              Governed AI is not a slogan here — it is how every account is built.
+              This is a hard rule built into the product, not a setting you have to turn on.
             </p>
           </div>
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -331,38 +421,46 @@ export default function HomePage() {
       </section>
 
       {/* ─── COMPARISON ─── */}
-      <section className="py-24 sm:py-32 bg-white">
+      <section className="py-24 sm:py-32 bg-gray-50">
         <div className="section-container max-w-4xl">
           <div className="text-center mb-14">
             <p className="text-xs font-semibold uppercase tracking-wider text-brand-electric mb-3">Why It&apos;s Different</p>
-            <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">Not another AI tool that acts on its own</h2>
+            <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">Software that tells you what deserves attention next</h2>
           </div>
-          <div className="overflow-x-auto">
-            <table className="w-full border-collapse text-sm">
-              <thead>
-                <tr className="border-b-2 border-gray-200">
-                  <th scope="col" className="text-left py-4 pr-4 font-semibold text-gray-600">&nbsp;</th>
-                  <th scope="col" className="text-left py-4 px-4 font-bold text-brand-electric">Metrix Command Center</th>
-                  <th scope="col" className="text-left py-4 px-4 font-semibold text-gray-600">Typical &quot;autonomous AI&quot; tools</th>
-                </tr>
-              </thead>
-              <tbody>
-                {[
-                  ['AI actions', 'Every action requires your approval', 'Often acts automatically, after the fact'],
-                  ['Audit trail', 'Full, permanent, searchable log', 'Inconsistent or absent'],
-                  ['Data model', 'Customer/property-first CRM built in', 'Bolt-on AI over a generic tool'],
-                  ['Kill switch', 'Stop any automation instantly', 'Rarely available'],
-                  ['Pricing', 'Flat, transparent, monthly', 'Often usage-based and unpredictable'],
-                ].map((row) => (
-                  <tr key={row[0]} className="border-b border-gray-100">
-                    <th scope="row" className="text-left py-4 pr-4 font-semibold text-gray-700">{row[0]}</th>
-                    <td className="py-4 px-4 text-gray-900">{row[1]}</td>
-                    <td className="py-4 px-4 text-gray-600">{row[2]}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
+          <div className="grid sm:grid-cols-2 gap-6">
+            <div className="card-panel">
+              <p className="text-xs font-semibold uppercase tracking-wider text-gray-500 mb-2">Traditional software</p>
+              <p className="text-sm text-gray-600 leading-relaxed">Stores information. It’s on you to remember to check it, and to know what’s worth checking.</p>
+            </div>
+            <div className="card-panel border-2 border-brand-electric">
+              <p className="text-xs font-semibold uppercase tracking-wider text-brand-electric mb-2">Metrix</p>
+              <p className="text-sm text-gray-900 leading-relaxed">Helps identify what deserves attention next, with the evidence behind it — and every recommendation waits for your approval.</p>
+            </div>
+            <div className="card-panel">
+              <p className="text-xs font-semibold uppercase tracking-wider text-gray-500 mb-2">Generic AI tools</p>
+              <p className="text-sm text-gray-600 leading-relaxed">Generate output. It’s on you to judge whether it’s grounded in anything real.</p>
+            </div>
+            <div className="card-panel border-2 border-brand-electric">
+              <p className="text-xs font-semibold uppercase tracking-wider text-brand-electric mb-2">Metrix</p>
+              <p className="text-sm text-gray-900 leading-relaxed">Connects every recommendation to real business evidence and to your explicit approval before anything happens.</p>
+            </div>
           </div>
+        </div>
+      </section>
+
+      {/* ─── FOUNDER AUTHORITY ─── */}
+      <section className="py-16 sm:py-20 bg-white border-t border-surface-border">
+        <div className="section-container max-w-3xl text-center">
+          <p className="text-xs font-semibold uppercase tracking-wider text-brand-electric mb-3">Built by an Operator</p>
+          <p className="text-gray-600 leading-relaxed mb-3">
+            Metrix is built by Richard Fritzke, who spent 24+ years in HVAC/R, facilities, and mechanical
+            operations leadership — including field service supervision of 20+ technicians and current
+            work as a Recommissioning &amp; Optimization Engineer on mission-critical government
+            facilities — before building the product he wished his own businesses had.
+          </p>
+          <Link href="/about/richard-fritzke" className="text-sm font-semibold text-brand-electric hover:underline">
+            Read the full background &rarr;
+          </Link>
         </div>
       </section>
 
@@ -414,39 +512,24 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ─── COMPANY & ROADMAP ─── */}
+      {/* ─── ROADMAP ─── */}
       <section className="py-24 sm:py-32 bg-gray-50">
-        <div className="section-container grid lg:grid-cols-2 gap-12">
-          <div>
-            <p className="text-xs font-semibold uppercase tracking-wider text-brand-electric mb-3">Built by an Operator</p>
-            <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-4">Why Metrix Command Center exists</h2>
-            <p className="text-gray-600 leading-relaxed mb-4">
-              Metrix Command Center is built by SubZero Metrix LLC, a small, independent team. We built
-              it because service businesses lose revenue quietly — a follow-up that never happens, an
-              estimate that goes cold, a customer nobody checked on — and most software either buries
-              that signal in noise or hands total control to an AI with no oversight. We wanted neither.
-            </p>
-            <p className="text-gray-600 leading-relaxed mb-4">
-              Every part of this platform is built on one rule: the AI can recommend, but you decide.
-            </p>
-            <Link href="/resources" className="text-sm font-semibold text-brand-electric hover:underline">
-              Read our HVAC &amp; facility management guides &rarr;
-            </Link>
-          </div>
-          <div>
-            <p className="text-xs font-semibold uppercase tracking-wider text-brand-electric mb-3">What&apos;s Coming Next</p>
-            <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-4">Roadmap</h2>
-            <ul className="space-y-3">
-              <li className="flex gap-3 items-start">
-                <span className="text-xs font-semibold uppercase tracking-wider text-amber-800 bg-amber-50 px-2 py-0.5 rounded-full shrink-0 mt-0.5">In progress</span>
-                <span className="text-gray-700 text-sm">A unified Communications Center — SMS and social messaging alongside governed email.</span>
-              </li>
-              <li className="flex gap-3 items-start">
-                <span className="text-xs font-semibold uppercase tracking-wider text-gray-700 bg-gray-200 px-2 py-0.5 rounded-full shrink-0 mt-0.5">Planned</span>
-                <span className="text-gray-700 text-sm">Additional integrations beyond Google login and secure workspace access.</span>
-              </li>
-            </ul>
-          </div>
+        <div className="section-container max-w-2xl">
+          <p className="text-xs font-semibold uppercase tracking-wider text-brand-electric mb-3">What&apos;s Coming Next</p>
+          <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-6">Roadmap</h2>
+          <ul className="space-y-3 mb-6">
+            <li className="flex gap-3 items-start">
+              <span className="text-xs font-semibold uppercase tracking-wider text-amber-800 bg-amber-50 px-2 py-0.5 rounded-full shrink-0 mt-0.5">In progress</span>
+              <span className="text-gray-700 text-sm">A unified Communications Center — SMS and social messaging alongside governed email.</span>
+            </li>
+            <li className="flex gap-3 items-start">
+              <span className="text-xs font-semibold uppercase tracking-wider text-gray-700 bg-gray-200 px-2 py-0.5 rounded-full shrink-0 mt-0.5">Planned</span>
+              <span className="text-gray-700 text-sm">Additional integrations beyond Google login and secure workspace access.</span>
+            </li>
+          </ul>
+          <Link href="/resources" className="text-sm font-semibold text-brand-electric hover:underline">
+            Read our HVAC, electrical, plumbing &amp; facility management guides &rarr;
+          </Link>
         </div>
       </section>
 
@@ -454,9 +537,12 @@ export default function HomePage() {
       <section className="py-24 sm:py-32 bg-white">
         <div className="section-container max-w-xl">
           <div className="text-center mb-10">
-            <p className="text-xs font-semibold uppercase tracking-wider text-brand-electric mb-3">Want to See It in Action?</p>
-            <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">Tell us about your business</h2>
-            <p className="text-lg text-gray-500">We&apos;ll reach out to help you get started.</p>
+            <p className="text-xs font-semibold uppercase tracking-wider text-brand-electric mb-3">Not Ready to Start a Trial?</p>
+            <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">Tell us how you handle follow-up today</h2>
+            <p className="text-lg text-gray-500">
+              Tell us how you currently handle leads and estimate follow-up, and we&apos;ll help you
+              determine whether Metrix fits your workflow.
+            </p>
           </div>
           <MccLeadCaptureForm source="landing_page" />
         </div>
