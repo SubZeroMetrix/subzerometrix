@@ -23,6 +23,8 @@ const resourceLinks = [
 const companyLinks = [
   { href: '/about', label: 'About' },
   { href: '/contact', label: 'Contact' },
+  { href: '/help', label: 'Help Center' },
+  { href: '/customer-care', label: 'Customer Care' },
 ]
 
 const legalLinks = [

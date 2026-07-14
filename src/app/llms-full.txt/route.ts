@@ -29,6 +29,13 @@ export async function GET() {
     `- Follow-Up Revenue Calculator (free tool): ${SITE_URL}/resources/tools/follow-up-revenue-calculator`,
     `- Estimate Follow-Up Priority Calculator (free tool): ${SITE_URL}/resources/tools/estimate-follow-up-priority-calculator`,
     '',
+    '## Help Center and Customer Care',
+    '',
+    `- Help Center: ${SITE_URL}/help -- curated, human-authored Q&A, each tagged with a verification status (Verified/Limited/Planned/Unknown) and a public source citation. Not a generative AI chatbot.`,
+    `- Customer Care Center: ${SITE_URL}/customer-care -- public support hub for website visitors and prospects.`,
+    `- Qualification flow: ${SITE_URL}/customer-care/qualify`,
+    `- Referral/partner interest: ${SITE_URL}/customer-care/refer`,
+    '',
     '## Affiliate Software Comparison Platform — Categories',
     '',
   ]

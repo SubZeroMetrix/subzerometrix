@@ -14,6 +14,7 @@ const navLinks = [
   { href: '/#pricing', label: 'Pricing' },
   { href: '/#faq', label: 'FAQ' },
   { href: '/resources', label: 'Resources' },
+  { href: '/help', label: 'Help' },
 ]
 
 export function Header() {

@@ -1,7 +1,8 @@
 import type { MetadataRoute } from 'next'
 import { seedProducts, comparisons } from '@/../../content/products'
+import { getAllHelpArticles } from '@/lib/help-articles'
 
-export default function sitemap(): MetadataRoute.Sitemap {
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.subzerometrix.com'
   const now = new Date().toISOString()
 
@@ -23,6 +24,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
     '/resources/ai-for-contractors',
     '/resources/tools/follow-up-revenue-calculator',
     '/resources/tools/estimate-follow-up-priority-calculator',
+    '/help',
+    '/customer-care',
+    '/customer-care/qualify',
+    '/customer-care/refer',
     '/tools',
     '/compare',
     '/tool-finder',
@@ -53,12 +58,16 @@ export default function sitemap(): MetadataRoute.Sitemap {
     '/tools/best-website-platform',
   ]
 
+  const helpArticles = await getAllHelpArticles()
+  const helpArticleRoutes = helpArticles.map((a) => `/help/${a.slug}`)
+
   const allRoutes = [
     ...staticRoutes,
     ...productRoutes,
     ...comparisonRoutes,
     ...guideRoutes,
     ...launchContentRoutes,
+    ...helpArticleRoutes,
   ]
 
   return allRoutes.map((route) => ({
