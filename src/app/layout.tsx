@@ -37,6 +37,17 @@ export const metadata: Metadata = {
   icons: {
     icon: '/brand/metrix-command-center-logo.png',
   },
+  // Populated once real verification codes are issued by Google Search
+  // Console / Bing Webmaster Tools (GOOGLE_SITE_VERIFICATION /
+  // BING_SITE_VERIFICATION env vars). Next.js injects these into every
+  // page's <head> automatically -- this is the mechanism search engines
+  // actually check on the homepage itself, unlike a standalone route.
+  verification: {
+    google: process.env.GOOGLE_SITE_VERIFICATION || undefined,
+    other: process.env.BING_SITE_VERIFICATION
+      ? { 'msvalidate.01': process.env.BING_SITE_VERIFICATION }
+      : undefined,
+  },
 }
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
