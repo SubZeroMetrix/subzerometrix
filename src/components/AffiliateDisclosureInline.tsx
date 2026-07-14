@@ -7,7 +7,7 @@ export function AffiliateDisclosureInline() {
       sign up through links on this page. This does not affect our editorial
       recommendations.{' '}
       <Link href="/affiliate-disclosure" className="text-brand-electric hover:text-blue-700 underline decoration-brand-electric/30 hover:decoration-brand-electric">
-        Learn more
+        Read our affiliate disclosure
       </Link>
     </p>
   )

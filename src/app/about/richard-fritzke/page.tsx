@@ -51,9 +51,9 @@ export default function RichardFritzkePage() {
 
       <div className="section-container max-w-3xl">
         <nav className="text-sm text-gray-500 mb-6" aria-label="Breadcrumb">
-          <Link href="/about" className="hover:text-brand-cyan">About</Link>
+          <Link href="/about" className="hover:text-brand-electric">About</Link>
           <span className="mx-2">/</span>
-          <span className="text-gray-300">Richard Fritzke</span>
+          <span className="text-gray-600">Richard Fritzke</span>
         </nav>
 
         <div className="flex items-center gap-5 mb-8">
@@ -61,8 +61,8 @@ export default function RichardFritzkePage() {
             R
           </div>
           <div>
-            <h1 className="text-3xl font-bold text-white">Richard Fritzke</h1>
-            <p className="text-brand-cyan mt-1">Founder &amp; Editor-in-Chief, SubZero Metrix</p>
+            <h1 className="text-3xl font-bold text-gray-900">Richard Fritzke</h1>
+            <p className="text-brand-electric mt-1">Founder &amp; Editor-in-Chief, SubZero Metrix</p>
           </div>
         </div>
 

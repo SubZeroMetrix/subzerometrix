@@ -69,7 +69,7 @@ export default function ToolFinderPage() {
 
           {secondary && (
             <div className="card-panel mb-6">
-              <p className="text-label text-gray-400 mb-2">Also Consider</p>
+              <p className="text-label mb-2">Also Consider</p>
               <h3 className="text-lg font-bold text-gray-900 mb-2">{secondary.name}</h3>
               <p className="text-sm text-gray-600 mb-3">{secondary.description}</p>
               <Link href={`/tools/${secondary.slug}`} className="text-sm text-brand-electric font-medium hover:text-blue-700">
