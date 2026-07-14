@@ -39,7 +39,7 @@ export default function FacilityManagementPillarPage() {
 
         <p className="text-label text-brand-electric mb-3">Facility Management</p>
         <h1 className="text-headline text-gray-900 mb-4">Facility Management: Reliability, Planning, and What AI Can and Can&apos;t Do</h1>
-        <p className="text-sm text-gray-400 mb-10">
+        <p className="text-sm text-gray-600 mb-10">
           By Richard Fritzke -- Recommissioning &amp; Optimization Engineer, currently supporting mission-critical
           government facilities, with prior facilities-management roles overseeing maintenance operations across
           40+ commercial sites and 24+ years total in HVAC/R, facilities, and mechanical operations leadership.

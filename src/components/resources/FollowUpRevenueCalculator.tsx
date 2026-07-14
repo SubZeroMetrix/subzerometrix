@@ -195,7 +195,7 @@ export function FollowUpRevenueCalculator() {
             </details>
           </>
         )}
-        <p className="text-xs text-gray-400 mt-6">
+        <p className="text-xs text-gray-600 mt-6">
           This is an estimate based on the numbers you enter, not a guarantee. Actual results depend on your
           business, market, and follow-through. Nothing you enter here is sent to a server, stored, or tracked.
         </p>

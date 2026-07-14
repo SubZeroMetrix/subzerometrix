@@ -86,7 +86,7 @@ export default function ResourcesHubPage() {
               <div key={cat.slug} className="card-panel opacity-60">
                 <h3 className="text-lg font-bold text-gray-900 mb-2">{cat.name}</h3>
                 <p className="text-sm text-gray-500 leading-relaxed mb-2">{cat.description}</p>
-                <p className="text-xs text-gray-400 uppercase tracking-wider font-semibold">Coming soon</p>
+                <p className="text-xs text-gray-600 uppercase tracking-wider font-semibold">Coming soon</p>
               </div>
             )
           )}

@@ -39,7 +39,7 @@ export default function HvacPillarPage() {
 
         <p className="text-label text-brand-electric mb-3">HVAC</p>
         <h1 className="text-headline text-gray-900 mb-4">Where HVAC Businesses Lose Revenue Without Noticing</h1>
-        <p className="text-sm text-gray-400 mb-10">
+        <p className="text-sm text-gray-600 mb-10">
           By Richard Fritzke -- 24+ years in HVAC/R, facilities, and mechanical operations leadership, including
           field service supervision of 20+ technicians and current work as a Recommissioning &amp; Optimization
           Engineer on mission-critical government facilities.
