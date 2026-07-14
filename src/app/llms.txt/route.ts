@@ -4,7 +4,7 @@ const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.subzerometrix.
 
 const LLMS_TXT = `# SubZero Metrix LLC
 
-> www.subzerometrix.com is operated by SubZero Metrix LLC and hosts two distinct offerings: Metrix Command Center (the homepage, a governed AI business operating system for service companies) and an independent affiliate software comparison platform (under /tools, /compare, /reviews, /guides).
+> www.subzerometrix.com is operated by SubZero Metrix LLC and hosts two distinct offerings: Metrix Command Center (the homepage, which helps contractors find missed follow-ups, stalled estimates, and customer opportunities, with important actions kept under owner approval) and an independent affiliate software comparison platform (under /tools, /compare, /reviews, /guides).
 
 ## Metrix Command Center (homepage, /)
 

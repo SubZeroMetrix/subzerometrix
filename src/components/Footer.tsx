@@ -46,7 +46,7 @@ export function Footer() {
               />
             </Link>
             <p className="text-sm text-gray-400 leading-relaxed">
-              The governed AI business operating system for service companies, by SubZero Metrix LLC.
+              Metrix prepares the work. You approve what happens next. By SubZero Metrix LLC.
             </p>
           </div>
 

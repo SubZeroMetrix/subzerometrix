@@ -17,15 +17,18 @@ const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.subzerometrix.
 
 export const metadata: Metadata = {
   title: {
-    default: 'Metrix Command Center — Governed AI Business Operating System',
+    default: 'Metrix Command Center | Contractor Lead and Estimate Follow-Up',
     template: '%s | Metrix Command Center',
   },
   description:
-    'Metrix Command Center helps service businesses find missed revenue, organize customer operations, and know what to do next — with a governed AI team where every recommendation requires your approval.',
+    'Metrix helps contractors find missed follow-ups, stalled estimates, and customer opportunities, then shows what deserves attention next while keeping important actions under owner approval.',
   metadataBase: new URL(SITE_URL),
   openGraph: {
     type: 'website',
     siteName: 'Metrix Command Center',
+    title: 'Metrix Command Center | Contractor Lead and Estimate Follow-Up',
+    description:
+      'Metrix helps contractors find missed follow-ups, stalled estimates, and customer opportunities, then shows what deserves attention next while keeping important actions under owner approval.',
     images: [{ url: '/brand/metrix-command-center-logo.png', width: 600, height: 400, alt: 'Metrix Command Center' }],
   },
   twitter: {
