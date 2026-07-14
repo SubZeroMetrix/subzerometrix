@@ -37,9 +37,9 @@ Status values: **NOT STARTED · IN PROGRESS · READY · VERIFIED · BLOCKED**. E
 | Service-role key never exposed client-side | VERIFIED | Confirmed via code review; server-only usage throughout |
 | Lead data isolated from MCC production and legacy schema | VERIFIED | Live end-to-end test this session: write landed only in the dedicated project |
 | Rate limiting on lead form | VERIFIED | In-memory, 5 req/min/IP (known limitation: resets on redeploy — see Risk Register) |
-| Privacy Policy discloses all current data collection | READY | Reconciled this session against real data flows (third-party processors, cross-domain routing, Vercel Analytics) — see `LEGAL_REVIEW_PACKAGE.md` |
-| Terms of Use covers MCC pricing/trial/cancellation/refund | READY | New section added, sourced from real live pricing constants, marked `[DRAFT — ATTORNEY REVIEW REQUIRED]` |
-| Formal legal review of combined Terms/Privacy for this domain | BLOCKED (ATTORNEY REVIEW REQUIRED) | Audit/reconciliation done; actual attorney sign-off still required — see `LAUNCH_RISK_REGISTER.md` L-1 and `LEGAL_REVIEW_PACKAGE.md` |
+| Privacy Policy discloses all current data collection | VERIFIED | Reconciled against real data flows (third-party processors, cross-domain routing, Vercel Analytics), attorney-reviewed — see `LEGAL_REVIEW_PACKAGE.md` |
+| Terms of Use covers MCC pricing/trial/cancellation/refund | VERIFIED | Sourced from real live pricing constants, attorney-reviewed |
+| Formal legal review of combined Terms/Privacy for this domain | VERIFIED | Owner-confirmed attorney sign-off — see `LAUNCH_RISK_REGISTER.md` L-1 |
 
 ## Commercial Funnel (L-5)
 | Item | Status | Acceptance Criteria |

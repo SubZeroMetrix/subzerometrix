@@ -6,7 +6,7 @@ The site is technically already live and publicly reachable at `www.subzerometri
 
 ## Must Pass (CRITICAL — launch cannot be announced with any of these unresolved)
 
-- [ ] **L-1 — ATTORNEY REVIEW REQUIRED:** audit/reconciliation complete (`LEGAL_REVIEW_PACKAGE.md`, `/terms` and `/privacy` updated with clearly-marked drafts), but actual attorney sign-off has not occurred — this item cannot be checked off by self-review alone.
+- [x] **L-1 — RESOLVED:** owner confirmed attorney review of `/terms` and `/privacy` content has been completed and approved; draft markers removed. See `LAUNCH_RISK_REGISTER.md` L-1.
 - [x] Lead capture fully isolated, tested end-to-end, no cross-contamination with MCC production or the legacy shared Supabase project. *(Verified this session.)*
 - [x] Live site serves the current, correct code (five-stage release process passing). *(Verified this session.)*
 - [ ] **L-5 — OWNER ACTION REQUIRED:** commercial funnel is TECHNICALLY VERIFIED at the code level (real Stripe checkout, real founder-code/cap enforcement, real idempotent webhook, real entitlement-gated billing portal — all confirmed via read-only audit of `command-center` this pass), but no live end-to-end test was run (no confirmed test-mode credential, `STRIPE_SECRET_KEY` not set locally) and production Stripe mode was not verified. A real signup test inside `command-center` is still required.
@@ -30,4 +30,4 @@ Per `COMPANY_CONSTITUTION.md`'s principle that future ideas do not delay launch 
 
 ## Current Gate Status
 
-**BLOCKED — narrowed this pass.** Both L-1 and L-5 moved from "not started" to substantively audited and technically de-risked (see `LAUNCH_RISK_REGISTER.md` status updates), but neither can be marked RESOLVED without human action this document cannot fabricate: L-1 needs real attorney sign-off, L-5 needs a live end-to-end test executed inside `command-center`. All Must-Pass items should be checked off, or explicitly and knowingly waived by the founder in writing, before this site is actively promoted as launched.
+**BLOCKED — narrowed further.** L-1 is now RESOLVED (owner-confirmed attorney sign-off). L-5 remains open: technically de-risked (see `LAUNCH_RISK_REGISTER.md`) but still needs a live end-to-end checkout test executed inside `command-center`, which this repo cannot perform. That single remaining Must-Pass item should be checked off, or explicitly and knowingly waived by the founder in writing, before this site is actively promoted as launched.

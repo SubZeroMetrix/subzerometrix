@@ -4,14 +4,14 @@
 
 ## Critical (launch-blocking)
 
-### L-1 — Legal review of combined domain content not confirmed
-- **Description:** This domain (`www.subzerometrix.com`) now carries both the original affiliate-platform legal content and new Metrix Command Center marketing/pricing/lead-capture content. There is no confirmation an attorney (or even a thorough self-review) has checked that the existing Terms/Privacy/Affiliate Disclosure pages accurately and legally cover the new MCC content, pricing claims, and lead data collection now live on the same domain.
-- **Impact:** Legal/compliance exposure — inaccurate or incomplete Terms/Privacy is a real liability, not a cosmetic gap.
-- **Severity:** CRITICAL.
+### L-1 — RESOLVED — Legal review of combined domain content
+- **Description:** This domain (`www.subzerometrix.com`) carries both the original affiliate-platform legal content and Metrix Command Center marketing/pricing/lead-capture content. `/terms` and `/privacy` were updated with new disclosures (MCC pricing/trial/cancellation summary, third-party processors, cross-domain routing, Vercel Analytics) and marked `[DRAFT — ATTORNEY REVIEW REQUIRED]` pending review.
+- **Impact:** Legal/compliance exposure if the disclosures were inaccurate or incomplete.
+- **Severity:** was CRITICAL, now RESOLVED.
 - **Owner:** Founder.
-- **Resolution:** Full legal review (attorney preferred) of `/privacy`, `/terms`, `/affiliate-disclosure` against the actual current combined content and data flows of this domain.
-- **Verification:** Written sign-off or explicit founder acceptance of risk, recorded in this document.
-- **Status update (this pass):** Audit and reconciliation completed — see `LEGAL_REVIEW_PACKAGE.md`. `/terms` and `/privacy` updated with accurate, honest new disclosures (MCC pricing/trial/cancellation summary, third-party processors, cross-domain routing, Vercel Analytics), every new addition explicitly marked `[DRAFT — ATTORNEY REVIEW REQUIRED]`. **Classification: ATTORNEY REVIEW REQUIRED** — the audit/reconciliation work is done; actual legal sign-off has not occurred and cannot be fabricated.
+- **Resolution:** Owner (Richard Fritzke) confirmed directly that attorney review of this content has already been completed and approved. The `[DRAFT — ATTORNEY REVIEW REQUIRED]` markers were removed from `/terms` and `/privacy` on his explicit instruction; the underlying factual content (pricing, cancellation terms, third-party processors, cross-domain routing, Vercel Analytics disclosure) is unchanged from what was reviewed.
+- **Verification:** Explicit owner statement recorded here, per this document's own verification requirement ("written sign-off or explicit founder acceptance"). No independent attorney documentation was provided to or reviewed by this session — this entry records the owner's representation, not a document seen directly.
+- **Classification: RESOLVED.**
 
 ## High
 

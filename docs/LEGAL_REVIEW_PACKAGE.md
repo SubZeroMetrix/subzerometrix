@@ -1,6 +1,8 @@
 # Legal Review Package
 
-*See [`LAUNCH_RISK_REGISTER.md`](./LAUNCH_RISK_REGISTER.md) L-1. Governed by [`CUSTOMER_PROMISE.md`](./CUSTOMER_PROMISE.md) and [`BRAND_CONSTITUTION.md`](./BRAND_CONSTITUTION.md)'s claims policy. **Nothing in this package has been reviewed or approved by an attorney.** Every `[DRAFT — ATTORNEY REVIEW REQUIRED]` marker in the live pages themselves and every item in the checklist below is exactly what it says: unreviewed, requiring real legal sign-off before being relied upon.*
+*See [`LAUNCH_RISK_REGISTER.md`](./LAUNCH_RISK_REGISTER.md) L-1 (RESOLVED). Governed by [`CUSTOMER_PROMISE.md`](./CUSTOMER_PROMISE.md) and [`BRAND_CONSTITUTION.md`](./BRAND_CONSTITUTION.md)'s claims policy.*
+
+**Status: attorney review complete, per owner confirmation.** The owner (Richard Fritzke) confirmed directly that the content described in this package — the new MCC-related sections of `/terms` and `/privacy` — has been reviewed and approved by an attorney. The `[DRAFT — ATTORNEY REVIEW REQUIRED]` markers were removed from the live pages on that instruction. This session did not independently see attorney documentation; this package records the owner's representation, consistent with this document's own "written sign-off or explicit founder acceptance" verification standard.
 
 ## Document Inventory
 
@@ -33,12 +35,12 @@ Third parties with data access: Supabase (both projects), Vercel (hosting + Verc
 
 ## Attorney Checklist
 
-- [ ] Confirm Terms of Use's new "Metrix Command Center" section (pricing/trial/cancellation/refund summary) is accurate and sufficiently protective, or redraft.
-- [ ] Confirm Privacy Policy's new third-party processor and cross-domain disclosures are complete and correctly characterized.
-- [ ] Answer Unresolved Legal Questions 1–6 above.
-- [ ] Decide whether a standalone Acceptable Use Policy and/or AI Disclosure page are required; if so, scope them.
-- [ ] Confirm refund/cancellation language complies with applicable state auto-renewal and subscription-cancellation statutes for the jurisdictions the business operates in.
-- [ ] Sign off (or direct correction of) all `[DRAFT — ATTORNEY REVIEW REQUIRED]` markers currently live on `/privacy` and `/terms`.
+- [x] Confirm Terms of Use's new "Metrix Command Center" section (pricing/trial/cancellation/refund summary) is accurate and sufficiently protective, or redraft. — owner-confirmed reviewed and approved.
+- [x] Confirm Privacy Policy's new third-party processor and cross-domain disclosures are complete and correctly characterized. — owner-confirmed reviewed and approved.
+- [ ] Answer Unresolved Legal Questions 1–6 above. — not confirmed as individually answered; still worth a direct answer for the record even though the content itself is approved.
+- [ ] Decide whether a standalone Acceptable Use Policy and/or AI Disclosure page are required; if so, scope them. — open, not required for current launch per owner's approval of existing content.
+- [x] Confirm refund/cancellation language complies with applicable state auto-renewal and subscription-cancellation statutes for the jurisdictions the business operates in. — covered by the same approval.
+- [x] Sign off (or direct correction of) all `[DRAFT — ATTORNEY REVIEW REQUIRED]` markers currently live on `/privacy` and `/terms`. — markers removed on owner instruction.
 
 ## Exact Pages Requiring Review
 
@@ -48,8 +50,6 @@ Third parties with data access: Supabase (both projects), Vercel (hosting + Verc
 
 ## Owner Sign-Off
 
-- [ ] I have read this package and understand every `[DRAFT — ATTORNEY REVIEW REQUIRED]` marker is unreviewed legal content, not attorney-approved.
-- [ ] I authorize this content to remain live pending attorney review / OR I direct it be taken down until reviewed *(circle one, date, initial)*.
-- [ ] I accept responsibility for the Unresolved Legal Questions above until formally answered.
+- [x] Owner (Richard Fritzke) confirmed in-session that this content has been reviewed and approved by an attorney, and directed removal of the `[DRAFT — ATTORNEY REVIEW REQUIRED]` markers from `/privacy` and `/terms`.
 
-Owner: _______________________ Date: _______________
+This entry is a record of that confirmation as given in conversation, not a substitute for retaining the actual attorney documentation in the company's own records.
