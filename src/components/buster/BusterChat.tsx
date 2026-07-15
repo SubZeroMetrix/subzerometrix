@@ -21,7 +21,7 @@ interface Message {
   escalated?: string | null
 }
 
-const SUGGESTED_PROMPTS = [
+const DEFAULT_SUGGESTED_PROMPTS = [
   'What does Metrix do?',
   'Is this right for my business?',
   "What's included?",
@@ -31,6 +31,8 @@ const SUGGESTED_PROMPTS = [
   'Contact support.',
   'Book a demo.',
 ]
+
+const DEFAULT_INTRO = "Hi, I'm Buster. Ask me anything about Metrix — what it does, pricing, whether it fits your business, or how to get started. I only answer from our real Help Center content, so if I don't know something, I'll say so."
 
 function getVisitorId(): string {
   if (typeof window === 'undefined') return 'server'
@@ -52,12 +54,18 @@ function getSessionId(): string {
   return id
 }
 
-export function BusterChat() {
+interface BusterChatProps {
+  suggestedPrompts?: string[]
+  introText?: string
+  heightClassName?: string
+}
+
+export function BusterChat({ suggestedPrompts = DEFAULT_SUGGESTED_PROMPTS, introText = DEFAULT_INTRO, heightClassName = 'h-[600px] max-h-[75vh]' }: BusterChatProps) {
   const [messages, setMessages] = useState<Message[]>([
     {
       id: 'intro',
       role: 'buster',
-      text: "Hi, I'm Buster. Ask me anything about Metrix — what it does, pricing, whether it fits your business, or how to get started. I only answer from our real Help Center content, so if I don't know something, I'll say so.",
+      text: introText,
     },
   ])
   const [input, setInput] = useState('')
@@ -148,7 +156,7 @@ export function BusterChat() {
   }
 
   return (
-    <div className="card-panel flex flex-col h-[600px] max-h-[75vh]">
+    <div className={`card-panel flex flex-col ${heightClassName}`}>
       <div className="flex-1 overflow-y-auto space-y-4 pr-1" aria-live="polite" aria-label="Conversation with Buster">
         {messages.map((m) => (
           <div key={m.id} className={`flex ${m.role === 'user' ? 'justify-end' : 'justify-start'}`}>
@@ -245,7 +253,7 @@ export function BusterChat() {
 
       {messages.length <= 1 && (
         <div className="flex flex-wrap gap-2 mb-4 pt-4 border-t border-surface-border">
-          {SUGGESTED_PROMPTS.map((p) => (
+          {suggestedPrompts.map((p) => (
             <button
               key={p}
               type="button"

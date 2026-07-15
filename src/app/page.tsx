@@ -2,6 +2,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { buildMetadata, organizationSchema, websiteSchema } from '@/lib/seo'
 import { MccLeadCaptureForm } from '@/components/MccLeadCaptureForm'
+import { BusterChat } from '@/components/buster/BusterChat'
 import {
   MCC_PLANS,
   MCC_FOUNDER_PRICING_NOTICE,
@@ -206,21 +207,21 @@ export default function HomePage() {
         <div className="section-container relative z-10 pt-20 sm:pt-24 pb-16 sm:pb-20">
           <div className="grid lg:grid-cols-[1.2fr_0.8fr] gap-12 items-center">
             <div className="text-center lg:text-left">
-              <p className="text-label text-brand-cyan mb-4">Built for contractor businesses that cannot afford to let good opportunities disappear.</p>
+              <p className="text-label text-brand-cyan mb-4">Meet Buster, your AI Chief of Staff</p>
               <h1 className="text-display text-white mb-6">
-                Stop Letting Good Leads<br className="hidden sm:block" /> and Estimates Go Cold.
+                Hi, I&apos;m Buster.<br className="hidden sm:block" /> Let&apos;s stop losing good leads and estimates to silence.
               </h1>
               <p className="text-lg sm:text-xl text-gray-300 leading-relaxed max-w-2xl mx-auto lg:mx-0 mb-10">
-                Your business is already generating opportunities. Metrix finds the leads, estimates,
-                follow-ups, reviews, and customer relationships slipping through the cracks — and shows
-                you what deserves attention next.
+                Your business is already generating opportunities. I&apos;ll help you find the leads,
+                estimates, follow-ups, reviews, and customer relationships slipping through the cracks —
+                and tell you what deserves attention next. Ask me anything.
               </p>
               <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 mb-4">
-                <a href={MCC_SIGNUP_URL} className="btn-primary text-lg px-10 py-4">
-                  Find My Revenue Leaks
+                <a href="#ask-buster" className="btn-primary text-lg px-10 py-4">
+                  Ask Buster
                 </a>
-                <a href="#how-it-works" className="btn-outline-visible text-lg px-10 py-4">
-                  See How Metrix Works
+                <a href="#ask-buster" className="btn-outline-visible text-lg px-10 py-4">
+                  Show Me How Metrix Can Help
                 </a>
               </div>
               <p className="text-sm text-gray-400">
@@ -238,6 +239,25 @@ export default function HomePage() {
               />
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* ─── ASK BUSTER (embedded chat, primary homepage entry point) ─── */}
+      <section id="ask-buster" className="py-24 sm:py-32 bg-gray-50">
+        <div className="section-container max-w-2xl">
+          <div className="text-center mb-10">
+            <p className="text-label text-brand-electric mb-3">Ask Buster</p>
+            <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">Get a real answer, not a link dump</h2>
+            <p className="text-lg text-gray-500">
+              Buster only answers from real, published content and always shows its source. If it doesn&apos;t
+              know something, it says so.
+            </p>
+          </div>
+          <BusterChat
+            introText="Hi, I'm Buster. I can help you understand what Metrix does, whether it fits your business, what a plan includes, or where to start. Every answer comes from real, published content — I'll tell you if I don't know something."
+            suggestedPrompts={['What does Metrix actually do?', 'Can you help my business?', 'Compare plans', "I'm losing customers", 'Where should I start?']}
+            heightClassName="h-[560px] max-h-[70vh]"
+          />
         </div>
       </section>
 
@@ -259,6 +279,11 @@ export default function HomePage() {
               </div>
             ))}
           </div>
+          <p className="text-center mt-10">
+            <a href="#ask-buster" className="text-sm font-semibold text-brand-electric hover:underline">
+              Recognize your business here? Ask Buster what to do about it &rarr;
+            </a>
+          </p>
         </div>
       </section>
 
@@ -386,6 +411,11 @@ export default function HomePage() {
               </div>
             ))}
           </div>
+          <p className="text-center mt-10">
+            <a href="#ask-buster" className="text-sm font-semibold text-brand-electric hover:underline">
+              Not sure which of these applies to you? Ask Buster &rarr;
+            </a>
+          </p>
         </div>
       </section>
 
@@ -508,7 +538,12 @@ export default function HomePage() {
             </div>
           </div>
 
-          <p className="text-center text-xs text-gray-600 max-w-xl mx-auto">{MCC_BILLING_TERMS.refunds}</p>
+          <p className="text-center text-xs text-gray-600 max-w-xl mx-auto mb-6">{MCC_BILLING_TERMS.refunds}</p>
+          <p className="text-center">
+            <a href="#ask-buster" className="text-sm font-semibold text-brand-electric hover:underline">
+              Not sure which plan fits? Ask Buster &rarr;
+            </a>
+          </p>
         </div>
       </section>
 
@@ -554,6 +589,11 @@ export default function HomePage() {
           <div className="text-center mb-14">
             <p className="text-xs font-semibold uppercase tracking-wider text-brand-electric mb-3">FAQ</p>
             <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">Frequently Asked Questions</h2>
+            <p className="text-gray-500">
+              Still have questions?{' '}
+              <a href="#ask-buster" className="text-brand-electric font-semibold hover:underline">Ask Buster</a> — or browse the
+              answers below.
+            </p>
           </div>
           <div className="space-y-3">
             {FAQS.map((f) => (
