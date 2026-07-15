@@ -260,9 +260,9 @@ export function BusterChat() {
           onChange={(e) => setInput(e.target.value)}
           placeholder="Ask a question..."
           maxLength={500}
-          className="flex-1 px-4 py-2.5 rounded-full bg-surface-light-muted border border-surface-border text-gray-900 placeholder-gray-400 focus:border-brand-electric focus:ring-1 focus:ring-brand-electric focus:outline-none"
+          className="flex-1 min-w-0 px-4 py-2.5 rounded-full bg-surface-light-muted border border-surface-border text-gray-900 placeholder-gray-400 focus:border-brand-electric focus:ring-1 focus:ring-brand-electric focus:outline-none"
         />
-        <button type="submit" disabled={loading || !input.trim()} className="btn-primary px-6 disabled:opacity-50">
+        <button type="submit" disabled={loading || !input.trim()} className="btn-primary px-6 shrink-0 disabled:opacity-50">
           Ask
         </button>
       </form>
