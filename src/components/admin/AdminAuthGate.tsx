@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react'
 import { createClient } from '@/lib/supabase/browser'
+import { isAllowedAdminEmail } from '@/lib/admin/allowlist'
 import type { User } from '@supabase/supabase-js'
 
 export function AdminAuthGate({ children }: { children: React.ReactNode }) {
@@ -71,6 +72,25 @@ export function AdminAuthGate({ children }: { children: React.ReactNode }) {
             <button type="submit" className="btn-primary w-full">Sign In</button>
           </form>
           <p className="text-xs text-gray-600 mt-4">Admin access is restricted to authorized accounts.</p>
+        </div>
+      </div>
+    )
+  }
+
+  // Client-side check is UX only -- it lets an authenticated-but-not-
+  // allowlisted user see a clear denial instead of the admin UI, but it
+  // is not the real security boundary. That boundary is server-side:
+  // every /api/admin/* route independently re-checks the allowlist via
+  // getAdminUser(), so a client bypass of this check cannot expose data.
+  if (!isAllowedAdminEmail(user.email)) {
+    return (
+      <div className="py-16 text-center">
+        <div className="section-container max-w-sm mx-auto">
+          <h1 className="text-2xl font-bold text-white mb-4">Access Denied</h1>
+          <p className="text-sm text-gray-400 mb-6">
+            This account is signed in but is not authorized for admin access.
+          </p>
+          <button onClick={handleLogout} className="btn-secondary">Sign Out</button>
         </div>
       </div>
     )

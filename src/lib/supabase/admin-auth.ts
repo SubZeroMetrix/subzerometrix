@@ -1,12 +1,14 @@
 import { createServerClient } from '@supabase/ssr'
 import { cookies } from 'next/headers'
+import { isAllowedAdminEmail } from '@/lib/admin/allowlist'
 
 // Verifies the request carries a valid session against the MAIN
 // Supabase project -- the same project src/components/admin/AdminAuthGate.tsx
-// authenticates against. This is the server-side half of that gate: any
-// API route returning admin data must call this and reject unauthenticated
-// requests itself, since the client-side gate alone only hides UI, it
-// does not stop a direct request to the API route.
+// authenticates against -- AND that the session's email is on the admin
+// allowlist. This is the server-side half of that gate: any API route
+// returning admin data must call this and reject unauthenticated *or*
+// unauthorized requests itself, since the client-side gate alone only
+// hides UI, it does not stop a direct request to the API route.
 export async function getAdminUser() {
   const url = process.env.NEXT_PUBLIC_SUPABASE_URL
   const anonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
@@ -36,5 +38,6 @@ export async function getAdminUser() {
 
   const { data, error } = await supabase.auth.getUser()
   if (error || !data.user) return null
+  if (!isAllowedAdminEmail(data.user.email)) return null
   return data.user
 }
