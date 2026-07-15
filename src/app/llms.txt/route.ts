@@ -14,9 +14,9 @@ Metrix helps contractors find missed follow-ups, stalled estimates, and customer
 
 Practical guides grounded in the founder's own 24+ years of HVAC/R, facilities, and mechanical operations experience where personally attributed, and honest organization-authored operational guides for adjacent trades. Path: /resources, with pillar pages at /resources/hvac, /resources/facility-management, /resources/electrical, /resources/plumbing, /resources/business-operations, and /resources/ai-for-contractors, plus free interactive tools at /resources/tools/follow-up-revenue-calculator and /resources/tools/estimate-follow-up-priority-calculator.
 
-## Help Center and Customer Care (/help, /customer-care)
+## Ask Buster (/buster), Help Center, and Customer Care
 
-A curated, human-authored knowledge base at /help answers real questions about Metrix Command Center -- each entry is tagged with a verification status (Verified, Limited, Planned, or Unknown) and cites its public source. This is not a generative AI chatbot. /customer-care is the public support hub for website visitors and prospects (bug reports, product/pricing questions, privacy requests) -- existing Metrix Command Center account holders are directed to mcc.subzerometrix.com for account-specific support.
+/buster is a retrieval-based Q&A assistant -- not a generative AI chatbot and not an unrestricted LLM. It answers only from the curated Help Center content at /help (each entry tagged Verified, Limited, Planned, or Unknown, citing its public source) and always shows its source and a confidence score. If it has no good match, it says "I don't know that yet" and offers a Help Center article, a Customer Care request, or a contact path instead of guessing. /customer-care is the public support hub for website visitors and prospects (bug reports, product/pricing questions, privacy requests) -- existing Metrix Command Center account holders are directed to mcc.subzerometrix.com for account-specific support.
 
 ## Affiliate Software Comparison Platform
 

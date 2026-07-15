@@ -40,9 +40,9 @@ export default function CustomerCarePage() {
         </p>
 
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
-          <Link href="/help" className="card-panel hover:border-brand-electric/30 transition-colors">
-            <h2 className="text-base font-bold text-gray-900 mb-2">Ask the Help Center</h2>
-            <p className="text-sm text-gray-500 leading-relaxed">Browse curated, verified answers to common questions.</p>
+          <Link href="/buster" className="card-panel hover:border-brand-electric/30 transition-colors">
+            <h2 className="text-base font-bold text-gray-900 mb-2">Ask Buster</h2>
+            <p className="text-sm text-gray-500 leading-relaxed">Get a real answer, sourced from our Help Center content — or browse it directly.</p>
           </Link>
           <Link href="/customer-care/qualify" className="card-panel hover:border-brand-electric/30 transition-colors">
             <h2 className="text-base font-bold text-gray-900 mb-2">Not sure Metrix is right for you?</h2>

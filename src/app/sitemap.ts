@@ -25,6 +25,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     '/resources/tools/follow-up-revenue-calculator',
     '/resources/tools/estimate-follow-up-priority-calculator',
     '/help',
+    '/buster',
     '/customer-care',
     '/customer-care/qualify',
     '/customer-care/refer',
