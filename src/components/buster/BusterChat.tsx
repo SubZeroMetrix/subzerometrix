@@ -12,7 +12,7 @@ interface Message {
   id: string
   role: MessageRole
   text: string
-  source?: { title: string; slug: string; sourcePath: string; status: string }
+  source?: { title: string; slug: string | null; sourcePath: string; status: string | null }
   confidence?: number
   relatedArticles?: RelatedArticle[]
   type?: 'answer' | 'unknown' | 'qualification_handoff'
@@ -63,6 +63,11 @@ export function BusterChat() {
   const [input, setInput] = useState('')
   const [loading, setLoading] = useState(false)
   const endRef = useRef<HTMLDivElement>(null)
+  // Session-only context: which topic the conversation is currently on.
+  // Lives only in this component's memory for the active tab -- never
+  // written anywhere as persistent customer memory. Sent with the next
+  // question only to nudge retrieval toward a likely-related follow-up.
+  const previousCategoryRef = useRef<string | null>(null)
 
   useEffect(() => {
     endRef.current?.scrollIntoView({ behavior: 'smooth' })
@@ -84,6 +89,7 @@ export function BusterChat() {
           route: typeof window !== 'undefined' ? window.location.pathname : '/buster',
           visitorId: getVisitorId(),
           sessionId: getSessionId(),
+          previousCategory: previousCategoryRef.current,
         }),
       })
       const data = await res.json()
@@ -100,6 +106,7 @@ export function BusterChat() {
           type: 'answer',
           recordId: data.recordId,
         }
+        previousCategoryRef.current = data.category || null
         trackLandingEvent('help_answer_helpful', { confidence: data.confidence }, data.recordId || undefined)
       } else if (data.type === 'qualification_handoff') {
         busterMsg = { id: crypto.randomUUID(), role: 'buster', text: data.message, type: 'qualification_handoff', recordId: data.recordId }
@@ -155,8 +162,8 @@ export function BusterChat() {
               {m.type === 'answer' && m.source && (
                 <div className="mt-3 pt-3 border-t border-gray-200 text-xs text-gray-500">
                   <p>
-                    Source: <Link href={`/help/${m.source.slug}`} className="text-brand-electric underline">{m.source.title}</Link>
-                    {m.source.status !== 'VERIFIED' && <span className="ml-1 text-amber-700">({m.source.status})</span>}
+                    Source: <Link href={m.source.slug ? `/help/${m.source.slug}` : m.source.sourcePath} className="text-brand-electric underline">{m.source.title}</Link>
+                    {m.source.status && m.source.status !== 'VERIFIED' && <span className="ml-1 text-amber-700">({m.source.status})</span>}
                     {typeof m.confidence === 'number' && <span className="ml-1">&middot; confidence {Math.round(m.confidence * 100)}%</span>}
                   </p>
                   {m.relatedArticles && m.relatedArticles.length > 0 && (
