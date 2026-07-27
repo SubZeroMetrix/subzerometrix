@@ -76,9 +76,20 @@ export function BusterChat({ suggestedPrompts = DEFAULT_SUGGESTED_PROMPTS, intro
   // written anywhere as persistent customer memory. Sent with the next
   // question only to nudge retrieval toward a likely-related follow-up.
   const previousCategoryRef = useRef<string | null>(null)
+  const isFirstRender = useRef(true)
 
   useEffect(() => {
-    endRef.current?.scrollIntoView({ behavior: 'smooth' })
+    // Skip the initial mount (messages starts pre-seeded with the intro
+    // message) -- scrollIntoView here was scrolling the whole landing
+    // page down to center the chat widget on load instead of just
+    // keeping this panel's own overflow-y-auto list scrolled to the
+    // bottom. block:'nearest' also keeps any future auto-scroll
+    // confined to this panel's own scroll container, not the page.
+    if (isFirstRender.current) {
+      isFirstRender.current = false
+      return
+    }
+    endRef.current?.scrollIntoView({ behavior: 'smooth', block: 'nearest' })
   }, [messages])
 
   async function ask(question: string) {
