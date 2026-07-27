@@ -80,6 +80,18 @@ export function Header() {
                 {link.label}
               </a>
             ))}
+            {/* Sibling product from the same LLC, hosted on its own
+                separate site -- a dedicated internal tab (not a raw
+                external link in the nav) that introduces MyAppFac and
+                links out from there, per owner direction 2026-07-27
+                ("a separate tab linking the myappfac... that is the
+                best option"). See src/app/resources/myappfac/page.tsx. */}
+            <Link
+              href="/resources/myappfac"
+              className="px-3.5 py-2 text-sm font-medium rounded-lg text-gray-600 hover:text-gray-900 hover:bg-gray-50 transition-colors"
+            >
+              MyAppFac
+            </Link>
           </nav>
 
           <div className="hidden lg:flex items-center gap-3">
@@ -157,6 +169,13 @@ export function Header() {
             >
               About
             </a>
+            <Link
+              href="/resources/myappfac"
+              className="block px-3 py-2.5 rounded-xl text-sm font-medium text-gray-700 hover:bg-surface-light-muted focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-electric"
+              onClick={close}
+            >
+              MyAppFac
+            </Link>
             <div className="pt-4 border-t border-surface-border space-y-3">
               <a href={MCC_LOGIN_URL} className="btn-secondary w-full text-center block">Log In</a>
               <a href={MCC_SIGNUP_URL} className="btn-primary w-full text-center block">Start Free Trial</a>

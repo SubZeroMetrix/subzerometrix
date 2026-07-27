@@ -110,3 +110,15 @@ export function webPageSchema(opts: { name: string; description: string; path: s
     isPartOf: { '@type': 'WebSite', name: SITE_NAME, url: SITE_URL },
   }
 }
+
+export function faqSchema(items: { question: string; answer: string }[]) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: items.map((item) => ({
+      '@type': 'Question',
+      name: item.question,
+      acceptedAnswer: { '@type': 'Answer', text: item.answer },
+    })),
+  }
+}

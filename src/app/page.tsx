@@ -439,16 +439,14 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ─── PARTNERS ─── */}
+      {/* ─── FROM SUBZERO METRIX LLC ─── */}
       <section className="py-16 sm:py-20 bg-gray-50 border-t border-surface-border">
         <div className="section-container max-w-3xl text-center">
-          <p className="text-xs font-semibold uppercase tracking-wider text-brand-electric mb-8">Partners</p>
-          <a
-            href="https://myappfac.com/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center justify-center opacity-80 hover:opacity-100 transition-opacity"
-            aria-label="MyAppFac — The Application Factory (opens in a new tab)"
+          <p className="text-xs font-semibold uppercase tracking-wider text-brand-electric mb-8">From SubZero Metrix LLC</p>
+          <Link
+            href="/resources/myappfac"
+            className="inline-flex items-center justify-center opacity-80 hover:opacity-100 transition-opacity mb-6"
+            aria-label="MyAppFac — The Application Factory"
           >
             <Image
               src="/brand/myappfac-logo.png"
@@ -457,7 +455,14 @@ export default function HomePage() {
               height={160}
               className="h-20 w-auto sm:h-24"
             />
-          </a>
+          </Link>
+          <p className="text-sm text-gray-500 leading-relaxed max-w-xl mx-auto mb-6">
+            MyAppFac is a separate application factory product, also built by SubZero Metrix LLC — its own
+            site, its own account, its own sign-up. Not part of your Metrix Command Center workspace.
+          </p>
+          <Link href="/resources/myappfac" className="btn-secondary inline-block">
+            About MyAppFac &rarr;
+          </Link>
         </div>
       </section>
 

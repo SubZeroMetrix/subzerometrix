@@ -45,6 +45,12 @@ const CATEGORIES = [
     description: 'What governed AI actually does today, what it doesn’t, and how to adopt it without losing control.',
     populated: true,
   },
+  {
+    slug: 'myappfac',
+    name: 'MyAppFac',
+    description: 'A sibling product from SubZero Metrix LLC — an application factory for business systems and marketing assets.',
+    populated: true,
+  },
 ]
 
 const FEATURED_GUIDES = [
@@ -54,6 +60,11 @@ const FEATURED_GUIDES = [
   { href: '/resources/plumbing', title: 'Running a Plumbing Business: Emergency Work, Scheduling, and the Follow-Up Gap', category: 'Plumbing' },
   { href: '/resources/business-operations', title: 'Running a Service Business as an Operating System', category: 'Business Operations' },
   { href: '/resources/ai-for-contractors', title: 'AI for Contractors: What’s Real, What’s Roadmap, and How to Stay in Control', category: 'AI for Contractors' },
+  { href: '/resources/myappfac/business-operating-systems', title: 'The Complete Guide to Business Operating Systems for Service Companies', category: 'MyAppFac' },
+  { href: '/resources/myappfac/ai-marketing-asset-creation', title: 'AI Marketing Asset Creation for Small Businesses', category: 'MyAppFac' },
+  { href: '/resources/myappfac/replace-multiple-tools', title: 'How to Replace Multiple Tools with One Business Factory', category: 'MyAppFac' },
+  { href: '/resources/myappfac/ai-video-marketing', title: 'AI Video Marketing for Trades and Contractors', category: 'MyAppFac' },
+  { href: '/resources/myappfac/crm-and-marketing-stack', title: 'The CRM + Marketing Stack for Service Businesses', category: 'MyAppFac' },
 ]
 
 const FREE_TOOLS = [
