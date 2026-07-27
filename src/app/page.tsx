@@ -494,6 +494,28 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* ─── PARTNERS ─── */}
+      <section className="py-16 sm:py-20 bg-gray-50 border-t border-surface-border">
+        <div className="section-container max-w-3xl text-center">
+          <p className="text-xs font-semibold uppercase tracking-wider text-brand-electric mb-8">Partners</p>
+          <a
+            href="https://myappfac.com/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center justify-center opacity-80 hover:opacity-100 transition-opacity"
+            aria-label="MyAppFac — The Application Factory (opens in a new tab)"
+          >
+            <Image
+              src="/brand/myappfac-logo.png"
+              alt="MyAppFac — The Application Factory"
+              width={160}
+              height={160}
+              className="h-20 w-auto sm:h-24"
+            />
+          </a>
+        </div>
+      </section>
+
       {/* ─── PRICING ─── */}
       <section id="pricing" className="py-24 sm:py-32 bg-gray-50">
         <div className="section-container">
