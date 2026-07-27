@@ -10,6 +10,7 @@ import {
   MCC_SIGNUP_URL,
   MCC_LOGIN_URL,
 } from '@/content/mcc-pricing'
+import { OUTCOME_AREAS } from '@/../../content/outcome-areas'
 
 export const metadata = buildMetadata({
   title: 'Metrix Command Center | Contractor Lead and Estimate Follow-Up',
@@ -32,65 +33,6 @@ const MECHANISM = [
   { step: '02', title: 'It explains why it matters.', desc: 'Every item comes with the evidence behind it — not just a flag, but the reason it’s worth your attention.' },
   { step: '03', title: 'It recommends the next action.', desc: 'Buster drafts a specific next step grounded in what actually happened, not a generic suggestion.' },
   { step: '04', title: 'It prepares the work for owner approval.', desc: 'Nothing reaches a customer or changes a record until you say so.' },
-]
-
-const OUTCOME_AREAS = [
-  {
-    title: 'Lead Follow-Up',
-    problem: 'New leads go days without a response and nobody notices until the lead is gone.',
-    identifies: 'Leads waiting past a reasonable response window.',
-    nextStep: 'Review the recommended follow-up and approve it, or handle it yourself.',
-    approval: 'Approval required before any customer contact.',
-  },
-  {
-    title: 'Estimate Recovery',
-    problem: 'A quote goes out and, without a deliberate decision, quietly becomes a lost sale.',
-    identifies: 'Estimates aging past your typical close window.',
-    nextStep: 'Approve a recommended follow-up on the estimates worth chasing.',
-    approval: 'Approval required before any customer contact.',
-  },
-  {
-    title: 'Customer Reactivation',
-    problem: 'A previously active customer stops calling and nobody flags the change.',
-    identifies: 'Customers whose activity has gone quiet relative to their history.',
-    nextStep: 'Decide whether a reactivation outreach makes sense, then approve it.',
-    approval: 'Approval required before any customer contact.',
-  },
-  {
-    title: 'Reviews and Referrals',
-    problem: 'A completed job is a review/referral opportunity that expires the longer it sits unaddressed.',
-    identifies: 'Recently completed jobs that haven’t been asked for a review or referral yet.',
-    nextStep: 'Approve the recommended ask while the experience is still fresh.',
-    approval: 'Approval required before any customer contact.',
-  },
-  {
-    title: 'Daily Priorities',
-    problem: 'Without one place to look, the owner is guessing what’s actually urgent today.',
-    identifies: 'The items across your business that most need attention right now.',
-    nextStep: 'Start the day with a real list, not a guess.',
-    approval: 'No approval needed to view — approval still required for any resulting customer action.',
-  },
-  {
-    title: 'Customer History',
-    problem: 'Context about a customer is scattered across notes, memory, and old messages.',
-    identifies: 'A single record per customer and property, built as the relationship happens.',
-    nextStep: 'Reference real history instead of relying on memory.',
-    approval: 'No approval needed to view.',
-  },
-  {
-    title: 'Team Accountability',
-    problem: 'Without visibility, it’s not fair to hold anyone accountable to numbers nobody can see.',
-    identifies: 'What’s open, what’s overdue, and what’s been completed, visible in one place.',
-    nextStep: 'Use real visibility to manage the team, not memory or guesswork.',
-    approval: 'No approval needed to view.',
-  },
-  {
-    title: 'Business Visibility',
-    problem: 'Most owners can’t see the true state of their pipeline without asking someone.',
-    identifies: 'A real, current picture of leads, estimates, jobs, and follow-ups.',
-    nextStep: 'Check the state of the business without a status meeting.',
-    approval: 'No approval needed to view.',
-  },
 ]
 
 const FAQS = [
@@ -402,12 +344,15 @@ export default function HomePage() {
           </div>
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {OUTCOME_AREAS.map((o) => (
-              <div key={o.title} className="card-panel">
+              <div key={o.slug} className="card-panel">
                 <h3 className="text-base font-bold text-gray-900 mb-2">{o.title}</h3>
                 <p className="text-sm text-gray-500 leading-relaxed mb-3">{o.problem}</p>
                 <p className="text-xs text-gray-600 leading-relaxed mb-1"><strong>Metrix identifies:</strong> {o.identifies}</p>
                 <p className="text-xs text-gray-600 leading-relaxed mb-1"><strong>You:</strong> {o.nextStep}</p>
-                <p className="text-xs font-semibold text-brand-electric mt-2">{o.approval}</p>
+                <p className="text-xs font-semibold text-brand-electric mt-2 mb-3">{o.approval}</p>
+                <Link href={`/features/${o.slug}`} className="text-xs font-semibold text-brand-electric hover:underline">
+                  Learn more &rarr;
+                </Link>
               </div>
             ))}
           </div>

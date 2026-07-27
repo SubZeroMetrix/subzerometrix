@@ -1,6 +1,7 @@
 import type { MetadataRoute } from 'next'
 import { seedProducts, comparisons } from '@/../../content/products'
 import { getAllHelpArticles } from '@/lib/help-articles'
+import { OUTCOME_AREAS } from '@/../../content/outcome-areas'
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.subzerometrix.com'
@@ -40,6 +41,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     '/editorial-methodology',
   ]
 
+  const featureRoutes = OUTCOME_AREAS.map((o) => `/features/${o.slug}`)
   const productRoutes = seedProducts.map((p) => `/tools/${p.slug}`)
   const comparisonRoutes = comparisons.map((c) => `/compare/${c.slug}`)
   // /reviews/[slug] intentionally 307-redirects to /tools/[slug] (see
@@ -64,6 +66,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
   const allRoutes = [
     ...staticRoutes,
+    ...featureRoutes,
     ...productRoutes,
     ...comparisonRoutes,
     ...guideRoutes,
@@ -77,7 +80,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     changeFrequency: route === '' ? 'weekly' as const : 'monthly' as const,
     priority: route === ''
       ? 1
-      : route.includes('/tools/') || route.includes('/compare/') || route.startsWith('/resources')
+      : route.includes('/tools/') || route.includes('/compare/') || route.startsWith('/resources') || route.startsWith('/features')
         ? 0.8
         : 0.6,
   }))
