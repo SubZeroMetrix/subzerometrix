@@ -7,14 +7,17 @@ import { BrandWordmark } from '@/components/brand/BrandWordmark'
 const MCC_LOGIN_URL = 'https://mcc.subzerometrix.com/login'
 const MCC_SIGNUP_URL = 'https://mcc.subzerometrix.com/signup'
 
+// Trimmed (owner feedback, 2026-07-27: top header had too many items to
+// fit on one line). Meet Buster, How It Works, and Ask Buster remain
+// reachable -- all three are already in the footer's Product/Company
+// columns (see Footer.tsx) -- and Ask Buster is also the hero's primary
+// CTA, so nothing here was actually removed from the site, just from
+// the top row.
 const navLinks = [
   { href: '/#features', label: 'Features' },
-  { href: '/#buster', label: 'Meet Buster' },
-  { href: '/#how-it-works', label: 'How It Works' },
   { href: '/#pricing', label: 'Pricing' },
   { href: '/#faq', label: 'FAQ' },
   { href: '/resources', label: 'Resources' },
-  { href: '/buster', label: 'Ask Buster' },
 ]
 
 export function Header() {
