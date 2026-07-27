@@ -264,6 +264,36 @@ export default function HomePage() {
                 <span className="inline-flex items-center justify-center px-5 py-2.5 rounded-full text-sm font-semibold border border-gray-300 text-gray-600">Dismiss</span>
               </div>
               <p className="text-xs text-gray-500 mt-6">Nothing is sent until one of these is chosen by you.</p>
+
+              <div className="mt-8 pt-6 border-t border-surface-border grid sm:grid-cols-3 gap-4 text-center">
+                <div>
+                  <p className="text-2xl font-bold text-gray-900">
+                    11 days
+                    <span className="block text-[10px] font-semibold uppercase tracking-wider text-gray-400 mt-1">Example</span>
+                  </p>
+                  <p className="text-xs text-gray-500 mt-1">how long this estimate sat before Buster flagged it</p>
+                </div>
+                <div>
+                  <p className="text-2xl font-bold text-gray-900">
+                    3&ndash;4 days
+                    <span className="block text-[10px] font-semibold uppercase tracking-wider text-gray-400 mt-1">Example</span>
+                  </p>
+                  <p className="text-xs text-gray-500 mt-1">this customer&apos;s typical response window</p>
+                </div>
+                <div>
+                  <p className="text-2xl font-bold text-gray-900">
+                    1 click
+                    <span className="block text-[10px] font-semibold uppercase tracking-wider text-gray-400 mt-1">Example</span>
+                  </p>
+                  <p className="text-xs text-gray-500 mt-1">to approve, edit, or dismiss each recommendation</p>
+                </div>
+              </div>
+              <p className="text-xs text-gray-500 mt-4 text-center">
+                Illustrative, not a guarantee &mdash;{' '}
+                <Link href="/resources/tools/follow-up-revenue-calculator" className="text-brand-electric font-semibold hover:underline">
+                  see what this looks like with your own numbers &rarr;
+                </Link>
+              </p>
             </div>
           </div>
         </div>
