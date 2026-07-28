@@ -45,6 +45,14 @@ const FAQS = [
     a: 'You can start entering your customers, properties, and jobs directly, or bring in your existing data. There is no lengthy implementation process — the trial starts working from the data you give it.',
   },
   {
+    q: 'Does this work for my trade, not just HVAC?',
+    a: 'Yes. Metrix is built around the same lead-follow-up, estimate-recovery, and recurring-revenue patterns across HVAC, plumbing, electrical, roofing, landscaping, general contracting, pest control, painting, cleaning, garage door repair, appliance repair, water damage restoration, and security/alarm businesses. See our resources hub for a breakdown by trade.',
+  },
+  {
+    q: 'Does Metrix handle marketing too?',
+    a: 'Metrix itself focuses on CRM, retention, and revenue recovery — it does not create or publish marketing content. For that, MyAppFac (a separate SubZero Metrix LLC product, its own account and pricing) creates social content, video, and ad creatives, and publishes them directly to Facebook and Instagram on a schedule.',
+  },
+  {
     q: 'Does Metrix replace my current CRM or field-service software?',
     a: 'Metrix is a full CRM on its own — customers, properties, leads, estimates, jobs, and follow-ups are all managed in one governed pipeline. If you’re currently relying on spreadsheets, notes, or a patchwork of tools, Metrix is built to replace that. If you’re on established field-service software, talk to us about your specific workflow before switching.',
   },
@@ -306,6 +314,72 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* ─── FOUR PILLARS: CRM · RETENTION · MARKETING · REVENUE RECOVERY ─── */}
+      <section id="pillars" className="py-24 sm:py-32 bg-white">
+        <div className="section-container">
+          <div className="text-center mb-16 max-w-2xl mx-auto">
+            <p className="text-xs font-semibold uppercase tracking-wider text-brand-electric mb-3">One Platform, Four Jobs</p>
+            <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
+              A CRM, a retention system, a revenue-leak detector, and a way to market &mdash; for any service business.
+            </h2>
+            <p className="text-lg text-gray-500">
+              HVAC, plumbing, electrical, roofing, landscaping, general contracting, pest control, painting,
+              cleaning, and more &mdash;{' '}
+              <Link href="/resources" className="text-brand-electric font-semibold hover:underline">
+                see the full list of trades Metrix is built around
+              </Link>.
+            </p>
+          </div>
+
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
+            <div className="card-panel">
+              <p className="text-xs font-semibold uppercase tracking-wider text-brand-electric mb-2">CRM</p>
+              <h3 className="text-lg font-bold text-gray-900 mb-2">One record per customer and property</h3>
+              <p className="text-sm text-gray-500 leading-relaxed mb-4">
+                Contacts, jobs, estimates, and communications in one place &mdash; import your existing
+                data by CSV, no lengthy setup.
+              </p>
+              <a href="#ask-buster" className="text-sm font-semibold text-brand-electric hover:underline">See the CRM &rarr;</a>
+            </div>
+
+            <div className="card-panel">
+              <p className="text-xs font-semibold uppercase tracking-wider text-brand-electric mb-2">Retention</p>
+              <h3 className="text-lg font-bold text-gray-900 mb-2">Catch renewals and quiet customers before you lose them</h3>
+              <p className="text-sm text-gray-500 leading-relaxed mb-4">
+                Recurring maintenance agreements, service plans, and past customers who&apos;ve gone
+                quiet &mdash; surfaced before they lapse, not after.
+              </p>
+              <Link href="/resources/hvac/recurring-revenue" className="text-sm font-semibold text-brand-electric hover:underline">
+                See how retention tracking works &rarr;
+              </Link>
+            </div>
+
+            <div className="card-panel">
+              <p className="text-xs font-semibold uppercase tracking-wider text-brand-electric mb-2">Revenue Recovery</p>
+              <h3 className="text-lg font-bold text-gray-900 mb-2">Find what&apos;s slipping through the cracks</h3>
+              <p className="text-sm text-gray-500 leading-relaxed mb-4">
+                Aging estimates, unanswered leads, and stalled jobs, each with the evidence behind it and
+                a recommended next step &mdash; see a real example above.
+              </p>
+              <a href="#product-proof" className="text-sm font-semibold text-brand-electric hover:underline">See a real example &rarr;</a>
+            </div>
+
+            <div className="card-panel">
+              <p className="text-xs font-semibold uppercase tracking-wider text-brand-electric mb-2">Marketing</p>
+              <h3 className="text-lg font-bold text-gray-900 mb-2">Create and publish marketing assets, on request</h3>
+              <p className="text-sm text-gray-500 leading-relaxed mb-4">
+                Via MyAppFac (a separate SubZero Metrix LLC product, its own account and pricing): social
+                content, video, and ad creatives, published directly to Facebook and Instagram on a
+                schedule you set, with real analytics.
+              </p>
+              <Link href="/resources/myappfac" className="text-sm font-semibold text-brand-electric hover:underline">
+                See MyAppFac &rarr;
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* ─── SIMPLE MECHANISM ─── */}
       <section id="how-it-works" className="dark-section py-24 sm:py-32">
         <div className="section-container">
@@ -495,7 +569,9 @@ export default function HomePage() {
           </Link>
           <p className="text-sm text-gray-500 leading-relaxed max-w-xl mx-auto mb-6">
             MyAppFac is a separate application factory product, also built by SubZero Metrix LLC — its own
-            site, its own account, its own sign-up. Not part of your Metrix Command Center workspace.
+            site, its own account, its own sign-up, not part of your Metrix Command Center workspace. It
+            builds marketing assets (social content, video, ad creatives) and publishes them directly to
+            Facebook and Instagram, on a schedule, with real analytics.
           </p>
           <Link href="/resources/myappfac" className="btn-secondary inline-block">
             About MyAppFac &rarr;
