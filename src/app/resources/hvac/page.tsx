@@ -150,7 +150,9 @@ export default function HvacPillarPage() {
         </div>
 
         <p className="text-sm text-gray-500 mt-8">
-          Related: <Link href="/resources/facility-management" className="text-brand-electric underline">Facility Management</Link>{' '}
+          Related: <Link href="/resources/hvac/recurring-revenue" className="text-brand-electric underline">Recurring Revenue for HVAC Contractors</Link>{' '}
+          &middot; <Link href="/resources/facility-management" className="text-brand-electric underline">Facility Management</Link>{' '}
+          &middot; <Link href="/resources/business-operations/dispatch-and-scheduling" className="text-brand-electric underline">Dispatch and Scheduling</Link>{' '}
           &middot; <Link href="/resources/business-operations" className="text-brand-electric underline">Business Operations</Link>{' '}
           &middot; <Link href="/resources/ai-for-contractors" className="text-brand-electric underline">AI for Contractors</Link>
         </p>

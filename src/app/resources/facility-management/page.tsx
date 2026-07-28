@@ -149,7 +149,8 @@ export default function FacilityManagementPillarPage() {
         </div>
 
         <p className="text-sm text-gray-500 mt-8">
-          Related: <Link href="/resources/hvac" className="text-brand-electric underline">HVAC</Link>{' '}
+          Related: <Link href="/resources/facility-management/facility-optimization" className="text-brand-electric underline">Facility Optimization</Link>{' '}
+          &middot; <Link href="/resources/hvac" className="text-brand-electric underline">HVAC</Link>{' '}
           &middot; <Link href="/resources/business-operations" className="text-brand-electric underline">Business Operations</Link>{' '}
           &middot; <Link href="/resources/ai-for-contractors" className="text-brand-electric underline">AI for Contractors</Link>
         </p>
