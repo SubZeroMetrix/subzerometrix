@@ -157,21 +157,23 @@ export default function HomePage() {
         <div className="section-container relative z-10 pt-20 sm:pt-24 pb-16 sm:pb-20">
           <div className="grid lg:grid-cols-[1.2fr_0.8fr] gap-12 items-center">
             <div className="text-center lg:text-left">
-              <p className="text-label text-brand-cyan mb-4">Meet Buster, your AI Chief of Staff</p>
+              <p className="text-label text-brand-cyan mb-4">CRM &middot; Retention &middot; Marketing &middot; Revenue Recovery</p>
               <h1 className="text-display text-white mb-6">
-                Hi, I&apos;m Buster.<br className="hidden sm:block" /> Let&apos;s stop losing good leads and estimates to silence.
+                The CRM that finds the revenue your service business is already losing.
               </h1>
-              <p className="text-lg sm:text-xl text-gray-300 leading-relaxed max-w-2xl mx-auto lg:mx-0 mb-10">
-                Your business is already generating opportunities. I&apos;ll help you find the leads,
-                estimates, follow-ups, reviews, and customer relationships slipping through the cracks —
-                and tell you what deserves attention next. Ask me anything.
+              <p className="text-lg sm:text-xl text-gray-300 leading-relaxed max-w-2xl mx-auto lg:mx-0 mb-6">
+                One governed platform for HVAC, plumbing, electrical, roofing, landscaping, general
+                contracting, pest control, painting, cleaning, and more &mdash; leads, estimates,
+                maintenance renewals, and quiet customers, all surfaced by Buster, your AI Chief of Staff,
+                with the evidence behind every recommendation. Nothing reaches a customer without your
+                approval.
               </p>
               <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 mb-4">
-                <a href="#ask-buster" className="btn-primary text-lg px-10 py-4">
-                  Ask Buster
+                <a href="#pillars" className="btn-primary text-lg px-10 py-4">
+                  See What It Does
                 </a>
                 <a href="#ask-buster" className="btn-outline-visible text-lg px-10 py-4">
-                  Show Me How Metrix Can Help
+                  Ask Buster
                 </a>
               </div>
               <p className="text-sm text-gray-400">
