@@ -230,7 +230,7 @@ export default function HomePage() {
       </section>
 
       {/* ─── PRODUCT PROOF ─── */}
-      <section className="py-24 sm:py-32 bg-gray-50">
+      <section id="product-proof" className="py-24 sm:py-32 bg-gray-50">
         <div className="section-container">
           <div className="text-center mb-14">
             <p className="text-xs font-semibold uppercase tracking-wider text-brand-electric mb-3">See It In Practice</p>
@@ -265,7 +265,7 @@ export default function HomePage() {
               </div>
               <p className="text-xs text-gray-500 mt-6">Nothing is sent until one of these is chosen by you.</p>
 
-              <div className="mt-8 pt-6 border-t border-surface-border grid sm:grid-cols-3 gap-4 text-center">
+              <div className="mt-8 pt-6 border-t border-surface-border grid sm:grid-cols-4 gap-4 text-center">
                 <div>
                   <p className="text-2xl font-bold text-gray-900">
                     11 days
@@ -286,6 +286,13 @@ export default function HomePage() {
                     <span className="block text-[10px] font-semibold uppercase tracking-wider text-gray-400 mt-1">Example</span>
                   </p>
                   <p className="text-xs text-gray-500 mt-1">to approve, edit, or dismiss each recommendation</p>
+                </div>
+                <div>
+                  {/* Not illustrative -- this one is always true, for
+                      every real customer, no exception. No "Example"
+                      tag, since it isn't an example of anything. */}
+                  <p className="text-2xl font-bold text-gray-900">100%</p>
+                  <p className="text-xs text-gray-500 mt-1">human approval required, always</p>
                 </div>
               </div>
               <p className="text-xs text-gray-500 mt-4 text-center">

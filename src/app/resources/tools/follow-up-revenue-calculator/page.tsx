@@ -56,7 +56,8 @@ export default function FollowUpRevenueCalculatorPage() {
         </div>
 
         <p className="text-sm text-gray-500 mt-8">
-          Related: <Link href="/resources/hvac" className="text-brand-electric underline">HVAC</Link>{' '}
+          Related: <Link href="/#product-proof" className="text-brand-electric underline">See what a real recommendation looks like</Link>{' '}
+          &middot; <Link href="/resources/hvac" className="text-brand-electric underline">HVAC</Link>{' '}
           &middot; <Link href="/resources/facility-management" className="text-brand-electric underline">Facility Management</Link>
         </p>
       </div>
