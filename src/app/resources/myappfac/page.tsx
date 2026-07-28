@@ -28,6 +28,14 @@ const CREATE_CAPABILITIES = [
   { name: 'Competitor Research', description: "Analyze a competitor's site and positioning." },
 ]
 
+const DISTRIBUTE_CAPABILITIES = [
+  { name: 'Facebook Publishing', description: 'Text/link, single-image, and multi-image carousel posts, published live to your connected Page.' },
+  { name: 'Instagram Publishing', description: 'Image, carousel, and Reels, published to your linked Professional account.' },
+  { name: 'Auto-Posting & Scheduling', description: 'Schedule posts on a content calendar; a background job publishes them automatically when due.' },
+  { name: 'Analytics', description: 'Real impressions, reach, and engagement pulled from Facebook Insights, with trend history over time.' },
+  { name: 'Social Inbox', description: 'See real comments on your recent posts and reply directly.' },
+]
+
 export default function MyAppFacPage() {
   const breadcrumb = breadcrumbSchema([
     { name: 'Home', url: '/' },
@@ -71,7 +79,7 @@ export default function MyAppFacPage() {
           </p>
           <p>
             MyAppFac is an application factory: describe the business system you need, get a real preview
-            in Studio, then unlock it. Two categories of capability are working today.
+            in Studio, then unlock it. Three categories of capability are working today.
           </p>
         </div>
 
@@ -94,9 +102,19 @@ export default function MyAppFacPage() {
             </div>
           ))}
         </div>
+        <h2 className="text-2xl font-bold text-gray-900 mb-6">Distribute — publish and track</h2>
+        <div className="grid sm:grid-cols-2 gap-4 mb-4">
+          {DISTRIBUTE_CAPABILITIES.map((c) => (
+            <div key={c.name} className="card-panel">
+              <h3 className="text-sm font-bold text-gray-900 mb-1">{c.name}</h3>
+              <p className="text-xs text-gray-500 leading-relaxed">{c.description}</p>
+            </div>
+          ))}
+        </div>
         <p className="text-sm text-gray-500 mb-14">
-          Auto-posting, ad-inspiration browsing, content strategy, and workflow/scheduling automation are
-          on MyAppFac&apos;s roadmap -- not live yet, so they&apos;re not listed above.
+          YouTube upload is built but not yet enabled (pending a Google OAuth client setup). Ad-inspiration
+          browsing, content strategy, and competitor social-account tracking remain on MyAppFac&apos;s
+          roadmap -- not live yet, so they&apos;re not listed above.
         </p>
 
         <h2 className="text-2xl font-bold text-gray-900 mb-6">Guides</h2>

@@ -17,7 +17,7 @@ const FAQS = [
   {
     question: 'Does this replace a marketing agency?',
     answer:
-      "For asset creation, often yes -- a business can generate a full set of campaign assets without briefing an outside agency and waiting for a turnaround. It doesn't replace strategy, media buying, or account management, and it doesn't auto-post anything; you still decide what goes out and where.",
+      "For asset creation, often yes -- a business can generate a full set of campaign assets without briefing an outside agency and waiting for a turnaround. It doesn't replace strategy, media buying, or account management. It can now publish those assets directly to Facebook and Instagram, on a schedule you set, but you still control what goes out and when -- nothing publishes without your calendar entry or a manual \"post now.\"",
   },
   {
     question: 'Is video generation actually live, or does it just say "AI-generated" without producing anything?',
@@ -88,12 +88,21 @@ export default function AiMarketingAssetCreationPage() {
             understanding of the market first.
           </p>
 
+          <h2>Distribution, now live</h2>
+          <p>
+            Beyond generating the assets, MyAppFac now publishes them directly: real Facebook Page posting
+            (text/link, single-image, and carousel), real Instagram publishing (image, carousel, and Reels),
+            a content calendar with a background job that auto-publishes scheduled posts, real Facebook
+            Insights analytics with trend history, and a social inbox to see and reply to comments.
+          </p>
+
           <h2>What&apos;s not live yet -- stated honestly</h2>
           <p>
-            Auto-posting, ad-inspiration browsing, content strategy planning, and workflow/scheduling
-            automation are on MyAppFac&apos;s roadmap but not built. If a page or a tool claims otherwise,
-            that claim is wrong -- MyAppFac&apos;s own product truth discipline treats an unbuilt feature
-            marketed as live as a defect, not a rounding error.
+            YouTube upload is built but not yet enabled pending a Google OAuth client setup. Ad-inspiration
+            browsing, content strategy planning, and competitor social-account tracking remain on
+            MyAppFac&apos;s roadmap, not built. If a page or a tool claims otherwise, that claim is wrong --
+            MyAppFac&apos;s own product truth discipline treats an unbuilt feature marketed as live as a
+            defect, not a rounding error.
           </p>
         </div>
 
