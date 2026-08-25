@@ -1,18 +1,13 @@
 import type { MetadataRoute } from 'next'
-import { seedProducts, comparisons } from '@/../../content/products'
-import { getAllHelpArticles } from '@/lib/help-articles'
-import { OUTCOME_AREAS } from '@/../../content/outcome-areas'
 
-export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
+export default function sitemap(): MetadataRoute.Sitemap {
   const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.subzerometrix.com'
   const now = new Date().toISOString()
 
-  // '' (the homepage) is now the Metrix Command Center landing page and
-  // is the primary indexed route. The remaining affiliate-platform routes
-  // stay reachable but are de-prioritized rather than removed outright.
   const staticRoutes = [
     '',
     '/about',
+    '/about/richard-fritzke',
     '/contact',
     '/privacy',
     '/terms',
@@ -36,71 +31,14 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     '/resources/business-operations',
     '/resources/business-operations/dispatch-and-scheduling',
     '/resources/ai-for-contractors',
-    '/resources/myappfac',
-    '/resources/myappfac/business-operating-systems',
-    '/resources/myappfac/ai-marketing-asset-creation',
-    '/resources/myappfac/replace-multiple-tools',
-    '/resources/myappfac/ai-video-marketing',
-    '/resources/myappfac/crm-and-marketing-stack',
     '/resources/tools/follow-up-revenue-calculator',
     '/resources/tools/estimate-follow-up-priority-calculator',
-    '/help',
-    '/buster',
-    '/customer-care',
-    '/customer-care/qualify',
-    '/customer-care/refer',
-    '/tools',
-    '/compare',
-    '/tool-finder',
-    '/reviews',
-    '/guides',
-    '/about/richard-fritzke',
-    '/affiliate-disclosure',
-    '/editorial-policy',
-    '/editorial-methodology',
   ]
 
-  const featureRoutes = OUTCOME_AREAS.map((o) => `/features/${o.slug}`)
-  const productRoutes = seedProducts.map((p) => `/tools/${p.slug}`)
-  const comparisonRoutes = comparisons.map((c) => `/compare/${c.slug}`)
-  // /reviews/[slug] intentionally 307-redirects to /tools/[slug] (see
-  // src/app/reviews/[slug]/page.tsx) -- it is not itself a 200 page, so
-  // it must not be listed in the sitemap as if it were one. The
-  // canonical destination is already covered by productRoutes above.
-
-  const guideRoutes = [
-    '/guides/best-email-marketing-tools',
-    '/guides/all-in-one-vs-best-of-breed',
-    '/guides/newsletter-platforms-compared',
-  ]
-
-  const launchContentRoutes = [
-    '/tools/best-online-business-software',
-    '/tools/best-email-marketing-software',
-    '/tools/best-website-platform',
-  ]
-
-  const helpArticles = await getAllHelpArticles()
-  const helpArticleRoutes = helpArticles.map((a) => `/help/${a.slug}`)
-
-  const allRoutes = [
-    ...staticRoutes,
-    ...featureRoutes,
-    ...productRoutes,
-    ...comparisonRoutes,
-    ...guideRoutes,
-    ...launchContentRoutes,
-    ...helpArticleRoutes,
-  ]
-
-  return allRoutes.map((route) => ({
+  return staticRoutes.map((route) => ({
     url: `${siteUrl}${route}`,
     lastModified: now,
-    changeFrequency: route === '' ? 'weekly' as const : 'monthly' as const,
-    priority: route === ''
-      ? 1
-      : route.includes('/tools/') || route.includes('/compare/') || route.startsWith('/resources') || route.startsWith('/features')
-        ? 0.8
-        : 0.6,
+    changeFrequency: route === '' ? ('weekly' as const) : ('monthly' as const),
+    priority: route === '' ? 1 : route.startsWith('/resources') ? 0.8 : 0.5,
   }))
 }

@@ -105,12 +105,6 @@ const CATEGORIES = [
     description: 'What governed AI actually does today, what it doesn’t, and how to adopt it without losing control.',
     populated: true,
   },
-  {
-    slug: 'myappfac',
-    name: 'MyAppFac',
-    description: 'A sibling product from SubZero Metrix LLC — an application factory for business systems and marketing assets.',
-    populated: true,
-  },
 ]
 
 const FEATURED_GUIDES = [
@@ -133,11 +127,6 @@ const FEATURED_GUIDES = [
   { href: '/resources/business-operations/dispatch-and-scheduling', title: 'Dispatch and Scheduling for Service Businesses: What to Automate, What to Keep Manual', category: 'Business Operations' },
   { href: '/resources/business-operations', title: 'Running a Service Business as an Operating System', category: 'Business Operations' },
   { href: '/resources/ai-for-contractors', title: 'AI for Contractors: What’s Real, What’s Roadmap, and How to Stay in Control', category: 'AI for Contractors' },
-  { href: '/resources/myappfac/business-operating-systems', title: 'The Complete Guide to Business Operating Systems for Service Companies', category: 'MyAppFac' },
-  { href: '/resources/myappfac/ai-marketing-asset-creation', title: 'AI Marketing Asset Creation for Small Businesses', category: 'MyAppFac' },
-  { href: '/resources/myappfac/replace-multiple-tools', title: 'How to Replace Multiple Tools with One Business Factory', category: 'MyAppFac' },
-  { href: '/resources/myappfac/ai-video-marketing', title: 'AI Video Marketing for Trades and Contractors', category: 'MyAppFac' },
-  { href: '/resources/myappfac/crm-and-marketing-stack', title: 'The CRM + Marketing Stack for Service Businesses', category: 'MyAppFac' },
 ]
 
 const FREE_TOOLS = [
@@ -228,14 +217,13 @@ export default function ResourcesHubPage() {
         </div>
 
         <div className="card-panel bg-gray-50 border-brand-electric/20 text-center">
-          <h2 className="text-xl font-bold text-gray-900 mb-3">See how Metrix Command Center helps</h2>
+          <h2 className="text-xl font-bold text-gray-900 mb-3">Want a real fix, not just the diagnosis?</h2>
           <p className="text-sm text-gray-500 mb-6 max-w-xl mx-auto">
-            Governed AI that recommends next actions -- every recommendation requires your approval before it reaches
-            a customer.
+            The Modern Trades Mentor works directly with St. Petersburg and Pinellas County contractors to close the
+            leaks these guides describe -- follow-up systems, CRM setup, and operating discipline.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link href="/#pricing" className="btn-primary inline-block">See Pricing</Link>
-            <Link href="/#buster" className="btn-secondary inline-block">Meet Buster</Link>
+            <a href="https://www.themoderntradesmentor.com" className="btn-primary inline-block">Talk to TMT</a>
           </div>
         </div>
       </div>
