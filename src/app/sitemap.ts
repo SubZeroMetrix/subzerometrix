@@ -8,6 +8,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     '',
     '/revenue-leak-check',
     '/modern-trades-crm',
+    '/pinellas-contractor-revenue-recovery',
     '/about',
     '/about/richard-fritzke',
     '/contact',
@@ -41,6 +42,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     url: `${siteUrl}${route}`,
     lastModified: now,
     changeFrequency: route === '' ? ('weekly' as const) : ('monthly' as const),
-    priority: route === '' ? 1 : ['/revenue-leak-check', '/modern-trades-crm'].includes(route) ? 0.9 : route.startsWith('/resources') ? 0.8 : 0.5,
+    priority: route === '' ? 1 : ['/revenue-leak-check', '/modern-trades-crm', '/pinellas-contractor-revenue-recovery'].includes(route) ? 0.9 : route.startsWith('/resources') ? 0.8 : 0.5,
   }))
 }
