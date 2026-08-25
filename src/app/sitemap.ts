@@ -36,6 +36,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     '/resources/ai-for-contractors',
     '/resources/tools/follow-up-revenue-calculator',
     '/resources/tools/estimate-follow-up-priority-calculator',
+    '/newsletter',
   ]
 
   return staticRoutes.map((route) => ({
