@@ -132,6 +132,12 @@ const FEATURED_GUIDES = [
 
 const FREE_TOOLS = [
   {
+    href: '/revenue-leak-check',
+    title: 'Revenue Leak Check',
+    description: 'Nine questions about leads, estimates, and past customers. See your primary revenue leak and recommended first action immediately -- no email required.',
+    featured: true,
+  },
+  {
     href: '/resources/tools/follow-up-revenue-calculator',
     title: 'Follow-Up Revenue Calculator',
     description: 'Estimate how much revenue is sitting in open estimates and overdue follow-ups right now.',
@@ -205,14 +211,20 @@ export default function ResourcesHubPage() {
         </div>
 
         <h2 className="text-2xl font-bold text-gray-900 mb-6">Free Tools</h2>
-        <div className="grid sm:grid-cols-2 gap-6 mb-16">
+        <div className="grid sm:grid-cols-3 gap-6 mb-16">
           {FREE_TOOLS.map((tool) => (
-            <div key={tool.href} className="card-panel">
+            <div key={tool.href} className={`card-panel ${tool.featured ? 'border-brand-electric/30' : ''}`}>
+              {tool.featured && <p className="text-xs font-semibold uppercase tracking-wider text-brand-electric mb-2">Start here</p>}
               <h3 className="text-lg font-bold text-gray-900 mb-2">{tool.title}</h3>
               <p className="text-sm text-gray-500 leading-relaxed mb-4">{tool.description}</p>
-              <Link href={tool.href} className="btn-secondary inline-block">
-                Try the Calculator
-              </Link>
+              <TrackedCta
+                href={tool.href}
+                event={tool.featured ? 'revenue_leak_check_click' : 'resource_download'}
+                source="resources-hub"
+                className={tool.featured ? 'btn-primary inline-block' : 'btn-secondary inline-block'}
+              >
+                {tool.featured ? 'Take the Revenue Leak Check' : 'Try the Calculator'}
+              </TrackedCta>
             </div>
           ))}
         </div>

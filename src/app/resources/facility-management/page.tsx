@@ -143,8 +143,10 @@ export default function FacilityManagementPillarPage() {
 
         <div className="card-panel bg-gray-50 border-brand-electric/20 mt-12 text-center">
           <h2 className="text-lg font-bold text-gray-900 mb-3">See how this applies to your operation</h2>
+          <p className="text-sm text-gray-500 mb-6">Take the free Revenue Leak Check, or see how Modern Trades CRM handles this.</p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <TrackedCta href="/modern-trades-crm" event="modern_trades_crm_click" source="trade-guide" className="btn-primary inline-block">See Modern Trades CRM</TrackedCta>
+            <TrackedCta href="/revenue-leak-check" event="revenue_leak_check_click" source="trade-guide" className="btn-primary inline-block">Take the Revenue Leak Check</TrackedCta>
+            <TrackedCta href="/modern-trades-crm" event="modern_trades_crm_click" source="trade-guide" className="btn-secondary inline-block">See Modern Trades CRM</TrackedCta>
           </div>
         </div>
 

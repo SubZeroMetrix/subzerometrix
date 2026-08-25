@@ -3,6 +3,7 @@
 import { useState } from 'react'
 import Link from 'next/link'
 import { track } from '@vercel/analytics'
+import { TrackedCta } from '@/components/TrackedCta'
 import { QUESTIONS, scoreLeakCheck, type Answer, type LeakCheckResult } from '@/lib/revenueLeakCheck'
 
 const TRADES = ['HVAC', 'Plumbing', 'Electrical', 'Roofing', 'Landscaping', 'General Contracting', 'Other service business']
@@ -73,7 +74,7 @@ export function RevenueLeakCheckForm() {
           <div className="card-panel">
             <p className="font-semibold text-gray-900 mb-2">Hands-on help (Pinellas Co.)</p>
             <p className="text-sm text-gray-500 mb-4">The Modern Trades Mentor implements this directly, locally.</p>
-            <a href="https://www.themoderntradesmentor.com" className="btn-secondary w-full text-center block" onClick={() => track('tmt_local_click', { source: 'leak-check-result' })}>Ask TMT</a>
+            <TrackedCta href="/contact?subject=Revenue+Leak+Check+follow-up" event="tmt_local_click" source="leak-check-result" className="btn-secondary w-full text-center block">Ask TMT</TrackedCta>
           </div>
         </div>
       </div>
