@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import { buildMetadata, organizationSchema, websiteSchema, breadcrumbSchema, webPageSchema } from '@/lib/seo'
+import { TrackedCta } from '@/components/TrackedCta'
 
 export const metadata = buildMetadata({
   title: 'Resources for Contractors & Facility Operators',
@@ -223,7 +224,7 @@ export default function ResourcesHubPage() {
             leaks these guides describe -- follow-up systems, CRM setup, and operating discipline.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <a href="https://www.themoderntradesmentor.com" className="btn-primary inline-block">Talk to TMT</a>
+            <TrackedCta href="https://www.themoderntradesmentor.com" event="tmt_local_click" source="resources-hub" external className="btn-primary inline-block">Talk to TMT</TrackedCta>
           </div>
         </div>
       </div>

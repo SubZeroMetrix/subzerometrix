@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import { buildMetadata, organizationSchema, websiteSchema } from '@/lib/seo'
+import { TrackedCta } from '@/components/TrackedCta'
 
 export const metadata = buildMetadata({
   title: 'SubZero Contractor Revenue Intelligence',
@@ -121,14 +122,14 @@ export default function HomePage() {
             <p className="text-xs font-semibold uppercase tracking-wider text-brand-electric mb-2">National</p>
             <h3 className="text-lg font-bold text-gray-900 mb-2">Need the workflow in software, not just identified?</h3>
             <p className="text-sm text-gray-500 mb-4">Modern Trades CRM handles lead capture, follow-up, and pipeline tracking — sold nationally, independent of any consulting engagement.</p>
-            <Link href="/modern-trades-crm" className="btn-secondary">Explore Modern Trades CRM</Link>
+            <TrackedCta href="/modern-trades-crm" event="modern_trades_crm_click" source="homepage" className="btn-secondary">Explore Modern Trades CRM</TrackedCta>
             <p className="mt-3 text-xs text-gray-400">Modern Trades CRM is an affiliated product, sold independently of TMT consulting.</p>
           </div>
           <div className="card-panel">
             <p className="text-xs font-semibold uppercase tracking-wider text-brand-electric mb-2">Local — Pinellas County &amp; Tampa Bay</p>
             <h3 className="text-lg font-bold text-gray-900 mb-2">Want hands-on help fixing it?</h3>
             <p className="text-sm text-gray-500 mb-4">The Modern Trades Mentor works directly with St. Petersburg, Clearwater, Largo, and Pinellas County contractors on implementation.</p>
-            <a href="https://www.themoderntradesmentor.com" className="btn-secondary">Talk to The Modern Trades Mentor</a>
+            <TrackedCta href="https://www.themoderntradesmentor.com" event="tmt_local_click" source="homepage" external className="btn-secondary">Talk to The Modern Trades Mentor</TrackedCta>
             <p className="mt-3 text-xs text-gray-400">TMT is a SubZeroMetrix affiliate, not an independent third party.</p>
           </div>
         </div>

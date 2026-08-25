@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import { buildMetadata, breadcrumbSchema } from '@/lib/seo'
+import { TrackedCta } from '@/components/TrackedCta'
 
 export const metadata = buildMetadata({
   title: 'Modern Trades CRM',
@@ -56,7 +57,15 @@ export default function ModernTradesCrmPage() {
             <strong>Modern Trades CRM is an affiliated national CRM product. TMT consulting is optional and is not
             required to purchase or use it.</strong>
           </p>
-          <a href="https://www.themoderntradesmentor.com" className="btn-primary">Ask about early access</a>
+          <TrackedCta
+            href="/contact?subject=Modern+Trades+CRM+interest"
+            event="modern_trades_crm_click"
+            source="crm-page"
+            className="btn-primary"
+          >
+            Request early access
+          </TrackedCta>
+          <p className="mt-3 text-xs text-gray-400">No live checkout yet -- this sends an interest request, not a purchase.</p>
         </div>
 
         <p className="mt-10 text-sm text-gray-500">

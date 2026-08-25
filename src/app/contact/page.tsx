@@ -1,9 +1,24 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect, Suspense } from 'react'
+import { useSearchParams } from 'next/navigation'
 
 export default function ContactPage() {
+  return (
+    <Suspense fallback={null}>
+      <ContactForm />
+    </Suspense>
+  )
+}
+
+function ContactForm() {
+  const searchParams = useSearchParams()
   const [form, setForm] = useState({ name: '', email: '', subject: '', message: '' })
+
+  useEffect(() => {
+    const subject = searchParams.get('subject')
+    if (subject) setForm((prev) => ({ ...prev, subject }))
+  }, [searchParams])
   const [status, setStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle')
   const [errorMsg, setErrorMsg] = useState('')
 

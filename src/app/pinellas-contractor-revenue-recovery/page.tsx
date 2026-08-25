@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import { buildMetadata, breadcrumbSchema } from '@/lib/seo'
+import { TrackedCta } from '@/components/TrackedCta'
 
 export const metadata = buildMetadata({
   title: 'Pinellas County Contractor Revenue Recovery',
@@ -106,7 +107,7 @@ export default function PinellasPage() {
 
         <div className="card-panel text-center">
           <p className="text-gray-700 mb-4">Need help implementing the fix in Pinellas County?</p>
-          <a href="https://www.themoderntradesmentor.com" className="btn-primary">Work with The Modern Trades Mentor</a>
+          <TrackedCta href="https://www.themoderntradesmentor.com" event="tmt_local_click" source="pinellas-page" external className="btn-primary">Work with The Modern Trades Mentor</TrackedCta>
           <p className="mt-3 text-xs text-gray-400">TMT is a SubZeroMetrix affiliate, not an independent third party -- optional, not required.</p>
         </div>
       </div>
