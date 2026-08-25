@@ -11,12 +11,12 @@ export const metadata: Metadata = {
 export const dynamic = 'force-dynamic'
 
 export default async function CitationIntelligencePage() {
-  // Server-side check first -- this is what actually keeps the entity
-  // registry / prompt library out of the HTML sent to an unauthenticated
-  // request. AdminAuthGate below is client-side UX (login form,
-  // sign-out) on top of this, not the security boundary by itself.
+  // Server-side check first, BEFORE any protected data is fetched or
+  // constructed -- this is what actually keeps data out of the HTML/RSC
+  // payload sent to an unauthenticated request. Every page under this
+  // route must repeat this exact pattern; the parent layout is UI-only
+  // and does not gate access (see layout.tsx header comment for why).
   const user = await getAdminUser()
-
   if (!user) {
     return <AdminAuthGate>{null}</AdminAuthGate>
   }
