@@ -1,71 +1,75 @@
 import { buildMetadata } from '@/lib/seo'
 import Link from 'next/link'
-import Image from 'next/image'
 
 export const metadata = buildMetadata({
-  title: 'About',
-  description: 'About SubZero Metrix — who we are, what we do, and how we help you choose the right software tools.',
+  title: 'About & Ownership',
+  description: 'SubZeroMetrix.com is owned and published by SubZeroMetrix LLC. Who runs it, what it does, and how Modern Trades CRM and The Modern Trades Mentor are affiliated.',
   path: '/about',
 })
+
+const orgSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  name: 'SubZero Metrix',
+  legalName: 'SubZeroMetrix LLC',
+  url: 'https://www.subzerometrix.com',
+  founder: { '@type': 'Person', name: 'Richard Fritzke' },
+}
 
 export default function AboutPage() {
   return (
     <div className="py-20">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(orgSchema) }} />
       <div className="section-container max-w-3xl">
-        <Image
-          src="/brand/metrix-command-center-logo.png"
-          alt="Metrix Command Center"
-          width={120}
-          height={42}
-          className="mb-8"
-        />
-
         <p className="text-label text-brand-electric mb-3">About</p>
         <h1 className="text-headline text-gray-900 mb-8">About SubZero Metrix</h1>
 
-        <div className="prose-content">
-          <p>
-            SubZero Metrix is an independent software comparison platform that
-            helps entrepreneurs, creators, and business owners choose the right
-            tools for their online business — before wasting money on the wrong
-            ones.
-          </p>
-          <p>
-            We compare software for websites, email marketing, automation,
-            ecommerce, newsletters, SEO, and online-business growth. Every
-            recommendation is based on use-case fit, verified features, published
-            pricing, and honest assessment of strengths and limitations.
-          </p>
+        <div className="prose-content space-y-8">
+          <section id="ownership" className="card-panel">
+            <h2 className="text-xl font-bold text-gray-900 mb-3">Ownership &amp; affiliations</h2>
+            <p className="text-gray-600">
+              SubZeroMetrix.com is owned and published by <strong>SubZeroMetrix LLC</strong>. It publishes original
+              contractor revenue-leak research and a free self-assessment (the Revenue Leak Check), written and
+              reviewed by Richard Fritzke.
+            </p>
+            <p className="text-gray-600 mt-3">
+              <strong>Modern Trades CRM</strong> and <strong>The Modern Trades Mentor</strong> are affiliated
+              offerings, not independent third parties. Where this site recommends either one, that&apos;s a
+              disclosed affiliation. TMT consulting is optional and is not required to use Modern Trades CRM.
+            </p>
+          </section>
 
-          <h2>How We Make Money</h2>
-          <p>
-            SubZero Metrix earns revenue through affiliate partnerships. When you
-            sign up for a tool through our links, we may earn a commission at no
-            extra cost to you. These partnerships help fund our research and keep
-            this resource free.
-          </p>
-          <p>
-            Affiliate relationships do not determine our recommendations. We
-            recommend tools based on fit, not commission rates. See our{' '}
-            <Link href="/affiliate-disclosure">affiliate disclosure</Link> and{' '}
-            <Link href="/editorial-policy">editorial policy</Link> for details.
-          </p>
+          <section>
+            <h2 className="text-xl font-bold text-gray-900 mb-3">What this site does</h2>
+            <p className="text-gray-600">
+              SubZero Metrix publishes research and a free assessment on where contractor revenue actually leaks —
+              missed calls, stalled estimates, dormant customers, callback cost, follow-up gaps, and owner-dependent
+              processes. The goal is to help a contractor identify the strongest, most defensible opportunity first,
+              not to sell a scoring product.
+            </p>
+          </section>
 
-          <h2>Who We Are</h2>
-          <p>
-            SubZero Metrix is operated by SubZero Metrix LLC. We are a small,
-            independent team focused on providing clear, honest, and practical
-            software guidance for people building online businesses.
-          </p>
-          <p>
-            <Link href="/about/richard-fritzke">Meet Richard Fritzke</Link>, our founder and editor-in-chief.
-          </p>
+          <section>
+            <h2 className="text-xl font-bold text-gray-900 mb-3">What this site doesn&apos;t claim</h2>
+            <p className="text-gray-600">
+              The methodology described on this site (Contractor Business Profile, Evidence Ledger, Revenue Leak
+              Signals, Priority Selection) is a research framework, not a claim of a live autonomous AI system,
+              cross-client learning model, or proprietary signal graph already in production. Where a capability
+              isn&apos;t verified and shipped, this site says so rather than implying it exists.
+            </p>
+          </section>
 
-          <h2>Contact Us</h2>
-          <p>
-            Have questions, corrections, or feedback?{' '}
-            <Link href="/contact">Contact us</Link>.
-          </p>
+          <section>
+            <h2 className="text-xl font-bold text-gray-900 mb-3">Who runs this</h2>
+            <p className="text-gray-600">Written and reviewed by Richard Fritzke, 26 years in HVAC/R and facilities operations leadership.</p>
+          </section>
+
+          <section>
+            <h2 className="text-xl font-bold text-gray-900 mb-3">Contact</h2>
+            <p className="text-gray-600">
+              Questions, corrections, or feedback? <Link href="/contact" className="text-brand-electric underline underline-offset-2">Contact us</Link>.
+            </p>
+          </section>
         </div>
       </div>
     </div>

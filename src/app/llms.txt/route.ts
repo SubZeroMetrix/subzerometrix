@@ -12,7 +12,7 @@ Metrix helps contractors find missed follow-ups, stalled estimates, and customer
 
 ## Resources for Contractors & Facility Operators
 
-Practical guides grounded in the founder's own 24+ years of HVAC/R, facilities, and mechanical operations experience where personally attributed, and honest organization-authored operational guides for adjacent trades. Path: /resources, with pillar pages at /resources/hvac, /resources/facility-management, /resources/electrical, /resources/plumbing, /resources/business-operations, and /resources/ai-for-contractors, plus free interactive tools at /resources/tools/follow-up-revenue-calculator and /resources/tools/estimate-follow-up-priority-calculator.
+Practical guides grounded in the founder's own 26 years of HVAC/R, facilities, and mechanical operations experience where personally attributed, and honest organization-authored operational guides for adjacent trades. Path: /resources, with pillar pages at /resources/hvac, /resources/facility-management, /resources/electrical, /resources/plumbing, /resources/business-operations, and /resources/ai-for-contractors, plus free interactive tools at /resources/tools/follow-up-revenue-calculator and /resources/tools/estimate-follow-up-priority-calculator.
 
 ## Ask Buster (/buster), Help Center, and Customer Care
 

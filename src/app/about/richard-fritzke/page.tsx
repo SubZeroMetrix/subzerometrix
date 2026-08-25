@@ -5,7 +5,7 @@ const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.subzerometrix.
 
 export const metadata = buildMetadata({
   title: 'Richard Fritzke — Founder & Editor-in-Chief',
-  description: 'Richard Fritzke is the founder and editor-in-chief of SubZero Metrix. 24+ years of HVAC/R, facilities, and operations leadership experience.',
+  description: 'Richard Fritzke is the founder and editor-in-chief of SubZero Metrix. 26 years of HVAC/R, facilities, and operations leadership experience.',
   path: '/about/richard-fritzke',
 })
 
@@ -75,7 +75,7 @@ export default function RichardFritzkePage() {
             growth.
           </p>
           <p>
-            He brings over 24 years of hands-on experience in HVAC/R (heating,
+            He brings over 26 years of hands-on experience in HVAC/R (heating,
             ventilation, air conditioning, and refrigeration), facilities management,
             and operations leadership. Over the course of his career, Richard has
             led teams of 20 or more technicians and supported operations across

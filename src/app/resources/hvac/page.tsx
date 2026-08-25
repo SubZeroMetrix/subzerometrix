@@ -4,7 +4,7 @@ import { buildMetadata, organizationSchema, breadcrumbSchema, articleSchema, per
 export const metadata = buildMetadata({
   title: 'Where HVAC Businesses Lose Revenue Without Noticing',
   description:
-    'A practical look at the operational leaks that quietly cost HVAC/R businesses money -- missed follow-ups, scheduling gaps, and communication breakdowns -- from 24+ years running HVAC and facilities operations.',
+    'A practical look at the operational leaks that quietly cost HVAC/R businesses money -- missed follow-ups, scheduling gaps, and communication breakdowns -- from 26 years running HVAC and facilities operations.',
   path: '/resources/hvac',
 })
 
@@ -40,7 +40,7 @@ export default function HvacPillarPage() {
         <p className="text-label text-brand-electric mb-3">HVAC</p>
         <h1 className="text-headline text-gray-900 mb-4">Where HVAC Businesses Lose Revenue Without Noticing</h1>
         <p className="text-sm text-gray-600 mb-10">
-          By Richard Fritzke -- 24+ years in HVAC/R, facilities, and mechanical operations leadership, including
+          By Richard Fritzke -- 26 years in HVAC/R, facilities, and mechanical operations leadership, including
           field service supervision of 20+ technicians and current work as a Recommissioning &amp; Optimization
           Engineer on mission-critical government facilities.
         </p>

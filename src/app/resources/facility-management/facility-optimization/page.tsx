@@ -43,7 +43,7 @@ export default function FacilityOptimizationPage() {
         <p className="text-label text-brand-electric mb-3">Facility Management</p>
         <h1 className="text-headline text-gray-900 mb-4">Facility Optimization: What It Actually Means and Where Software Helps</h1>
         <p className="text-sm text-gray-600 mb-10">
-          By Richard Fritzke &mdash; 24+ years in HVAC/R, facilities, and mechanical operations leadership, currently
+          By Richard Fritzke &mdash; 26 years in HVAC/R, facilities, and mechanical operations leadership, currently
           working as a Recommissioning &amp; Optimization Engineer on mission-critical government facilities.
         </p>
 

@@ -20,7 +20,7 @@ export async function GET() {
     '## Resources for Contractors & Facility Operators',
     '',
     `- Hub: ${SITE_URL}/resources`,
-    `- HVAC: ${SITE_URL}/resources/hvac -- operational leaks (missed follow-up, scheduling, technician coordination, estimates, maintenance agreements, communication, reputation, field-to-office handoff, BAS/BMS), by Richard Fritzke, 24+ years HVAC/R and facilities leadership.`,
+    `- HVAC: ${SITE_URL}/resources/hvac -- operational leaks (missed follow-up, scheduling, technician coordination, estimates, maintenance agreements, communication, reputation, field-to-office handoff, BAS/BMS), by Richard Fritzke, 26 years HVAC/R and facilities leadership.`,
     `- Facility Management: ${SITE_URL}/resources/facility-management -- preventive maintenance, asset lifecycle planning, recommissioning, capital planning, multi-site and mission-critical operations, by Richard Fritzke.`,
     `- Electrical: ${SITE_URL}/resources/electrical -- lead follow-up, estimate management, scheduling, service agreements, technician coordination, field-to-office handoff, organization-authored.`,
     `- Plumbing: ${SITE_URL}/resources/plumbing -- emergency vs. planned work, estimate follow-up, maintenance agreements, dispatch, callbacks, technician capacity, organization-authored.`,

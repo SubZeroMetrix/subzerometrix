@@ -4,7 +4,7 @@ import { buildMetadata, organizationSchema, breadcrumbSchema, articleSchema, per
 export const metadata = buildMetadata({
   title: 'Recurring Revenue for HVAC Contractors: Maintenance Agreements Done Right',
   description:
-    'How HVAC contractors build predictable recurring revenue through maintenance agreements -- what to offer, when to ask, and why most businesses under-sell it, from 24+ years in HVAC/R operations.',
+    'How HVAC contractors build predictable recurring revenue through maintenance agreements -- what to offer, when to ask, and why most businesses under-sell it, from 26 years in HVAC/R operations.',
   path: '/resources/hvac/recurring-revenue',
 })
 
@@ -43,7 +43,7 @@ export default function HvacRecurringRevenuePage() {
         <p className="text-label text-brand-electric mb-3">HVAC</p>
         <h1 className="text-headline text-gray-900 mb-4">Recurring Revenue for HVAC Contractors: Maintenance Agreements Done Right</h1>
         <p className="text-sm text-gray-600 mb-10">
-          By Richard Fritzke &mdash; 24+ years in HVAC/R, facilities, and mechanical operations leadership, including
+          By Richard Fritzke &mdash; 26 years in HVAC/R, facilities, and mechanical operations leadership, including
           field service supervision of 20+ technicians and current work as a Recommissioning &amp; Optimization
           Engineer on mission-critical government facilities.
         </p>

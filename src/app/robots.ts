@@ -5,14 +5,10 @@ export default function robots(): MetadataRoute.Robots {
 
   const aiAllowPaths = [
     '/',
+    '/revenue-leak-check',
+    '/modern-trades-crm',
     '/resources/',
-    '/tools/',
-    '/compare/',
-    '/guides/',
-    '/reviews/',
     '/about/',
-    '/editorial-policy',
-    '/editorial-methodology',
     '/llms.txt',
     '/llms-full.txt',
   ]

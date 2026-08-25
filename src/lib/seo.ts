@@ -25,7 +25,6 @@ export function buildMetadata(opts: {
       url,
       siteName: SITE_NAME,
       type: 'website',
-      images: [{ url: `${SITE_URL}/brand/metrix-command-center-logo.png`, width: 600, height: 400, alt: 'Metrix Command Center' }],
     },
     twitter: {
       card: 'summary_large_image',
@@ -40,9 +39,11 @@ export function organizationSchema() {
   return {
     '@context': 'https://schema.org',
     '@type': 'Organization',
-    name: 'SubZero Metrix LLC',
+    name: 'SubZero Metrix',
+    legalName: 'SubZeroMetrix LLC',
     url: SITE_URL,
-    logo: `${SITE_URL}/brand/metrix-command-center-logo.png`,
+    // No verified SubZero Metrix-specific logo asset exists yet -- omitting
+    // rather than misattributing Metrix Command Center's logo.
   }
 }
 

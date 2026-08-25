@@ -170,7 +170,7 @@ export default function ResourcesHubPage() {
         <p className="text-label text-brand-electric mb-3">Resources</p>
         <h1 className="text-headline text-gray-900 mb-6">Practical Guides for Contractors &amp; Facility Operators</h1>
         <p className="text-lg text-gray-500 max-w-2xl mb-14">
-          Written from real operational experience -- 24+ years in HVAC/R, facilities, and mechanical operations
+          Written from real operational experience -- 26 years in HVAC/R, facilities, and mechanical operations
           leadership -- not generic AI-written filler. Every guide is honest about what a tool like Metrix Command
           Center can and can&apos;t do.
         </p>

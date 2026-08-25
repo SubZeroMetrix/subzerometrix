@@ -4,7 +4,7 @@ import { buildMetadata, organizationSchema, breadcrumbSchema, articleSchema, per
 export const metadata = buildMetadata({
   title: 'Facility Management: Reliability, Planning, and What AI Can and Can’t Do',
   description:
-    'Preventive maintenance, asset lifecycle planning, and operational reliability for multi-site and mission-critical facilities -- from a Recommissioning & Optimization Engineer with 24+ years in the field.',
+    'Preventive maintenance, asset lifecycle planning, and operational reliability for multi-site and mission-critical facilities -- from a Recommissioning & Optimization Engineer with 26 years in the field.',
   path: '/resources/facility-management',
 })
 
@@ -42,7 +42,7 @@ export default function FacilityManagementPillarPage() {
         <p className="text-sm text-gray-600 mb-10">
           By Richard Fritzke -- Recommissioning &amp; Optimization Engineer, currently supporting mission-critical
           government facilities, with prior facilities-management roles overseeing maintenance operations across
-          40+ commercial sites and 24+ years total in HVAC/R, facilities, and mechanical operations leadership.
+          40+ commercial sites and 26 years total in HVAC/R, facilities, and mechanical operations leadership.
         </p>
 
         <div className="prose-content">

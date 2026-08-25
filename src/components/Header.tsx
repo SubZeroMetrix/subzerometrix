@@ -4,20 +4,10 @@ import Link from 'next/link'
 import { useState, useRef, useEffect } from 'react'
 import { BrandWordmark } from '@/components/brand/BrandWordmark'
 
-const MCC_LOGIN_URL = 'https://mcc.subzerometrix.com/login'
-const MCC_SIGNUP_URL = 'https://mcc.subzerometrix.com/signup'
-
-// Trimmed (owner feedback, 2026-07-27: top header had too many items to
-// fit on one line). Meet Buster, How It Works, and Ask Buster remain
-// reachable -- all three are already in the footer's Product/Company
-// columns (see Footer.tsx) -- and Ask Buster is also the hero's primary
-// CTA, so nothing here was actually removed from the site, just from
-// the top row.
 const navLinks = [
-  { href: '/#features', label: 'Features' },
-  { href: '/#pricing', label: 'Pricing' },
-  { href: '/#faq', label: 'FAQ' },
-  { href: '/resources', label: 'Resources' },
+  { href: '/resources', label: 'Revenue Leak Library' },
+  { href: '/modern-trades-crm', label: 'Modern Trades CRM' },
+  { href: '/about', label: 'About' },
 ]
 
 export function Header() {
@@ -69,44 +59,26 @@ export function Header() {
     <>
       <header className="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-surface-border">
         <div className="section-container flex items-center justify-between h-16">
-          <Link href="/" className="shrink-0" aria-label="Metrix Command Center home" onClick={() => setMobileOpen(false)}>
-            <BrandWordmark size="sm" />
+          <Link href="/" className="shrink-0" aria-label="SubZero Metrix home" onClick={() => setMobileOpen(false)}>
+            <BrandWordmark size="sm" variant="light" />
           </Link>
 
           <nav className="hidden lg:flex items-center gap-1" aria-label="Main navigation">
             {navLinks.map((link) => (
-              <a
+              <Link
                 key={link.href}
                 href={link.href}
                 className="px-3.5 py-2 text-sm font-medium rounded-lg text-gray-600 hover:text-gray-900 hover:bg-gray-50 transition-colors"
               >
                 {link.label}
-              </a>
+              </Link>
             ))}
-            {/* Sibling product from the same LLC, hosted on its own
-                separate site -- a dedicated internal tab (not a raw
-                external link in the nav) that introduces MyAppFac and
-                links out from there, per owner direction 2026-07-27
-                ("a separate tab linking the myappfac... that is the
-                best option"). See src/app/resources/myappfac/page.tsx. */}
-            <Link
-              href="/resources/myappfac"
-              className="px-3.5 py-2 text-sm font-medium rounded-lg text-gray-600 hover:text-gray-900 hover:bg-gray-50 transition-colors"
-            >
-              MyAppFac
-            </Link>
           </nav>
 
           <div className="hidden lg:flex items-center gap-3">
-            <a
-              href={MCC_LOGIN_URL}
-              className="inline-flex items-center justify-center px-5 py-2.5 rounded-full text-sm font-semibold text-gray-700 border border-gray-300 hover:border-brand-electric hover:text-brand-electric transition-all"
-            >
-              Log In
-            </a>
-            <a href={MCC_SIGNUP_URL} className="btn-primary text-sm px-6 py-2.5">
-              Start Free Trial
-            </a>
+            <Link href="/revenue-leak-check" className="btn-primary text-sm px-6 py-2.5">
+              Check for Revenue Leaks
+            </Link>
           </div>
 
           <button
@@ -148,7 +120,7 @@ export function Header() {
         >
           <nav className="section-container py-6 space-y-1" aria-label="Mobile">
             {navLinks.map((link, i) => (
-              <a
+              <Link
                 key={link.href}
                 ref={i === 0 ? firstLinkRef : undefined}
                 href={link.href}
@@ -156,32 +128,12 @@ export function Header() {
                 onClick={close}
               >
                 {link.label}
-              </a>
+              </Link>
             ))}
-            <a
-              href="/customer-care"
-              className="block px-3 py-2.5 rounded-xl text-sm font-medium text-gray-700 hover:bg-surface-light-muted focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-electric"
-              onClick={close}
-            >
-              Customer Care
-            </a>
-            <a
-              href="/about"
-              className="block px-3 py-2.5 rounded-xl text-sm font-medium text-gray-700 hover:bg-surface-light-muted focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-electric"
-              onClick={close}
-            >
-              About
-            </a>
-            <Link
-              href="/resources/myappfac"
-              className="block px-3 py-2.5 rounded-xl text-sm font-medium text-gray-700 hover:bg-surface-light-muted focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-electric"
-              onClick={close}
-            >
-              MyAppFac
-            </Link>
             <div className="pt-4 border-t border-surface-border space-y-3">
-              <a href={MCC_LOGIN_URL} className="btn-secondary w-full text-center block">Log In</a>
-              <a href={MCC_SIGNUP_URL} className="btn-primary w-full text-center block">Start Free Trial</a>
+              <Link href="/revenue-leak-check" className="btn-primary w-full text-center block" onClick={close}>
+                Check for Revenue Leaks
+              </Link>
             </div>
           </nav>
         </div>

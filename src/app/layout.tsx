@@ -17,25 +17,21 @@ const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.subzerometrix.
 
 export const metadata: Metadata = {
   title: {
-    default: 'Metrix Command Center | Contractor Lead and Estimate Follow-Up',
-    template: '%s | Metrix Command Center',
+    default: 'SubZero Contractor Revenue Intelligence | SubZero Metrix',
+    template: '%s | SubZero Metrix',
   },
   description:
-    'Metrix helps contractors find missed follow-ups, stalled estimates, and customer opportunities, then shows what deserves attention next while keeping important actions under owner approval.',
+    'Find where contractor revenue is leaking -- missed calls, stalled estimates, dormant customers, callback waste, and follow-up gaps -- and see the strongest verified opportunity first.',
   metadataBase: new URL(SITE_URL),
   openGraph: {
     type: 'website',
-    siteName: 'Metrix Command Center',
-    title: 'Metrix Command Center | Contractor Lead and Estimate Follow-Up',
+    siteName: 'SubZero Metrix',
+    title: 'SubZero Contractor Revenue Intelligence | SubZero Metrix',
     description:
-      'Metrix helps contractors find missed follow-ups, stalled estimates, and customer opportunities, then shows what deserves attention next while keeping important actions under owner approval.',
-    images: [{ url: '/brand/metrix-command-center-logo.png', width: 600, height: 400, alt: 'Metrix Command Center' }],
+      'Find where contractor revenue is leaking -- missed calls, stalled estimates, dormant customers, callback waste, and follow-up gaps -- and see the strongest verified opportunity first.',
   },
   twitter: {
     card: 'summary_large_image',
-  },
-  icons: {
-    icon: '/brand/metrix-command-center-logo.png',
   },
   // Populated once real verification codes are issued by Google Search
   // Console / Bing Webmaster Tools (GOOGLE_SITE_VERIFICATION /
