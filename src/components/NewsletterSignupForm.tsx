@@ -4,6 +4,13 @@ import { useState } from 'react'
 import { buildAttributionPayload } from '@/lib/attribution'
 import type { Publication } from '@/lib/validation/newsletter'
 
+// Flip to true only after migration 0009_newsletter_subscribers.sql is applied
+// (or a verified HighLevel endpoint replaces the Supabase path) AND a real
+// signup has been confirmed end-to-end. Until then the underlying table
+// doesn't exist, so the form must not look operational -- see
+// websites-status-terminal2.md "Newsletter database failure".
+const NEWSLETTER_SIGNUP_ENABLED = false
+
 export function NewsletterSignupForm({ publication, compact = false }: { publication: Publication; compact?: boolean }) {
   const [email, setEmail] = useState('')
   const [status, setStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle')
@@ -36,6 +43,16 @@ export function NewsletterSignupForm({ publication, compact = false }: { publica
 
   if (status === 'success') {
     return <p className={compact ? 'text-sm text-brand-electric font-medium' : 'text-body-lg text-brand-electric font-medium'}>You&apos;re subscribed. Check your inbox to confirm.</p>
+  }
+
+  if (!NEWSLETTER_SIGNUP_ENABLED) {
+    return (
+      <p className={compact ? 'text-sm text-gray-500' : 'text-body-lg text-gray-500'}>
+        Signup is temporarily unavailable while we finish setting up delivery. Check back soon, or{' '}
+        <a href="/contact?subject=Newsletter+signup+interest" className="text-brand-electric underline">let us know</a>{' '}
+        you want in and we&apos;ll add you when it&apos;s live.
+      </p>
+    )
   }
 
   return (
