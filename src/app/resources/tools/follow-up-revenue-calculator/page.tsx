@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import { buildMetadata, organizationSchema, breadcrumbSchema, webPageSchema } from '@/lib/seo'
 import { FollowUpRevenueCalculator } from '@/components/resources/FollowUpRevenueCalculator'
-import { MCC_SIGNUP_URL } from '@/content/mcc-pricing'
+import { TrackedCta } from '@/components/TrackedCta'
 
 export const metadata = buildMetadata({
   title: 'Follow-Up Revenue Calculator',
@@ -49,14 +49,16 @@ export default function FollowUpRevenueCalculatorPage() {
         <div className="card-panel bg-gray-50 border-brand-electric/20 mt-10 text-center">
           <h2 className="text-lg font-bold text-gray-900 mb-3">Stop tracking this manually</h2>
           <p className="text-sm text-gray-500 mb-6">
-            Metrix Command Center surfaces overdue follow-ups and aging estimates automatically, with a governed AI
-            team that recommends the next action.
+            Modern Trades CRM tracks follow-ups and aging estimates automatically instead of a manual calculator --
+            sold nationally, independent of any consulting engagement.
           </p>
-          <a href={MCC_SIGNUP_URL} className="btn-primary inline-block">Start Free Trial</a>
+          <TrackedCta href="/modern-trades-crm" event="modern_trades_crm_click" source="follow-up-revenue-calculator" className="btn-primary inline-block">
+            See Modern Trades CRM
+          </TrackedCta>
         </div>
 
         <p className="text-sm text-gray-500 mt-8">
-          Related: <Link href="/#product-proof" className="text-brand-electric underline">See what a real recommendation looks like</Link>{' '}
+          Related: <Link href="/revenue-leak-check" className="text-brand-electric underline">Run the Revenue Leak Check</Link>{' '}
           &middot; <Link href="/resources/hvac" className="text-brand-electric underline">HVAC</Link>{' '}
           &middot; <Link href="/resources/facility-management" className="text-brand-electric underline">Facility Management</Link>
         </p>

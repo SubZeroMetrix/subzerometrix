@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import { buildMetadata, organizationSchema, breadcrumbSchema, articleSchema } from '@/lib/seo'
+import { TrackedCta } from '@/components/TrackedCta'
 
 export const metadata = buildMetadata({
   title: 'Running a Service Business as an Operating System',
@@ -128,7 +129,7 @@ export default function BusinessOperationsPillarPage() {
           <p>
             Treat the business itself as a system with real inputs (leads, jobs, estimates) and a real daily
             feedback loop, not a collection of disconnected habits. That&apos;s the underlying idea behind every
-            trade-specific guide on this site, and it&apos;s the design principle behind Metrix Command Center
+            trade-specific guide on this site, and it&apos;s the design principle behind Modern Trades CRM
             itself.
           </p>
         </div>
@@ -139,7 +140,9 @@ export default function BusinessOperationsPillarPage() {
             <Link href="/resources/tools/estimate-follow-up-priority-calculator" className="btn-primary inline-block">
               Try the Estimate Priority Calculator
             </Link>
-            <Link href="/#buster" className="btn-secondary inline-block">Meet Buster</Link>
+            <TrackedCta href="/modern-trades-crm" event="modern_trades_crm_click" source="trade-guide" className="btn-secondary inline-block">
+              See Modern Trades CRM
+            </TrackedCta>
           </div>
         </div>
 

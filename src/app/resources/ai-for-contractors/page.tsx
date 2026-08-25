@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import { buildMetadata, organizationSchema, breadcrumbSchema, articleSchema } from '@/lib/seo'
-import { MCC_PLANS, MCC_SIGNUP_URL } from '@/content/mcc-pricing'
+import { TrackedCta } from '@/components/TrackedCta'
 
 export const metadata = buildMetadata({
   title: 'AI for Contractors: What’s Real, What’s Roadmap, and How to Stay in Control',
@@ -44,8 +44,7 @@ export default function AiForContractorsPillarPage() {
           <p>
             &quot;AI for contractors&quot; means very different things depending on who&apos;s selling it. Some of
             it is genuinely useful today. Some of it is marketing ahead of what the software actually does. This
-            page is an honest breakdown of both, using Metrix Command Center as the concrete example since it&apos;s
-            what we build.
+            page is an honest breakdown of both.
           </p>
 
           <h2>Practical AI Uses Today</h2>
@@ -59,9 +58,10 @@ export default function AiForContractorsPillarPage() {
 
           <h2>Approval-Gated Automation</h2>
           <p>
-            The single most important distinction in this space: does the AI act, or does it recommend? In Metrix
-            Command Center, every AI-drafted action -- a message, a record change, a recommendation -- requires
-            your explicit approval before it reaches a customer or takes effect. There is no autonomous mode.
+            The single most important distinction in this space: does the AI act, or does it recommend? Any
+            AI-drafted action -- a message, a record change, a recommendation -- should require explicit human
+            approval before it reaches a customer or takes effect. If a vendor can&apos;t point to that boundary
+            clearly, that&apos;s worth asking about directly.
           </p>
 
           <h2>The Risks of Fake Autonomy</h2>
@@ -86,29 +86,22 @@ export default function AiForContractorsPillarPage() {
             filter out most of the overclaiming in this space quickly.
           </p>
 
-          <h2>What Buster and Metrix Command Center Actually Do Today</h2>
+          <h2>Where Modern Trades CRM Fits</h2>
           <p>
-            Buster, the AI Chief of Staff inside Metrix Command Center, produces a morning brief and end-of-day
-            summary grounded in your real account data, and recommends next actions on overdue follow-ups, aging
-            estimates, and at-risk customers. Every recommendation requires your approval before anything happens.
-            Command Center is {MCC_PLANS.command_center.priceDisplay}, Founder CRM is {MCC_PLANS.founder_crm.priceDisplay} (founder code
-            required), both with a {MCC_PLANS.command_center.trialDays}-day free trial.
-          </p>
-
-          <h2>What Remains Roadmap or Future Capability</h2>
-          <p>
-            A unified Communications Center (SMS and social messaging alongside governed email) is in active
-            development and not available today. Additional integrations beyond Google login and secure workspace
-            access are planned, not shipped. Anywhere this changes, it will be disclosed here as a fact, not a
-            promise -- see the homepage FAQ for the current, always-accurate status.
+            Modern Trades CRM is being built around the same approval-gated principle: it&apos;s a national CRM
+            product for lead capture, pipeline, and follow-up, not an autonomous system that contacts customers on
+            its own. Its production build is in progress -- see the product page for exactly what&apos;s verified
+            versus planned, rather than a claim made here that could go stale.
           </p>
         </div>
 
         <div className="card-panel bg-gray-50 border-brand-electric/20 mt-12 text-center">
-          <h2 className="text-lg font-bold text-gray-900 mb-3">See the approval gate in action</h2>
+          <h2 className="text-lg font-bold text-gray-900 mb-3">See where this applies to your business</h2>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link href="/#buster" className="btn-primary inline-block">Meet Buster</Link>
-            <a href={MCC_SIGNUP_URL} className="btn-secondary inline-block">Start Free Trial</a>
+            <Link href="/revenue-leak-check" className="btn-primary inline-block">Run the Revenue Leak Check</Link>
+            <TrackedCta href="/modern-trades-crm" event="modern_trades_crm_click" source="ai-for-contractors" className="btn-secondary inline-block">
+              See Modern Trades CRM
+            </TrackedCta>
           </div>
         </div>
 

@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import { TrackedCta } from '@/components/TrackedCta'
 import { buildMetadata, organizationSchema, breadcrumbSchema, articleSchema } from '@/lib/seo'
 
 export const metadata = buildMetadata({
@@ -81,16 +82,15 @@ export default function WaterDamageRestorationPillarPage() {
             response than asking after the memory of the stress has faded.
           </p>
 
-          <h2>Where Metrix Command Center Helps</h2>
+          <h2>Where Modern Trades CRM Fits</h2>
           <p>
-            Metrix Command Center tracks multi-stage job status, flags insurance claims awaiting action, and
-            prompts review requests at project close, with an AI team that recommends the next action. Every
-            recommendation requires your explicit approval before anything reaches a customer.
+            Modern Trades CRM tracks multi-stage job status, flags insurance claims awaiting action, and
+            prompts review requests at project close. It gives each of these a visible owner and a next action.
           </p>
 
           <h2>Where It Does Not Replace Professional Judgment</h2>
           <p>
-            Metrix Command Center doesn&apos;t assess water damage, mold risk, or structural drying progress, and it
+            Modern Trades CRM doesn&apos;t assess water damage, mold risk, or structural drying progress, and it
             doesn&apos;t handle insurance-claim adjudication. It organizes the business side &mdash; job status,
             follow-up, and claim tracking &mdash; so nothing stalls silently during a multi-week job.
           </p>
@@ -102,7 +102,7 @@ export default function WaterDamageRestorationPillarPage() {
             <Link href="/resources/tools/estimate-follow-up-priority-calculator" className="btn-primary inline-block">
               Try the Estimate Priority Calculator
             </Link>
-            <Link href="/#pricing" className="btn-secondary inline-block">See Pricing</Link>
+            <TrackedCta href="/modern-trades-crm" event="modern_trades_crm_click" source="trade-guide" className="btn-secondary inline-block">See Modern Trades CRM</TrackedCta>
           </div>
         </div>
 

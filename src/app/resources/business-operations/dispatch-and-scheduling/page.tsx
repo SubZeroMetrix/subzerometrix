@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import { TrackedCta } from '@/components/TrackedCta'
 import { buildMetadata, organizationSchema, breadcrumbSchema, articleSchema } from '@/lib/seo'
 
 export const metadata = buildMetadata({
@@ -88,17 +89,15 @@ export default function DispatchAndSchedulingPage() {
             review.
           </p>
 
-          <h2>Where Metrix Command Center Helps</h2>
+          <h2>Where Modern Trades CRM Fits</h2>
           <p>
-            Metrix Command Center surfaces scheduling conflicts, tracks which jobs and follow-ups are overdue, and
-            keeps a visible record of commitments that doesn&apos;t depend on one person&apos;s memory, with an AI
-            team that recommends the next action. Every recommendation requires your explicit approval before
-            anything reaches a customer.
+            Modern Trades CRM surfaces scheduling conflicts, tracks which jobs and follow-ups are overdue, and
+            keeps a visible record of commitments that doesn&apos;t depend on one person&apos;s memory. It gives each of these a visible owner and a next action.
           </p>
 
           <h2>Where It Does Not Replace Professional Judgment</h2>
           <p>
-            Metrix Command Center doesn&apos;t make the judgment call on which job takes priority during a genuine
+            Modern Trades CRM doesn&apos;t make the judgment call on which job takes priority during a genuine
             emergency, and it doesn&apos;t replace a dispatcher&apos;s knowledge of their team and customers. It
             organizes the visibility so those judgment calls can actually be made with full information.
           </p>
@@ -110,7 +109,7 @@ export default function DispatchAndSchedulingPage() {
             <Link href="/resources/tools/estimate-follow-up-priority-calculator" className="btn-primary inline-block">
               Try the Estimate Priority Calculator
             </Link>
-            <Link href="/#pricing" className="btn-secondary inline-block">See Pricing</Link>
+            <TrackedCta href="/modern-trades-crm" event="modern_trades_crm_click" source="trade-guide" className="btn-secondary inline-block">See Modern Trades CRM</TrackedCta>
           </div>
         </div>
 

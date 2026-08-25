@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import { TrackedCta } from '@/components/TrackedCta'
 import { buildMetadata, organizationSchema, breadcrumbSchema, articleSchema, personSchema } from '@/lib/seo'
 
 export const metadata = buildMetadata({
@@ -100,16 +101,16 @@ export default function HvacRecurringRevenuePage() {
             looks at before the customer&apos;s coverage quietly expires.
           </p>
 
-          <h2>Where Metrix Command Center Helps</h2>
+          <h2>Where Modern Trades CRM Fits</h2>
           <p>
-            Metrix Command Center flags completed jobs as maintenance-agreement opportunities automatically and
+            Modern Trades CRM flags completed jobs as maintenance-agreement opportunities automatically and
             surfaces upcoming renewals before they lapse, so the offer doesn&apos;t depend on one technician&apos;s
             memory. Every recommendation still requires your explicit approval before anything reaches a customer.
           </p>
 
           <h2>Where It Does Not Replace Professional Judgment</h2>
           <p>
-            Metrix Command Center doesn&apos;t decide what should be included in your maintenance plans or price
+            Modern Trades CRM doesn&apos;t decide what should be included in your maintenance plans or price
             them for you &mdash; that&apos;s a business decision that depends on your market, your labor costs, and your
             equipment mix. It organizes the follow-through so the opportunities you&apos;ve already decided to
             pursue don&apos;t fall through the cracks.
@@ -118,12 +119,12 @@ export default function HvacRecurringRevenuePage() {
 
         <div className="card-panel bg-gray-50 border-brand-electric/20 mt-12 text-center">
           <h2 className="text-lg font-bold text-gray-900 mb-3">See if this matches your business</h2>
-          <p className="text-sm text-gray-500 mb-6">Try the calculator, or see how Metrix Command Center handles this.</p>
+          <p className="text-sm text-gray-500 mb-6">Try the calculator, or see how Modern Trades CRM handles this.</p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link href="/resources/tools/follow-up-revenue-calculator" className="btn-primary inline-block">
               Try the Follow-Up Revenue Calculator
             </Link>
-            <Link href="/#pricing" className="btn-secondary inline-block">See Pricing</Link>
+            <TrackedCta href="/modern-trades-crm" event="modern_trades_crm_click" source="trade-guide" className="btn-secondary inline-block">See Modern Trades CRM</TrackedCta>
           </div>
         </div>
 

@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import { buildMetadata, organizationSchema, breadcrumbSchema, webPageSchema } from '@/lib/seo'
 import { EstimateFollowUpPriorityCalculator } from '@/components/resources/EstimateFollowUpPriorityCalculator'
-import { MCC_SIGNUP_URL } from '@/content/mcc-pricing'
+import { TrackedCta } from '@/components/TrackedCta'
 
 export const metadata = buildMetadata({
   title: 'Estimate Follow-Up Priority Calculator',
@@ -49,10 +49,12 @@ export default function EstimateFollowUpPriorityCalculatorPage() {
         <div className="card-panel bg-gray-50 border-brand-electric/20 mt-10 text-center">
           <h2 className="text-lg font-bold text-gray-900 mb-3">Stop scoring this by hand</h2>
           <p className="text-sm text-gray-500 mb-6">
-            Metrix Command Center surfaces overdue and at-risk estimates automatically, with a governed AI team
-            that recommends the next action -- every recommendation requires your approval.
+            Modern Trades CRM tracks estimate follow-up automatically instead of a manual calculator -- sold
+            nationally, independent of any consulting engagement.
           </p>
-          <a href={MCC_SIGNUP_URL} className="btn-primary inline-block">Start Free Trial</a>
+          <TrackedCta href="/modern-trades-crm" event="modern_trades_crm_click" source="estimate-priority-calculator" className="btn-primary inline-block">
+            See Modern Trades CRM
+          </TrackedCta>
         </div>
 
         <p className="text-sm text-gray-500 mt-8">

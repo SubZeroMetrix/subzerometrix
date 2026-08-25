@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import { TrackedCta } from '@/components/TrackedCta'
 import { buildMetadata, organizationSchema, breadcrumbSchema, articleSchema } from '@/lib/seo'
 
 export const metadata = buildMetadata({
@@ -78,16 +79,15 @@ export default function PaintingPillarPage() {
             rather than weeks later, consistently captures a more enthusiastic and more detailed response.
           </p>
 
-          <h2>Where Metrix Command Center Helps</h2>
+          <h2>Where Modern Trades CRM Fits</h2>
           <p>
-            Metrix Command Center surfaces aging estimates, flags past customers worth re-engaging for repeat or
-            referral work, and prompts review requests at the right moment, with an AI team that recommends the
-            next action. Every recommendation requires your explicit approval before anything reaches a customer.
+            Modern Trades CRM surfaces aging estimates, flags past customers worth re-engaging for repeat or
+            referral work, and prompts review requests at the right moment. It gives each of these a visible owner and a next action.
           </p>
 
           <h2>Where It Does Not Replace Professional Judgment</h2>
           <p>
-            Metrix Command Center doesn&apos;t recommend paint products, surface prep methods, or color choices. It
+            Modern Trades CRM doesn&apos;t recommend paint products, surface prep methods, or color choices. It
             organizes the business side &mdash; follow-ups, repeat outreach, and review timing &mdash; so competitive
             estimates don&apos;t lose to silence.
           </p>
@@ -99,7 +99,7 @@ export default function PaintingPillarPage() {
             <Link href="/resources/tools/follow-up-revenue-calculator" className="btn-primary inline-block">
               Try the Follow-Up Revenue Calculator
             </Link>
-            <Link href="/#pricing" className="btn-secondary inline-block">See Pricing</Link>
+            <TrackedCta href="/modern-trades-crm" event="modern_trades_crm_click" source="trade-guide" className="btn-secondary inline-block">See Modern Trades CRM</TrackedCta>
           </div>
         </div>
 

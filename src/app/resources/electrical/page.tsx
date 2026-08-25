@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import { TrackedCta } from '@/components/TrackedCta'
 import { buildMetadata, organizationSchema, breadcrumbSchema, articleSchema } from '@/lib/seo'
 
 export const metadata = buildMetadata({
@@ -109,16 +110,16 @@ export default function ElectricalPillarPage() {
             reaches a customer or changes a record. No autonomous mode.
           </p>
 
-          <h2>Where Metrix Command Center Helps</h2>
+          <h2>Where Modern Trades CRM Fits</h2>
           <p>
-            Metrix Command Center organizes leads, estimates, jobs, and follow-ups in one place and flags what needs
+            Modern Trades CRM organizes leads, estimates, jobs, and follow-ups in one place and flags what needs
             attention, so the business side of an electrical contracting operation gets the same discipline the
             field work does.
           </p>
 
           <h2>Where Licensed Electrical Judgment Remains Required</h2>
           <p>
-            Metrix Command Center does not evaluate electrical work, does not make code-compliance determinations,
+            Modern Trades CRM does not evaluate electrical work, does not make code-compliance determinations,
             and does not replace a licensed electrician&apos;s assessment. It organizes the business side of the
             operation only -- every technical and safety decision remains with your licensed team.
           </p>
@@ -130,7 +131,7 @@ export default function ElectricalPillarPage() {
             <Link href="/resources/tools/estimate-follow-up-priority-calculator" className="btn-primary inline-block">
               Try the Estimate Priority Calculator
             </Link>
-            <Link href="/#pricing" className="btn-secondary inline-block">See Pricing</Link>
+            <TrackedCta href="/modern-trades-crm" event="modern_trades_crm_click" source="trade-guide" className="btn-secondary inline-block">See Modern Trades CRM</TrackedCta>
           </div>
         </div>
 

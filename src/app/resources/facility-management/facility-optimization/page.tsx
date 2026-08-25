@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import { TrackedCta } from '@/components/TrackedCta'
 import { buildMetadata, organizationSchema, breadcrumbSchema, articleSchema, personSchema } from '@/lib/seo'
 
 export const metadata = buildMetadata({
@@ -111,8 +112,7 @@ export default function FacilityOptimizationPage() {
         <div className="card-panel bg-gray-50 border-brand-electric/20 mt-12 text-center">
           <h2 className="text-lg font-bold text-gray-900 mb-3">See how this applies to your operation</h2>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link href="/#trust" className="btn-primary inline-block">See the Governance Model</Link>
-            <Link href="/#pricing" className="btn-secondary inline-block">See Pricing</Link>
+            <TrackedCta href="/modern-trades-crm" event="modern_trades_crm_click" source="trade-guide" className="btn-primary inline-block">See Modern Trades CRM</TrackedCta>
           </div>
         </div>
 
