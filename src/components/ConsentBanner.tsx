@@ -2,9 +2,14 @@
 
 import { useState, useEffect } from 'react'
 import { updateConsent, getConsent } from '@/lib/analytics/events'
+import { captureFirstTouch } from '@/lib/attribution'
 
 export function ConsentBanner() {
   const [visible, setVisible] = useState(false)
+
+  useEffect(() => {
+    captureFirstTouch()
+  }, [])
 
   useEffect(() => {
     const hasDecided = typeof window !== 'undefined' && localStorage.getItem('szm_consent')

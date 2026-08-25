@@ -2,6 +2,7 @@
 
 import { useState, useEffect, Suspense } from 'react'
 import { useSearchParams } from 'next/navigation'
+import { buildAttributionPayload, sendAttributionPayload } from '@/lib/attribution'
 
 export default function ContactPage() {
   return (
@@ -40,6 +41,10 @@ function ContactForm() {
       }
 
       setStatus('success')
+      // Non-blocking: attribution payload has no live endpoint yet (Terminal 1
+      // pending), so this only logs in development. Never gates the real
+      // submission above, which already succeeded.
+      sendAttributionPayload(buildAttributionPayload({ subject: form.subject }))
     } catch (err) {
       setStatus('error')
       setErrorMsg(err instanceof Error ? err.message : 'Something went wrong')
