@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import { buildMetadata, breadcrumbSchema } from '@/lib/seo'
 import { TrackedCta } from '@/components/TrackedCta'
+import { NewsletterSignupForm } from '@/components/NewsletterSignupForm'
 
 export const metadata = buildMetadata({
   title: 'Pinellas County Contractor Revenue Recovery',
@@ -105,10 +106,20 @@ export default function PinellasPage() {
           <Link href="/revenue-leak-check" className="btn-primary">Run the Revenue Leak Check</Link>
         </section>
 
-        <div className="card-panel text-center">
+        <div className="card-panel text-center mb-8">
           <p className="text-gray-700 mb-4">Need help implementing the fix in Pinellas County?</p>
           <TrackedCta href="https://www.themoderntradesmentor.com" event="tmt_local_click" source="pinellas-page" external className="btn-primary">Work with The Modern Trades Mentor</TrackedCta>
           <p className="mt-3 text-xs text-gray-400">TMT is a SubZeroMetrix affiliate, not an independent third party -- optional, not required.</p>
+        </div>
+
+        <div className="card-panel">
+          <p className="text-xs font-semibold uppercase tracking-wider text-brand-electric mb-2">Free newsletter</p>
+          <h2 className="text-lg font-bold text-gray-900 mb-2">Pinellas Contractor Field Notes</h2>
+          <p className="text-sm text-gray-500 mb-5">
+            Local contractor operations notes for St. Petersburg, Clearwater, Largo, Palm Harbor, and greater
+            Pinellas County. Occasional, practical, no fluff.
+          </p>
+          <NewsletterSignupForm publication="pinellas-field-notes" compact />
         </div>
       </div>
     </div>

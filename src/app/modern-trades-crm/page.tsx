@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import { buildMetadata, breadcrumbSchema } from '@/lib/seo'
 import { TrackedCta } from '@/components/TrackedCta'
+import { NewsletterSignupForm } from '@/components/NewsletterSignupForm'
 
 export const metadata = buildMetadata({
   title: 'Modern Trades CRM',
@@ -68,9 +69,19 @@ export default function ModernTradesCrmPage() {
           <p className="mt-3 text-xs text-gray-400">No live checkout yet -- this sends an interest request, not a purchase.</p>
         </div>
 
-        <p className="mt-10 text-sm text-gray-500">
+        <p className="mt-10 text-sm text-gray-500 mb-10">
           Want help finding where you actually need this first? <Link href="/revenue-leak-check" className="text-brand-electric underline underline-offset-2">Run the Revenue Leak Check</Link>.
         </p>
+
+        <div className="card-panel">
+          <p className="text-xs font-semibold uppercase tracking-wider text-brand-cyan mb-2">Free newsletter</p>
+          <h2 className="text-lg font-bold text-gray-900 mb-2">Modern Trades CRM Growth & Systems Brief</h2>
+          <p className="text-sm text-gray-500 mb-5">
+            CRM and follow-up systems, missed-call recovery, estimate follow-up, customer reactivation, reviews and
+            referrals, and workflow automation -- for service-business owners nationally.
+          </p>
+          <NewsletterSignupForm publication="growth-systems-brief" compact />
+        </div>
       </div>
     </div>
   )
