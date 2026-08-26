@@ -50,13 +50,30 @@ export async function POST(request: NextRequest) {
     if (existing) {
       const { error } = await supabase
         .from('newsletter_subscribers')
-        .update({ [column]: true, unsubscribed_at: null })
+        .update({
+          [column]: true,
+          unsubscribed_at: null,
+          first_name: result.data.firstName ?? undefined,
+          last_name: result.data.lastName ?? undefined,
+          trade: result.data.trade ?? undefined,
+          geography: result.data.geography ?? undefined,
+          interests: result.data.interests ?? undefined,
+          email_consent: result.data.emailConsent,
+          sms_consent: result.data.smsConsent,
+        })
         .eq('id', existing.id)
       if (error) throw error
     } else {
       const { error } = await supabase.from('newsletter_subscribers').insert({
         email: result.data.email,
         [column]: true,
+        first_name: result.data.firstName ?? null,
+        last_name: result.data.lastName ?? null,
+        trade: result.data.trade ?? null,
+        geography: result.data.geography ?? null,
+        interests: result.data.interests ?? null,
+        email_consent: result.data.emailConsent,
+        sms_consent: result.data.smsConsent,
         source_domain: typeof attribution?.original_domain === 'string' ? attribution.original_domain : null,
         source_landing_page: typeof attribution?.original_landing_page === 'string' ? attribution.original_landing_page : null,
         source_tool: typeof attribution?.source_tool === 'string' ? attribution.source_tool : null,
