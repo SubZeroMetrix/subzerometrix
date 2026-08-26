@@ -87,8 +87,15 @@ export async function POST(request: NextRequest) {
   } catch (err) {
     // 42P01 = undefined_table: migration 0009_newsletter_subscribers.sql has not
     // been applied yet. Surface a distinct, honest error rather than a generic 500.
+    // Checked both `.code` (PostgrestError shape) and the message text as a
+    // fallback -- found via live testing 2026-08-26 that the `.code`-only
+    // check was NOT reliably firing in production (returned a generic 500
+    // instead of the intended 503), root cause not fully isolated without
+    // server log access; this widens detection without changing behavior
+    // when the table really is missing.
     const code = (err as { code?: string })?.code
-    if (code === '42P01') {
+    const message = err instanceof Error ? err.message : String(err)
+    if (code === '42P01' || message.includes('42P01') || /relation .* does not exist/i.test(message)) {
       console.error('[newsletter-subscribe] newsletter_subscribers table does not exist yet -- migration 0009 not applied')
       return NextResponse.json({ error: 'Newsletter signup is not yet available. Please try again later.' }, { status: 503 })
     }
