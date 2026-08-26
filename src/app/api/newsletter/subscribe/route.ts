@@ -108,10 +108,7 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: 'Newsletter signup is not yet available. Please try again later.' }, { status: 503 })
     }
     console.error('[newsletter-subscribe] Error:', err)
-    // TEMPORARY diagnostic (2026-08-26): expose the error shape to isolate
-    // why the 503 branch above isn't matching in production. Remove once
-    // the real cause is found -- not meant to ship long-term.
-    return NextResponse.json({ error: 'Failed to save subscription', _debug: { code, message } }, { status: 500 })
+    return NextResponse.json({ error: 'Failed to save subscription' }, { status: 500 })
   }
 
   return NextResponse.json({ success: true })
