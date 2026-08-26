@@ -94,8 +94,16 @@ export async function POST(request: NextRequest) {
     // server log access; this widens detection without changing behavior
     // when the table really is missing.
     const code = (err as { code?: string })?.code
-    const message = err instanceof Error ? err.message : String(err)
-    if (code === '42P01' || message.includes('42P01') || /relation .* does not exist/i.test(message)) {
+    const message = (err as { message?: string })?.message || (err instanceof Error ? err.message : String(err))
+    // PGRST205 is PostgREST's own "table not in schema cache" code -- what
+    // actually fires here (found via live 2026-08-26 testing), not raw
+    // Postgres 42P01. Checking both, plus the message text, for robustness.
+    if (
+      code === '42P01' || code === 'PGRST205' ||
+      message.includes('42P01') || message.includes('PGRST205') ||
+      /relation .* does not exist/i.test(message) ||
+      /could not find the table/i.test(message)
+    ) {
       console.error('[newsletter-subscribe] newsletter_subscribers table does not exist yet -- migration 0009 not applied')
       return NextResponse.json({ error: 'Newsletter signup is not yet available. Please try again later.' }, { status: 503 })
     }
